@@ -1,4 +1,4 @@
-﻿# Machine Learning, Computer Vision, Data Science Introductions and Notebooks 
+﻿# Machine Learning, Computer Vision and Data Science Introductions 
 * Visualization
  for Exploratory Data Analysis  
   * [Matplotlib notebook](./matplotlib/ex1/example.ipynb)
