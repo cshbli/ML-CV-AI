@@ -21,6 +21,12 @@
     <p align="center">
        <img src="./quantization/quantization_of_activation.png" width="400px" title="Quantization of activations, allowing binary calculations, with integer accumulations. The binary calculation can be convolutional layer or fully-connected layer">
     </p>
+    
+  * Multiple bit width activations
+ 
+    <p align="center">
+       <img src="./quantization/multiple_bit_width_activations.png" width="400px" title="DoReFa-Net style 3-bit activation quantizer function">
+    </p>
  
 ## References
 
