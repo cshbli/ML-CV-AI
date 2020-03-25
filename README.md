@@ -8,6 +8,7 @@
     * During training there are effectively two networks : float-precision and binary-precision. The binary-precision is updated in the forward pass using the float-precision, and the float-precision is updated in the backward pass using the binary-precision. In this sense, the training is a type of alternating optimization.
     <p align="center">
        <img src="./quantization/quantization_of_parameteres during training.png" width="400px" title="Quantization of parameters during training">
+       Quantization of parameters during training
     </p>
     
  
