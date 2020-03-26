@@ -12,6 +12,18 @@
        <img src="./quantization/tensorflow_overview_of_schemes_for_model_quantization.png" width="600px" title="Overview of schemes for model quantization">
     </p>
     
+    * Weight only quantization: per-channel quantization provides good accuracy, with asymmetric quantization providing close to floating point accuracy.
+    
+    <p align="center">
+       <img src="./quantization/weight_only_quantization.png" width="600px" title="weight only quantization">
+    </p>
+    
+    *  Post training quantization of weights and activations: per-channel quantization of weights and per-layer quantization of activations works well for all the networks considered, with asymmetric quantization providing slightly better accuracies.
+    
+    <p align="center">
+       <img src="./quantization/post_training_quantization_of_weights_and_activation.png" width="600px" title="post training quantization of weights and activations">
+    </p>
+    
   * Continuous-discrete learning
     * During training there are effectively two networks : float-precision and binary-precision. The binary-precision is updated in the forward pass using the float-precision, and the float-precision is updated in the backward pass using the binary-precision. In this sense, the training is a type of alternating optimization.
     
