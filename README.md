@@ -9,19 +9,19 @@
     * Overview of schemes for model quantization: One can quantize weights post training (left) or quantize weights and activations post training (middle). It is also possible to perform quantization aware training for improved accuracy.
     
     <p align="center">
-       <img src="./quantization/tensorflow_overview_of_schemes_for_model_quantization.png" width="600px" title="Overview of schemes for model quantization">
+       <img src="./quantization/tensorflow_overview_of_schemes_for_model_quantization.png" width="400px" title="Overview of schemes for model quantization">
     </p>
     
     * Weight only quantization: per-channel quantization provides good accuracy, with asymmetric quantization providing close to floating point accuracy.
     
     <p align="center">
-       <img src="./quantization/weight_only_quantization.png" width="600px" title="weight only quantization">
+       <img src="./quantization/weight_only_quantization.png" width="400px" title="weight only quantization">
     </p>
     
     *  Post training quantization of weights and activations: per-channel quantization of weights and per-layer quantization of activations works well for all the networks considered, with asymmetric quantization providing slightly better accuracies.
     
     <p align="center">
-       <img src="./quantization/post_training_quantization_of_weights_and_activation.png" width="600px" title="post training quantization of weights and activations">
+       <img src="./quantization/post_training_quantization_of_weights_and_activation.png" width="400px" title="post training quantization of weights and activations">
     </p>
     
   * Continuous-discrete learning
