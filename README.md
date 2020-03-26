@@ -4,6 +4,8 @@
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
 * Quantization
   * Quantization for deep learning is the process of approximating a neural network that uses floating-point numbers by a neural network of low bit width numbers.
+  * [Quantization Algorithms](https://nervanasystems.github.io/distiller/algo_quantization.html)
+  * [Quantizing deep convolutional networks for efficient inference: A white paper](https://arxiv.org/pdf/1806.08342.pdf)
   * Continuous-discrete learning
     * During training there are effectively two networks : float-precision and binary-precision. The binary-precision is updated in the forward pass using the float-precision, and the float-precision is updated in the backward pass using the binary-precision. In this sense, the training is a type of alternating optimization.
     
@@ -28,7 +30,7 @@
        <img src="./quantization/multiple_bit_width_activations.png" width="400px" title="DoReFa-Net style 3-bit activation quantizer function">
     </p>
  
-   * [Quantization Algorithms](https://nervanasystems.github.io/distiller/algo_quantization.html)
+  
    
 ## References
 
