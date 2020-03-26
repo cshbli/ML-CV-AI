@@ -28,6 +28,8 @@
        <img src="./quantization/multiple_bit_width_activations.png" width="400px" title="DoReFa-Net style 3-bit activation quantizer function">
     </p>
  
+   * [Quantization Algorithms](https://nervanasystems.github.io/distiller/algo_quantization.html)
+   
 ## References
 
 ### Documentation
