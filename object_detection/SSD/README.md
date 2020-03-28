@@ -34,3 +34,11 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
     * Conv11_2: 1×1×4 = 4 boxes (4 boxes for each location)
     
     If we sum them up, we got 5776 + 2166 + 600 + 150 + 36 +4 = 8732 boxes in total. If we remember YOLO, there are 7×7 locations at the end with 2 bounding boxes for each location. YOLO only got 7×7×2 = 98 boxes. Hence, SSD has 8732 bounding boxes which is more than that of YOLO.
+
+  * Loss Function
+    * The loss function consists of two terms: Lconf and Lloc
+    
+    * Lloc is the localization loss which is the smooth L1 loss between the predicted box (l) and the ground-truth box (g) parameters.
+    
+    * Lconf is the confidence loss which is the softmax loss over multiple classes confidences (c).
+  
