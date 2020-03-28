@@ -5,6 +5,7 @@
 * Object Detection
   * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
   * Focal Loss  
+  
       Methods like SSD or YOLO suffer from an extreme class imbalance: The detectors evaluate roughly between ten to hundred thousand candidate locations and of course most of these boxes do not contain an object. Even if the detector easily classifies these large number of boxes as negatives/background, there is still a problem.
     
     * Cross entropy loss function      
