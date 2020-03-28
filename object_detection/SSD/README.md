@@ -54,7 +54,7 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
      
       Furthermore, <b>FC6 and FC7 use Atrous convolution </b>(a.k.a Hole algorithm or dilated convolution) instead of conventional convolution. 
       <p align="center>
-          <img src="atrous_convolution_hole_algorithm_dilated_convolution.gif" width="400px" title="Atrous convolution / Hole algorithm / Dilated convolution">
+          <img src="atrous_convolution_hole_algorithm_dilated_convolution.gif" width="400px" title="Atrous convolution Hole algorithm Dilated convolution">
       </p>
 
       As we can see, the feature maps are large at Conv6 and Conv7, using Atrous convolution as shown above can <b>increase the receptive field while keeping number of parameters relatively fewer </b>compared with conventional convolution. 
