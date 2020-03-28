@@ -10,7 +10,7 @@
     
     * Cross entropy loss function      
       <p align="center">
-          <img src="./object_detection/cross_entropy_loss_function.png" width="500pm" title="Cross Entropy Loss Function">
+          <img src="./object_detection/cross_entropy_loss_function.png" width="300pm" title="Cross Entropy Loss Function">
       </p>
       
       <p align="center">
@@ -27,7 +27,7 @@
     
         Lin et al. (2017) [Focal Loss for Dense Object Detection](https://arxiv.org/abs/1708.02002) had the beautiful idea to scale the cross entropy loss so that all the easy examples the network is already very sure about contribute less to the loss so that the learning can focus on the few interesting cases. The authors called their loss function <i>Focal loss </i>and their architecture <b>RetinaNet</b> (note that RetinaNet also includes <b>Feature Pyramid Networks (FPN)</b> which is basically a new name for U-Net).
         <p align="center">
-           <img src="./object_detection/focal_loss_function.png" width="600px" title="Focal Loss Function">
+           <img src="./object_detection/focal_loss_function.png" width="300px" title="Focal Loss Function">
         </p>
         
         <p align="center">
