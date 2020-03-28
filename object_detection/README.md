@@ -102,6 +102,12 @@
   <b>Training RetinaNet</b>
   
      Initialization of the network is very important. The authors have assumed a prior probability of 0.01 for all the anchor boxes and assigned this to the bias of last conv layer of classification sub net. The loss function blows up if you don’t take care of this. The intuition behind attaching this prior probability is that the foreground (All positive anchor boxes) to background objects (All negative anchor boxes) in image is 1000/100000 = 0.01.
+     
+   <b>Inference on RetinaNet</b>
+   
+     * To improve speed, Decode box predictions from at most 1k top-scoring predictions per FPN level, after thresholding the detector confidence at 0.05.
+     
+     * The top predictions from all levels are merged and non-maximum suppression with a threshold of 0.5 is applied to yield the final decisions.
         
 ## [SSD - Single Shot Detector](./SSD/README.md)        
     
