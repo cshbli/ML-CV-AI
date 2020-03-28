@@ -21,9 +21,9 @@
      
       * Problems with RPN
       
-          The Feature map created after a lot of subsampling losses a lot of semantic information at low level, thus unable to detect small objects in the image. [Feature Pyramid networks solves this]
+         * The Feature map created after a lot of subsampling losses a lot of semantic information at low level, thus unable to detect small objects in the image. <b>[Feature Pyramid networks solves this]</b>
           
-           The loss functions uses negative hard-mining by taking 128 +ve samples, 128 -ve samples because using all the labels hampers training as it is highly imbalanced and there will be many easily classified examples. [Focal loss solves this]
+         * The loss functions uses negative hard-mining by taking 128 +ve samples, 128 -ve samples because using all the labels hampers training as it is highly imbalanced and there will be many easily classified examples. <b>[Focal loss solves this]</b>
   
   * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
   * Focal Loss  
