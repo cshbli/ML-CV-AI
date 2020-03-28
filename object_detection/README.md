@@ -85,5 +85,19 @@
         
         With this rescaling, the large number of easily classified examples (mostly background) does not dominate the loss anymore and learning can concentrate on the few interesting cases.
         
+* RetinaNet
+
+<b>RetinaNet</b> is a single, unified network composed of a backbone network and two task-specific subnetworks. The backbone is responsible for computing a conv feature map over an entire input image and is an off-the-self convolution network. The first subnet performs classification on the backbones output; the second subnet performs convolution bounding box regression.
+
+<b>Backbone</b>: Feature Pyramid network built on top of ResNet50 or ResNet101. However we can use any classifier of your choice; just follow the instructions given in FPN section when designing the network.
+
+<b>Classification subnet</b>: It predicts the probability of object presence at each spatial position for each of the A anchors and K object classes. Takes a input feature map with C channels from a pyramid level, the subnet applies four 3x3 conv layers, each with C filters amd each followed by ReLU activations. Finally sigmoid activations are attached to the outputs. Focal loss is applied as the loss function.
+
+<b>Box Regression Subnet</b>: Similar to classification net used but the parameters are not shared. Outputs the object location with respect to anchor box if an object exists. smooth_l1_loss with sigma equal to 3 is applied as the loss function to this part of the sub-network.
+
+<p align="center">
+<img src="./RetinaNet.png" width="600px" title="RetinaNet">
+</p>
+        
 ## [SSD - Single Shot Detector](./SSD/README.md)        
     
