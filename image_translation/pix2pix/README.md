@@ -4,6 +4,8 @@
 
 Image-To-Image Translation is a process for translating one representation of an image into another representation.
 
+[Jupyter notebook based on Keras](./pix2pix-network-Image-to-image-translation-using-conditional-gans.ipynb)
+
 * The Generator Network
 
   Generator network uses a <b>U-Net</b>-based architecture. U-Net’s architecture is similar to an <b>Auto-Encoder</b> network except for one difference. Both U-Net and Auto-Encoder network has two networks The <b>Encoder</b> and the <b>Decoder</b>.
@@ -51,7 +53,7 @@ Image-To-Image Translation is a process for translating one representation of an
       
 * Pix2Pix GAN Architecture
   <p align="center">
-    <img src="pix2pix_gan_architecture.png" width="400px" title="Pix2Pix GAN Architecture">
+    <img src="pix2pix_gan_architecture.png" width="200px" title="Pix2Pix GAN Architecture">
   </p>
   
 * Pix2Pix Network Training
