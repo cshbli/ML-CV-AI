@@ -95,9 +95,13 @@
 
   <b>Box Regression Subnet</b>: Similar to classification net used but the parameters are not shared. Outputs the object location with respect to anchor box if an object exists. smooth_l1_loss with sigma equal to 3 is applied as the loss function to this part of the sub-network.
 
-<p align="center">
-<img src="./RetinaNet.png" width="600px" title="RetinaNet">
-</p>
+  <p align="center">
+  <img src="./RetinaNet.png" width="600px" title="RetinaNet">
+  </p>
+
+  <b>Training RetinaNet</b>
+  
+     Initialization of the network is very important. The authors have assumed a prior probability of 0.01 for all the anchor boxes and assigned this to the bias of last conv layer of classification sub net. The loss function blows up if you don’t take care of this. The intuition behind attaching this prior probability is that the foreground (All positive anchor boxes) to background objects (All negative anchor boxes) in image is 1000/100000 = 0.01.
         
 ## [SSD - Single Shot Detector](./SSD/README.md)        
     
