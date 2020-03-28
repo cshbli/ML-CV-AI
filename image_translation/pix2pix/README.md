@@ -51,7 +51,7 @@ Image-To-Image Translation is a process for translating one representation of an
       
 * Pix2Pix GAN Architecture
   <p align="center">
-    <img src="pix2pix_gan_architecture.png" width="400px" title="Pix2Pix GAN Architecture">
+    <img src="pix2pix_gan_architecture.png" width="200px" title="Pix2Pix GAN Architecture">
   </p>
   
 * Pix2Pix Network Training
