@@ -10,11 +10,11 @@
     
     * Cross entropy loss function      
       <p align="center">
-          <img src="cross_entropy_loss_function.png" width="500pm" title="Cross Entropy Loss Function">
+          <img src="./object_detection/cross_entropy_loss_function.png" width="500pm" title="Cross Entropy Loss Function">
       </p>
       
       <p align="center">
-          <img src="cross_entropy_loss_function_plot.png" width="600pm" title="Cross Entropy Loss Function Plot">
+          <img src="./object_detection/cross_entropy_loss_function_plot.png" width="600pm" title="Cross Entropy Loss Function Plot">
       </p>
       
       where i is the index of the class, y_i the label (1 if the object belongs to class i, 0 otherwise), and p_i is the predicted probability that the object belongs to class i.
@@ -27,11 +27,11 @@
     
         Lin et al. (2017) [Focal Loss for Dense Object Detection](https://arxiv.org/abs/1708.02002) had the beautiful idea to scale the cross entropy loss so that all the easy examples the network is already very sure about contribute less to the loss so that the learning can focus on the few interesting cases. The authors called their loss function <i>Focal loss </i>and their architecture <b>RetinaNet</b> (note that RetinaNet also includes <b>Feature Pyramid Networks (FPN)</b> which is basically a new name for U-Net).
         <p align="center">
-           <img src="focal_loss_function.png" width="600px" title="Focal Loss Function">
+           <img src="./object_detection/focal_loss_function.png" width="600px" title="Focal Loss Function">
         </p>
         
         <p align="center">
-           <img src="focal_loss_function_plot.png" width="600px" title="Focal Loss Function_plot">
+           <img src="./object_detection/focal_loss_function_plot.png" width="600px" title="Focal Loss Function_plot">
         </p>
         
         With this rescaling, the large number of easily classified examples (mostly background) does not dominate the loss anymore and learning can concentrate on the few interesting cases.
