@@ -42,3 +42,16 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
     
     * Lconf is the confidence loss which is the softmax loss over multiple classes confidences (c).
   
+  * Some Details of Training
+    * Hard Negative Mining
+      Instead of using all the negative examples, we sort them using the highest confidence loss for each default box and pick the top ones so that the ratio between the negatives and positives is at most 3:1.
+      
+      This can lead to faster optimization and a more stable training.
+      
+   * Atrous Convolution (Hole Algorithm / Dilated Convolution)
+     The base network is VGG16 and pre-trained using ILSVRC classification dataset. <b>FC6 and FC7 are changed to convolution layers as Conv6 and Conv7 </b>which is shown in the figure above.
+     
+     Furthermore, <b>FC6 and FC7 use Atrous convolution </b>(a.k.a Hole algorithm or dilated convolution) instead of conventional convolution. 
+
+     As we can see, the feature maps are large at Conv6 and Conv7, using Atrous convolution as shown above can <b>increase the receptive field while keeping number of parameters relatively fewer </b>compared with conventional convolution. 
+  
