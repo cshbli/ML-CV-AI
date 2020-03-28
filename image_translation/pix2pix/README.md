@@ -42,5 +42,15 @@ Image-To-Image Translation is a process for translating one representation of an
           <img src="generator_architecture.png" width="600px" title="Generator Architecture">
         </p>      
         
-        
+* Discriminator Architecture
+
+  Discriminator network uses of PatchGAN architecture. The PatchGAN network contains five convolutional blocks.
+  <p align="center">
+    <img src="discriminator_architecture.png" width="500px" title="Discriminator Architecture">
+  </p>
       
+* Pix2Pix GAN Architecture
+  <p align="center">
+    <img src="pix2pix_gan_architecture.png" width="400px" title="Pix2Pix GAN Architecture">
+  </p>
+  
