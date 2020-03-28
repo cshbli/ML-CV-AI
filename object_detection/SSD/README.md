@@ -53,7 +53,7 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
     * <b>Scale and Aspect Ratios</b>
       Default boundary boxes are chosen manually. SSD defines a scale value for each feature map layer. Starting from the left, Conv4_3 detects objects at the smallest scale 0.2 (or 0.1 sometimes) and then increases linearly to the rightmost layer at a scale of 0.9. Combining the scale value with the target aspect ratios, we compute the width and the height of the default boxes. For layers making 6 predictions, SSD starts with 5 target aspect ratios: 1, 2, 3, 1/2 and 1/3. Then the width and the height of the default boxes are calculated as:
       <p align="center">
-         <img src="ssd_scale_and_aspect_ratio.png" width="400px" title="SSD Scale and Ratios">
+         <img src="ssd_scale_and_aspect_ratio.png" width="600px" title="SSD Scale and Ratios">
       </p>
       
       and aspect_ratio = 1.
