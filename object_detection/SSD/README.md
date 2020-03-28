@@ -18,6 +18,8 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
         <img src="SSD_vs_YOLO.png" width="800px" title="SSD (Top) vs YOLO (Bottom)">
      </p>
     
+    SSD uses multiple layers <b>(multi-scale feature maps)</b> to detect objects independently. As CNN reduces the spatial dimension gradually, the resolution of the feature maps also decrease. SSD uses lower resolution layers to detect larger scale objects.
+    
     To have more accurate detection, different layers of feature maps are also going through a small 3×3 convolution for object detection as shown above.
     * Say for example, at Conv4_3, it is of size 38×38×512. 3×3 conv is applied. And there are 4 bounding boxes and each bounding box will have (classes + 4) outputs. Thus, at Conv4_3, the output is 38×38×4×(c+4). Suppose there are 20 object classes plus one background class, the output is 38×38×4×(21+4) = 144,400. In terms of number of bounding boxes, there are 38×38×4 = 5776 bounding boxes.
     
