@@ -63,6 +63,8 @@ Image-To-Image Translation is a process for translating one representation of an
   
 * Pix2Pix Network Training
 
+  A naive way to do Image-to-Image translation would be to discard the adversarial framework altogether. A source image would just be passed through a parametric function and the difference in the resulting image and the ground truth output would be used to update the weights of the network. <b>However, designing this loss function with standard distance measures such as L1 and L2 will fail to capture many of the important distinctive characteristics between these images</b>. However, the authors do find some value to the L1 loss function as a weighted sidekick to the adversarial loss function.
+
   Pix2Pix is a conditional GANs. The loss function for the conditional GANs can be written as below.
   <p align="center">
     <img src="conditional_gan_loss_function.png" width="600px" title="Loss function for the conditional GANs">
