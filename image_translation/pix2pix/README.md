@@ -47,6 +47,11 @@ Image-To-Image Translation is a process for translating one representation of an
 * Discriminator Architecture
 
   Discriminator network uses of PatchGAN architecture. The PatchGAN network contains five convolutional blocks.
+  
+  The PatchGAN discriminator used in pix2pix is another unique component to this design. The PatchGAN / Markovian discriminator works by classifying individual (N x N) patches in the image as “real vs. fake”, opposed to classifying the entire image as “real vs. fake”. The authors reason that this enforces more constraints that encourage sharp high-frequency detail. Additionally, the PatchGAN has fewer parameters and runs faster than classifying the entire image. The image below depicts results experimenting with the size of N for the N x N patches to be classified:
+  <p align="center">
+    <img src="patch_gan_example.png" width="600px" title="PatchGan example">
+  </p>
   <p align="center">
     <img src="discriminator_architecture.png" width="400px" title="Discriminator Architecture">
   </p>
@@ -77,3 +82,5 @@ Image-To-Image Translation is a process for translating one representation of an
    <p align="center">
       <img src="total_loss_function_of_pix2pix.png" width="600px" title="Total loss function of Pix2Pix">
    </p>
+   
+   In the experiments, the authors report that they found the most success with the <b>lambda parameter equal to 100</b>.
