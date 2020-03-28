@@ -39,14 +39,14 @@ Image-To-Image Translation is a process for translating one representation of an
           * The Decoder network of the Generator network has seven upsampling convolutional blocks.
           * Each upsampling convolutional block has an upsampling layer, followed by a convolutional layer, a batch normalization layer and a ReLU activation function.
         <p align="center">
-          <img src="generator_architecture.png" width="600px" title="Generator Architecture">
+          <img src="generator_architecture.png" width="800px" title="Generator Architecture">
         </p>      
         
 * Discriminator Architecture
 
   Discriminator network uses of PatchGAN architecture. The PatchGAN network contains five convolutional blocks.
   <p align="center">
-    <img src="discriminator_architecture.png" width="500px" title="Discriminator Architecture">
+    <img src="discriminator_architecture.png" width="400px" title="Discriminator Architecture">
   </p>
       
 * Pix2Pix GAN Architecture
