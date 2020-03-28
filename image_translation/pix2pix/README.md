@@ -10,7 +10,7 @@ Image-To-Image Translation is a process for translating one representation of an
   
   * U-Net Architecture Diagram
     <p align="center">
-      <img src="unet_architecture_diagram" width="400px" title="U-Net Architecture">
+      <img src="unet_architecture_diagram.png" width="400px" title="U-Net Architecture">
     </p>
     
     * U-Net’s network has skip connections between Encoder layers and Decoder layers.
@@ -18,3 +18,29 @@ Image-To-Image Translation is a process for translating one representation of an
     * As shown in the picture the output of the first layer of Encoder is directly passed to the last layer of the Decoder and output of the second layer of Encoder is pass to the second last layer of the Decoder and so on.
     
     * Let’s consider if there are total N layers in U-Net’s(including middle layer), Then there will be a skip connection from the kth layer in the Encoder network to the (N-k+1)th layer in the Decoder network. where 1 ≤ k ≤ N/2.
+   
+   * Auto-Encoder Architecture Diagram
+      <p align="center">
+        <img src="auto_encoder_architecture.png" width="400px" title="Auto-Encoder Architecture">
+      <p>
+  
+     * As shown in the picture Auto-Encoder doesn’t have skip connections between Encoder layers and Decoder layers.
+     
+   * The Generator Architecture
+   
+      The Generator network is made up of these two networks.
+      
+        * The Encoder network is a downsampler.
+           * The Encoder network of the Generator network has seven convolutional blocks.
+           * Each convolutional block has a convolutional layer, followed a LeakyRelu activation function.
+           * Each convolutional block also has a batch normalization layer except the first convolutional layer.
+           
+        * The Decoder network is an upsampler.
+          * The Decoder network of the Generator network has seven upsampling convolutional blocks.
+          * Each upsampling convolutional block has an upsampling layer, followed by a convolutional layer, a batch normalization layer and a ReLU activation function.
+        <p align="center">
+          <img src="generator_architecture.png" width="600px" title="Generator Architecture">
+        </p>      
+        
+        
+      
