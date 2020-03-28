@@ -55,7 +55,13 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
       <p align="center">
          <img src="ssd_scale_and_aspect_ratio.png" width="200px" title="SSD Scale and Ratios">
       </p>
-    
+      
+      Then SSD adds an extra default box with scale:
+      <p align="center">
+         <img src="ssd_extra_scale.png" width="300px" title="SSD Extra Scale">
+      </p>
+      
+      and aspect_ratio = 1.
     * <b>Atrous Convolution (Hole Algorithm / Dilated Convolution)</b>
     
       The base network is VGG16 and pre-trained using ILSVRC classification dataset. <b>FC6 and FC7 are changed to convolution layers as Conv6 and Conv7 </b>which is shown in the figure above.
