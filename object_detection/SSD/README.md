@@ -1,6 +1,6 @@
 ﻿# SSD-Single Shot Detector
 By using SSD, we only need to <b>take one single shot to detect multiple objects within the image</b>, while regional proposal network (RPN) based approaches such as R-CNN series that need two shots, one for generating region proposals, one for detecting the object of each proposal. Thus, SSD is much faster compared with two-shot RPN-based approaches.
-  * MultiBox Detector
+  * <b>MultiBox Detector</b>
     <p align="center">
        <img src="ssd_multiple_bounding_boxes_for_localization_and_confidence.png" width="600px" title="SSD: Multiple Bounding Boxes for Localization (loc) and Confidence (conf)">
     </p>
@@ -13,7 +13,7 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
     
     * Thus, we got <b>(c+4)kmn outputs</b>.
     
-  * SSD Network Architecture
+  * <b>SSD Network Architecture</b>
      <p align="center">
         <img src="SSD_vs_YOLO.png" width="800px" title="SSD (Top) vs YOLO (Bottom)">
      </p>
@@ -35,7 +35,7 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
     
     If we sum them up, we got 5776 + 2166 + 600 + 150 + 36 +4 = 8732 boxes in total. If we remember YOLO, there are 7×7 locations at the end with 2 bounding boxes for each location. YOLO only got 7×7×2 = 98 boxes. Hence, SSD has 8732 bounding boxes which is more than that of YOLO.
 
-  * Loss Function
+  * <b>Loss Function</b>
     * The loss function consists of two terms: Lconf and Lloc
     
     * Lloc is the localization loss which is the smooth L1 loss between the predicted box (l) and the ground-truth box (g) parameters.
@@ -53,6 +53,9 @@ By using SSD, we only need to <b>take one single shot to detect multiple objects
       The base network is VGG16 and pre-trained using ILSVRC classification dataset. <b>FC6 and FC7 are changed to convolution layers as Conv6 and Conv7 </b>which is shown in the figure above.
      
       Furthermore, <b>FC6 and FC7 use Atrous convolution </b>(a.k.a Hole algorithm or dilated convolution) instead of conventional convolution. 
+      <p align="center>
+          <img src="atrous_convolution_hole_algorithm_dilated_convolution.gif" width="400px" title="Atrous convolution / Hole algorithm / Dilated convolution>
+      </p>
 
       As we can see, the feature maps are large at Conv6 and Conv7, using Atrous convolution as shown above can <b>increase the receptive field while keeping number of parameters relatively fewer </b>compared with conventional convolution. 
   
