@@ -1,18 +1,8 @@
-﻿# Machine Learning, Computer Vision and Data Science Introductions 
-* Classification
-  * Images  
-    * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
-* [Object Detection](./object_detection/README.md)
-* [Quantization](./quantization/README.md) 
-* Neural Network Exchange
-  * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
-     
-## References
+﻿# Pix2Pix Image-to-Image Translation with Conditional Adversarial Netwoks
 
-### Documentation
+[Pix2Pix](https://arxiv.org/pdf/1611.07004.pdf) network is basically a Conditional GANs (cGAN) that learn the mapping from an input image to output an image. 
 
-### Sites
+Image-To-Image Translation is a process for translating one representation of an image into another representation.
 
-### Conferences
-
-### Online Courses
+* The Generator Network
+  Generator network uses a <b>U-Net</b>-based architecture. U-Net’s architecture is similar to an <b>Auto-Encoder</b> network except for one difference. Both U-Net and Auto-Encoder network has two networks The <b>Encoder</b> and the <b>Decoder</b>.
