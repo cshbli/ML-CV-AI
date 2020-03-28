@@ -3,6 +3,28 @@
   * Images  
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
 * Object Detection
+  * Anchor boxes
+  
+     Anchor boxes were first introduced in Faster RCNN paper and later became a common element in all the following papers like yolov2, ssd and RetinaNet. Previously selective search and edge boxes used to generate region proposals of various sizes and shapes depending on the objects in the image, with standard convolutions it is highly impossible to generate region proposals of varied shapes, so anchor boxes comes to our rescue.
+     <p align="center">
+        <img src="anchor_boxes.png" width="800px" title="Anchor boxes mapping to Images from feature map">
+     </p>
+     
+  * RPN - Region Proposal Network
+     
+     * <b>Regression head</b>: The output of the Faster RPN network as discussed and shown in the image above is a 50*50 feature map. A conv layer [kernal 3*3] strides through this image, At each location it predicts the 4 [x1, y1, h1, w1] values for each anchor boxes (9). In total, the output layer has 50*50*9*4 output probability scores. Usually this is represented in numpy as np.array(2500, 36).
+     
+     * <b>Classification head</b>: Similar to the Regression head, this will predict the probability of an object present or not at each location for each anchor bos. This is represented in numpy array as np.array(2500, 9).
+     <p align="center">
+        <img src="RPN_network_head.png" width="800px" title="RPN network head">
+     </p>
+     
+      * Problems with RPN
+      
+          The Feature map created after a lot of subsampling losses a lot of semantic information at low level, thus unable to detect small objects in the image. [Feature Pyramid networks solves this]
+          
+           The loss functions uses negative hard-mining by taking 128 +ve samples, 128 -ve samples because using all the labels hampers training as it is highly imbalanced and there will be many easily classified examples. [Focal loss solves this]
+  
   * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
   * Focal Loss  
   
