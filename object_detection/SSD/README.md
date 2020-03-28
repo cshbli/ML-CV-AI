@@ -1,15 +1,2 @@
 ﻿# SSD-Single Shot Detector
-* Classification
-  * Images  
-    * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
-* [Quantization](./quantization/README.md) 
-     
-## References
-
-### Documentation
-
-### Sites
-
-### Conferences
-
-### Online Courses
+By using SSD, we only need to take one single shot to detect multiple objects within the image, while regional proposal network (RPN) based approaches such as R-CNN series that need two shots, one for generating region proposals, one for detecting the object of each proposal. Thus, SSD is much faster compared with two-shot RPN-based approaches.
