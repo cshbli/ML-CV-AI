@@ -4,7 +4,9 @@
 
 Image-To-Image Translation is a process for translating one representation of an image into another representation.
 
-[Jupyter notebook based on Keras](./pix2pix-network-Image-to-image-translation-using-conditional-gans.ipynb)
+[A jupyter notebook based on Keras](./pix2pix-network-Image-to-image-translation-using-conditional-gans.ipynb)
+
+[Another implementation with jupyter notebook based on Keras running on maps dataset](./pix2pix-maps.ipynb)
 
 * The Generator Network
 
