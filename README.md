@@ -6,6 +6,7 @@
   * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
 * Image Translation
   * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
+  * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
 * Generative Adversarial Networks
   * Deep Convolutional Generative Adversarial Networks (DCGANs)  
 * Model Optimization
