@@ -62,6 +62,9 @@
  </p>
      
  Layer normalization performs better than batch norm in case of <b>RNNs</b>.
+ <p align="center">
+  <img src="batch_normalization_vs_layer_normalization_example.png" width="600px" title="Difference between batch normalization and layer normalization">
+ </p> 
  
 ## Instance Normalization
 
