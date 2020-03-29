@@ -28,7 +28,7 @@
 
   The mainstream normalization technique for almost all convolutional neural networks today is <b>Batch Normalization (BN)</b>, which has been widely adopted in the development of deep learning. Proposed by Google in 2015, BN can not only accelerate a model’s converging speed, but also alleviate problems such as Gradient Dispersion in the deep neural network, making it easier to train models.
  
-  Batch normalization is a method that normalizes activations in a network across the mini-batch of definite size. For each feature, batch normalization computes the mean and variance of that feature in the mini-batch. It then subtracts the mean and divides the feature by its mini-batch standard deviation.
+  Batch normalization is a method that <b>normalizes activations</b> in a network across the mini-batch of definite size. For each feature, batch normalization computes the mean and variance of that feature in the mini-batch. It then subtracts the mean and divides the feature by its mini-batch standard deviation.
  <p align="center">
    <img src="batch_normalization_formula.png" width="500px" title="Simple Batch Normalization">
  </p>
@@ -48,8 +48,29 @@
 * There would also be a problem in distributed training. As, if you are computing in different machines then you have to take same batch size because otherwise γ and β will be different for different systems.
 
 * Recurrent Neural Network → In an RNN, the recurrent activations of each time-step will have a different story to tell(i.e. statistics). This means that we have to fit a separate batch norm layer for each time-step. This makes the model more complicated and space consuming because it forces us to store the statistics for each time-step during training.
+
+## Layer Normalization
+
+ Layer normalization normalizes input across the features instead of normalizing input features across the batch dimension in batch normalization.
  
+ A mini-batch consists of multiple examples with the same number of features. Mini-batches are matrices(or tensors) where one axis corresponds to the batch and the other axis(or axes) correspond to the feature dimensions.
+ <p align="center">
+  <img src="layer_normalization_formula.png" width="200px" title="Layer Normalization">
+ </p>
      
+ Layer normalization performs better than batch norm in case of <b>RNNs</b>.
+ 
+## Instance Normalization
+
+ Layer normalization and instance normalization is very similar to each other but the difference between them is that instance normalization normalizes across each channel in each training example instead of normalizing across input features in an training example. Unlike batch normalization, the instance normalization layer is applied at test time as well(due to non-dependency of mini-batch).
+ <p align="center">
+  <img src="instance_normalization_formula.png" width="600px" title="Instance Normalization">
+ </p>
+ 
+  Here, x∈ ℝ T ×C×W×H be an input tensor containing a batch of T images. Let xₜᵢⱼₖ denote its tijk-th element, where k and j span spatial dimensions(Height and Width of the image), i is the feature channel (color channel if the input is an RGB image), and t is the index of the image in the batch.
+  
+ This technique is originally devised for <b>style transfer</b>, the problem instance normalization tries to address is that the network should be agnostic to the contrast of the original image.
+ 
  GN divides channels — also referred to as feature maps that look like 3D chunks of data — into groups and normalizes the features within each group. GN only exploits the layer dimensions, and its computation is independent of batch sizes.     
 
  Layer Normalization (LN), proposed in 2016 by a University of Toronto team led by Dr. Geoffrey Hinton; and Instance Normalization (IN), proposed by Russian and UK researchers, are also alternatives for normalizing batch dimensions. While LN and IN are effective for training sequential models such as RNN/LSTM or generative models such as GANs, GN appears to present a better result in visual recognition.
