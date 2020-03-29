@@ -108,3 +108,6 @@
  switch normalization could potentially outperform batch normalization on tasks such as image classification and object detection.
  
  The instance normalization were used more often in earlier layers, batch normalization was preferred in the middle and layer normalization being used in the last more often. Smaller batch sizes lead to a preference towards layer normalization and instance normalization.
+
+## References
+* [Layer Normalization](https://arxiv.org/pdf/1607.06450.pdf) Jimmy Lei Ba, Jamie Ryan Kiros and Geoffrey E. Hinton.
