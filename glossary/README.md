@@ -1,7 +1,7 @@
 ﻿# Machine Learning Glossary
 ## clustering
 ### clustering
-Grouping related examples, particularly during [unsupervised learning](./README/unsupervised learning#). Once all the examples are grouped, a human can optionally supply meaning to each cluster.
+Grouping related examples, particularly during [unsupervised learning](./README.md#unsupervised-learning). Once all the examples are grouped, a human can optionally supply meaning to each cluster.
 
 Many clustering algorithms exist. For example, the k-means algorithm clusters examples based on their proximity to a centroid, as in the following diagram:
 <p align="center">
