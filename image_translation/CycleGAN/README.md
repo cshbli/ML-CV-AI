@@ -12,3 +12,10 @@ CycleGAN doesn’t require paired data input to train a models.
   <img src="./unpaired_data_sample.png" width="300px" title="Unpaired Data">
 </p>
 
+A CycleGAN tries to learn a Generator network, which, learns two mappings. CycleGANs train two Generators and two Discriminators networks, which differs from most of the GANs with a single Generator and Discriminator network.
+
+* CycleGAN has two Generator networks
+
+  * <b>Generator A</b>: Learns a mapping G:X ->Y, where X is an image from the source <b>domain A</b> and Y is an image from the target <b>domain B</b>. It takes an image from the source domain A, and converts it into an image that is similar to an image from the target domain B. Basically, the aim of the network is to learn a mapping so that G(X) is similar to Y.
+  
+  * <b>Generator B</b>: Learns a mapping F:Y->X, and then takes an image Y from the target <b>domain B</b>, and converts it into an image X that is similar to an image from the source <b>domain A</b>. Similarly, the aim of the network is to learn another mapping, so that F(G(X) is similar to X.
