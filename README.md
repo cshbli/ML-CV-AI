@@ -1,4 +1,5 @@
 ﻿# Machine Learning, Computer Vision and Data Science Introductions 
+* [Machine Learning Glossary](./glossary/README.md)
 * Deep Learning Fundamentals
   * [Normalization](./deep_learning_fundamentals/normalization/README.md)
 * Images
