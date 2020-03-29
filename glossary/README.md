@@ -1,24 +1,13 @@
-﻿# Machine Learning, Computer Vision and Data Science Introductions 
-* [Machine Learning Glossary](./glossary/README.md)
-* Deep Learning Fundamentals
-  * [Normalization](./deep_learning_fundamentals/normalization/README.md)
-* Images
-  * Classification  
-    * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
-  * [Object Detection](./object_detection/README.md)
-    * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
-  * Image Translation
-    * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
-    * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
-* Generative Adversarial Networks
-  * Deep Convolutional Generative Adversarial Networks (DCGANs)  
-* Model Optimization
-  * [Quantization](./quantization/README.md) 
-* Neural Network Exchange
-  * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
-     
-## Online books
+﻿# Machine Learning Glossary
+## clustering
+### clustering
+Grouping related examples, particularly during unsupervised learning. Once all the examples are grouped, a human can optionally supply meaning to each cluster.
 
-* [Deep Learning](http://www.deeplearningbook.org/) by Ian Goodfellow and Yoshua Bengio and Aron Courville
+Many clustering algorithms exist. For example, the k-means algorithm clusters examples based on their proximity to a centroid, as in the following diagram:
 
-## Online Courses
+
+
+A human researcher could then review the clusters and, for example, label cluster 1 as "dwarf trees" and cluster 2 as "full-size trees."
+
+As another example, consider a clustering algorithm based on an example's distance from a center point, illustrated as follows:
+
