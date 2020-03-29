@@ -4,11 +4,11 @@
 
 In many style transfer applications, paired data is a required for the training.
 <p align="center">
-  <img src="./paired_data_sample.png" width="400px" title="Paired Data">
+  <img src="./paired_data_sample.png" width="300px" title="Paired Data">
 </p>
 
 CycleGAN doesn’t require paired data input to train a models.
 <p align="center">
-  <img src="./unpaired_data_sample.png" width="400px" title="Unpaired Data">
+  <img src="./unpaired_data_sample.png" width="300px" title="Unpaired Data">
 </p>
 
