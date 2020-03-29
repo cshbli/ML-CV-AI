@@ -110,4 +110,5 @@
  The instance normalization were used more often in earlier layers, batch normalization was preferred in the middle and layer normalization being used in the last more often. Smaller batch sizes lead to a preference towards layer normalization and instance normalization.
 
 ## References
+* [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/pdf/1502.03167.pdf%27) Sergey Ioffe, Christian Szegedy.
 * [Layer Normalization](https://arxiv.org/pdf/1607.06450.pdf) Jimmy Lei Ba, Jamie Ryan Kiros and Geoffrey E. Hinton.
