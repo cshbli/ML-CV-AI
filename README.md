@@ -14,12 +14,8 @@
 * Neural Network Exchange
   * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
      
-## References
+## Online books
 
-### Documentation
+* [Deep Learning](http://www.deeplearningbook.org/) by Ian Goodfellow and Yoshua Bengio and Aron Courville
 
-### Sites
-
-### Conferences
-
-### Online Courses
+## Online Courses
