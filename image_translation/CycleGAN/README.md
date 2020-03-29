@@ -109,3 +109,6 @@ A CycleGAN tries to learn a Generator network, which, learns two mappings. Cycle
   </p>
   
   The first adversarial loss is calculated on the Generator A, and the Discriminator B. The second adversarial loss is calculated on the Generator B, and the Discriminator A.
+
+## Jupyter Notebooks
+* [CycleGAN with Keras on summer2winter_yosemite Dataset](./CycleGAN_with_summer2winter_yosemite_dataset.ipynb)
