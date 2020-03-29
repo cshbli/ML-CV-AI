@@ -93,3 +93,19 @@ A CycleGAN tries to learn a Generator network, which, learns two mappings. Cycle
   <p align="center">
     <img src="backward_cycle_consistent_mapping_diagram.png" width="300px" title="Backward Cycle Consistent Mapping Diagram">
   </p>
+
+  * The formula for cycle consistency loss is as follows
+  <p align="center">
+    <img src="cycle_consistency_loss_function.png" width="400px" title="Cycle Consistency Loss Function">
+  </p>
+  
+  * With cycle consistency loss, the images reconstructed by F(G(x)) and G(F(y)) will be similar to x and y, respectively.
+  
+* Full Objective Loss Functions
+
+  The complete objective function is a weighted sum of both the adversarial loss and the cycle consistency loss, which is represented as follows
+  <p align="center">
+    <img src="full_objective_loss_function.png" width="400px" title="Full Objective Loss Function">
+  </p>
+  
+  The first adversarial loss is calculated on the Generator A, and the Discriminator B. The second adversarial loss is calculated on the Generator B, and the Discriminator A.
