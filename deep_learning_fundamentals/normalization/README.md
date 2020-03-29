@@ -5,6 +5,9 @@
 
 ## Benefits of using normalization
 * It makes the Optimization faster because normalization doesn’t allow weights to explode all over the place and restricts them to a certain range.
+ <p align="center">
+  <img src="gradient_update_curvature.png" width="600px" title="Same gradient can actually cause the loss to increase depending on the curvature and setup-size">
+ </p>
 
 * It normalizes each feature so that they maintains the contribution of every feature, as some feature has higher numerical value than others. This way our network can be unbiased(to higher value features).
 
