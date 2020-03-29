@@ -112,3 +112,7 @@
 ## References
 * [Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift](https://arxiv.org/pdf/1502.03167.pdf%27) Sergey Ioffe, Christian Szegedy.
 * [Layer Normalization](https://arxiv.org/pdf/1607.06450.pdf) Jimmy Lei Ba, Jamie Ryan Kiros and Geoffrey E. Hinton.
+* [Instance Normalization: The Missing Ingredient for Fast Stylization](https://arxiv.org/pdf/1607.08022.pdf) Dmitry Ulyanov, Andrea Vedaldi.
+* [Group Normalization](https://arxiv.org/pdf/1803.08494.pdf) Yuxin Wu, Kaiming He.
+* [Batch-Instance Normalization for Adaptively Style-Invariant Neural Networks](https://arxiv.org/pdf/1805.07925.pdf) Hyeonseob Nam, Kyo-Eun Kim
+* [Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks](https://arxiv.org/pdf/1602.07868.pdf) Tim Salimans, Diederik P. Kingma.
