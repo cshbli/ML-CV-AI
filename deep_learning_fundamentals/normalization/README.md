@@ -85,3 +85,20 @@
  </p>
 
   Here, x is the feature computed by a layer, and i is an index. In the case of 2D images, i = (iN , iC , iH, iW ) is a 4D vector indexing the features in (N, C, H, W) order, where N is the batch axis, C is the channel axis, and H and W are the spatial height and width axes. G is the number of groups, which is a pre-defined hyper-parameter. C/G is the number of channels per group. ⌊.⌋ is the floor operation, and “⌊kC/(C/G)⌋= ⌊iC/(C/G)⌋” means that the indexes i and k are in the same group of channels, assuming each group of channels are stored in a sequential order along the C axis. GN computes µ and σ along the (H, W) axes and along a group of C/G channels.
+
+## Batch-Instance Normalization
+ Batch-Instance Normalization is just an interpolation between batch norm and instance norm.
+ <p align="center">
+  <img src="batch_instance_normalization_formula.png" width="400px" title="Batch-Instance Normalization"
+ </p>
+ 
+ The interesting aspect of batch-instance normalization is that the balancing parameter ρ is learned through gradient descent.
+ 
+ <b>From batch-instance normalization, we can conclude that models could learn to adaptively use different normalization methods using gradient descent.</b>
+ 
+## Switchable Normalization
+ Switchable normalization uses a weighted average of different mean and variance statistics from batch normalization, instance normalization, and layer normalization.
+ 
+ switch normalization could potentially outperform batch normalization on tasks such as image classification and object detection.
+ 
+ The instance normalization were used more often in earlier layers, batch normalization was preferred in the middle and layer normalization being used in the last more often. Smaller batch sizes lead to a preference towards layer normalization and instance normalization.
