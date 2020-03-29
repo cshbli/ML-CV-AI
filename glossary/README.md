@@ -9,6 +9,6 @@ Many clustering algorithms exist. For example, the k-means algorithm clusters ex
 A human researcher could then review the clusters and, for example, label cluster 1 as "dwarf trees" and cluster 2 as "full-size trees."
 
 As another example, consider a clustering algorithm based on an example's distance from a center point, illustrated as follows:
-<p align="center">
-  <img src="RingCluster_example.svg" width="400px">
-</p>
+
+<img src="RingCluster_example.svg" width="400px">
+
