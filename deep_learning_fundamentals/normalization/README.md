@@ -1,25 +1,9 @@
-﻿# Machine Learning, Computer Vision and Data Science Introductions 
-* Classification
-  * Images  
-    * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
-* [Object Detection](./object_detection/README.md)
-  * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
-* Image Translation
-  * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
-  * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
-* Generative Adversarial Networks
-  * Deep Convolutional Generative Adversarial Networks (DCGANs)  
-* Model Optimization
-  * [Quantization](./quantization/README.md) 
-* Neural Network Exchange
-  * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
+﻿# Normalization
+ <p align="center"
+   <img src="normalization.png" width="500px" title="Normalization">
+ </p>
+
+ The mainstream normalization technique for almost all convolutional neural networks today is <b>Batch Normalization (BN)</b>, which has been widely adopted in the development of deep learning. Proposed by Google in 2015, BN can not only accelerate a model’s converging speed, but also alleviate problems such as Gradient Dispersion in the deep neural network, making it easier to train models.
+
+ <b>BN cannot ensure the model accuracy rate when the batch size becomes smaller. As a result, researchers today are normalizing with large batches, which is very memory intensive.</b>
      
-## References
-
-### Documentation
-
-### Sites
-
-### Conferences
-
-### Online Courses
