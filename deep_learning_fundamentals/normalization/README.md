@@ -1,6 +1,6 @@
 ﻿# Normalization 
  <p align="center">
-   <img src="visual_comparison_of_normalizations.png" width="500px" title="A visual comparison of various normalization methods">
+   <img src="visual_comparison_of_normalizations.png" width="800px" title="A visual comparison of various normalization methods">
  </p>
 
 ## Benefits of using normalization
@@ -79,9 +79,9 @@
  GN divides channels — also referred to as feature maps that look like 3D chunks of data — into groups and normalizes the features within each group. GN only exploits the layer dimensions, and its computation is independent of batch sizes.     
  <p align="center">
   <img src="group_normalization_formula.png" width="400px" title="Group Normalization">
-  <img src="group_normalization_formula_2.png" width="300px" title="Group Normalization 2">
-  <img src="group_normalization_formula_3.png" width="200px" title="Group Normalization 3">
-  <img src="group_normalization_formula_4.png" width="200px" title="Group Normalization 4">
+  <img src="group_normalization_formula_2.png" width="400px" title="Group Normalization 2">
+  <img src="group_normalization_formula_3.png" width="150px" title="Group Normalization 3">
+  <img src="group_normalization_formula_4.png" width="150px" title="Group Normalization 4">
  </p>
 
   Here, x is the feature computed by a layer, and i is an index. In the case of 2D images, i = (iN , iC , iH, iW ) is a 4D vector indexing the features in (N, C, H, W) order, where N is the batch axis, C is the channel axis, and H and W are the spatial height and width axes. G is the number of groups, which is a pre-defined hyper-parameter. C/G is the number of channels per group. ⌊.⌋ is the floor operation, and “⌊kC/(C/G)⌋= ⌊iC/(C/G)⌋” means that the indexes i and k are in the same group of channels, assuming each group of channels are stored in a sequential order along the C axis. GN computes µ and σ along the (H, W) axes and along a group of C/G channels.
