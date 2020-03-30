@@ -38,3 +38,28 @@ The preceding confusion matrix shows that of the 19 samples that actually had tu
 The confusion matrix for a multi-class classification problem can help you determine mistake patterns. For example, a confusion matrix could reveal that a model trained to recognize handwritten digits tends to mistakenly predict 9 instead of 4, or 1 instead of 7.
 
 Confusion matrices contain sufficient information to calculate a variety of performance metrics, including <b>precision</b> and <b>recall</b>.
+
+## convex function
+A function in which the region above the graph of the function is a convex set. The prototypical convex function is shaped something like the letter U. For example, the following are all convex functions:
+
+<img src="convex_functions.png" width="600px" title="Convex Functions">
+
+A typical convex function is shaped like the letter 'U'.
+
+By contrast, the following function is not convex. Notice how the region above the graph is not a convex set:
+
+<img src="nonconvex_function.svg">
+
+A strictly convex function has exactly one local minimum point, which is also the global minimum point. The classic U-shaped functions are strictly convex functions. However, some convex functions (for example, straight lines) are not U-shaped.
+
+A lot of the common loss functions, including the following, are convex functions:
+
+L2 loss
+Log Loss
+L1 regularization
+L2 regularization
+Many variations of gradient descent are guaranteed to find a point close to the minimum of a strictly convex function. Similarly, many variations of stochastic gradient descent have a high probability (though, not a guarantee) of finding a point close to the minimum of a strictly convex function.
+
+The sum of two convex functions (for example, L2 loss + L1 regularization) is a convex function.
+
+Deep models are never convex functions. Remarkably, algorithms designed for convex optimization tend to find reasonably good solutions on deep networks anyway, even though those solutions are not guaranteed to be a global minimum.
