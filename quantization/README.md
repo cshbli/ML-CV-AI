@@ -96,7 +96,8 @@ The tweaking is yet another machine learning process which learns hyper paramete
 
 TensorRT, MXNet and some other frameworks that are likely to be deployed in inference enviroment are equipped with calibration. Top half of the below Figure is the process of calibration which works with pre-trained network regardless of how it is trained. Calibration often combines the min/max searching and quantization into one step. After calibration, the network is quantized and can be deployed.
 
-<img src="calibration-and-quantization-aware-training.jpg">
+![Calibration and quantization-aware training process](./figs/calibration-and-quantization-aware-training.jpg)
+*Figure: Calibration and quantization-aware training process*
 
 As calibration choses a training independent approach, TensorFlow inovates quantization-aware training which includes four steps:
 
@@ -110,7 +111,8 @@ As calibration choses a training independent approach, TensorFlow inovates quant
   
 Step 2 is the so-called quantization-aware training of which the forwarding is simulated INT8 and backwarding is FP32. Figure 12 illustrates the idea. Figure 12 left half is the quantized network which receives INT8 inputs and weights and generates INT8 output. Right half of Figure 12 is the rewrited network, where Fake-Quant nodes (in pink) quantize FP32 tensors into INT8 (FP32 actually, the original FP32 was Quantize and Dequantize to simulate the quantization arithmetic) on-the-fly during training. The network forwarding of Step 2 above simulates the INT8 inference arithmetic.
 
-<img src="rewrite-network.jpg">
+![](./figs/rewrite-network.jpg)
+*Network node example of quantization-aware training*
 
 ## Summary
 
@@ -157,5 +159,10 @@ You may ask why quantization works (having a good enough predication accuracy) w
     </p>
    
 ## References
-* [Quantizing deep convolutional networks for efficient inference: A white paper](https://arxiv.org/pdf/1806.08342.pdf)
-* [Quantization Algorithms](https://nervanasystems.github.io/distiller/algo_quantization.html)
+* [Quantizing deep convolutional networks for efficient inference: A white paper](https://arxiv.org/pdf/1806.08342.pdf) by Google.
+* [Quantization and Training of Neural Networks for Efficient Integer-Arithmetic-Only Inference](https://arxiv.org/pdf/1712.05877.pdf) by Benoit Jacob, Skirmantas Kligys, Bo Chen, Menglong Zhu, Matthew Tang, Andrew Howard, Hartwig Adam, and Dmitry Kalenichenko from Google.
+* [Quantization Algorithms](https://nervanasystems.github.io/distiller/algo_quantization.html) Neural Network Distiller
+* [Mixed-Precision Training of Deep Neural Networks](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/) by Nvidia
+* [8-bit Inference with TensorRT](http://on-demand.gputechconf.com/gtc/2017/presentation/s7310-8-bit-inference-with-tensorrt.pdf) by Szymon Migacz from Nvidia
+* [Fast INT8 Inference for Autonomous Vehicles with TensorRT 3](https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/) by Joohoon Lee from Nvidia
+
