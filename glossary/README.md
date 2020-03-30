@@ -1,6 +1,6 @@
 ﻿# Machine Learning Glossary
  * [bag of words](./README.md#bag-of-words)
- * [clustering]((./README.md#clustering)
+ * [clustering](./README.md#clustering)
  * [convex function](./README.md#convex-function)
  
 ## bag of words
