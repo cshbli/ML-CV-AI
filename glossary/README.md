@@ -6,6 +6,8 @@
  * [convex set](./README.md#convex-set)
  * [convolutional layer](./README.md#convolutional-layer)
  * [convolutional operation](./README.md#convolutional-operation)
+ * [decision tree](./README.md#decision-tree)
+ * [hashing](.README.md#hashing)
  
 ## bag of words
 A representation of the words in a phrase or passage, irrespective of order. For example, bag of words represents the following three phrases identically:
@@ -110,3 +112,33 @@ Each convolutional operation involves a single 2x2 slice of the input matrix. Fo
 <img src="ConvolutionalLayerOperation.svg">
 
 A convolutional layer consists of a series of convolutional operations, each acting on a different slice of the input matrix.
+
+## decision tree
+A model represented as a sequence of branching statements. For example, the following over-simplified decision tree branches a few times to predict the price of a house (in thousands of USD). According to this decision tree, a house larger than 160 square meters, having more than three bedrooms, and built less than 10 years ago would have a predicted price of 510 thousand USD.
+
+<img src="DecisionTree.svg" title="A tree three-levels deep whose branches predict house prices.">
+
+Machine learning can generate deep decision trees.
+
+## hashing
+In machine learning, a mechanism for bucketing categorical data, particularly when the number of categories is large, but the number of categories actually appearing in the dataset is comparatively small.
+
+For example, Earth is home to about 60,000 tree species. You could represent each of the 60,000 tree species in 60,000 separate categorical buckets. Alternatively, if only 200 of those tree species actually appear in a dataset, you could use hashing to divide tree species into perhaps 500 buckets.
+
+A single bucket could contain multiple tree species. For example, hashing could place baobab and red maple—two genetically dissimilar species—into the same bucket. Regardless, hashing is still a good way to map large categorical sets into the desired number of buckets. Hashing turns a categorical feature having a large number of possible values into a much smaller number of values by grouping values in a deterministic way.
+
+## intersection over union (IoU)
+The intersection of two sets divided by their union. In machine-learning image-detection tasks, IoU is used to measure the accuracy of the model’s predicted bounding box with respect to the ground-truth bounding box. In this case, the IoU for the two boxes is the ratio between the overlapping area and the total area, and its value ranges from 0 (no overlap of predicted bounding box and ground-truth bounding box) to 1 (predicted bounding box and ground-truth bounding box have the exact same coordinates).
+
+For example, in the image below:
+
+  * The predicted bounding box (the coordinates delimiting where the model predicts the night table in the painting is located) is outlined in purple.
+  
+  * The ground-truth bounding box (the coordinates delimiting where the night table in the painting is actually located) is outlined in green.
+
+<img src="iou_van_gogh_bounding_boxes.jpg">
+
+Here, the intersection of the bounding boxes for prediction and ground truth (below left) is 1, and the union of the bounding boxes for prediction and ground truth (below right) is 7, so the IoU is 1/7.
+
+<img src="iou_van_gogh_intersection.jpg">
+<img src="iou_van_gogh_union.jpg">
