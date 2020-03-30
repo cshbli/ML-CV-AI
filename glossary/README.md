@@ -42,13 +42,13 @@ Confusion matrices contain sufficient information to calculate a variety of perf
 ## convex function
 A function in which the region above the graph of the function is a convex set. The prototypical convex function is shaped something like the letter U. For example, the following are all convex functions:
 
-<img src="convex_functions.png" width="600px" title="Convex Functions">
+<img src="convex_functions.png" title="Convex Functions">
 
 A typical convex function is shaped like the letter 'U'.
 
 By contrast, the following function is not convex. Notice how the region above the graph is not a convex set:
 
-<img src="nonconvex_function.svg">
+<img src="nonconvex_function.svg" title="Non-Convex Function">
 
 A strictly convex function has exactly one local minimum point, which is also the global minimum point. The classic U-shaped functions are strictly convex functions. However, some convex functions (for example, straight lines) are not U-shaped.
 
