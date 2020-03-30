@@ -24,5 +24,6 @@
 * [Computer Vision: Algorithms and Applications, 1st ed.](http://szeliski.org/Book/) by Richard Szeliski
 
 ## Online Courses
-* [CS231n: Convolutional Neural Networks for Visual Recognition](http://cs231n.stanford.edu/2020/index.html)
-* [Programming Assignments and Lectures for Stanford's CS 231: Convolutional Neural Networks for Visual Recognition](https://github.com/khanhnamle1994/computer-vision)
+* [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) by Google
+* [CS231n: Convolutional Neural Networks for Visual Recognition](http://cs231n.stanford.edu/2020/index.html) by Stanford
+* [Programming Assignments and Lectures for Stanford's CS 231: Convolutional Neural Networks for Visual Recognition](https://github.com/khanhnamle1994/computer-vision) by Standford
