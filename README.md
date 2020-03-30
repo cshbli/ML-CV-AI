@@ -2,7 +2,7 @@
 * [Machine Learning Glossary](./glossary/README.md)
 * Deep Learning Fundamentals
   * [Normalization](./deep_learning_fundamentals/normalization/README.md)
-  * [Residual Block and Inverted Residual Block](./deep_learning_fundamental/residual_block/README.md)
+  * [Residual Block and Inverted Residual Block](./deep_learning_fundamentals/residual_block/README.md)
 * Images
   * Classification  
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
