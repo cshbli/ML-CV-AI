@@ -1,7 +1,7 @@
 ﻿# Model Quantization
-  * Quantization for deep learning is the process of approximating a neural network that uses floating-point numbers by a neural network of low bit width numbers.
-  * [Quantization Algorithms](https://nervanasystems.github.io/distiller/algo_quantization.html)
-  * [Quantizing deep convolutional networks for efficient inference: A white paper](https://arxiv.org/pdf/1806.08342.pdf)
+ Quantization for deep learning is the process of approximating a neural network that uses floating-point numbers by a neural network of low bit width numbers.
+  
+  
     * Overview of schemes for model quantization: One can quantize weights post training (left) or quantize weights and activations post training (middle). It is also possible to perform quantization aware training for improved accuracy.
     
     <p align="center">
@@ -45,11 +45,5 @@
     </p>
    
 ## References
-
-### Documentation
-
-### Sites
-
-### Conferences
-
-### Online Courses
+* [Quantizing deep convolutional networks for efficient inference: A white paper](https://arxiv.org/pdf/1806.08342.pdf)
+* [Quantization Algorithms](https://nervanasystems.github.io/distiller/algo_quantization.html)
