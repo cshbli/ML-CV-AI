@@ -1,4 +1,8 @@
 ﻿# Machine Learning Glossary
+ * [bag of words](./README.md#bag-of-words)
+ * [clustering]((./README.md#clustering)
+ * [convex function](./README.md#convex-function)
+ 
 ## bag of words
 A representation of the words in a phrase or passage, irrespective of order. For example, bag of words represents the following three phrases identically:
 
@@ -54,10 +58,11 @@ A strictly convex function has exactly one local minimum point, which is also th
 
 A lot of the common loss functions, including the following, are convex functions:
 
-L2 loss
-Log Loss
-L1 regularization
-L2 regularization
+ * L2 loss
+ * Log Loss
+ * L1 regularization
+ * L2 regularization
+
 Many variations of gradient descent are guaranteed to find a point close to the minimum of a strictly convex function. Similarly, many variations of stochastic gradient descent have a high probability (though, not a guarantee) of finding a point close to the minimum of a strictly convex function.
 
 The sum of two convex functions (for example, L2 loss + L1 regularization) is a convex function.
