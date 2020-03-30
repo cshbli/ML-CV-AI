@@ -1,7 +1,11 @@
 ﻿# Machine Learning Glossary
  * [bag of words](./README.md#bag-of-words)
  * [clustering](./README.md#clustering)
+ * [confusion matrix](./README.md#confusion-matrix)
  * [convex function](./README.md#convex-function)
+ * [convex set](./README.md#convex-set)
+ * [convolutional layer](./README.md#convolutional-layer)
+ * [convolutional operation](./README.md#convolutional-operation)
  
 ## bag of words
 A representation of the words in a phrase or passage, irrespective of order. For example, bag of words represents the following three phrases identically:
@@ -68,3 +72,41 @@ Many variations of gradient descent are guaranteed to find a point close to the 
 The sum of two convex functions (for example, L2 loss + L1 regularization) is a convex function.
 
 Deep models are never convex functions. Remarkably, algorithms designed for convex optimization tend to find reasonably good solutions on deep networks anyway, even though those solutions are not guaranteed to be a global minimum.
+
+## convex set
+A subset of Euclidean space such that a line drawn between any two points in the subset remains completely within the subset. For instance, the following two shapes are convex sets:
+
+<img src="convex_set.png" title="A rectangle and a semi-ellipse are both convex sets.">
+
+By contrast, the following two shapes are not convex sets:
+
+<img src="nonconvex_set.png" title="A pie-chart with a missing slice and a firework are both nonconvex sets.">
+
+## convolutional layer
+A layer of a deep neural network in which a convolutional filter passes along an input matrix. For example, consider the following 3x3 convolutional filter:
+
+<img src="ConvolutionalFilter_example.svg" title="3x3 convolutional filter">
+
+The following animation shows a convolutional layer consisting of 9 convolutional operations involving the 5x5 input matrix. Notice that each convolutional operation works on a different 3x3 slice of the input matrix. The resulting 3x3 matrix (on the right) consists of the results of the 9 convolutional operations:
+
+<img src="AnimatedConvolution.gif">
+
+## convolutional operation
+The following two-step mathematical operation:
+
+  * Element-wise multiplication of the convolutional filter and a slice of an input matrix. (The slice of the input matrix has the same rank and size as the convolutional filter.)
+  * Summation of all the values in the resulting product matrix.
+  
+For example, consider the following 5x5 input matrix:
+
+<img src="ConvolutionalLayerInputMatrix.svg">
+
+Now imagine the following 2x2 convolutional filter:
+
+<img src="ConvolutionalLayerFilter.svg">
+
+Each convolutional operation involves a single 2x2 slice of the input matrix. For instance, suppose we use the 2x2 slice at the top-left of the input matrix. So, the convolution operation on this slice looks as follows:
+
+<img src="ConvolutionalLayerOperation.svg">
+
+A convolutional layer consists of a series of convolutional operations, each acting on a different slice of the input matrix.
