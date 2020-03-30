@@ -15,6 +15,8 @@
   * Deep Convolutional Generative Adversarial Networks (DCGANs)  
 * Model Optimization
   * [Quantization](./quantization/README.md) 
+  * Compression
+     * [DEEP COMPRESSION: COMPRESSING DEEP NEURAL NETWORKS WITH PRUNING, TRAINED QUANTIZATION AND HUFFMAN CODING](https://arxiv.org/pdf/1510.00149.pdf)
 * Neural Network Exchange
   * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
      
