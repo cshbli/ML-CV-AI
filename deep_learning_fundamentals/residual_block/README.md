@@ -1,34 +1,16 @@
-# EfficientNet
-
-## Model scaling
-
-The conventional practice for model scaling is to arbitrarily increase the CNN depth or width, or to use larger input image resolution for training and evaluation.
-
-<img src="introduction/scale_up_cnns.png" width="600px">
-
-## EfficientNet Architecture
-
-The EfficientNet architecture uses mobile inverted bottleneck convolution (MBConv), similar to MobileNetV2 and MnasNet.
-
-<img src="introduction/efficientnet_architecture.png" width="600px">
-
-## EfficientNet Performance
-
-In general, the EfficientNet models achieve both higher accuracy and better efficiency over existing CNNs, reducing parameter size and FLOPS by an order of magnitude.
- 
-<img src="introduction/efficientnet_performance.png" width="600px">
+# Residual Block and Inverted Residual Block
 
 ## Standard Convolution
 
 Suppose a convolution operation transforms an input volume of dimensions Dᵤ x Dᵤ x M to an output volume of dimensions Dᵥ x Dᵥ x N, as shown in Fig. 1(a). Specifically, we require N filters, each of dimension Dᵣ x Dᵣ x M, as shown in Fig. 1(b).
 
-<img src="introduction/standard_2d_convolution.png" width="400px">
+<img src="standard_2d_convolution.png" width="400px">
 
 ## Depth-wise Separable Convolutions
 
 As before, suppose an input volume of Dᵤ x Dᵤ x M is transformed to an output volume of Dᵥ x Dᵥ x N, as shown in Fig. 4(a). The first set of filters, shown in Fig. 4(b), are comprised of M single-channel filters, mapping the input volume to Dᵥ x Dᵥ x M on a per-channel basis. This stage, known as depth-wise convolutions, rchieves the spatial filtering component. In order to construct new features from those already captured by the input volume, we require a linear combination. To do so, 1x1 kernels are used along the depth of the intermediate tensor; this step is referred to as point-wise convolution. N such 1x1 filters are used, resulting in the desired output volume of Dᵥ x Dᵥ x N.
 
-<img src="introduction/depth_wise_separable_convolutions.png" width="400px">
+<img src="depth_wise_separable_convolutions.png" width="400px">
 
 The lowered computational cost of depth-wise separable convolutions comes predominantly from limiting the spatial filtering from M*N times in standard convolutions to M times. 
 
@@ -38,7 +20,7 @@ Taking the ratio between the cost of depth-wise separable and standard convoluti
 
 Residual blocks connect the beginning and end of a convolutional block with a skip connection. By adding these two states the network has the opportunity of accessing earlier activations that weren’t modified in the convolutional block. This approach turned out to be essential in order to build networks of great depth.
 
-<img src="introduction/residual_block.png" width="400px">
+<img src="residual_block.png" width="400px">
 
 Residual block follows a wide->narrow->wide approach concerning the number of channels. The input has a high number of channels, which are compressed with an inexpensive 1x1 convolution. That way the following 3x3 convolution has far fewer parameters. In order to add input and output in the end the number of channels is increased again using another 1x1 convolution. In Keras it would look like this:
 
@@ -54,7 +36,7 @@ Residual block follows a wide->narrow->wide approach concerning the number of ch
 
 MobileNetV2 follows a narrow->wide->narrow approach. The first step widens the network using a 1x1 convolution because the following 3x3 depthwise convolution already greatly reduces the number of parameters. Afterwards another 1x1 convolution squeezes the network in order to match the initial number of channels.
 
-<img src="introduction/inverted_residual_block.png" width="400px">
+<img src="inverted_residual_block.png" width="400px">
 
 In Keras it would look like this:
 
