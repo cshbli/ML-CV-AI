@@ -7,7 +7,8 @@
  * [convolutional layer](./README.md#convolutional-layer)
  * [convolutional operation](./README.md#convolutional-operation)
  * [decision tree](./README.md#decision-tree)
- * [hashing](.README.md#hashing)
+ * [hashing](./README.md#hashing)
+ * [intersection over union (IoU)](./README.md#intersection-over-union-iou)
  
 ## bag of words
 A representation of the words in a phrase or passage, irrespective of order. For example, bag of words represents the following three phrases identically:
