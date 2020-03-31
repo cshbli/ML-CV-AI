@@ -51,7 +51,7 @@ Neural networks are built of floating point arithmetic. As stated in Fixed-point
 Fortunately, the value distribution of neural network weight is of small range, which is very close to 0. Figure below shows weight distribution of 10 layers (layers that have most value points) of MobileNetV1.
 
 ![](./figs/mobilenet1-weight-distribution.svg)
-*Figure: Weight distribution of 10 layers of MobileNetV1
+*Figure: Weight distribution of 10 layers of MobileNetV1*
   
 Quantizing float value is as Equations below, and can be summarized in two steps:
 
@@ -175,4 +175,5 @@ You may ask why quantization works (having a good enough predication accuracy) w
 * [Mixed-Precision Training of Deep Neural Networks](https://devblogs.nvidia.com/mixed-precision-training-deep-neural-networks/) by Nvidia
 * [8-bit Inference with TensorRT](http://on-demand.gputechconf.com/gtc/2017/presentation/s7310-8-bit-inference-with-tensorrt.pdf) by Szymon Migacz from Nvidia
 * [Fast INT8 Inference for Autonomous Vehicles with TensorRT 3](https://devblogs.nvidia.com/int8-inference-autonomous-vehicles-tensorrt/) by Joohoon Lee from Nvidia
-
+* [Making Neural Nets Work with Low Precision](https://sahnimanas.github.io/post/quantization-in-tflite/) 
+* [What I've learned about neural network quantization](https://petewarden.com/2017/06/22/what-ive-learned-about-neural-network-quantization/) by Pete Warden.
