@@ -20,7 +20,6 @@
 随着时间的推移，推理引擎的工作也基本完善，计算性能方面的工作会在一年内逐步填平。当然，各大厂家应该还是会自己维护系统，可控是很重要的。
 
 ## Deep Learning Compiler
-Deep learning compilers
 
 ![](./compilers.jpg)
 *Deep Learning Compilers*
