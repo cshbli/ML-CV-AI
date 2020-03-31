@@ -20,6 +20,7 @@
 随着时间的推移，推理引擎的工作也基本完善，计算性能方面的工作会在一年内逐步填平。当然，各大厂家应该还是会自己维护系统，可控是很重要的。
 
 ## Deep Learning Compiler
+Deep learning compilers
 
 ![](./compilers.jpg)
 *Deep Learning Compilers*
@@ -87,7 +88,6 @@ XLA的整体设计理念，跟TVM存在一些比较明显的区别（以开源�
 6).TVM是一个经典的machine learning-based system，在完成schedule/computation抽象以外，整个优化空间探索，转换成了一个data-driven的机器学习优化问题，这是一个轻巧，但也一力降十会的作法。XLA在这方面，因为是纯system guy的工作，所以比较实在，是以纯系统的方式来解决优化问题。但是除了机器学习的方式以外，改成heuristics的方式来进行优化空间探索是不是也可能获得相近的效果呢？我觉得这还是一个open的question。不过把历史数据使用起来，辅助指导优化过程的探索寻优，这个原则我是buy in的。
 
 ## References
-* [深度学习系统杂谈](https://jackwish.net/2019/on-deep-learning-system.html)
 * [Learning to Optimize Tensor Programs](https://arxiv.org/pdf/1805.08166.pdf)
 * [Boost Quantization Inference Performance](https://jackwish.net/2019/boost-quant-perf.html)
 * [Introducing TFLite Parser Python Package](https://jackwish.net/2020/introducing-tflite-parser-package.html)
