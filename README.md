@@ -7,12 +7,12 @@
   * Efficient Training
   * Efficient Neural Network
   * [Model Optimization](./optimization/README.md)
-    * [Quantization](./quantization/README.md) 
+    * [Quantization](./optimization/quantization/README.md) 
     * Pruning
     * Compression
       * [Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding](https://arxiv.org/pdf/1510.00149.pdf)
    * Matrix Operation Optimization
-   * [Deep Learning Compiler](./compiler/README.md)
+   * [Deep Learning Compiler](./optimization/compiler/README.md)
 * Images
   * Classification  
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
