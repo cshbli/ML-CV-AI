@@ -1,5 +1,5 @@
 ﻿# Model Quantization
-  * [Quantization Arithmetic](#quantization-arithmetic)
+  * [Quantization Arithmetic](./quantization_arithmetic.md)
      * [Fixed-point and floating-point](#fixed-point-and-floating-point)
      * [Quantizing floating-point](#quantizing-floating-point)
      * [Quantized arithmetic](#quantized-arithmetic)
