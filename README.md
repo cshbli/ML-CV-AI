@@ -6,7 +6,7 @@
 * Deep Learning Optimization
   * Efficient Training
   * Efficient Neural Network
-  * Model Optimization
+  * [Model Optimization](./optimization/README.md)
     * [Quantization](./quantization/README.md) 
     * Pruning
     * Compression
