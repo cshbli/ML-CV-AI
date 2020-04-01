@@ -86,39 +86,8 @@ XLA的整体设计理念，跟TVM存在一些比较明显的区别（以开源�
 
 6).TVM是一个经典的machine learning-based system，在完成schedule/computation抽象以外，整个优化空间探索，转换成了一个data-driven的机器学习优化问题，这是一个轻巧，但也一力降十会的作法。XLA在这方面，因为是纯system guy的工作，所以比较实在，是以纯系统的方式来解决优化问题。但是除了机器学习的方式以外，改成heuristics的方式来进行优化空间探索是不是也可能获得相近的效果呢？我觉得这还是一个open的question。不过把历史数据使用起来，辅助指导优化过程的探索寻优，这个原则我是buy in的。
 
-1.2. 优化算法
-深度学习的优化算法我觉得也可以算入深度学习加速的范畴，因为各式各样的优化算法（SGD，Adagrad，Adadelta，RMSprop，Momentum，Adam，Adamax，Nadam）的目标都是使得梯度下降搜索的时候可以更加趋近全局最优，使得收敛的速度更快，从而加速训练进度。
-
-1.3. （轻量级）高效的神经网络结构
-由于神经网络对于噪声不敏感，所以许多早期经典模型的参数其实是存在很大冗余度的，这样的模型很难部署在存储有限的边缘设备，因此学术界开始追求一些轻量级的网络设计（这代表着更少的参数，更少的乘法操作，更快的速度）：
-
-减小卷积核大小
-
-主要的做法包括使用更小的3x3卷积(加深网络来弥补感受野变小)；将大卷积核分解成一系列小的卷积核的操作组合。
-
-减少通道数
-
-第一种方式：1x1卷积的应用。在大卷积核前应用1X1卷积，可以灵活地缩减feature map通道数（同时1X1卷积也是一种融合通道信息的方式），最终达到减少参数量和乘法操作次数的效果。
-
-
-第二种方式：group convolution，将feature map的通道进行分组，每个filter对各个分组进行操作即可，像上图这样分成两组，每个filter的参数减少为传统方式的二分之一（乘法操作也减少）。
-
-
-第三种方式：depthwise convolution，是组卷积的极端情况，每一个组只有一个通道，这样filters参数量进一步下降。
-
-
-如果只采用分组卷积操作，相比传统卷积方式，不同组的feature map信息无法交互，因此可以在组卷积之后在feature map间进行Shuffle Operation来加强通道间信息融合。或者更巧妙的是像Pointwise convolution那样将原本卷积操作分解成两步，先进行 depthwise convolution，之后得到的多个通道的feature map再用一个1X1卷积进行通道信息融合，拆解成这样两步，卷积参数也减少了。
-
-减少filter数目
-
-直接减少的filter数目虽然可以减少参数，但是导致每层产生的feature map数目减少，网络的表达能力也会下降不少。一个方法是像DenseNet那样，一方面减少每层filter数目，同时在每层输入前充分重用之前每一层输出的feature map。
-
-池化操作
-
-池化操作是操作卷积神经网络的标准操作，池化层没有参数，同时又可以灵活缩减上一级的feature map大小，从而减少下一级卷积的乘法操作。
-
 ## References
-* [Efficient Processing of Deep Neural Networks: from Algorithms to Hardware Architectures](http://eyeriss.mit.edu/2019_neurips_tutorial.pdf) by Vivienne Sze from MIT.
+* [深度学习系统杂谈](https://jackwish.net/2019/on-deep-learning-system.html)
 * [Learning to Optimize Tensor Programs](https://arxiv.org/pdf/1805.08166.pdf)
 * [Boost Quantization Inference Performance](https://jackwish.net/2019/boost-quant-perf.html)
 * [Introducing TFLite Parser Python Package](https://jackwish.net/2020/introducing-tflite-parser-package.html)
