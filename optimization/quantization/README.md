@@ -8,9 +8,10 @@
        * [Hybrid operations](#hybrid-approaches)
        * [INT8 quantization](#int8-quantization)
      * [Quantization aware training](#quantization-aware-training)
-  * [Tensorflow Post-Training Integer Quantization](#tensorflow-post-training-integer-quantization)
+  * [Tensorflow Quantization](#tensorflow-quantization)
+     * [Tensorflow Post-Training Integer Quantization](#tensorflow-post-training-integer-quantization)
   
-Quantization for deep learning is the process of approximating a neural network that uses floating-point numbers by a neural network of low bit width numbers.
+Quantization for deep learning is the process of approximating a neural network that uses floating-point numbers, which by default are 32-bit, by a neural network of low bit width numbers. This results in a smaller model size and faster computation.
 
 ## Quantization Arithmetic
 Quantization process can be divided into two parts: converting model from FP32 to INT8, and inferencing with INT8.
@@ -99,6 +100,18 @@ Post-training quantization via “hybrid operations”, which is quantizing the 
 
 Post-training integer quantization. Integer quantization is a general technique that reduces the numerical precision of the weights and activations of models to reduce memory and improve latency.
 
+## Tensorflow Quantization
+
+Quantization works by reducing the precision of the numbers used to represent a model's parameters, which by default are 32-bit floating point numbers. This results in a smaller model size and faster computation.
+
+The following types of quantization are available in TensorFlow Lite:
+
+![](./figs/tensorflow-lite-quantization-types.png)
+
+Below are the latency and accuracy results for post-training quantization and quantization-aware training on a few models. All latency numbers are measured on Pixel 2 devices using a single big core CPU. As the toolkit improves, so will the numbers here:
+
+![](./figs/benefits_of_quantization.png)
+*Table: Benefits of model quantization for select CNN models*
 
 ## Tensorflow post-training integer quantization
 
