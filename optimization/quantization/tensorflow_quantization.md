@@ -26,6 +26,38 @@ There are several post-training quantization options to choose from. Here is a s
 
 This decision tree can help determine which post-training quantization method is best for your use case:
 
+![](./figs/tensorflow_post_training_optimization_methods.png)
+
+Alternatively, you might achieve higher accuracy if you perform quantization-aware training. However, doing so requires some model modifications to add fake quantization nodes, whereas the post-training quantization techniques on this page use an existing pre-trained model.
+
+### Full integer quantization of weights and activations
+
+Tensofflow integer quantization tool requires a small calibration set of representative datato measure the dynamic range of activations and inputs. By simply providing the representative_dataset generator to the converter, the optimization parameter will perform integer quantization on the input model.
+  ```
+  def representative_dataset_gen():
+    data = tfds.load(...)
+
+    for _ in range(num_calibration_steps):
+      image, = data.take(1)
+      yield [image]
+
+  converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
+  converter.optimizations = [tf.lite.Optimize.DEFAULT]
+  converter.representative_dataset = tf.lite.RepresentativeDataset(
+      representative_dataset_gen) 
+  ```
+The resulting model should be fully quantized, but any ops that do not have quantized implementations are left in floating point. This allows conversion to occur smoothly, but the model won't be compatible with accelerators that require full integer quantization.
+
+Additionally, the model still uses float input and output for convenience.
+
+To ensure compatibility with some accelerators (such as the Coral Edge TPU), you can enforce full integer quantization for all ops and use integer input and output by adding the following lines before you convert:
+
+  ```
+  converter.target_spec.supported_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
+  converter.inference_input_type = tf.uint8
+  converter.inference_output_type = tf.uint8
+  ```
+The first line makes the converter throw an error if it encounters an operation it cannot currently quantize.
 
 
 ## Tensorflow post-training integer quantization
@@ -42,29 +74,6 @@ In summary, a user should use “hybrid” post training quantization when targe
 
 ### How to enable post-training integer quantization
 
-Tensofflow integer quantization tool requires a small calibration set of representative data. By simply providing the representative_dataset generator to the converter, the optimization parameter will perform integer quantization on the input model.
-  ```
-  def representative_dataset_gen():
-    data = tfds.load(...)
-
-    for _ in range(num_calibration_steps):
-      image, = data.take(1)
-      yield [image]
-
-  converter = tf.lite.TFLiteConverter.from_saved_model(saved_model_dir)
-  converter.optimizations = [tf.lite.Optimize.DEFAULT]
-  converter.representative_dataset = tf.lite.RepresentativeDataset(
-      representative_dataset_gen) 
-  ```
-
-### Is the model entirely quantized?
-
-Just like the existing post-training quantization functionality, by default, the operations (“ops”) that do not have quantized implementations will automatically be left in floating point. This allows conversion to occur smoothly, and will produce a model that will always execute on a typical mobile CPU — consider that TensorFlow Lite will execute the integer operations in the integer-only accelerator, falling back to CPU for the operations involving floating point. To execute entirely on specialized hardware that does not support floating point operations at all (for example, some machine learning accelerators, including the Edge TPU), you can specify a flag in order to output only integer operations:
-  ```
-  converter.target_ops = [tf.lite.OpsSet.TFLITE_BUILTINS_INT8]
-  ```
-
-When this flag is used and an operation has no integer quantizable counterpart, the TensorFlow Lite Converter will throw an error.
 
 ### Very little data is needed
 In our experiments, we found that a few dozen examples that are representative of what the model will see during execution are sufficient to get the best accuracy. For instance the accuracy numbers below are from models calibrated on only 100 images from the ImageNet dataset.
