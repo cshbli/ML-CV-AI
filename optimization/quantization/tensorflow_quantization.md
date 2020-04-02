@@ -3,7 +3,7 @@
    * [Post-training Quantization](#post-training-quantization)
       * [Optimization options](#optimization-options)
       * [Full integer quantization of weights and activations](#full-integer-quantization-of-weights-and-activations)
-   * [Post-training integer quantization jupyter notebook](./post_training_integer_quant.ipynb) from [Tensorflow Lite guide](https://www.tensorflow.org/lite/performance/post_training_quant)
+   * [Post-training integer quantization jupyter notebook](./post_training_integer_quant.ipynb) from [Tensorflow Lite guide](https://www.tensorflow.org/lite/performance/post_training_integer_quant)
 
 ## Introduction
 
