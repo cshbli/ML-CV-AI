@@ -1,6 +1,8 @@
 ﻿# Tensorflow Qunatization  
    * [Tensorflow Post-Training Integer Quantization](#tensorflow-post-training-integer-quantization)  
 
+## Introduction
+
 Quantization works by reducing the precision of the numbers used to represent a model's parameters, which by default are 32-bit floating point numbers. This results in a smaller model size and faster computation.
 
 The following types of quantization are available in TensorFlow Lite:
@@ -9,8 +11,22 @@ The following types of quantization are available in TensorFlow Lite:
 
 Below are the latency and accuracy results for post-training quantization and quantization-aware training on a few models. All latency numbers are measured on Pixel 2 devices using a single big core CPU. As the toolkit improves, so will the numbers here:
 
-![](./figs/benefits_of_quantization.png)
+![](./figs/benefits_of_model_quantization.png)
 *Table: Benefits of model quantization for select CNN models*
+
+## Post-training Quantization
+
+Post-training quantization is a conversion technique that can reduce model size while also improving CPU and hardware accelerator latency, with little degradation in model accuracy. You can perform these techniques using an already-trained float TensorFlow model when you convert it to TensorFlow Lite format.
+
+### Optimization options
+
+There are several post-training quantization options to choose from. Here is a summary table of the choices and the benefits they provide:
+
+![](./figs/tensorflow_post_training_optimization_options.png)
+
+This decision tree can help determine which post-training quantization method is best for your use case:
+
+
 
 ## Tensorflow post-training integer quantization
 
