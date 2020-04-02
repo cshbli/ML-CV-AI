@@ -1,5 +1,9 @@
 ﻿# Tensorflow Qunatization  
-   * [Tensorflow Post-Training Integer Quantization](#tensorflow-post-training-integer-quantization)  
+   * [Introduction](#introduction)  
+   * [Post-training Quantization](#post-training-quantization)
+      * [Optimization options](#optimization-options)
+      * [Full integer quantization of weights and activations](#full-integer-quantization-of-weights-and-activations)
+   * [Post-training integer quantization jupyter notebook](./post_training_integer_quant.ipynb) from [Tensorflow Lite guide](https://www.tensorflow.org/lite/performance/post_training_quant)
 
 ## Introduction
 
@@ -26,7 +30,7 @@ There are several post-training quantization options to choose from. Here is a s
 
 This decision tree can help determine which post-training quantization method is best for your use case:
 
-![](./figs/tensorflow_post_training_optimization_methods.png)
+![](./figs/tensorflow_post_training_quantization_methods.jpg)
 
 Alternatively, you might achieve higher accuracy if you perform quantization-aware training. However, doing so requires some model modifications to add fake quantization nodes, whereas the post-training quantization techniques on this page use an existing pre-trained model.
 
@@ -157,10 +161,6 @@ Step 2 is the so-called quantization-aware training of which the forwarding is s
 ## Summary
 
 You may ask why quantization works (having a good enough predication accuracy) with regard to the information losing when converting FP32 to INT8? Well, there is no solid theory yet, but the intuition is that neural networks are over parameterized such that there is enough redundant information which can be safely reduced without significant accuracy drop. One evidence is that, for given quantization scheme, the accuracy gap between FP32 network and INT8 network is small for large networks, since the large networks are more over parameterized.
-
-* Overview of schemes for model quantization: One can quantize weights post training (left) or quantize weights and activations post training (middle). It is also possible to perform quantization aware training for improved accuracy.   
-    
-   <img src="./figs/tensorflow_overview_of_schemes_for_model_quantization.png" width="600px" title="Overview of schemes for model quantization">
         
 * Weight only quantization: per-channel quantization provides good accuracy, with asymmetric quantization providing close to floating point accuracy.
     
