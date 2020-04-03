@@ -1,5 +1,8 @@
 ﻿# TVM
    * [Introduction](#introduction)
+   * [Glossary](#glossary)
+      * [Schedule](#schedule)
+      * [TEDD](#tedd)
    * [Installation](https://tvm.apache.org/docs/install/from_source.html)
    * [Quantization](#quantization)
       * [Quantization Scales](#quantization-scales)
@@ -17,6 +20,16 @@ TVM began as a research project at the SAMPL group of Paul G. Allen School of Co
 TVM provides two level optimizations show in the following figure. Computational graph optimization to perform tasks such as high-level operator fusion, layout transformation, and memory management. Then a tensor operator optimization and code generation layer that optimizes tensor operators. More details can be found at the [techreport](https://arxiv.org/pdf/1802.04799.pdf).
 
 ![TVM Stack](tvm-stack.png)
+
+## Glossary
+
+### Schedule
+
+A schedule is a set of transformation of computation that transforms the loop of computations in the program.
+
+### TEDD
+
+Tensor Expression Debug Display
 
 ## Quantization
 
@@ -64,6 +77,9 @@ Once we have an optimized Relay graph, we need to write optimized schedules. Lik
   * Deploy a Quantized Model on Cuda
       * [Jupyter notebook](deploy_quantized.ipynb)
       * [Python source code](deploy_quantized.py)
+  * Get Started with Tensor Expression
+      * [Jupyter notebook](tensor_expr_get_started.ipynb)
+      * [Python source code](tensor_expr_get_started.py)
 
 ## References
 
