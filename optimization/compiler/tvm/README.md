@@ -18,7 +18,9 @@ TVM provides two level optimizations show in the following figure. Computational
 
 ## Tutorials
   
-  * [Quick Start Tutorial for Compiling Deep Learning Models](relay_quick_start.ipynb)([full python source code](relay_quick_start.py))
+  * Quick Start Tutorial for Compiling Deep Learning Models
+      * [Jupyter notebook](relay_quick_start.ipynb)
+      * [Python source code](relay_quick_start.py)
 
 ## References
 
