@@ -2,6 +2,7 @@
    * [Introduction](#introduction)
    * [Installation](https://tvm.apache.org/docs/install/from_source.html)
    * [Quantization](#quantization)
+      * [Quantization Scales](#quantization-scales)
    * [Tutorials](#tutorials)
    
 ## Introduction
@@ -28,6 +29,22 @@ As shown in the above figure, there are two different parallel efforts ongoing
   * <b>Automatic Integer Quantization:</b> It takes a FP32 framework graph and automatically converts it to Int8 within Relay.
   
   * <b>Accepting Pre-quantized Integer models:</b> This approach accepts a pre-quantized model, introduces a Relay dialect called QNN and generates an Int8 Relay graph.
+  
+### Quantization Scales
+
+In quantization, we need to find the scale for each weight and intermediate feature map tensor of each layer.
+
+  * For weights, the scales are directly calculated based on the value of the weights. Two modes are supported: <b>power2</b> and <b>max</b>. Both modes find the maximum value within the weight tensor first. 
+  
+      * In power2 mode, the maximum is rounded down to power of two. If the scales of both weights and intermediate feature maps are power of two, we can leverage bit shifting for multiplications. This make it computationally more efficient. 
+  
+      * In max mode, the maximum is used as the scale. Without rounding, max mode might have better accuracy in some cases. When the scales are not powers of two, fixed point multiplications will be used.
+
+  * For intermediate feature maps, we can find the scales with <b>data-aware quantization</b>. 
+  
+      * Data-aware quantization takes a calibration dataset as the input argument. Scales are calculated by minimizing the <b>KL divergence</b> between distribution of activation before and after quantization. 
+      
+      * Alternatively, we can also use <b>pre-defined global scales</b>. This saves the time for calibration. But the accuracy might be impacted.
 
 ### Relay Optimizations
 
