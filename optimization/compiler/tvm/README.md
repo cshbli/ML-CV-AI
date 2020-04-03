@@ -65,3 +65,4 @@ Once we have an optimized Relay graph, we need to write optimized schedules. Lik
 ## References
 
 * [TVM: An Automated End-to-End Optimizing Compiler for Deep Learning](https://arxiv.org/pdf/1802.04799.pdf) by Tianqi Chen, Thierry Moreau, Ziheng Jiang, Lianmin Zheng, Eddie Yan, Meghan Cowan, Haichen Shen, Leyuan Wang, Yuwei Hu, Luis Ceze, Carlos Guestrin, Arvind Krishnamurthy.
+* [Automating Optimization of Quantized Deep Learning Models on CUDA](https://tvm.apache.org/2019/04/29/opt-cuda-quantized) by Wuwei Lin
