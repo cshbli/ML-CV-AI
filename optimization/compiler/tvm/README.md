@@ -61,6 +61,9 @@ Once we have an optimized Relay graph, we need to write optimized schedules. Lik
   * Quick Start Tutorial for Compiling Deep Learning Models
       * [Jupyter notebook](relay_quick_start.ipynb)
       * [Python source code](relay_quick_start.py)
+  * Deploy a Quantized Model on Cuda
+      * [Jupyter notebook](deploy_quantized.ipynb)
+      * [Python source code](deploy_quantized.py)
 
 ## References
 
