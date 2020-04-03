@@ -14,7 +14,7 @@ TVM began as a research project at the SAMPL group of Paul G. Allen School of Co
 
 TVM provides two level optimizations show in the following figure. Computational graph optimization to perform tasks such as high-level operator fusion, layout transformation, and memory management. Then a tensor operator optimization and code generation layer that optimizes tensor operators. More details can be found at the [techreport](https://arxiv.org/pdf/1802.04799.pdf).
 
-![TVM Stack](tvm_stack.png)
+![TVM Stack](tvm-stack.png)
 
 ## Tutorials
 
