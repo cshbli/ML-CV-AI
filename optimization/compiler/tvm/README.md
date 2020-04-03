@@ -17,7 +17,9 @@ TVM provides two level optimizations show in the following figure. Computational
 ![TVM Stack](tvm-stack.png)
 
 ## Tutorials
-
+  
+  * [Quick Start Tutorial for Compiling Deep Learning Models](relay_quick_start.ipynb)([full python source code](relay_quick_start.py))
 
 ## References
+
 * [TVM: An Automated End-to-End Optimizing Compiler for Deep Learning](https://arxiv.org/pdf/1802.04799.pdf) by Tianqi Chen, Thierry Moreau, Ziheng Jiang, Lianmin Zheng, Eddie Yan, Meghan Cowan, Haichen Shen, Leyuan Wang, Yuwei Hu, Luis Ceze, Carlos Guestrin, Arvind Krishnamurthy.
