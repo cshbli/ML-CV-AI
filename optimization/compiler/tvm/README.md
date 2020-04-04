@@ -38,6 +38,8 @@ Tensor Expression Debug Display
 
 TOPI is the operator collection library for TVM, to provide sugars for constructing compute declaration as well as optimized schedules.
 
+TOPI provides numpy-style generic operations and schedules with higher abstractions than TVM.
+
 ## Quantization
 
 ![TVM Quantization](tvm_quantization.png)
@@ -90,6 +92,10 @@ Once we have an optimized Relay graph, we need to write optimized schedules. Lik
   * Use Tensor Expression Debug Display (TEDD) for Visualization
       * [Jupyter notebook](tedd.ipynb)
       * [Python source code](tedd.py)
+  * Introduction to TOPI
+      * [Jupyter notebook](intro_topi.ipynb)
+      * [Python source code](intro_topi.py)
+
 
 ## References
 
