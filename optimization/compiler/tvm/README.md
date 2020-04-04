@@ -3,6 +3,7 @@
    * [Glossary](#glossary)
       * [Schedule](#schedule)
       * [TEDD](#tedd)
+      * [TOPI](#topi)
    * [Installation](https://tvm.apache.org/docs/install/from_source.html)
    * [Quantization](#quantization)
       * [Quantization Scales](#quantization-scales)
@@ -30,6 +31,12 @@ A schedule is a set of transformation of computation that transforms the loop of
 ### TEDD
 
 Tensor Expression Debug Display
+
+### TOPI
+
+[TVM Operator Inventory.](https://tvm.apache.org/docs//api/python/topi.html#)
+
+TOPI is the operator collection library for TVM, to provide sugars for constructing compute declaration as well as optimized schedules.
 
 ## Quantization
 
@@ -80,6 +87,9 @@ Once we have an optimized Relay graph, we need to write optimized schedules. Lik
   * Get Started with Tensor Expression
       * [Jupyter notebook](tensor_expr_get_started.ipynb)
       * [Python source code](tensor_expr_get_started.py)
+  * Use Tensor Expression Debug Display (TEDD) for Visualization
+      * [Jupyter notebook](tedd.ipynb)
+      * [Python source code](tedd.py)
 
 ## References
 
