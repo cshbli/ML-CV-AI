@@ -21,6 +21,9 @@
   * Image Translation
     * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
     * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
+* Text
+  * [Word2Vec](./text/Word2Vec.md)
+  * [Doc2Vec](./text/Doc2Vec.md)
 * Generative Adversarial Networks
   * Deep Convolutional Generative Adversarial Networks (DCGANs)    
 * Neural Network Exchange
