@@ -1,7 +1,7 @@
 ﻿# Machine Learning, Computer Vision and Data Science Introductions 
 * [Machine Learning Glossary](./glossary/README.md)
 * Deep Learning Fundamentals
-  * [Covolution](./deep_learning_fundamentals/convolution.md)
+  * [Covolution](./deep_learning_fundamentals/convolution/README.md)
   * [Normalization](./deep_learning_fundamentals/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning_fundamentals/residual_block/README.md)
 * Deep Learning Optimization
