@@ -63,7 +63,7 @@ The following example shows how such operation works. It flattens the input to a
 
 Now, if we multiple the transpose of matrix CT on both sides of the equation, and use the property that multiplication of a matrix with its transposed matrix gives an Unit matrix, then we have the following formula CT x Small = Large, as demonstrated in the figure below.
 
-![](./transoposed_convolution_flatten.png)
+![](./transposed_convolution_flatten.png)
 *Matrix multiplication for convolution: from a Small input image (2x2) to a Large output image (4x4)*
 
 As you can see here, we perform up-sampling from a small image to a large image. That is what we want to achieve. And now, you can also see where the name “transposed convolution” comes from.
