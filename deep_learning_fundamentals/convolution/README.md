@@ -1,6 +1,6 @@
 ﻿# Convolution
-  * [1x1 Convolution](#1x1_convolution)
-  * [Grouped Convolution](#grouped_convolution)
+  * [1x1 Convolution](#1x1-convolution)
+  * [Grouped Convolution](#grouped-convolution)
   
 ## 1x1 Convolution
 
