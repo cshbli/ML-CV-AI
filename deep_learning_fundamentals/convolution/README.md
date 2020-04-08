@@ -1,4 +1,22 @@
 ﻿# Convolution
+  * [1x1 Convolution](#1x1_convolution)
+  * [Grouped Convolution](#grouped_convolution)
+  
+## 1x1 Convolution
+
+The following picture illustrates how 1 x 1 convolution works for an input layer with dimension H x W x D. After 1 x 1 convolution with filter size 1 x 1 x D, the output channel is with dimension H x W x 1. If we apply N such 1 x 1 convolutions and then concatenate results together, we could have a output layer with dimension H x W x N.
+
+![1x1 Convolution](./1x1_convolution.png)
+*1x1 convolution, where the filter size is 1x1xD*
+
+Initially, 1 x 1 convolutions were proposed in the Network-in-network paper. They were then highly used in the Google Inception paper. A few advantages of 1 x 1 convolutions are:
+  * Dimensionality reduction for efficient computations
+  
+  * Efficient low dimensional embedding, or feature pooling
+  
+  * Applying nonlinearity again after convolution
+
+The first two advantages can be observed in the image above. After 1 x 1 convolution, we significantly reduce the dimension depth-wise. Say if the original input has 200 channels, the 1 x 1 convolution will embed these channels (features) into a single channel. The third advantage comes in as after the 1 x 1 convolution, non-linear activation such as ReLU can be added. The non-linearity allows the network to learn more complex function.
 
 ## Grouped Convolution
 
