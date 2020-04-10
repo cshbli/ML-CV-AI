@@ -10,8 +10,8 @@
       * [03- Quantizing Tensorflow Graph](./QNN/03_Quantizing_Tensorflow_Graph.ipynb)
       * [04- Custom Gradients](./QNN/04_Custom_Gradients.ipynb)
       * [05- Training](./QNN/05_Training.ipynb)
-      * [06 Batchnorm Folding](./QNN/06_Batchnorm_Folding.ipynb)
-      * [07 Efficient Integer Inference](./QNN/07_Efficient_Integer_Inference.ipynb)
+      * [06- Batchnorm Folding](./QNN/06_Batchnorm_Folding.ipynb)
+      * [07- Efficient Integer Inference](./QNN/07_Efficient_Integer_Inference.ipynb)
 
 ## Introduction
 
