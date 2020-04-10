@@ -4,6 +4,8 @@
       * [Optimization options](#optimization-options)
       * [Full integer quantization of weights and activations](#full-integer-quantization-of-weights-and-activations)
    * [Post-training integer quantization jupyter notebook](./post_training_integer_quant.ipynb) from [Tensorflow Lite guide](https://www.tensorflow.org/lite/performance/post_training_integer_quant)
+   * [Tutorial on Quantized Neural Network using Tensorflow Lite](./QNN/README.md)
+      * [01- Introduction to TFLite](./QNN/01_Intro_to_TFlite.ipynb)
 
 ## Introduction
 
