@@ -5,8 +5,7 @@
        * [Hybrid operations](#hybrid-approaches)
        * [INT8 quantization](#int8-quantization)
      * [Quantization aware training](#quantization-aware-training)
-  * [Tensorflow Quantization](./tensorflow_quantization.md)
-     * [Tensorflow Post-Training Integer Quantization](#tensorflow-post-training-integer-quantization)
+  * [Tensorflow Quantization](./tensorflow_quantization.md)     
   
 Quantization for deep learning is the process of approximating a neural network that uses floating-point numbers, which by default are 32-bit, by a neural network of low bit width numbers. This results in a smaller model size and faster computation.
 
