@@ -1,5 +1,22 @@
 ﻿# Visualize Tensorflow graph with Tensorboard
-## Checkpoint meta file
+## Frozen graph .pb file
+```
+import tensorflow as tf
+from tensorflow.summary import FileWriter
+from tensorflow.core.framework import graph_pb2
+
+sess = tf.Session()
+with tf.io.gfile.GFile("your-frozen-graph-file.pb", "rb") as f:
+    graph_def = graph_pb2.GraphDef()
+    graph_def.ParseFromString(f.read())
+    tf.import_graph_def(graph_def)
+
+FileWriter("__tb", sess.graph)    
+print("Model Imported. Visualize by running: "
+      "tensorboard --logdir={}".format("__tb"))
+```      
+
+## Checkpoint .meta file
 The `.meta` file contains information about the different node in the tensorflow graph. Checkpoint meta file contains a serialized `MetaGraphDef` protocol buffer. The `MetaGraphDef` is designed as a serialization format that includes all of the information required to restore a training or inference process (including the `GraphDef` that describes the dataflow, and additional annotations that describe the variables, input pipelines, and other relevant information). For example, the `MetaGraphDef` is used by TensorFlow Serving to start an inference service based on your trained model. 
 
 Assuming that you still have the Python code for your model, you do not need the `MetaGraphDef` to restore the model, because you can reconstruct all of the information in the `MetaGraphDef` by re-executing the Python code that builds the model. To restore from a checkpoint, you only need the checkpoint files that contain the trained weights, which are written periodically to the same directory. 
