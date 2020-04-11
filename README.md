@@ -30,6 +30,9 @@
 * Neural Network Exchange
   * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
      
+## Small Techniques and Utilities
+* [Display Tensorflow graph with Tensorboard](./tools/tensorboard.md)
+
 ## Dataset     
 * Face
   * [IMDB-WIKI – 500k+ face images with age and gender labels](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
