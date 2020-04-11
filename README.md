@@ -31,7 +31,7 @@
   * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
      
 ## Small Techniques and Utilities
-* [Display Tensorflow graph with Tensorboard](./tools/tensorboard.md)
+* [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
 
 ## Dataset     
 * Face
