@@ -1,50 +1,26 @@
-﻿# Machine Learning, Computer Vision and Data Science Introductions 
-* [Machine Learning Glossary](./glossary/README.md)
-* Deep Learning Fundamentals
-  * [Covolution](./deep_learning_fundamentals/convolution/README.md)
-  * [Normalization](./deep_learning_fundamentals/normalization/README.md)
-  * [Residual Block and Inverted Residual Block](./deep_learning_fundamentals/residual_block/README.md)
-* Deep Learning Optimization
-  * Efficient Training
-  * Efficient Neural Network
-  * [Model Optimization](./optimization/README.md)
-    * [Quantization](./optimization/quantization/README.md) 
-    * Pruning
-    * Compression
-      * [Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding](https://arxiv.org/pdf/1510.00149.pdf)
-   * Matrix Operation Optimization
-   * [Deep Learning Compiler](./optimization/compiler/README.md)
-* Images
-  * Classification  
-    * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
-  * [Object Detection](./object_detection/README.md)
-    * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
-  * Image Translation
-    * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
-    * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
-* Text
-  * [Word2Vec](./text/Word2Vec.md)
-  * [Doc2Vec](./text/Doc2Vec.md)
-* Generative Adversarial Networks
-  * Deep Convolutional Generative Adversarial Networks (DCGANs)    
-* Neural Network Exchange
-  * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
-     
-## Dataset     
-* Face
-  * [IMDB-WIKI – 500k+ face images with age and gender labels](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
-  * [WIDER FACE: A Face Detection Benchmark](http://shuoyang1213.me/WIDERFACE/)
-* Super-Resolution  
-  * [DIV2K dataset: DIVerse 2K resolution high quality images for super-resolution](https://data.vision.ee.ethz.ch/cvl/DIV2K/)
+﻿# Visualize Tensorflow graph with Tensorboard
+## Checkpoint meta file
+The `.meta` file contains information about the different node in the tensorflow graph. Checkpoint meta file contains a serialized `MetaGraphDef` protocol buffer. The `MetaGraphDef` is designed as a serialization format that includes all of the information required to restore a training or inference process (including the `GraphDef` that describes the dataflow, and additional annotations that describe the variables, input pipelines, and other relevant information). For example, the `MetaGraphDef` is used by TensorFlow Serving to start an inference service based on your trained model. 
 
-## Online books
-* [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/index.html) by Michael Nielsen
-* [Deep Learning](http://www.deeplearningbook.org/) by Ian Goodfellow, Yoshua Bengio and Aron Courville
-* [Computer Vision: Algorithms and Applications, 1st ed.](http://szeliski.org/Book/) by Richard Szeliski
-* [Digital Image Processing](https://sisu.ut.ee/imageprocessing/documents) by University of Tartu
+Assuming that you still have the Python code for your model, you do not need the `MetaGraphDef` to restore the model, because you can reconstruct all of the information in the `MetaGraphDef` by re-executing the Python code that builds the model. To restore from a checkpoint, you only need the checkpoint files that contain the trained weights, which are written periodically to the same directory. 
 
-## Online Courses
-* [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course/) by Google
-* [CS231n: Convolutional Neural Networks for Visual Recognition](http://cs231n.stanford.edu/2020/index.html) by Stanford
-* [Programming Assignments and Lectures for Stanford's CS 231: Convolutional Neural Networks for Visual Recognition](https://github.com/khanhnamle1994/computer-vision) by Standford
-* [Deep Learning course: lecture slides and lab notebooks](https://github.com/m2dsupsdlclass/lectures-labs) by University Paris Saclay
+The values of the different variables in the graph at that moment are stored separately in the checkpoint folder in `checkpoint.data-xxxx-of-xxxx` file.
+
+There is no concept of an input or output node in the normal checkpoint process, as opposed to the case of a frozen model. Freezing a model outputs a subset of the whole tensorflow graph. This subset of the main graph has only those nodes present on which the output node is dependent on. Because freezing a model is done for serving purposes, it converts the tensorflow variables to constants, eliminating the need for storing additional information like gradients of the different variables at each step.
+
+You can restore your graph from the `.meta` file and visualize it in tensorboard.
+
+```
+import tensorflow as tf
+from tensorflow.summary import FileWriter
+
+sess = tf.Session()
+tf.train.import_meta_graph("your-meta-graph-file.meta")
+FileWriter("__tb", sess.graph)
+```
+
+This will create a `__tb` folder in your current directory and you can then view the graph by issuing the following command.
+
+```
+tensorboard --logdir __tb
+```
