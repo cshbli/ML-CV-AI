@@ -32,6 +32,7 @@
      
 ## Small Techniques and Utilities
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
+* [Notes](./tools/notes.md)
 
 ## Dataset     
 * Face
