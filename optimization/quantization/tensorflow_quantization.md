@@ -13,6 +13,22 @@
       * [06- Batchnorm Folding](./QNN/06_Batchnorm_Folding.ipynb)
       * [07- Efficient Integer Inference](./QNN/07_Efficient_Integer_Inference.ipynb)
 
+## How Does the Quantization Process Work
+
+The conversion script first replaces all the individual ops it knows about with quantized equivalents. These are small sub-graphs that have conversion functions before and after to move the data between float and eight-bit. Below is an example of what they look like. First here’s the original Relu operation, with float inputs and outputs:
+
+![](./figs/relu.png)
+
+Then, this is the equivalent converted subgraph, still with float inputs and outputs, but with internal conversions so the calculations are done in eight bit.
+
+![](./figs/relu_quantization.png)
+
+The min and max operations actually look at the values in the input float tensor, and then feeds them into the Quantize operation that converts the tensor into eight-bits. 
+
+Once the individual operations have been converted, the next stage is to remove unnecessary conversions to and from float. If there are consecutive sequences of operations that all have float equivalents, then there will be a lot of adjacent Dequantize/Quantize ops. This stage spots that pattern, recognizes that they cancel each other out, and removes them, like this:
+
+![](./figs/relu_quantization_combine.png)
+
 ## Introduction
 
 Quantization works by reducing the precision of the numbers used to represent a model's parameters, which by default are 32-bit floating point numbers. This results in a smaller model size and faster computation.
