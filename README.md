@@ -31,6 +31,7 @@
   * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
 * Deep Learning Framework
   * Tensorflow
+    * [tf.placeholder vs tf.Variable](./framework/placeholder_variable.ipynb)
     * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
     * [TFRecord to Store and Extract Data](./framework/TFRecord.ipynb)
      
