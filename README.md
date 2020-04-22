@@ -32,6 +32,7 @@
 * Deep Learning Framework
   * Tensorflow
     * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
+    * [TFRecord to Store and Extract Data](./framework/TFRecord.ipynb)
      
 ## Small Techniques and Utilities
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
