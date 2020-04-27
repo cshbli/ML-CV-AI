@@ -15,7 +15,7 @@
 
 ## How Does the Quantization Process Work
 
-The conversion script first replaces all the individual ops it knows about with quantized equivalents. These are small sub-graphs that have conversion functions before and after to move the data between float and eight-bit. Below is an example of what they look like. First here’s the original Relu operation, with float inputs and outputs:
+The quantization first replaces all the individual ops it knows about with quantized equivalents. These are small sub-graphs that have conversion functions before and after to move the data between float and eight-bit. Below is an example of what they look like. First here’s the original Relu operation, with float inputs and outputs:
 
 ![](./figs/relu.png)
 
