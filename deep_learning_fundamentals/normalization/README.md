@@ -1,4 +1,13 @@
 ﻿# Normalization 
+  * [Benefits of using normalization](#benefits-of-using-normalization)
+  * [Batch Normalization](#batch-normalization)
+    * [Fused Batch Normalization](#fused-batch-normalization)
+  * [Layer Normalization](#layer-normalization)
+  * [Instance Normalization](#instance-normalization)
+  * [Group Normalization](#group-normalization)
+  * [Batch-Instance Normalization](#batch-instance-normalization)
+  * [Switchable Normalization](#switchable-normalization)
+ 
  <p align="center">
    <img src="visual_comparison_of_normalizations.png" width="800px" title="A visual comparison of various normalization methods">
  </p>
@@ -51,6 +60,10 @@
 * There would also be a problem in distributed training. As, if you are computing in different machines then you have to take same batch size because otherwise γ and β will be different for different systems.
 
 * Recurrent Neural Network → In an RNN, the recurrent activations of each time-step will have a different story to tell(i.e. statistics). This means that we have to fit a separate batch norm layer for each time-step. This makes the model more complicated and space consuming because it forces us to store the statistics for each time-step during training.
+
+### Fused Batch Normalization
+
+Fused batch norm combines the multiple operations needed to do batch normalization into a single kernel. Batch norm is an expensive process that for some models makes up a large percentage of the operation time. Using fused batch norm can result in a 12%-30% speedup.
 
 ## Layer Normalization
 
