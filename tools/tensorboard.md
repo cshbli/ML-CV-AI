@@ -9,7 +9,7 @@ sess = tf.Session()
 with tf.io.gfile.GFile("your-frozen-graph-file.pb", "rb") as f:
     graph_def = graph_pb2.GraphDef()
     graph_def.ParseFromString(f.read())
-    tf.import_graph_def(graph_def)
+    tf.import_graph_def(graph_def, name='')
 
 FileWriter("__tb", sess.graph)    
 print("Model Imported. Visualize by running: "

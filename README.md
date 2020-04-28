@@ -32,6 +32,7 @@
 * Deep Learning Framework
   * Tensorflow
     * [tf.placeholder vs tf.Variable](./framework/placeholder_variable.ipynb)
+    * [Graph vs GraphDef](./framework/Graph_and_GraphDef.md)
     * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
     * [TFRecord to Store and Extract Data](./framework/TFRecord.ipynb)
      
