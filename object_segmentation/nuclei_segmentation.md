@@ -33,3 +33,5 @@
 
 * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](https://arxiv.org/pdf/1810.00236.pdf) by Faisal Mahmood, Daniel Borders, Richard Chen, Gregory N. McKay, Kevan J. Salimian, Alexander Baras,
 and Nicholas J. Durr.
+
+* [cGAN-based Multi Organ Nuclei Segmentation (GitHub)](https://github.com/mahmoodlab/NucleiSegmentation)

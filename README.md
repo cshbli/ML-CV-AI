@@ -19,7 +19,7 @@
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
   * [Object Detection](./object_detection/README.md)
     * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
-  * [Object Segmentation]
+  * Object Segmentation
     * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](./object_segmentation/nuclei_segmentation.md)
   * Image Translation
     * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
@@ -33,6 +33,7 @@
   * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
 * Deep Learning Framework
   * Tensorflow
+    * [logits, softmax and softmax_cross_entropy_with_logits](./framework/logits_softmax.ipynb)
     * [protobuf](./framework/protobuf.md)
     * [tf.placeholder vs tf.Variable](./framework/placeholder_variable.ipynb)
     * [Graph vs GraphDef](./framework/Graph_and_GraphDef.md)
