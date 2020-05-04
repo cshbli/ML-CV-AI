@@ -30,9 +30,9 @@ This gives us a pretty simple linear equation:
 
 Here,
 
-    * r is the real value (usually float32)
-    * q is its quantized representation as a B-bit integer (uint8, uint32, etc.)
-    * S(float32) and z(uint) are the factors by which we scale and shift the number line. z will always map back exactly to 0.f.
+  * r is the real value (usually float32)
+  * q is its quantized representation as a B-bit integer (uint8, uint32, etc.)
+  * S(float32) and z(uint) are the factors by which we scale and shift the number line. z will always map back exactly to 0.f.
 
 ![](./figs/INT8_quantization_mapping.png)
 
@@ -40,10 +40,10 @@ Here,
 
 Let’s look at the components of a conventional layer implemented in floating-point:
 
-    * Zero or more weight tensors, which are constant, and stored as float.
-    * One or more input tensors; again, stored in float.
-    * The forward pass function which operates on the weights and inputs, using floating point arithmetic, storing the output in float
-    * Output tensors, again in float.
+  * Zero or more weight tensors, which are constant, and stored as float.
+  * One or more input tensors; again, stored in float.
+  * The forward pass function which operates on the weights and inputs, using floating point arithmetic, storing the output in float
+  * Output tensors, again in float.
 
 Now the weights of a pre-trained network are constant, so we can convert & store them in quantized form beforehand with their exact ranges known to us.
 
