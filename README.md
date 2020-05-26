@@ -34,7 +34,7 @@
 * Deep Learning Framework
   * Tensorflow
     * [logits, softmax and softmax_cross_entropy_with_logits](./framework/logits_softmax.ipynb)
-    * [protobuf](./framework/protobuf.md)
+    * [Protobuf and Flat Buffers](./framework/protobuf.md)
     * [tf.placeholder vs tf.Variable](./framework/placeholder_variable.ipynb)
     * [Graph vs GraphDef](./framework/Graph_and_GraphDef.md)
     * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
