@@ -40,6 +40,9 @@
     * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
     * [TFRecord to Store and Extract Data](./framework/TFRecord.ipynb)
     * [Convert a Global Average Pooling layer to Conv2D](./framework/gap_to_conv2d.ipynb)
+  * PyTorch
+    * [PyTorch Installation](./framework/pytorch/install.md)
+    * [PyTorch Quickstart](./framework/pytorch/quickstart_tutorial.ipynb)
      
 ## Small Techniques and Utilities
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
