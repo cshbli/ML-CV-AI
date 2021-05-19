@@ -1,0 +1,26 @@
+<annotation>
+	<folder>maskDetectorJPEGImages</folder>
+	<filename>458.jpg</filename>
+	<path>maskDetectorJPEGImages/458.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>610</width>
+		<height>610</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>mask</name>
+		<pose>Unspecified</pose>
+		<truncated>1</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>1</xmin>
+			<ymin>119</ymin>
+			<xmax>313</xmax>
+			<ymax>422</ymax>
+		</bndbox>
+	</object>
+</annotation>

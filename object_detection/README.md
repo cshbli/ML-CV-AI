@@ -1,4 +1,5 @@
 ﻿# Object Detection
+
 * Anchor boxes
   
      Anchor boxes were first introduced in Faster RCNN paper and later became a common element in all the following papers like yolov2, ssd and RetinaNet. Previously selective search and edge boxes used to generate region proposals of various sizes and shapes depending on the objects in the image, with standard convolutions it is highly impossible to generate region proposals of varied shapes, so anchor boxes comes to our rescue.
@@ -8,7 +9,7 @@
      
 * RPN - Region Proposal Network
      
-     * <b>Regression head</b>: The output of the Faster RPN network as discussed and shown in the image above is a 50*50 feature map. A conv layer [kernal 3*3] strides through this image, At each location it predicts the 4 [x1, y1, h1, w1] values for each anchor boxes (9). In total, the output layer has 50*50*9*4 output probability scores. Usually this is represented in numpy as np.array(2500, 36).
+     * <b>Regression head</b>: The output of the Faster RPN network as discussed and shown in the image above is a 50x50 feature map. A conv layer [kernal 3x3] strides through this image, At each location it predicts the 4 [x1, y1, h1, w1] values for each anchor boxes (9). In total, the output layer has 50x50x9x4 output probability scores. Usually this is represented in numpy as np.array(2500, 36).
      
      * <b>Classification head</b>: Similar to the Regression head, this will predict the probability of an object present or not at each location for each anchor bos. This is represented in numpy array as np.array(2500, 9).
      <p align="center">
@@ -84,30 +85,9 @@
       </p>
         
         With this rescaling, the large number of easily classified examples (mostly background) does not dominate the loss anymore and learning can concentrate on the few interesting cases.
-        
-* RetinaNet
 
-  <b>RetinaNet</b> is a single, unified network composed of a backbone network and two task-specific subnetworks. The backbone is responsible for computing a conv feature map over an entire input image and is an off-the-self convolution network. The first subnet performs classification on the backbones output; the second subnet performs convolution bounding box regression.
+       
+## [SSD - Single Shot Detector](./SSD/README.md) 
 
-  <b>Backbone</b>: Feature Pyramid network built on top of ResNet50 or ResNet101. However we can use any classifier of your choice; just follow the instructions given in FPN section when designing the network.
-
-  <b>Classification subnet</b>: It predicts the probability of object presence at each spatial position for each of the A anchors and K object classes. Takes a input feature map with C channels from a pyramid level, the subnet applies four 3x3 conv layers, each with C filters amd each followed by ReLU activations. Finally sigmoid activations are attached to the outputs. Focal loss is applied as the loss function.
-
-  <b>Box Regression Subnet</b>: Similar to classification net used but the parameters are not shared. Outputs the object location with respect to anchor box if an object exists. smooth_l1_loss with sigma equal to 3 is applied as the loss function to this part of the sub-network.
-
-  <p align="center">
-  <img src="./RetinaNet.png" width="600px" title="RetinaNet">
-  </p>
-
-  <b>Training RetinaNet</b>
-  
-     Initialization of the network is very important. The authors have assumed a prior probability of 0.01 for all the anchor boxes and assigned this to the bias of last conv layer of classification sub net. The loss function blows up if you don’t take care of this. The intuition behind attaching this prior probability is that the foreground (All positive anchor boxes) to background objects (All negative anchor boxes) in image is 1000/100000 = 0.01.
-     
-   <b>Inference on RetinaNet</b>
-   
-     * To improve speed, Decode box predictions from at most 1k top-scoring predictions per FPN level, after thresholding the detector confidence at 0.05.
-     
-     * The top predictions from all levels are merged and non-maximum suppression with a threshold of 0.5 is applied to yield the final decisions.
-        
-## [SSD - Single Shot Detector](./SSD/README.md)        
+## [RetinaNet](./RetinaNet/README.md)
     

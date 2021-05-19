@@ -19,6 +19,8 @@
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
   * [Object Detection](./object_detection/README.md)
     * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
+    * [RetinaNet](./object_detection/RetinaNet/README.md)
+      * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)
   * Object Segmentation
     * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](./object_segmentation/nuclei_segmentation.md)
   * Image Translation
