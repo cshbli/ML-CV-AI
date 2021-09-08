@@ -45,6 +45,16 @@
   * PyTorch
     * [PyTorch Installation](./framework/pytorch/install.md)
     * [PyTorch Quickstart](./framework/pytorch/quickstart_tutorial.ipynb)
+* Data Annotation
+  * Autonomous driving  
+    * 2D Bounding Box    
+    * Lane Line    
+    * Semantic Segmentation    
+    * Video Tracking Annotation
+    * 3D Point
+    * 3D Object Recognition (3D Cube)
+    * 3D Segmentation
+    * Sensor Fusion: Cuboids/Segmentation/Tracking
      
 ## Small Techniques and Utilities
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
