@@ -1,14 +1,18 @@
-﻿# Machine Learning Glossary
- * [bag of words](./README.md#bag-of-words)
- * [clustering](./README.md#clustering)
- * [confusion matrix](./README.md#confusion-matrix)
- * [convex function](./README.md#convex-function)
- * [convex set](./README.md#convex-set)
- * [convolutional layer](./README.md#convolutional-layer)
- * [convolutional operation](./README.md#convolutional-operation)
- * [decision tree](./README.md#decision-tree)
- * [hashing](./README.md#hashing)
- * [intersection over union (IoU)](./README.md#intersection-over-union-iou)
+﻿# Glossary
+ * Machine Learning
+   * [bag of words](./README.md#bag-of-words)
+   * [clustering](./README.md#clustering)
+   * [confusion matrix](./README.md#confusion-matrix)
+   * [convex function](./README.md#convex-function)
+   * [convex set](./README.md#convex-set)   
+   * [decision tree](./README.md#decision-tree)
+   * [hashing](./README.md#hashing)
+ * Deep Learning
+   * [convolutional layer](./README.md#convolutional-layer)
+   * [convolutional operation](./README.md#convolutional-operation)
+ * Computer Vision
+   * [Intersection over Union (IoU)](./README.md#intersection-over-union-iou)
+     * [IoU sample notebook](./IoU.ipynb)
  
 ## bag of words
 A representation of the words in a phrase or passage, irrespective of order. For example, bag of words represents the following three phrases identically:
@@ -128,8 +132,9 @@ For example, Earth is home to about 60,000 tree species. You could represent eac
 
 A single bucket could contain multiple tree species. For example, hashing could place baobab and red maple—two genetically dissimilar species—into the same bucket. Regardless, hashing is still a good way to map large categorical sets into the desired number of buckets. Hashing turns a categorical feature having a large number of possible values into a much smaller number of values by grouping values in a deterministic way.
 
-## intersection over union (IoU)
-The intersection of two sets divided by their union. In machine-learning image-detection tasks, IoU is used to measure the accuracy of the model’s predicted bounding box with respect to the ground-truth bounding box. In this case, the IoU for the two boxes is the ratio between the overlapping area and the total area, and its value ranges from 0 (no overlap of predicted bounding box and ground-truth bounding box) to 1 (predicted bounding box and ground-truth bounding box have the exact same coordinates).
+## Intersection over Union (IoU)
+
+__Intersection Over Union (IoU)__ is a number that quantifies the degree of overlap between two boxes. In the case of object detection and segmentation, __IoU__ evaluates the overlap of the __Ground Truth__ and __Prediction__ region.
 
 For example, in the image below:
 
@@ -142,4 +147,65 @@ For example, in the image below:
 Here, the intersection of the bounding boxes for prediction and ground truth (below left) is 1, and the union of the bounding boxes for prediction and ground truth (below right) is 7, so the IoU is 1/7.
 
 <img src="iou_van_gogh_intersection.jpg">
+
 <img src="iou_van_gogh_union.jpg">
+
+<img src="pic/Understanding-Intersection-Over-Union-in-Object-Detection-and-Segmentation.jpg">
+
+Let’s go through the following example to understand how IoU is calculated. Let there be three models- A, B, and C, trained to predict birds. We pass an image through the models where we already know the __Ground Truth (marked in red)__. The image below shows __predictions__ of the models __(marked in cyan)__.
+
+<img src="pic/1-bird-detection-by-different-models-1024x387.jpg">
+
+IoU is the ratio of the __overlap area__ to the __combined area of prediction__ and __ground truth__.
+
+IoU values range from 0 to 1. Where 0 means no overlap and 1 means perfect overlap.
+<p align="center">
+<img src="pic/2-iou-illustration-768x300.jpg">
+</p>
+
+Looking closely, we are adding the area of the intersection __twice__ in the denominator. So actually we calculate IoU as shown in the illustration below.
+
+<p align="center">
+<img src="pic/3-iou-illustration-300x119.jpg">
+</p>
+
+### Qualitative Analysis of Predictions
+
+With the help of the IoU threshold, we can decide whether the prediction is __True Positive(TP)__, __False Positive(FP)__, or __False Negative(FN)__. The example below shows predictions with the IoU threshold __ɑ__ set at __0.5__.
+
+<img src="pic/4-birds-prediction-types-1.jpg">
+
+The decision of making a detection as __True Positive__ or __False Positive__, completely depends on the requirement.
+
+- The first prediction is __True Positive__ as the IoU threshold is 0.5.
+- If we set the threshold at 0.97, then it becomes a __False Positive__.
+- Similarly, the second prediction shown above is __False Positive__ due to the threshold but can be __True Positive__ if we set the threshold at 0.20.
+- Theoretically, the third prediction can also be __True Positive__, given that we lower the threshold all the way to 0.
+
+### Intersection over Union in Image Segmentation
+
+__IoU in object detection is a helper metric__. However, in image segmentation; IoU is the primary metric to evaluate model accuracy.
+
+In the case of Image Segmentation, the area is not necessarily rectangular. It can have any regular or irregular shape. That means the predictions are segmentation masks and not bounding boxes. Therefore, pixel-by-pixel analysis is done here. Moreover, the definition of TP, FP, and FN is slightly different as it is not based on a predefined threshold.
+
+(a) __True Positive__: The area of intersection between Ground Truth(__GT__) and segmentation mask(__S__). Mathematically, this is __logical AND__ operation of GT and S i.e., 
+
+$$TP = GT.S$$
+
+(b) __False Positive__: The predicted area outside the Ground Truth. This is the __logical OR__ of GT and segmentation minus GT. 
+
+$$FP = (GT + S) - GT$$
+
+(c) __False Negative__: Number of pixels in the Ground Truth area that the model failed to predict. This is the __logical OR__ of GT and segmentation minus S.
+
+$$FN = (GT + S) - S$$
+
+
+We know from Object Detection that IoU is the ratio of the __intersected area__ to the __combined area__ of __prediction__ and __ground truth__. Since the values of TP, FP, and FN are nothing but areas or number of pixels; we can write IoU as follows.
+
+$$IoU = \dfrac{TP} {TP + FP + FN} $$
+
+
+<img src="pic/5-segmentation-iou-1024x296.jpg">
+
+
