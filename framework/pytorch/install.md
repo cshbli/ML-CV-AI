@@ -5,13 +5,13 @@
 - Create a virtual environment for PyTorch
 
 ```
-python -m venv --system-site-packages ./venv/torch1.8.1
+python -m venv --system-site-packages ./venv/torch1.13.0
 ```
 
 - Activate the venv
 
 ```
-source ~/venv/torch1.8.1/bin/activate
+source ~/venv/torch1.13.0/bin/activate
 ```
 
 - Install PyTorch
@@ -38,6 +38,8 @@ To ensure that PyTorch was installed correctly, we can verify the installation b
 
 ```
 import torch
+print(torch.__version__)
+
 x = torch.rand(5, 3)
 print(x)
 ```
@@ -57,4 +59,7 @@ Additionally, to check if your GPU driver and CUDA is enabled and accessible by 
 ```
 import torch
 torch.cuda.is_available()
+torch.cuda.device_count()
+torch.cuda.get_device_name(0)
+torch.cuda.current_device()
 ```
