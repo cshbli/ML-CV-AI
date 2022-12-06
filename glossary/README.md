@@ -5,8 +5,10 @@
    * [Confusion Matrix](./README.md#confusion-matrix)
    * [convex function](./README.md#convex-function)
    * [convex set](./README.md#convex-set)   
-   * [decision tree](./README.md#decision-tree)
-   * [hashing](./README.md#hashing)
+   * [Decision Tree](./README.md#decision-tree)
+   * [Hashing](./README.md#hashing)
+   * [Precision and Recall](./README.md#precision-and-recall)
+   * [Sensitivity and Specificity](./README.md#sensitivity-and-specificity)
  * Deep Learning
    * [convolutional layer](./README.md#convolutional-layer)
    * [convolutional operation](./README.md#convolutional-operation)
@@ -16,6 +18,7 @@
    * [Focal Loss](./README.md#focal-loss)   
    * [Intersection over Union (IoU)](./README.md#intersection-over-union-iou)
      * [IoU sample notebook](./IoU.ipynb)
+   * [Mean Average Precision (mAP)](./mAP.md)
    * [Non Maximum Suppression (NMS)](./README.md#non-maximum-suppression-nms)
      * [NMS in PyTorch](./nms_pytorch.ipynb)
    * [Region Proposal Network (RPN)](./README.md#region-proposal-network-rpn)   
@@ -55,6 +58,14 @@ As another example, consider a clustering algorithm based on an example's distan
 <img src="RingCluster_example.svg" width="400px">
 
 ## Confusion Matrix
+
+To understand the Confusion Matrix, let’s take an example of a classification problem. A model has to identify whether there are hot dogs in the image. The predictions can be either correct or incorrect. The following combination of predictions is possible based on the output and the actual image.
+
+<p align="center">
+<img src="pic/mean-average-precision-map-confusion-matrix-1024x665.jpg">
+</p>
+
+
 An NxN table that summarizes how successful a classification model's predictions were; that is, the correlation between the label and the model's classification. One axis of a confusion matrix is the label that the model predicted, and the other axis is the actual label. N represents the number of classes. In a binary classification problem, N=2. For example, here is a sample confusion matrix for a binary classification problem:
 
 |  | Tumor(predicted) | Non-Tumor(predicted|
@@ -325,6 +336,19 @@ In layman terms, we select the predictions with the `maximum confidence` and `su
 
 If you observe the algorithm above, the whole filtering process depends on a single threshold value thresh_iou. So selection of threshold value is vital for the performance of the model. Usually, we take its value as 0.5, but it depends on the experiment you are doing.As discussed in the NMS algorithm above, we extract the BBox of highest confidence score and remove it from P.
 
+### References
+- [Non Maximum Suppression: Theory and Implementation in PyTorch](https://learnopencv.com/non-maximum-suppression-theory-and-implementation-in-pytorch/)
+
+## Precision and Recall
+
+`Precision` measures the proportion of predicted positives that are actually correct. If you are wondering how to calculate precision, it is simply the __True Positives__ out of __total detections__.
+
+`Recall` measures the proportion of actual positives that were predicted correctly. It is the __True Positives__ out of all __Ground Truths__. Mathematically, it is defined as follows.
+
+<p align="center">
+  <img src="pic/precision_and_recall.png" width="600px">
+</p>
+
 ## Region Proposal Network (RPN)
      
 * <b>Regression head</b>: The output of the Faster RPN network as discussed and shown in the image above is a 50x50 feature map. A conv layer [kernal 3x3] strides through this image, At each location it predicts the 4 [x1, y1, h1, w1] values for each anchor boxes (9). In total, the output layer has 50x50x9x4 output probability scores. Usually this is represented in numpy as np.array(2500, 36).
@@ -339,3 +363,9 @@ If you observe the algorithm above, the whole filtering process depends on a sin
   * The Feature map created after a lot of subsampling losses a lot of semantic information at low level, thus unable to detect small objects in the image. <b>[Feature Pyramid networks solves this]</b>
           
   * The loss functions uses negative hard-mining by taking 128 +ve samples, 128 -ve samples because using all the labels hampers training as it is highly imbalanced and there will be many easily classified examples. <b>[Focal loss solves this]</b>
+
+## Sensitivity and Specificity
+
+<p align="center">
+<img src="pic/sensitivity_and_specificity.png" width="400px">
+</p>
