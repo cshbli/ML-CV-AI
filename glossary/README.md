@@ -1,8 +1,8 @@
-﻿# Glossary
+# Glossary
  * Machine Learning
    * [bag of words](./README.md#bag-of-words)
    * [clustering](./README.md#clustering)
-   * [confusion matrix](./README.md#confusion-matrix)
+   * [Confusion Matrix](./README.md#confusion-matrix)
    * [convex function](./README.md#convex-function)
    * [convex set](./README.md#convex-set)   
    * [decision tree](./README.md#decision-tree)
@@ -40,7 +40,7 @@ As another example, consider a clustering algorithm based on an example's distan
 
 <img src="RingCluster_example.svg" width="400px">
 
-## confusion matrix
+## Confusion Matrix
 An NxN table that summarizes how successful a classification model's predictions were; that is, the correlation between the label and the model's classification. One axis of a confusion matrix is the label that the model predicted, and the other axis is the actual label. N represents the number of classes. In a binary classification problem, N=2. For example, here is a sample confusion matrix for a binary classification problem:
 
 |  | Tumor(predicted) | Non-Tumor(predicted|

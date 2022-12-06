@@ -1,5 +1,8 @@
 ﻿# Machine Learning, Computer Vision and Data Science Introductions 
-* [Machine Learning Glossary](./glossary/README.md)
+* [Glossary](./glossary/README.md)
+  * [Machine Learning](./glossary/README.md)
+  * [Deep Learning](./glossary/README.md)
+  * [Computer Vision](./glossary/README.md)
 * Deep Learning Fundamentals
   * [Covolution](./deep_learning_fundamentals/convolution/README.md)
   * [Normalization](./deep_learning_fundamentals/normalization/README.md)
@@ -14,10 +17,12 @@
       * [Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding](https://arxiv.org/pdf/1510.00149.pdf)
    * Matrix Operation Optimization
    * [Deep Learning Compiler](./optimization/compiler/README.md)
-* Images
+* Computer Vision, Image Analysis
   * Classification  
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
   * [Object Detection](./object_detection/README.md)
+    * [YOLOv5](./object_detection/YOLOv5/README.md)
+      * [Object Detection using YOLOv5](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
     * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
     * [RetinaNet](./object_detection/RetinaNet/README.md)
       * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)
