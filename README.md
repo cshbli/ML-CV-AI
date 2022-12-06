@@ -1,5 +1,5 @@
 ﻿# Machine Learning, Computer Vision and Data Science Introductions 
-* [Glossary](./glossary/README.md)
+* [Concept](./glossary/README.md)
   * [Machine Learning](./glossary/README.md)
   * [Deep Learning](./glossary/README.md)
   * [Computer Vision](./glossary/README.md)
