@@ -16,7 +16,8 @@
    * [Focal Loss](./README.md#focal-loss)   
    * [Intersection over Union (IoU)](./README.md#intersection-over-union-iou)
      * [IoU sample notebook](./IoU.ipynb)
-   * [Non Maximum Suppression (NMS)](./README.md#non-maximum-suppression-nms)   
+   * [Non Maximum Suppression (NMS)](./README.md#non-maximum-suppression-nms)
+     * [NMS in PyTorch](./nms_pytorch.ipynb)
    * [Region Proposal Network (RPN)](./README.md#region-proposal-network-rpn)   
  
 ## Anchor Boxes
