@@ -1,4 +1,4 @@
-﻿# Machine Learning, Computer Vision and Data Science Introductions 
+﻿# Machine Learning, Computer Vision and Data Science
 * [Concept](./glossary/README.md)
   * [Machine Learning](./glossary/README.md)
   * [Deep Learning](./glossary/README.md)
@@ -21,6 +21,7 @@
   * Classification  
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
   * [Object Detection](./object_detection/README.md)
+    * [YOLOv7](./object_detection/YOLOv7/README.md)
     * [YOLOv5](./object_detection/YOLOv5/README.md)
       * [Object Detection using YOLOv5](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
     * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
