@@ -3,14 +3,40 @@
   * [Artificial Intelligence, Machine Learning and Deep Learning](./introduction/machine_learning_and_deep_learning.md)
   * [Artificial Neural Network](./introduction/neural_network.md)
   * [Deep Neural Network](./introduction/deep_neural_network.md)
-* [Concept](./glossary/README.md)
+  * [Overfitting](./introduction/overfitting.md)
+* Machine Learning
   * [Machine Learning](./glossary/README.md)
-  * [Deep Learning](./glossary/README.md)
-  * [Computer Vision](./glossary/README.md)
-* Deep Learning Fundamentals
-  * [Covolution](./deep_learning_fundamentals/convolution/README.md)
-  * [Normalization](./deep_learning_fundamentals/normalization/README.md)
-  * [Residual Block and Inverted Residual Block](./deep_learning_fundamentals/residual_block/README.md)
+  * [Deep Learning](./glossary/README.md)  
+* Deep Learning
+  * [Covolution](./deep_learning/convolution/README.md)
+  * [Normalization](./deep_learning/normalization/README.md)
+  * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
+* Computer Vision   
+  * [Object Detection](./object_detection/README.md)
+    * Concepts
+      * [Anchor Boxes](./object_detection/concepts/README.md#anchor-boxes)
+      * [Feature Pyramid Network (FPN)](./object_detection/concepts/README.md#feature-pyramid-network-fpn)   
+      * [Focal Loss](./object_detection/concpets.md#focal-loss)   
+      * [Intersection over Union (IoU)](./object_detection/concepts/README.md#intersection-over-union-iou)
+        * [IoU sample notebook](./IoU.ipynb)
+      * [Mean Average Precision (mAP)](./mAP.md)
+      * [Non Maximum Suppression (NMS)](./object_detection/concepts/README.md#non-maximum-suppression-nms)
+        * [NMS in PyTorch](./nms_pytorch.ipynb)
+      * [Region Proposal Network (RPN)](./object_detection/concepts/README.md#region-proposal-network-rpn)
+    * [YOLOv7](./object_detection/YOLOv7/README.md)
+    * [YOLOv5](./object_detection/YOLOv5/README.md)
+      * [Object Detection using YOLOv5](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
+    * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
+    * [RetinaNet](./object_detection/RetinaNet/README.md)
+      * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)
+  * Classification  
+    * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
+  * Object Segmentation
+    * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](./object_segmentation/nuclei_segmentation.md)
+  * Image Translation
+    * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
+    * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
+  * [Deepface](https://github.com/serengil/deepface)
 * Deep Learning Optimization
   * Efficient Training
   * Efficient Neural Network
@@ -21,21 +47,6 @@
       * [Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding](https://arxiv.org/pdf/1510.00149.pdf)
    * Matrix Operation Optimization
    * [Deep Learning Compiler](./optimization/compiler/README.md)
-* Computer Vision
-  * Classification  
-    * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
-  * [Object Detection](./object_detection/README.md)
-    * [YOLOv7](./object_detection/YOLOv7/README.md)
-    * [YOLOv5](./object_detection/YOLOv5/README.md)
-      * [Object Detection using YOLOv5](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
-    * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
-    * [RetinaNet](./object_detection/RetinaNet/README.md)
-      * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)
-  * Object Segmentation
-    * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](./object_segmentation/nuclei_segmentation.md)
-  * Image Translation
-    * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
-    * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
 * Text
   * [Word2Vec](./text/Word2Vec.md)
   * [Doc2Vec](./text/Doc2Vec.md)

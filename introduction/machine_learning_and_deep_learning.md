@@ -49,6 +49,8 @@ Deep Learning is a subset of Machine Learning. It uses some ML techniques to sol
 
 Deep learning is best characterized by its layered structure, which is the foundation of artificial neural networks. Each layer is adding to the knowledge of the previous layer. DL tasks can be expensive, depending on significant computing resources, and require massive datasets to train models on. 
 
+The hierarchy of concepts allows the computer to autonomously learn complicated concepts by building them out of simpler ones. Therefore, a graph of these hierarchies would be many layers deep (hence the name deep neural network).
+
 ## Deep Learning vs. Machine Learning 
 
 Deep learning is a part of machine learning, but it’s different from traditional machine learning methods. Deep Learning has specific advantages over other forms of Machine Learning, making DL the most popular algorithmic technology of the current era. 
