@@ -13,18 +13,22 @@
   * [Covolution](./deep_learning/convolution/README.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
-* Computer Vision   
+<details>  
+  <summary>Computer Vision</summary>
+
+  * [Overview](./computer_vision/README.md)
+  * [Object Detection](./object_detection/README.md)
   * [Overview](./computer_vision/README.md)
   * [Object Detection](./object_detection/README.md)
     * Concepts
       * [Anchor Boxes](./object_detection/concepts/README.md#anchor-boxes)
       * [Feature Pyramid Network (FPN)](./object_detection/concepts/README.md#feature-pyramid-network-fpn)   
-      * [Focal Loss](./object_detection/concpets.md#focal-loss)   
+      * [Focal Loss](./object_detection/concepts/README.md#focal-loss)   
       * [Intersection over Union (IoU)](./object_detection/concepts/README.md#intersection-over-union-iou)
-        * [IoU sample notebook](./IoU.ipynb)
+        * [IoU sample notebook](./object_detection/concepts/IoU.ipynb)
       * [Mean Average Precision (mAP)](./object_detection/concepts/mAP.md)
       * [Non Maximum Suppression (NMS)](./object_detection/concepts/README.md#non-maximum-suppression-nms)
-        * [NMS in PyTorch](./nms_pytorch.ipynb)
+        * [NMS in PyTorch](./object_detection/concepts/nms_pytorch.ipynb)
       * [Region Proposal Network (RPN)](./object_detection/concepts/README.md#region-proposal-network-rpn)
     * [YOLOv7](./object_detection/YOLOv7/README.md)
     * [YOLOv5](./object_detection/YOLOv5/README.md)
@@ -32,6 +36,7 @@
     * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
     * [RetinaNet](./object_detection/RetinaNet/README.md)
       * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)
+     
   * Classification  
     * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
   * Object Segmentation
@@ -40,6 +45,23 @@
     * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
     * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
   * [Deepface](https://github.com/serengil/deepface)
+
+  * Data Annotation
+    * [Computer Vision Annotation Tool (CVAT)](https://github.com/opencv/cvat)
+    * [LabelImg](https://github.com/heartexlabs/labelImg)
+    * Autonomous driving  
+      * 2D Bounding Box    
+      * Lane Line    
+      * Semantic Segmentation    
+      * Video Tracking Annotation
+      * 3D Point
+      * 3D Object Recognition (3D Cube)
+      * 3D Segmentation
+      * Sensor Fusion: Cuboids/Segmentation/Tracking
+      
+</details>
+
+
 * Deep Learning Optimization
   * Efficient Training
   * Efficient Neural Network
@@ -69,18 +91,6 @@
   * PyTorch
     * [PyTorch Installation](./framework/pytorch/install.md)
     * [PyTorch Quickstart](./framework/pytorch/quickstart_tutorial.ipynb)
-* Data Annotation
-  * [Computer Vision Annotation Tool (CVAT)](https://github.com/opencv/cvat)
-  * [LabelImg](https://github.com/heartexlabs/labelImg)
-  * Autonomous driving  
-    * 2D Bounding Box    
-    * Lane Line    
-    * Semantic Segmentation    
-    * Video Tracking Annotation
-    * 3D Point
-    * 3D Object Recognition (3D Cube)
-    * 3D Segmentation
-    * Sensor Fusion: Cuboids/Segmentation/Tracking
      
 ## Small Techniques and Utilities
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
@@ -90,12 +100,17 @@
 * [COCO Common Objects in Context](https://cocodataset.org/#home)
 * [ImageNet](https://www.image-net.org/)
 * [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
+* [YouTube-Objects](https://data.vision.ee.ethz.ch/cvl/youtube-objects/)
 * Face
   * [IMDB-WIKI – 500k+ face images with age and gender labels](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
   * [WIDER FACE: A Face Detection Benchmark](http://shuoyang1213.me/WIDERFACE/)
+  * [FDDB: Face Detection Data Set and Benchmark](http://vis-www.cs.umass.edu/fddb/)
 * Super-Resolution  
   * [DIV2K dataset: DIVerse 2K resolution high quality images for super-resolution](https://data.vision.ee.ethz.ch/cvl/DIV2K/)
 * Object Segmentation
+  * [Cityscapes](https://www.cityscapes-dataset.com/)
+  * [KITTI](https://www.cvlibs.net/datasets/kitti/)
+  * [ADE20K](https://groups.csail.mit.edu/vision/datasets/ADE20K/)
   * [A Dataset and a Technique for Generalized Nuclear Segmentation for Computational Pathology](https://monuseg.grand-challenge.org/Data/)
 * [Roboflow public datasets](https://public.roboflow.com/)
 
