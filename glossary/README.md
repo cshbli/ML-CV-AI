@@ -1,8 +1,7 @@
 # Concept
  * Machine Learning
    * [bag of words](./README.md#bag-of-words)
-   * [clustering](./README.md#clustering)
-   * [Confusion Matrix](./README.md#confusion-matrix)
+   * [clustering](./README.md#clustering)   
    * [convex function](./README.md#convex-function)
    * [convex set](./README.md#convex-set)   
    * [Decision Tree](./README.md#decision-tree)
@@ -46,28 +45,6 @@ A human researcher could then review the clusters and, for example, label cluste
 As another example, consider a clustering algorithm based on an example's distance from a center point, illustrated as follows:
 
 <img src="RingCluster_example.svg" width="400px">
-
-## Confusion Matrix
-
-To understand the Confusion Matrix, let’s take an example of a classification problem. A model has to identify whether there are hot dogs in the image. The predictions can be either correct or incorrect. The following combination of predictions is possible based on the output and the actual image.
-
-<p align="center">
-<img src="pic/mean-average-precision-map-confusion-matrix-1024x665.jpg">
-</p>
-
-
-An NxN table that summarizes how successful a classification model's predictions were; that is, the correlation between the label and the model's classification. One axis of a confusion matrix is the label that the model predicted, and the other axis is the actual label. N represents the number of classes. In a binary classification problem, N=2. For example, here is a sample confusion matrix for a binary classification problem:
-
-|  | Tumor(predicted) | Non-Tumor(predicted|
-| --- | ---| --- | 
-| Tumor (actual) |	18 |	1 |
-|Non-Tumor (actual)	| 6	| 452 |
-
-The preceding confusion matrix shows that of the 19 samples that actually had tumors, the model correctly classified 18 as having tumors (18 <b>true positives</b>), and incorrectly classified 1 as not having a tumor (1 <b>false negative</b>). Similarly, of 458 samples that actually did not have tumors, 452 were correctly classified (452 <b>true negatives</b>) and 6 were incorrectly classified (6 <b>false positives</b>).
-
-The confusion matrix for a multi-class classification problem can help you determine mistake patterns. For example, a confusion matrix could reveal that a model trained to recognize handwritten digits tends to mistakenly predict 9 instead of 4, or 1 instead of 7.
-
-Confusion matrices contain sufficient information to calculate a variety of performance metrics, including <b>precision</b> and <b>recall</b>.
 
 ## convex function
 A function in which the region above the graph of the function is a convex set. The prototypical convex function is shaped something like the letter U. For example, the following are all convex functions:
@@ -329,15 +306,7 @@ If you observe the algorithm above, the whole filtering process depends on a sin
 ### References
 - [Non Maximum Suppression: Theory and Implementation in PyTorch](https://learnopencv.com/non-maximum-suppression-theory-and-implementation-in-pytorch/)
 
-## Precision and Recall
 
-`Precision` measures the proportion of predicted positives that are actually correct. If you are wondering how to calculate precision, it is simply the __True Positives__ out of __total detections__.
-
-`Recall` measures the proportion of actual positives that were predicted correctly. It is the __True Positives__ out of all __Ground Truths__. Mathematically, it is defined as follows.
-
-<p align="center">
-  <img src="pic/precision_and_recall.png" width="600px">
-</p>
 
 ## Region Proposal Network (RPN)
      
@@ -354,8 +323,4 @@ If you observe the algorithm above, the whole filtering process depends on a sin
           
   * The loss functions uses negative hard-mining by taking 128 +ve samples, 128 -ve samples because using all the labels hampers training as it is highly imbalanced and there will be many easily classified examples. <b>[Focal loss solves this]</b>
 
-## Sensitivity and Specificity
 
-<p align="center">
-<img src="pic/sensitivity_and_specificity.png" width="400px">
-</p>

@@ -3,6 +3,8 @@
   * [Artificial Intelligence, Machine Learning and Deep Learning](./introduction/machine_learning_and_deep_learning.md)
   * [Artificial Neural Network](./introduction/neural_network.md)
   * [Deep Neural Network](./introduction/deep_neural_network.md)
+  * [Generative Adversarial Networks-GANs](./introduction/gan.md)
+  * [Machine Learning Performance Evaluation](./introduction/metrics.md)
   * [Overfitting](./introduction/overfitting.md)
 * Machine Learning
   * [Machine Learning](./glossary/README.md)
@@ -84,7 +86,10 @@
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
 * [Notes](./tools/notes.md)
 
-## Dataset     
+## Dataset
+* [COCO Common Objects in Context](https://cocodataset.org/#home)
+* [ImageNet](https://www.image-net.org/)
+* [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
 * Face
   * [IMDB-WIKI – 500k+ face images with age and gender labels](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
   * [WIDER FACE: A Face Detection Benchmark](http://shuoyang1213.me/WIDERFACE/)
