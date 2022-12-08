@@ -13,11 +13,8 @@
   * [Covolution](./deep_learning/convolution/README.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
-<details>  
-  <summary>Computer Vision</summary>
 
-  * [Overview](./computer_vision/README.md)
-  * [Object Detection](./object_detection/README.md)
+* Computer Vision  
   * [Overview](./computer_vision/README.md)
   * [Object Detection](./object_detection/README.md)
     * Concepts
@@ -58,9 +55,6 @@
       * 3D Object Recognition (3D Cube)
       * 3D Segmentation
       * Sensor Fusion: Cuboids/Segmentation/Tracking
-      
-</details>
-
 
 * Deep Learning Optimization
   * Efficient Training

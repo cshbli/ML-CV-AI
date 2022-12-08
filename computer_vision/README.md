@@ -13,6 +13,8 @@ Computer vision involves some fundamental visual perception tasks:
 - __Image classification__: 
 - __Object detection__: Determine whether image data contains one or multiple specified or learned objects or object classes. 
 
+  Object detection or recognition models take `image classification` one step further to find the presence, location, and the number of objects in an image.
+
   - __Face detection__: Determines the location and size of a human face in digital images.
 
     Face detection can be regarded as a specific case of `object detection`, where the task is finding the location and sizes of all objects in an image that belongs to a given class. Face detection is the necessary first step for all `facial analysis` algorithms, including `face alignment`, `face recognition` and `face verification`.
@@ -22,8 +24,14 @@ Computer vision involves some fundamental visual perception tasks:
 </p>
 
 - __Object segmentation__: Object segmentation tries to find the exact boundary of the objects in the image.
+
   - __Semantic segmentation__: 
   - __Instance segmentation__: It returns a unique label to every instance of a particular object in the image.
+
+<p align="center">
+<img src="pic/image-segmentation-vs-instance-segmentation.webp">
+</p>
+
 - __Object tracking__: Detect an object in an image and then tracking the object through a series of frames.
 
 - __Face recognition__: Recognize an individual instance of a human face by matching it with database entries. 
