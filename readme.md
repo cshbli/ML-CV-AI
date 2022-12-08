@@ -1,5 +1,3 @@
-# Install PyTorch
-
 
 ## Install PyQt5
 

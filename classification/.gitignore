@@ -1,0 +1,5 @@
+__pycache__/
+workspace/
+**/.DS_Store
+data/
+**/*.pth

@@ -7,15 +7,17 @@
   * [Machine Learning Performance Evaluation](./introduction/metrics.md)
   * [Overfitting](./introduction/overfitting.md)
 * Machine Learning
-  * [Machine Learning](./glossary/README.md)
-  * [Deep Learning](./glossary/README.md)  
+  * [Glossary](./glossary/README.md)  
+  * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
 * Deep Learning
   * [Covolution](./deep_learning/convolution/README.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
-
+  * Transformer
+    * [Vision Transformer](https://github.com/google-research/vision_transformer)
 * Computer Vision  
   * [Overview](./computer_vision/README.md)
+    * [Data Augmentation](./computer_vision/data_augmentation.md)
   * [Object Detection](./object_detection/README.md)
     * Concepts
       * [Anchor Boxes](./object_detection/concepts/README.md#anchor-boxes)
@@ -35,7 +37,7 @@
       * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)
      
   * Classification  
-    * [MNIST classification with Tensorflow quickstart](./classification/MNIST_classification_with_tensorflow_quickstart.ipynb) (from [Tensorflow Tutorial](https://www.tensorflow.org/tutorials/quickstart/beginner) )
+    * [Transfer Learning with PyTorch tutorial](./classification/transfer_learning_tutorial.ipynb) 
   * Object Segmentation
     * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](./object_segmentation/nuclei_segmentation.md)
   * Image Translation
