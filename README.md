@@ -7,9 +7,11 @@
   * [Machine Learning Performance Evaluation](./introduction/metrics.md)
   * [Overfitting](./introduction/overfitting.md)
 * Machine Learning
-  * [Glossary](./glossary/README.md)  
+  * [Concepts](./glossary/README.md)  
+    * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
 * Deep Learning
+  * [Activation Functions](./deep_learning/activation_function.md)
   * [Covolution](./deep_learning/convolution/README.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
