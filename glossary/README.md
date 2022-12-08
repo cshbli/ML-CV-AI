@@ -12,17 +12,7 @@
  * Deep Learning
    * [convolutional layer](./README.md#convolutional-layer)
    * [convolutional operation](./README.md#convolutional-operation)
- * Computer Vision
-   * [Anchor Boxes](./README.md#anchor-boxes)
-   * [Feature Pyramid Network (FPN)](./README.md#feature-pyramid-network-fpn)   
-   * [Focal Loss](./README.md#focal-loss)   
-   * [Intersection over Union (IoU)](./README.md#intersection-over-union-iou)
-     * [IoU sample notebook](./IoU.ipynb)
-   * [Mean Average Precision (mAP)](./mAP.md)
-   * [Non Maximum Suppression (NMS)](./README.md#non-maximum-suppression-nms)
-     * [NMS in PyTorch](./nms_pytorch.ipynb)
-   * [Region Proposal Network (RPN)](./README.md#region-proposal-network-rpn)   
- 
+  
 ## Anchor Boxes
   
   Anchor boxes were first introduced in Faster RCNN paper and later became a common element in all the following papers like yolov2, ssd and RetinaNet. Previously selective search and edge boxes used to generate region proposals of various sizes and shapes depending on the objects in the image, with standard convolutions it is highly impossible to generate region proposals of varied shapes, so anchor boxes comes to our rescue.

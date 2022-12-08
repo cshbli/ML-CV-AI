@@ -12,6 +12,7 @@
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
 * Computer Vision   
+  * [Overview](./computer_vision/README.md)
   * [Object Detection](./object_detection/README.md)
     * Concepts
       * [Anchor Boxes](./object_detection/concepts/README.md#anchor-boxes)
@@ -19,7 +20,7 @@
       * [Focal Loss](./object_detection/concpets.md#focal-loss)   
       * [Intersection over Union (IoU)](./object_detection/concepts/README.md#intersection-over-union-iou)
         * [IoU sample notebook](./IoU.ipynb)
-      * [Mean Average Precision (mAP)](./mAP.md)
+      * [Mean Average Precision (mAP)](./object_detection/concepts/mAP.md)
       * [Non Maximum Suppression (NMS)](./object_detection/concepts/README.md#non-maximum-suppression-nms)
         * [NMS in PyTorch](./nms_pytorch.ipynb)
       * [Region Proposal Network (RPN)](./object_detection/concepts/README.md#region-proposal-network-rpn)
