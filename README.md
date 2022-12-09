@@ -5,9 +5,12 @@
   * [Deep Neural Network](./introduction/deep_neural_network.md)
   * [Generative Adversarial Networks-GANs](./introduction/gan.md)
   * [Machine Learning Performance Evaluation](./introduction/metrics.md)
-  * [Overfitting](./introduction/overfitting.md)
+  * [Overfitting and Underfitting](./introduction/overfitting.md)
+    * [Bias and Variance](./introduction/overfitting.md#bias-and-variance)
+    * [Regularization](./introduction/overfitting.md#regularization)
+    * [Data Augmentation](./introduction/overfitting.md#data-augmentation)
 * Machine Learning
-  * [Concepts](./glossary/README.md)  
+  * [Concepts](./glossary/README.md)    
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
 * Deep Learning
@@ -19,7 +22,6 @@
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
 * Computer Vision  
   * [Overview](./computer_vision/README.md)
-    * [Data Augmentation](./computer_vision/data_augmentation.md)
   * [Object Detection](./object_detection/README.md)
     * Concepts
       * [Anchor Boxes](./object_detection/concepts/README.md#anchor-boxes)

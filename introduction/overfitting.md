@@ -1,4 +1,4 @@
-# Overfitting
+# Overfitting and Underfitting
 
 When it comes to machine learning, overfitting is one of the biggest challenges that developers face. This means that the ML model has been trained on a limited data set, and as a result, it performs extremely well on that specific data set but may not generalize well to other datasets.
 
@@ -36,6 +36,38 @@ A good fit in machine learning is defined as a model that accurately predicts th
 <img src="pic/early-stop.webp">
 </p>
 
+## Bias and Variance
+
+Error of a model can be split into reducible and irreducible.
+
+- Reducible:
+    - bias (“error due to squared bias”)
+    - variance (“error due to variance”)
+
+- Irreducible: the error we cannot remove with our model caused by things outside of our control, like statistical noise in observations (also called irreducible noise).
+
+Bias — is a difference between model predictions and training data on one set.
+
+Variance — difference between model predictions and expected value over all training sets.
+
+```
+Tip to remember:
+
+Small variance & high bias -> underfit
+
+High variance & small bias -> overfit
+```
+
+### Bias-variance trade-off:
+
+Ideally, we would like our model to have low bias and low variance, however in practice it is quite hard. This trade-off helps to choose the correct model.
+
+Simple models like linear and logistic regression usually have a high bias and a low variance. Complex models, such as random forest, generally have a low bias but a high variance.
+
+<p align="center">
+<img src="pic/Bias-variance-trade-off-in-model-overfitting.webp">
+</p>
+
 ## Key Statistical Concepts of Overfitting 
 
 In the following, we summarize the most important statistical concepts in overfitting. 
@@ -51,10 +83,6 @@ In the following, we summarize the most important statistical concepts in overfi
 - LOOCV (leave-one-out cross-validation) is a variation of cross-validation. Each observation is left out once, and the model is trained on the remaining data and then evaluated on the held-out observation. 
 - Bootstrap allows estimating the uncertainty associated with any given model. In typically 1’000 to 10’000 iterations, bootstrapped samples are repetitively drawn with replacements from the original data, the predictive model is iteratively fit and evaluated. 
 - Hyperparameter Tuning deals with hyperparameters that determine how a statistical model learns and have to be specified before training. They are model specific and might include regularization parameters penalizing the model’s complexity (ridge, lasso), number of trees and their depth (random forest), and many more. Hyperparameters can be tuned, that is, iteratively improved to find the model that performs best given the complexity of the available data.
-
-<p align="center">
-<img src="pic/Bias-variance-trade-off-in-model-overfitting.webp">
-</p>
 
 ## Causes of overfitting of a machine learning model 
 
@@ -84,6 +112,32 @@ Segmentation bias in the training dataset is another problem that can lead to po
 <img src="pic/techniques-to-fight-underfitting-and-overfitting.png">
 </p>
 
+### Early stopping
+
+ Maybe there should be a callback which saves the model when the optimal error rate, accuracy or other metric improves? Or maybe just a mechanism that stops learning if nothing is improving for a couple of epochs? Knowing the right time to stop is a good way to prevent overfitting too.
+
+### Feature selection
+
+It is easier to do when we are working with table data: make sure all features we give to the model are important, otherwise the model will be learning extra information (which actually is not that helpful) and overfit fast. 
+
+### Regularization
+ 
+Regularization is a technique which prevents learning too complex model which may overfit.
+
+L1 (Lasso Regularization) and L2 (Ridge Regularization) regularization lets us add a penalty to the cost function to push weights towards zero.
+
+<p align="center">
+<img src="pic/Parameter-norm-penalties-L2-norm-regularization-left-and-L1-norm-regularization.ppm">
+</p>
+
+<p align="center">
+<img src="pic/0_tATGj-F5jlQU80GE.png">
+</p>
+
+For computer vision problems L2 is often called a better choice, but L1 is usually chosen for indifference to outliers and is useful for feature selection. The L2 approach is also implemented in the SVM algorithm.
+
+There is also Elastic Net regularization, which is a combination of L1 and L2 methods having all their benefits.
+
 ### Dropout for Neural Networks 
 
 Dropout is a regularization technique to apply with a deep neural network (DNN). Dropout is a technique where you randomly ignore some of the neurons in your network during the training phase. This forces the network to learn from different parts of the data and prevents it from overfitting. 
@@ -92,13 +146,30 @@ Dropout is a regularization technique to apply with a deep neural network (DNN).
 <img src="pic/dropout-overfitting.webp">
 </p>
 
-### Training Data Augmentation 
+### Data Augmentation
 
-You can also use data augmentation, which is where you artificially create more data. To augment a data set, you can generate image variations with different angles, distortion, or different lighting. For example, if you have a dataset of images of cats and dogs, you can use test data augmentation to generate new images of cats and dogs by applying random transformations to the existing images. This will help the model to learn from more data and improve the accuracy of the predictions.
+The rise of computer vision is largely based on the success of deep learning methods that use Convolutional Neural Networks (CNN). However, these neural networks are heavily reliant on a lot of training data to avoid overfitting and poor model performance. Unfortunately, in many cases such as real-world applications, there is limited data available, and gathering enough training data is very challenging and expensive.
+
+Data augmentation is a set of techniques that enhance the size and quality of machine learning training datasets so that better deep learning models can be trained with them.
 
 <p align="center">
 <img src="pic/image-dataset-and-data-augmentation-concept.webp">
 </p>
+
+Early experiments showing the effectiveness of data augmentations come from simple image transformations, for example, horizontal flipping, color space augmentations, and random cropping. Such transformations encode many of the invariances that present challenges to image recognition tasks.
+
+<p align="center">
+<img src="pic/overview-methods-of-data-augmentation-computer-vision-1060x336.png">
+</p>
+
+There are different methods for image data augmentation: 
+
+- __Geometric transformations__: Augmenting image data using flipping horizontally or vertically, random cropping, rotation augmentation, translation to shift images left/right/up/down, or noise injection. 
+- __Color distortion__ contains changing brightness, hue, or saturation of images. Altering the color distribution or manipulating the RGB color channel histogram is used to increase model resistance to lighting biases. 
+- __Kernel filters__ use image processing techniques to sharpen and blur images. Those methods aim to increase details about objects of interest or to improve motion blur resistance. 
+- __Mixing images__ applies techniques to blend different images together by averaging their pixel values for each RGB channel, or with random image cropping and patching. While counterintuitive to humans, the method has shown to be effective in increasing model performance. 
+
+- __Information deletion__ uses random erasing, cutout, and hide-and-seek methods to mask random image parts, optimally using patches filled with random pixel values. Deleting a level of information is used to increase occlusion resistance in image recognition, resulting in a notable increase in model robustness.
 
 ### Ensembling 
 
