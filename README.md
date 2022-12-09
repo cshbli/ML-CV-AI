@@ -1,6 +1,6 @@
 ﻿# Machine Learning, Computer Vision and Data Science
 * Introductions
-  * [Artificial Intelligence, Machine Learning and Deep Learning](./introduction/machine_learning_and_deep_learning.md)
+  * [Artificial Intelligence, Machine Learning (ML) and Deep Learning (DL)](./introduction/machine_learning_and_deep_learning.md)
   * [Artificial Neural Network](./introduction/neural_network.md)
   * [Deep Neural Network](./introduction/deep_neural_network.md)
   * [Generative Adversarial Networks-GANs](./introduction/gan.md)
@@ -16,6 +16,15 @@
     * [Dropout for Neural Networks (DL)](./introduction/overfitting.md#dropout-for-neural-networks)
     * [Data Augmentation (DL)](./introduction/overfitting.md#data-augmentation)
   * [Gradient Descent](./introduction/gradient_descent.md)
+    * [Cost Function and Loss Function](./introduction/gradient_descent.md#cost-function-and-loss-function)
+    * [Learning Rate](./introduction/gradient_descent.md#learning-rate)
+    * [Batch Gradient Descent (BGD)](./introduction/gradient_descent.md#batch-gradient-descent-bgd)
+    * [Stochastic Gradient Descent (SGD)](./introduction/gradient_descent.md#stochastic-gradient-descent-sgd)
+    * [MiniBatch Gradient Descent](./introduction/gradient_descent.md#minibatch-gradient-descent)
+    * [Convex Function](./introduction/gradient_descent.md#convex-function)
+    * [Local Minima and Saddle Point](./introduction/gradient_descent.md#local-minima-and-saddle-point)
+    * [Vanishing and Exploding Gradient](./introduction/gradient_descent.md#vanishing-and-exploding-gradient)
+
 * Machine Learning
   * [Concepts](./glossary/README.md)    
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)

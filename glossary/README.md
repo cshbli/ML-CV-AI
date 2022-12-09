@@ -2,8 +2,6 @@
  * Machine Learning
    * [bag of words](./README.md#bag-of-words)
    * [clustering](./README.md#clustering)   
-   * [convex function](./README.md#convex-function)
-   * [convex set](./README.md#convex-set)   
    * [Decision Tree](./README.md#decision-tree)
    * [Hashing](./README.md#hashing)   
  * Deep Learning
@@ -36,40 +34,7 @@ As another example, consider a clustering algorithm based on an example's distan
 
 <img src="RingCluster_example.svg" width="400px">
 
-## convex function
-A function in which the region above the graph of the function is a convex set. The prototypical convex function is shaped something like the letter U. For example, the following are all convex functions:
 
-<img src="convex_functions.png" title="Convex Functions">
-
-A typical convex function is shaped like the letter 'U'.
-
-By contrast, the following function is not convex. Notice how the region above the graph is not a convex set:
-
-<img src="nonconvex_function.svg" title="Non-Convex Function">
-
-A strictly convex function has exactly one local minimum point, which is also the global minimum point. The classic U-shaped functions are strictly convex functions. However, some convex functions (for example, straight lines) are not U-shaped.
-
-A lot of the common loss functions, including the following, are convex functions:
-
- * L2 loss
- * Log Loss
- * L1 regularization
- * L2 regularization
-
-Many variations of gradient descent are guaranteed to find a point close to the minimum of a strictly convex function. Similarly, many variations of stochastic gradient descent have a high probability (though, not a guarantee) of finding a point close to the minimum of a strictly convex function.
-
-The sum of two convex functions (for example, L2 loss + L1 regularization) is a convex function.
-
-Deep models are never convex functions. Remarkably, algorithms designed for convex optimization tend to find reasonably good solutions on deep networks anyway, even though those solutions are not guaranteed to be a global minimum.
-
-## convex set
-A subset of Euclidean space such that a line drawn between any two points in the subset remains completely within the subset. For instance, the following two shapes are convex sets:
-
-<img src="convex_set.png" title="A rectangle and a semi-ellipse are both convex sets.">
-
-By contrast, the following two shapes are not convex sets:
-
-<img src="nonconvex_set.png" title="A pie-chart with a missing slice and a firework are both nonconvex sets.">
 
 ## convolutional layer
 A layer of a deep neural network in which a convolutional filter passes along an input matrix. For example, consider the following 3x3 convolutional filter:
