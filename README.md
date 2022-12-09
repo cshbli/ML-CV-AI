@@ -9,10 +9,15 @@
     * [Bias and Variance](./introduction/overfitting.md#bias-and-variance)
     * [Regularization](./introduction/overfitting.md#regularization)
     * [Data Augmentation](./introduction/overfitting.md#data-augmentation)
+    * [Train Test Split](./introduction/overfitting.md#train-test-split)
+    * [Cross Validation](./introduction/overfitting.md#cross-validation)
 * Machine Learning
   * [Concepts](./glossary/README.md)    
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
+  * [Data Loading](./machine_learning/data_loading.ipynb)
+  * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
+  * [Understanding Data with Visualizaiton: Histogram, Density, Boxand Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
 * Deep Learning
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Covolution](./deep_learning/convolution/README.md)
@@ -72,6 +77,7 @@
       * [Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding](https://arxiv.org/pdf/1510.00149.pdf)
    * Matrix Operation Optimization
    * [Deep Learning Compiler](./optimization/compiler/README.md)
+     * [GLOW](https://github.com/pytorch/glow)
 * Text
   * [Word2Vec](./text/Word2Vec.md)
   * [Doc2Vec](./text/Doc2Vec.md)

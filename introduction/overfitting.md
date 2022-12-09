@@ -1,12 +1,5 @@
 # Overfitting and Underfitting
 
-When it comes to machine learning, overfitting is one of the biggest challenges that developers face. This means that the ML model has been trained on a limited data set, and as a result, it performs extremely well on that specific data set but may not generalize well to other datasets.
-
-## What is overfitting?
-
-In machine learning, overfitting is a phenomenon that occurs when a machine learning algorithm begins to memorize the training data rather than learning the underlying patterns. This can lead to poor performance on new data, as the algorithm is not able to generalize from the training data to other datasets. Overfitting is a common problem in machine learning, and can be caused by a variety of factors. 
-
-### Underfitting vs. overfitting
 
 In machine learning, overfitting and underfitting are two of the main problems that can occur during the learning process. In general, overfitting happens when a model is too complex for the data it is supposed to be modeling, while underfitting occurs when a model is not complex enough. 
 
@@ -14,21 +7,33 @@ In machine learning, overfitting and underfitting are two of the main problems t
 <img src="pic/inbox_4533747_61b58caa4e9b00ead191242796e86e27_fitting.jpeg">
 </p>
 
-#### What is overfitting? 
+## What is overfitting?
 
-Overfitting occurs when a model is too complex for the data it is supposed to be modeling. This can happen for a variety of reasons, but one of the most common is that the model is simply trying to learn too much from the data. When this occurs, the model ends up memorizing the training data instead of learning generalizable patterns. As a result, the model performs well on the training dataset but does not generalize well to new data. 
+In machine learning, overfitting is a phenomenon that occurs when a machine learning algorithm begins to memorize the training data rather than learning the underlying patterns. It occus when a model is too complex for the data it is supposed to be modeling. This can lead to poor performance on new data, as the algorithm is not able to generalize from the training data to other datasets. Overfitting is a common problem in machine learning, and can be caused by a variety of factors. 
 
-#### What is underfitting? 
+## What is underfitting? 
 
 Underfitting, on the other hand, occurs when a model is not complex enough. While there can be different causes, it is often the case that the model is not given enough data to learn from. As a result, the model is not able to learn the generalizable patterns in the data and ends up performing poorly on both the training dataset and new data points. 
 
 An underfitted model is “too simple”, with too few features and insufficient data to build an effective model. While an overfit model has low bias and high variance – an underfit model is the opposite. It shows a high bias and low variance. Adding more features to a model that is too simple can help to limit bias.
 
-#### How to tell if a model is overfitting or underfitting? 
+## How to tell if a model is overfitting or underfitting? 
 
 So, how can you tell if your model is overfitting or underfitting? One way is to look at how well it performs on new data. If your model is overfitting, it will perform well on the training data but not so well on the test set with new data. If your model is underfitting, it will perform poorly on both the training dataset and the test set. 
 
-#### What is a good fit in machine learning?
+### Train Test Split
+
+The train-test split procedure is a cross validation method and that is used to estimate the performance of machine learning algorithms when they are used to make predictions on data not used to train the model. They tend to inform
+
+- Ensure that data is arranged into a format acceptable for train test split. That consists of all pre-processing steps ensuring that data does not has category in texts and data has been scaled using Simple Scaler or MinMaxScaler.
+
+- Split the dataset into two pieces: a training set (75%) and a testing set (25%), this can be 70–30 split as well. This consists of random sampling without replacement . Note that the colour in “Features” and “Target” indicate where their data will go (“X_train”, “X_test”, “y_train”, “y_test”) for a particular train test split.
+
+- Train the model on the training set. 
+
+- Test the model on the testing set and evaluate the performance.
+
+## What is a good fit in machine learning?
 
 A good fit in machine learning is defined as a model that accurately predicts the output of __new data__. The goal of machine learning is to build models that generalize well, which means they have a low error rate on a test set with __unseen data__.
 
@@ -111,6 +116,35 @@ Segmentation bias in the training dataset is another problem that can lead to po
 <p align="center">
 <img src="pic/techniques-to-fight-underfitting-and-overfitting.png">
 </p>
+
+### Cross Validation
+
+Cross-validation is a statistical technique which involves partitioning the data into subsets, training the data on a subset and use the other subset to evaluate the model’s performance. To reduce variability we perform multiple rounds of cross-validation with different subsets from the same data.
+
+There are 4 main types of cross validation:
+
+1. __Holdout method__ — The holdout method is the simplest kind of cross validation. The data set is separated into two sets, called the training set and the validation/testing set. The function approximate fits a function using the training set only.
+
+<p align="center">
+<img src="pic/0_0VhNkUlmMcehApWN.png">
+</p>
+
+2. __K-Fold Cross-Validation__: splits data in K-folds and tests each K-Fold by each K-Fold.
+
+<p align="center">
+<img src="pic/0_XErVaBwjWbqfbtYv.png">
+</p>
+
+3. __Stratified K-Fold Cross Validation__ (Lets say you are doing a fraud analysis and you have 99% no-fraud and 1% fraud, you would need to use stratification to give some more weightage to non-frauds, otherwise accuracy of your model will be too high all the time) — Stratified k-Fold is a variation of the standard k-Fold CV technique which is designed to be effective in such cases of target imbalance.
+
+<p align="center">
+<img src="pic/0_4lmjhS0gE4Jdqkm2.webp">
+</p>
+
+4. __Leave-P-Out Cross-validation__
+
+    Leave p-out cross-validation (LpOCV) is an exhaustive cross-validation technique, that involves using p-observation as validation data, and remaining data is used to train the model. This is repeated in all ways to cut the original sample on a validation set of p observations and a training set
+
 
 ### Early stopping
 
