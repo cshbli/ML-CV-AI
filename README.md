@@ -15,6 +15,7 @@
     * [Regularization (DL)](./introduction/overfitting.md#regularization)    
     * [Dropout for Neural Networks (DL)](./introduction/overfitting.md#dropout-for-neural-networks)
     * [Data Augmentation (DL)](./introduction/overfitting.md#data-augmentation)
+  * [Gradient Descent](./introduction/gradient_descent.md)
 * Machine Learning
   * [Concepts](./glossary/README.md)    
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
@@ -22,7 +23,7 @@
   * [Data Loading](./machine_learning/data_loading.ipynb)
   * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
   * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
-  * [Data Preprocessing: Scaling and Normalization](./machine_learning/data_preprocessing.ipynb)
+  * [Data Preprocessing: Scaling and Standardization](./machine_learning/data_preprocessing.ipynb)
   * Machine Learning Models
     * Linear Regression
     * [Logistic Regression](./machine_learning/logistic_regression.ipynb)
