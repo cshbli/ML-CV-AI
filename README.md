@@ -22,7 +22,27 @@
   * [Data Loading](./machine_learning/data_loading.ipynb)
   * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
   * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
-  * [Data Preprocessing: Scaling and Normalization](./machine_learning/data_preprocessing.ipynb)  
+  * [Data Preprocessing: Scaling and Normalization](./machine_learning/data_preprocessing.ipynb)
+  * Machine Learning Models
+    * Linear Regression
+    * [Logistic Regression](./machine_learning/logistic_regression.ipynb)
+    * [Perceptron](./machine_learning/perceptron.ipynb)
+    * Support Vector Machines
+    * [Decision Tree](./machine_learning/decision_tree.ipynb)
+    * [Random Forest](./machine_learning/iris_tutorial.ipynb)
+    * XGBoost
+    * K-Nearest Neighbors (KNN)
+    * Naive Bayes Classification
+    * Clustering
+      * K-means
+      * Mean Shift
+      * Hierarchical
+    * Ensemble
+      * Bagging
+        * [Random Forest](./machine_learning/iris_tutorial.ipynb)
+      * Boosting
+        * XGBoost
+      * Voting
 * Deep Learning
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Covolution](./deep_learning/convolution/README.md)
