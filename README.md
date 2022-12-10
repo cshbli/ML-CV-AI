@@ -5,6 +5,7 @@
   * [Deep Neural Network](./introduction/deep_neural_network.md)
   * [Generative Adversarial Networks-GANs](./introduction/gan.md)
   * [Machine Learning Performance Evaluation Metrics](./introduction/metrics.md)
+    * [Mean Average Precision (mAP) for Image Recognition](./object_detection/concepts/mAP.md)
   * [Overfitting and Underfitting](./introduction/overfitting.md)
     * [Bias and Variance](./introduction/overfitting.md#bias-and-variance)
     * [Train Test Split](./introduction/overfitting.md#train-test-split)
@@ -34,6 +35,7 @@
   * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
   * [Data Preprocessing: Scaling and Standardization](./machine_learning/data_preprocessing.ipynb)
     * [Data Preprecessing for Mixed Feature Data Types](./machine_learning/column_transformer.ipynb)
+    * [Data Cleaning: Outlier Detection and Removal](./machine_learning/outlier.ipynb)
   * Machine Learning Models
     * Linear Regression
     * [Logistic Regression](./machine_learning/logistic_regression.ipynb)

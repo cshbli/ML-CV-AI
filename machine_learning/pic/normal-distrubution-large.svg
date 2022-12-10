@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Copyright 2017 mathsisfun.com -->
+
+<svg
+   width="650"
+   height="328.5"
+   version="1.1"
+   style="font-family:Verdana;font-size:14.7px;stroke-width:0.92"
+   id="svg279"
+   sodipodi:docname="normal-distrubution-large.svg"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview281"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:current-layer="svg279" />
+  <defs
+     id="defs5">
+    <marker
+       style="overflow:visible"
+       orient="auto"
+       id="aa11249"
+       inkscape:stockid="aa11249">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="stroke:#204a87;stroke-width:1pt;stroke-opacity:1;fill-opacity:1;fill:#204a87"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path1584" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       orient="auto"
+       id="aa19504"
+       inkscape:stockid="aa19504">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="stroke:#204a87;stroke-width:1pt;stroke-opacity:1;fill-opacity:1;fill:#204a87"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path2061" />
+    </marker>
+  </defs>
+  <path
+     style="fill:none;stroke:black;stroke-width:1px"
+     d="M 359.6,0 V 238.4"
+     id="path7" />
+  <g
+     transform="matrix(0.921168,0,0,0.921168,-29.0884,-969.531)"
+     id="g9" />
+  <path
+     style="fill:#0084c8"
+     d="m 289.6,99.7 c -6.2,11.8 -12.4,23.5 -19,35 -6.3,11.2 -13.2,22.1 -20.5,32.6 -7.1,10.2 -15.3,20.2 -24.6,28.4 -1.1,1 -2.2,1.9 -3.4,2.9 v 29.2 h 68.7 V 97.2 c -0.4,0.8 -0.9,1.7 -1.3,2.5 z"
+     id="path11" />
+  <path
+     style="fill:#0084c8"
+     d="m 193.9,216.1 c -11.7,4.8 -24,7.4 -36.5,8.9 -1.3,0.2 -2.7,0.3 -4,0.5 v 2.3 h 68.7 v -29.2 c -8.6,7.2 -17.9,13.3 -28.2,17.4 z"
+     id="path13" />
+  <path
+     style="fill:#0084c8;stroke:#204a87"
+     d="m 121.9,227.3 c -12.4,0.3 -24.8,0.4 -37.2,0.5 h 68.8 v -2.3 c -10.5,1.1 -21,1.5 -31.5,1.8 z"
+     id="path15" />
+  <path
+     style="fill:#0084c8"
+     d="m 359.1,12.5 c -6.1,0.5 -12,2.8 -16.9,6.8 -5,4.1 -9.5,8.7 -13.5,13.9 -7.8,9.9 -14.5,21 -20.7,32.1 -5.9,10.6 -11.5,21.2 -17.2,31.9 V 227.8 h 68.7 V 12.5 c -0.2,0 -0.4,0 -0.6,0 z"
+     id="path17" />
+  <path
+     style="fill:#0084c8"
+     d="m 410.8,64.5 c -6.4,-11.2 -13,-22.6 -21.2,-32.5 -4,-4.8 -8.2,-9.8 -13.4,-13.3 -4.8,-3.3 -10.5,-6.4 -16.5,-6.2 V 227.8 h 68.7 V 97.2 C 422.6,86.3 416.9,75.3 410.8,64.5 Z"
+     id="path19" />
+  <path
+     style="fill:#0084c8"
+     d="m 559.4,224.7 c -11.9,-1.5 -24.1,-4.2 -35.1,-9.1 -9.8,-4.3 -18.9,-9.9 -27.1,-16.9 v 29.1 h 68.8 v -2.4 c -2.2,-0.2 -4.3,-0.4 -6.5,-0.7 z"
+     id="path21" />
+  <path
+     style="fill:#0084c8"
+     d="m 492.9,194.9 c -9.5,-8.9 -17.7,-19 -25.2,-29.7 -7.3,-10.4 -13.9,-21.4 -20.2,-32.6 -6.5,-11.5 -12.7,-23.2 -18.8,-34.9 0,-0.2 -0.2,-0.3 -0.2,-0.4 V 227.8 H 497.1 V 198.7 c -1.4,-1.2 -2.9,-2.5 -4.3,-3.8 z"
+     id="path23" />
+  <path
+     style="fill:#0084c8;stroke:#204a87"
+     d="m 632.8,227.8 c -12.2,0 -24.4,-0.2 -36.5,-0.5 -10.2,-0.3 -20.3,-0.8 -30.3,-1.9 v 2.4 h 68.7 c -0.6,0 -1.2,0 -1.9,0 z"
+     id="path25" />
+  <path
+     style="fill:none;stroke:black;stroke-width:0.69;stroke-linecap:round;stroke-linejoin:round"
+     d="m 84.7,227.8 c 12.4,0 24.8,-0.2 37.2,-0.5 11.8,-0.3 23.8,-0.8 35.5,-2.3 12.5,-1.6 24.7,-4.2 36.5,-8.9 11.7,-4.7 22.1,-11.9 31.6,-20.3 9.3,-8.2 17.4,-18.2 24.6,-28.4 7.4,-10.5 14.2,-21.4 20.5,-32.6 6.5,-11.6 12.8,-23.3 19,-35 6.1,-11.5 12.2,-23 18.5,-34.4 6.2,-11.1 12.8,-22.2 20.7,-32.1 4,-5.2 8.5,-9.8 13.5,-13.9 4.9,-4 10.7,-6.3 16.9,-6.8 6.2,-0.5 12.1,2.7 17.1,6.1 5.1,3.5 9.4,8.5 13.4,13.3 8.2,10 14.8,21.3 21.2,32.5 6.2,10.9 12,22.1 17.9,33.1 6.2,11.7 12.3,23.4 18.8,34.9 6.3,11.2 12.9,22.2 20.2,32.6 7.5,10.7 15.8,20.8 25.2,29.7 9.3,8.8 19.9,15.6 31.4,20.7 11.1,4.9 23.2,7.6 35.1,9.1 12.2,1.5 24.5,2.2 36.8,2.6 12.2,0.4 24.4,0.4 36.5,0.5 0.6,0 1.2,0 1.9,0"
+     id="path27" />
+  <text
+     x="212.1"
+     y="251"
+     id="text29"
+     style="fill:#204a87">−2</text>
+  <text
+     x="281.5"
+     y="251"
+     id="text31"
+     style="fill:#204a87">−1</text>
+  <text
+     x="423.2"
+     y="251"
+     id="text33"
+     style="fill:#204a87">1</text>
+  <text
+     x="139.8"
+     y="250.9"
+     id="text35"
+     style="fill:#204a87">−3</text>
+  <text
+     x="561.5"
+     y="250.9"
+     id="text37"
+     style="fill:#204a87">3</text>
+  <text
+     x="493.2"
+     y="251"
+     id="text39"
+     style="fill:#204a87">2</text>
+  <text
+     x="157.9"
+     y="201.6"
+     style="font-size:12px;fill:#ff9900"
+     id="text41">0.5%</text>
+  <text
+     x="113.4"
+     y="222.1"
+     style="font-size:12px;fill:#ff9900"
+     id="text43">0.1%</text>
+  <path
+     style="marker-end:url(#aa11249);fill:none;stroke:#204a87;stroke-width:0.92px"
+     d="m 167.7,204.7 12.1,18.5"
+     id="path45" />
+  <text
+     x="238.3"
+     y="250.9"
+     id="text47"
+     style="fill:#204a87">−1.5</text>
+  <text
+     x="306.8"
+     y="250.9"
+     id="text49"
+     style="fill:#204a87">−0.5</text>
+  <text
+     x="452.1"
+     y="250.9"
+     id="text51"
+     style="fill:#204a87">1.5</text>
+  <text
+     x="169.8"
+     y="250.9"
+     id="text53"
+     style="fill:#204a87">−2.5</text>
+  <text
+     x="382.3"
+     y="250.9"
+     id="text55"
+     style="fill:#204a87">0.5</text>
+  <text
+     x="521.2"
+     y="250.9"
+     id="text57"
+     style="fill:#204a87">2.5</text>
+  <text
+     x="259.3"
+     y="193.7"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text59">9.2%</text>
+  <text
+     x="224.1"
+     y="212.7"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text61">4.4%</text>
+  <text
+     x="192.2"
+     y="224.8"
+     style="font-size:12px;fill:#ccff42"
+     id="text63">1.7%</text>
+  <text
+     x="430.6"
+     y="193.7"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text65">9.2%</text>
+  <text
+     x="465.5"
+     y="213.6"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text67">4.4%</text>
+  <text
+     x="499.2"
+     y="224.8"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text69">1.7%</text>
+  <text
+     x="547.2"
+     y="204.8"
+     style="font-size:12px;fill:#ff9900"
+     id="text71">0.5%</text>
+  <text
+     x="583.2"
+     y="222.2"
+     style="font-size:12px;fill:#ff9900"
+     id="text73">0.1%</text>
+  <path
+     style="marker-end:url(#aa19504);fill:none;stroke:#204a87;stroke-width:0.92px"
+     d="m 558.6,208.5 -14.8,16.3"
+     id="path75" />
+  <text
+     x="355.6"
+     y="250.9"
+     id="text77"
+     style="fill:#204a87">0</text>
+  <rect
+     x="1657.7"
+     y="675.1"
+     width="803.5"
+     height="500.8"
+     style="stroke-width:1"
+     id="rect79" />
+  <text
+     x="208.2"
+     y="291.5"
+     style="font-size:12.9px;fill:#ff9900"
+     id="text81">2.3%</text>
+  <text
+     x="274.2"
+     y="291.5"
+     style="font-size:12.9px;fill:#ff9900"
+     id="text83">15.9%</text>
+  <text
+     x="410.3"
+     y="291.5"
+     style="font-size:12.9px;fill:#ff9900"
+     id="text85">84.1%</text>
+  <text
+     x="139.8"
+     y="291.4"
+     style="font-size:12.9px;fill:#ff9900"
+     id="text87">0.1%</text>
+  <text
+     x="548.7"
+     y="291.4"
+     style="font-size:12.9px;fill:#ff9900"
+     id="text89">99.9%</text>
+  <text
+     x="479.7"
+     y="291.5"
+     style="font-size:12.9px;fill:#ff9900"
+     id="text91">97.7%</text>
+  <text
+     x="347.3"
+     y="291.4"
+     style="font-size:12.9px;fill:#ff9900"
+     id="text93">50%</text>
+  <g
+     transform="translate(49.2648,-953.971)"
+     id="g95" />
+  <text
+     x="191.2"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text97">1%</text>
+  <text
+     x="237.5"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text99">5%</text>
+  <text
+     x="262.9"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text101">10%</text>
+  <text
+     x="296.5"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text103">20</text>
+  <text
+     x="316"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text105">30</text>
+  <text
+     x="335"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text107">40</text>
+  <text
+     x="353.5"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text109">50</text>
+  <text
+     x="372.3"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text111">60</text>
+  <text
+     x="390.4"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text113">70</text>
+  <text
+     x="410.3"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text115">80</text>
+  <text
+     x="429.7"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text117">90%</text>
+  <text
+     x="458.4"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text119">95%</text>
+  <text
+     x="507.3"
+     y="328.3"
+     style="font-size:12px;color:black;overflow:visible;fill:#ff9900;stroke-width:0.92px"
+     id="text121">99%</text>
+  <text
+     x="70.7"
+     y="250.9"
+     id="text123"
+     style="fill:#204a87">−4</text>
+  <text
+     x="100.6"
+     y="250.9"
+     id="text125"
+     style="fill:#204a87">−3.5</text>
+  <text
+     x="630.6"
+     y="250.9"
+     id="text127"
+     style="fill:#204a87">4</text>
+  <text
+     x="590.3"
+     y="250.9"
+     id="text129"
+     style="fill:#204a87">3.5</text>
+  <text
+     x="75.9"
+     y="302.5"
+     style="text-align:end;text-anchor:end;font-size:13.5px;color:black;overflow:visible;fill:#ff9900"
+     id="text131">Cumulative</text>
+  <text
+     x="61.1"
+     y="249.9"
+     style="text-align:end;text-anchor:end;color:black;overflow:visible;fill:#204a87"
+     id="text133">Z-Score</text>
+  <text
+     x="212.1"
+     y="269.4"
+     style="font-size:12.9px;fill:#204a87"
+     id="text135">−2σ</text>
+  <text
+     x="283.4"
+     y="269.4"
+     style="font-size:12.9px;fill:#204a87"
+     id="text137">−1σ</text>
+  <text
+     x="415.9"
+     y="269.4"
+     style="font-size:12.9px;fill:#204a87"
+     id="text139">+1σ</text>
+  <text
+     x="139.8"
+     y="269.3"
+     style="font-size:12.9px;fill:#204a87"
+     id="text141">−3σ</text>
+  <text
+     x="554.2"
+     y="269.3"
+     style="font-size:12.9px;fill:#204a87"
+     id="text143">+3σ</text>
+  <text
+     x="485.8"
+     y="269.4"
+     style="font-size:12.9px;fill:#204a87"
+     id="text145">+2σ</text>
+  <text
+     x="355.6"
+     y="269.3"
+     style="font-size:12.9px;fill:#204a87"
+     id="text147">0</text>
+  <text
+     x="70.7"
+     y="269.3"
+     style="font-size:12.9px;fill:#204a87"
+     id="text149">−4σ</text>
+  <text
+     x="623.1"
+     y="269.3"
+     style="font-size:12.9px;fill:#204a87"
+     id="text151">+4σ</text>
+  <text
+     x="60"
+     y="264.7"
+     style="text-align:end;text-anchor:end;font-size:11.7px;color:black;overflow:visible;fill:#204a87"
+     id="text153">Standard</text>
+  <text
+     x="171.2"
+     y="73.7"
+     style="font-family:Georgia;text-align:center;text-anchor:middle;font-size:18.7px;font-style:italic;color:black;overflow:visible;fill:#005c94;stroke-width:0.92px"
+     id="text155">Standard Normal</text>
+  <text
+     x="89.5"
+     y="50"
+     style="font-family:Georgia;font-size:29px;font-style:italic;color:black;overflow:visible;fill:#005c94;stroke-width:1.09px"
+     id="text157">&quot;Bell Curve&quot;</text>
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="m 153.9,293.8 v 10.2"
+     id="path159" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="m 222.6,293.8 v 10.2"
+     id="path161" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="m 291.3,293.8 v 10.2"
+     id="path163" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="m 360.1,293.8 v 10.2"
+     id="path165" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="m 428.8,293.8 v 10.2"
+     id="path167" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="m 497.6,293.8 v 10.2"
+     id="path169" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="m 566.3,293.8 v 10.2"
+     id="path171" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 199.6,304.8 V 315"
+     id="path173" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 246.1,304.8 V 315"
+     id="path175" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 275.1,304.8 V 315"
+     id="path177" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 303.4,304.8 V 315"
+     id="path179" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 322.6,304.8 V 315"
+     id="path181" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 341.6,304.8 V 315"
+     id="path183" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 360.1,304.8 V 315"
+     id="path185" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 379,304.8 V 315"
+     id="path187" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 397.2,304.8 V 315"
+     id="path189" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 416.9,304.8 V 315"
+     id="path191" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 443.6,304.8 V 315"
+     id="path193" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 468.4,304.8 V 315"
+     id="path195" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 514.6,304.8 V 315"
+     id="path197" />
+  <path
+     style="fill:none;stroke:#ff9900;stroke-width:1px"
+     d="M 81.5,304.7 H 637.2"
+     id="path199" />
+  <text
+     x="170.7"
+     y="96.8"
+     style="font-family:Georgia;text-align:center;text-anchor:middle;font-size:18.7px;font-style:italic;color:black;overflow:visible;fill:#005c94;stroke-width:0.92px"
+     id="text201">Distribution</text>
+  <text
+     x="59.4"
+     y="275.4"
+     style="text-align:end;text-anchor:end;font-size:11.7px;color:black;overflow:visible;fill:#204a87;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:normal;font-family:Verdana;font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-variant-east-asian:normal;font-feature-settings:normal;font-variation-settings:normal;text-indent:0;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:normal;word-spacing:normal;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;white-space:normal;shape-padding:0;shape-margin:0;inline-size:0;opacity:1;vector-effect:none;fill-opacity:1;stroke-width:0.92;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     id="text203">Deviation</text>
+  <text
+     x="74.7"
+     y="317.3"
+     style="text-align:end;text-anchor:end;font-size:13.5px;color:black;overflow:visible;fill:#ff9900"
+     id="text205">Percent</text>
+  <path
+     style="fill:none;stroke:#204a87;stroke-width:1.05px"
+     d="M 42.3,227.8 H 649.9"
+     id="path207" />
+  <g
+     transform="translate(0,-0.593319)"
+     id="g243"
+     style="stroke:#204a87">
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 84.8,229 v 10.8"
+       id="path209" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 119.2,228.9 v 10.8"
+       id="path211" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 153.5,228.9 v 10.8"
+       id="path213" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 187.9,228.9 v 10.8"
+       id="path215" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 222.3,228.9 v 10.8"
+       id="path217" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 256.6,228.9 v 10.8"
+       id="path219" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 291,228.8 v 10.8"
+       id="path221" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 325.3,228.8 v 10.8"
+       id="path223" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 359.7,228.8 v 10.8"
+       id="path225" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 394.1,228.8 v 10.8"
+       id="path227" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 428.4,228.9 v 10.8"
+       id="path229" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 462.8,228.8 v 10.8"
+       id="path231" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 497.2,228.8 v 10.8"
+       id="path233" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 531.5,228.8 v 10.8"
+       id="path235" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 565.9,228.8 v 10.8"
+       id="path237" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 600.2,229 v 10.8"
+       id="path239" />
+    <path
+       style="fill:none;stroke:#204a87;stroke-width:1px"
+       d="m 634.6,229 v 10.8"
+       id="path241" />
+  </g>
+  <path
+     style="fill:none;stroke:#204a87;stroke-width:1px"
+     d="m 153.5,224.6 v 3.8"
+     id="path245" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="m 187.9,217.9 v 10.6"
+     id="path247" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="m 222.3,197.9 v 30.5"
+     id="path249" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="m 256.6,157.7 v 70.8"
+     id="path251" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="M 291,97.9 V 227.8"
+     id="path253" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="M 325.3,37.5 V 227.8"
+     id="path255" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="M 359.7,12.5 V 227.8"
+     id="path257" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="M 394.1,37.9 V 227.8"
+     id="path259" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="M 428.4,97 V 228.4"
+     id="path261" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="M 462.8,157.8 V 227.8"
+     id="path263" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="M 497.2,199 V 227.8"
+     id="path265" />
+  <path
+     style="fill:none;stroke:#19aeff;stroke-width:1px"
+     d="M 531.5,218.1 V 227.8"
+     id="path267" />
+  <path
+     style="fill:none;stroke:#204a87;stroke-width:1px"
+     d="M 565.9,225 V 227.8"
+     id="path269" />
+  <text
+     x="319.3"
+     y="119"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text271">19.1%</text>
+  <text
+     x="291.9"
+     y="157.5"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text273">15.0%</text>
+  <text
+     x="396"
+     y="157.9"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text275">15.0%</text>
+  <text
+     x="363.9"
+     y="119.3"
+     style="font-size:11.3px;fill:#ccff42"
+     id="text277">19.1%</text>
+</svg>
