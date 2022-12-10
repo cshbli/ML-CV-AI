@@ -33,6 +33,7 @@
   * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
   * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
   * [Data Preprocessing: Scaling and Standardization](./machine_learning/data_preprocessing.ipynb)
+    * [Data Preprecessing for Mixed Feature Data Types](./machine_learning/column_transformer.ipynb)
   * Machine Learning Models
     * Linear Regression
     * [Logistic Regression](./machine_learning/logistic_regression.ipynb)
@@ -138,22 +139,31 @@
 * [Notes](./tools/notes.md)
 
 ## Dataset
-* [COCO Common Objects in Context](https://cocodataset.org/#home)
-* [ImageNet](https://www.image-net.org/)
-* [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
-* [YouTube-Objects](https://data.vision.ee.ethz.ch/cvl/youtube-objects/)
-* Face
-  * [IMDB-WIKI – 500k+ face images with age and gender labels](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
-  * [WIDER FACE: A Face Detection Benchmark](http://shuoyang1213.me/WIDERFACE/)
-  * [FDDB: Face Detection Data Set and Benchmark](http://vis-www.cs.umass.edu/fddb/)
-* Super-Resolution  
-  * [DIV2K dataset: DIVerse 2K resolution high quality images for super-resolution](https://data.vision.ee.ethz.ch/cvl/DIV2K/)
-* Object Segmentation
-  * [Cityscapes](https://www.cityscapes-dataset.com/)
-  * [KITTI](https://www.cvlibs.net/datasets/kitti/)
-  * [ADE20K](https://groups.csail.mit.edu/vision/datasets/ADE20K/)
-  * [A Dataset and a Technique for Generalized Nuclear Segmentation for Computational Pathology](https://monuseg.grand-challenge.org/Data/)
-* [Roboflow public datasets](https://public.roboflow.com/)
+* [Kaggle Datasets](https://www.kaggle.com/datasets)
+* [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/index.php)
+* [Registry of Open Data on AWS](https://registry.opendata.aws/)
+* [Google's Dataset Search Engine](https://datasetsearch.research.google.com/)
+* [Microsoft Research Open Data](https://msropendata.com/)
+* [Awesome Public Datasets](https://github.com/awesomedata/awesome-public-datasets)
+* [scikit-learn dataset](https://scikit-learn.org/stable/datasets.html)
+* Computer Vision
+  * [VisualData Discovery](https://visualdata.io/discovery)
+  * [COCO Common Objects in Context](https://cocodataset.org/#home)
+  * [ImageNet](https://www.image-net.org/)
+  * [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC/)
+  * [YouTube-Objects](https://data.vision.ee.ethz.ch/cvl/youtube-objects/)
+  * Face
+    * [IMDB-WIKI – 500k+ face images with age and gender labels](https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/)
+    * [WIDER FACE: A Face Detection Benchmark](http://shuoyang1213.me/WIDERFACE/)
+    * [FDDB: Face Detection Data Set and Benchmark](http://vis-www.cs.umass.edu/fddb/)
+  * Super-Resolution  
+    * [DIV2K dataset: DIVerse 2K resolution high quality images for super-resolution](https://data.vision.ee.ethz.ch/cvl/DIV2K/)
+  * Object Segmentation
+    * [Cityscapes](https://www.cityscapes-dataset.com/)
+    * [KITTI](https://www.cvlibs.net/datasets/kitti/)
+    * [ADE20K](https://groups.csail.mit.edu/vision/datasets/ADE20K/)
+    * [A Dataset and a Technique for Generalized Nuclear Segmentation for Computational Pathology](https://monuseg.grand-challenge.org/Data/)
+  * [Roboflow public datasets](https://public.roboflow.com/)
 
 ## Online books
 * [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/index.html) by Michael Nielsen

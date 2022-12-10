@@ -121,6 +121,10 @@ Segmentation bias in the training dataset is another problem that can lead to po
 
 Cross-validation is a statistical technique which involves partitioning the data into subsets, training the data on a subset and use the other subset to evaluate the model’s performance. To reduce variability we perform multiple rounds of cross-validation with different subsets from the same data.
 
+<p align="center">
+<img src="pic/06_02.png">
+</p>
+
 There are 4 main types of cross validation:
 
 1. __Holdout method__ — The holdout method is the simplest kind of cross validation. The data set is separated into two sets, called the training set and the validation/testing set. The function approximate fits a function using the training set only.
