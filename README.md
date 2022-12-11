@@ -26,10 +26,9 @@
     * [Local Minima and Saddle Point](./introduction/gradient_descent.md#local-minima-and-saddle-point)
     * [Vanishing and Exploding Gradient](./introduction/gradient_descent.md#vanishing-and-exploding-gradient)
 
-* Machine Learning
-  * [Concepts](./glossary/README.md)    
-    * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
+* Machine Learning  
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
+    * [IRIS with Different Machine Learning Algorithms](./machine_learning/iris.ipynb)
   * [Data Loading](./machine_learning/data_loading.ipynb)
   * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
   * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
@@ -56,6 +55,8 @@
       * Boosting
         * XGBoost
       * Voting
+  * [Concepts](./glossary/README.md)    
+    * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
 * Deep Learning
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Covolution](./deep_learning/convolution/README.md)
