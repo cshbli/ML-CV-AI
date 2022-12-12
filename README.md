@@ -62,6 +62,9 @@
   * [Covolution](./deep_learning/convolution/README.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
+  * Quantization
+    * [Quantization Arithmetic](./deep_learning/quantization/quantization_arithmetic.md)
+    * [MobileNetv2 Quantization in PyTorch](./deep_learning/quantization/pytorch_static_quantization.ipynb)
   * Transformer
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
 * Computer Vision  
