@@ -57,14 +57,32 @@
       * Voting
   * [Concepts](./glossary/README.md)    
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
+
 * Deep Learning
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Covolution](./deep_learning/convolution/README.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
+  * Deep Learning Framework
+    * PyTorch
+        * [PyTorch Installation](./framework/pytorch/install.md)
+        * [PyTorch Quickstart](./framework/pytorch/quickstart_tutorial.ipynb)
+    * Tensorflow
+        * [logits, softmax and softmax_cross_entropy_with_logits](./framework/logits_softmax.ipynb)
+        * [Protobuf and Flat Buffers](./framework/protobuf.md)
+        * [tf.placeholder vs tf.Variable](./framework/placeholder_variable.ipynb)
+        * [Graph vs GraphDef](./framework/Graph_and_GraphDef.md)
+        * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
+        * [TFRecord to Store and Extract Data](./framework/TFRecord.ipynb)
+        * [Convert a Global Average Pooling layer to Conv2D](./framework/gap_to_conv2d.ipynb)    
   * Quantization
     * [Quantization Arithmetic](./deep_learning/quantization/quantization_arithmetic.md)
-    * [MobileNetv2 Quantization in PyTorch](./deep_learning/quantization/pytorch_static_quantization.ipynb)
+    * [PyTorch](https://pytorch.org/docs/stable/quantization.html)
+      * Eager Mode Quantization
+        * [Resnet18 Static Quantization on CIFAR-10](./deep_learning/quantization/PyTorch/resnet18_cifar10.ipynb)
+        * [Resnet18 QAT on CIFAR-10](./deep_learning/quantization/PyTorch/qat_resnet18_cifar10.ipynb)
+        * [MobileNetv2 Static Quantization, Per-Channel and QAT on ImageNet](./deep_learning/quantization/PyTorch/pytorch_static_quantization.ipynb)
+      * FX Graph Graph Mode Quantization
   * Transformer
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
 * Computer Vision  
@@ -82,7 +100,7 @@
       * [Region Proposal Network (RPN)](./object_detection/concepts/README.md#region-proposal-network-rpn)
     * [YOLOv7](./object_detection/YOLOv7/README.md)
     * [YOLOv5](./object_detection/YOLOv5/README.md)
-      * [Object Detection using YOLOv5](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
+      * [Object Detection using YOLOv5 and OpenCV DNN](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
     * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
     * [RetinaNet](./object_detection/RetinaNet/README.md)
       * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)
@@ -127,18 +145,6 @@
   * Deep Convolutional Generative Adversarial Networks (DCGANs)    
 * Neural Network Exchange
   * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
-* Deep Learning Framework
-  * Tensorflow
-    * [logits, softmax and softmax_cross_entropy_with_logits](./framework/logits_softmax.ipynb)
-    * [Protobuf and Flat Buffers](./framework/protobuf.md)
-    * [tf.placeholder vs tf.Variable](./framework/placeholder_variable.ipynb)
-    * [Graph vs GraphDef](./framework/Graph_and_GraphDef.md)
-    * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
-    * [TFRecord to Store and Extract Data](./framework/TFRecord.ipynb)
-    * [Convert a Global Average Pooling layer to Conv2D](./framework/gap_to_conv2d.ipynb)
-  * PyTorch
-    * [PyTorch Installation](./framework/pytorch/install.md)
-    * [PyTorch Quickstart](./framework/pytorch/quickstart_tutorial.ipynb)
      
 ## Small Techniques and Utilities
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
