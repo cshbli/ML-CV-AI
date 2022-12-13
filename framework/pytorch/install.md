@@ -5,7 +5,7 @@
 - Create a virtual environment for PyTorch
 
 ```
-python -m venv --system-site-packages ./venv/torch1.13.0
+python3 -m venv --system-site-packages ./venv/torch1.13.0
 ```
 
 - Activate the venv
@@ -32,9 +32,20 @@ pip install Jupyter
 pip install matplotlib
 ```
 
+- Install ONNX
+```
+pip install onnx
+```
+
 - Install onnxruntime
 ```
 pip install onnxruntime onnxruntime-gpu
+```
+
+- Install OpenCV
+
+```
+pip install opencv-python
 ```
 
 ## Verification

@@ -152,6 +152,7 @@
      
 ## Small Techniques and Utilities
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
+* [PyQt5 and designer Installation](./tools/PyQt5.md)
 * [Notes](./tools/notes.md)
 
 ## Dataset

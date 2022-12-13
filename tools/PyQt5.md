@@ -1,5 +1,4 @@
-
-## Install PyQt5
+# Install PyQt5
 
 ```
 pip install pyqt5
@@ -17,10 +16,4 @@ for example:
 
 ```
 ~/venv/pyqt5/bin/pyuic5 -x demo.ui -o demo.py
-```
-
-## Install OpenCV
-
-```
-pip install opencv-python
 ```
