@@ -104,6 +104,7 @@
     * [YOLOv7](./object_detection/YOLOv7/README.md)
     * [YOLOv5](./object_detection/YOLOv5/README.md)
       * [Object Detection using YOLOv5 and OpenCV DNN](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
+      * [YOLOv5 Quantization](./object_detection/YOLOv5/quantization.ipynb)
     * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
     * [RetinaNet](./object_detection/RetinaNet/README.md)
       * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)

@@ -34,7 +34,7 @@ pip install matplotlib
 
 - Install onnxruntime
 ```
-pip install onnxruntime
+pip install onnxruntime onnxruntime-gpu
 ```
 
 ## Verification
