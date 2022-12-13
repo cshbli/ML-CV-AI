@@ -83,6 +83,9 @@
         * [Resnet18 QAT on CIFAR-10](./deep_learning/quantization/PyTorch/qat_resnet18_cifar10.ipynb)
         * [MobileNetv2 Static Quantization, Per-Channel and QAT on ImageNet](./deep_learning/quantization/PyTorch/pytorch_static_quantization.ipynb)
       * FX Graph Graph Mode Quantization
+    * [ONNX](https://onnxruntime.ai/docs/performance/quantization.html)
+      * [ONNX Runtime Qunatization Example MobilenetV2 with QDQ Debugging](./deep_learning/quantization/ONNX/quantization_example.md)
+      * [Mobilenet v2 Quantization with ONNX Runtime on CPU](./deep_learning/quantization/ONNX/mobilenet.ipynb)
   * Transformer
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
 * Computer Vision  

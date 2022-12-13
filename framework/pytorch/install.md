@@ -32,6 +32,11 @@ pip install Jupyter
 pip install matplotlib
 ```
 
+- Install onnxruntime
+```
+pip install onnxruntime
+```
+
 ## Verification
 
 To ensure that PyTorch was installed correctly, we can verify the installation by running sample PyTorch code. Here we will construct a randomly initialized tensor.
