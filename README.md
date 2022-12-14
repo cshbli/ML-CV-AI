@@ -18,6 +18,7 @@
     * [Data Augmentation (DL)](./introduction/overfitting.md#data-augmentation)
   * [Gradient Descent](./introduction/gradient_descent.md)
     * [Cost Function and Loss Function](./introduction/gradient_descent.md#cost-function-and-loss-function)
+      * [Information, Entropy, Cross Entropy, Binary Cross Entropy, KL Divergence](./machine_learning/concepts/entropy.md)
     * [Learning Rate](./introduction/gradient_descent.md#learning-rate)
     * [Batch Gradient Descent (BGD)](./introduction/gradient_descent.md#batch-gradient-descent-bgd)
     * [Stochastic Gradient Descent (SGD)](./introduction/gradient_descent.md#stochastic-gradient-descent-sgd)
@@ -55,7 +56,8 @@
       * Boosting
         * XGBoost
       * Voting
-  * [Concepts](./glossary/README.md)    
+  * [Concepts](./glossary/README.md)
+    * [Information, Entropy, Cross Entropy, Binary Cross Entropy, KL Divergence](./machine_learning/concepts/entropy.md)    
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
 
 * Deep Learning
