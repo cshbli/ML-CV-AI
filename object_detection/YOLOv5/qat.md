@@ -2,6 +2,7 @@
 
 ## Retrain the YOLOv5
 
+### 1.1 Retrain with default settings and with 1 GPU
 ```
 python train.py --data coco.yaml --epochs 1 --weights yolov5m.pt --cfg yolov5m.yaml --batch-size 1
 ```
@@ -119,4 +120,116 @@ DONE (t=14.23s).
  Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.680
  Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.754
 Results saved to runs/train/exp3
+```
+### 1.2 Retrain with multiple GPUs (on desktop server)
+
+```
+python -m torch.distributed.run --nproc_per_node 2 train.py --batch 64 --data coco.yaml --epochs 1 --weights yolov5m --cfg yolov5m.yaml --device 0,1,2,3
+```
+
+Failed after 6%
+
+```
+python -m torch.distributed.run --nproc_per_node 2 train.py --batch 64 --data coco.yaml --epochs 1 --weights yolov5m --cfg yolov5m.yaml --device 0,1
+```
+
+Failed after 8%
+
+### 13. Retrain with COCO128 
+
+```
+ython train.py --data coco128.yaml --epochs 1 --weights yolov5m.pt --cfg yolov5m.yaml --batch-size -1
+```
+
+Result will be available very quick.
+
+```
+Starting training for 1 epochs...
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+        0/0      3.47G    0.04094    0.06227    0.02574         30        640: 100%|██████████| 6/6 [00:15<00:00,  2.62s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 3/3 [00:02<00:00,  1.25it/s]
+                   all        128        929      0.754      0.662      0.772      0.555
+
+1 epochs completed in 0.005 hours.
+Optimizer stripped from runs/train/exp5/weights/last.pt, 42.8MB
+Optimizer stripped from runs/train/exp5/weights/best.pt, 42.8MB
+
+Validating runs/train/exp5/weights/best.pt...
+Fusing layers... 
+YOLOv5m summary: 212 layers, 21172173 parameters, 0 gradients, 48.9 GFLOPs
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 3/3 [00:07<00:00,  2.34s/it]
+                   all        128        929      0.755      0.661      0.772      0.555
+                person        128        254      0.876      0.728      0.835      0.593
+               bicycle        128          6      0.605      0.333      0.523       0.38
+                   car        128         46      0.823      0.413      0.575      0.285
+            motorcycle        128          5      0.816      0.894      0.928      0.764
+              airplane        128          6          1      0.948      0.995      0.857
+                   bus        128          7      0.711      0.706      0.731      0.624
+                 train        128          3      0.698          1      0.995      0.703
+                 truck        128         12      0.649      0.417      0.533      0.329
+                  boat        128          6      0.961        0.5      0.689      0.403
+         traffic light        128         14      0.935      0.286      0.495      0.246
+             stop sign        128          2      0.831          1      0.995      0.821
+                 bench        128          9      0.742      0.556       0.76       0.32
+                  bird        128         16      0.835          1      0.991      0.683
+                   cat        128          4      0.897          1      0.995      0.929
+                   dog        128          9      0.849      0.889      0.916      0.674
+                 horse        128          2       0.75          1      0.995      0.623
+              elephant        128         17      0.967      0.882      0.944      0.727
+                  bear        128          1      0.673          1      0.995      0.895
+                 zebra        128          4      0.882          1      0.995      0.959
+               giraffe        128          9      0.731      0.909      0.955      0.758
+              backpack        128          6      0.858        0.5      0.614      0.355
+              umbrella        128         18      0.833       0.83      0.887      0.561
+               handbag        128         19      0.753      0.263      0.425      0.258
+                   tie        128          7      0.998      0.857      0.857       0.67
+              suitcase        128          4      0.797          1      0.995      0.659
+               frisbee        128          5       0.73        0.8        0.8       0.76
+                  skis        128          1      0.541          1      0.995      0.697
+             snowboard        128          7      0.791      0.857      0.917      0.716
+           sports ball        128          6      0.711      0.667      0.773      0.425
+                  kite        128         10      0.662      0.394      0.616      0.201
+          baseball bat        128          4      0.553       0.75      0.759      0.286
+        baseball glove        128          7      0.568      0.429      0.577        0.3
+            skateboard        128          5          1       0.79      0.822      0.512
+         tennis racket        128          7      0.734      0.571      0.648      0.305
+                bottle        128         18      0.565      0.363      0.545      0.362
+            wine glass        128         16      0.897      0.547      0.701      0.468
+                   cup        128         36      0.777      0.583      0.768      0.528
+                  fork        128          6      0.815      0.333      0.581      0.267
+                 knife        128         16      0.776       0.65      0.758       0.52
+                 spoon        128         22      0.748      0.682      0.744      0.477
+                  bowl        128         28      0.828      0.686      0.737      0.578
+                banana        128          1      0.479          1      0.995      0.796
+              sandwich        128          2          0          0      0.398      0.246
+                orange        128          4      0.977        0.5      0.849      0.634
+              broccoli        128         11      0.309      0.273      0.277      0.242
+                carrot        128         24      0.656      0.458      0.664      0.422
+               hot dog        128          2      0.614          1      0.663      0.663
+                 pizza        128          5      0.897          1      0.995      0.812
+                 donut        128         14      0.714          1      0.915       0.82
+                  cake        128          4      0.783          1      0.995      0.847
+                 chair        128         35      0.645      0.629      0.642      0.344
+                 couch        128          6          1      0.821      0.931      0.599
+          potted plant        128         14      0.864      0.571      0.759      0.506
+                   bed        128          3          1      0.336      0.995      0.699
+          dining table        128         13       0.81      0.332      0.579      0.361
+                toilet        128          2      0.913          1      0.995      0.995
+                    tv        128          2      0.563          1      0.995      0.896
+                laptop        128          3          1          0      0.608      0.417
+                 mouse        128          2          1          0      0.828      0.432
+                remote        128          8      0.712      0.625       0.68      0.553
+            cell phone        128          8      0.604      0.375       0.45      0.284
+             microwave        128          3      0.515          1      0.995      0.848
+                  oven        128          5      0.277        0.4      0.423      0.336
+                  sink        128          6      0.331      0.333      0.406      0.281
+          refrigerator        128          5      0.834        0.8      0.822      0.527
+                  book        128         29      0.804       0.31      0.445      0.215
+                 clock        128          9      0.846          1      0.984      0.772
+                  vase        128          2      0.491          1      0.995      0.995
+              scissors        128          1          1          0      0.497      0.151
+            teddy bear        128         21        0.8      0.571      0.738       0.49
+            toothbrush        128          5          1      0.597      0.962      0.724
+Results saved to runs/train/exp5
 ```
