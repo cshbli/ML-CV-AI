@@ -14,10 +14,10 @@ python3 -m venv ./venv/torch1.13.0
 source ~/venv/torch1.13.0/bin/activate
 ```
 
-- Install Numpy
+- Install NumPy SciPy Pandas
 
 ```
-pip install numpy
+pip install numpy, scipy, pandas
 ```
 
 - Install PyTorch
@@ -52,6 +52,12 @@ pip install onnxruntime onnxruntime-gpu
 
 ```
 pip install opencv-python
+```
+
+- Install Scikit-learn
+
+```
+pip install scikit-learn
 ```
 
 ## Verification
