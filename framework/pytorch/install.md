@@ -5,13 +5,19 @@
 - Create a virtual environment for PyTorch
 
 ```
-python3 -m venv --system-site-packages ./venv/torch1.13.0
+python3 -m venv ./venv/torch1.13.0
 ```
 
 - Activate the venv
 
 ```
 source ~/venv/torch1.13.0/bin/activate
+```
+
+- Install Numpy
+
+```
+pip install numpy
 ```
 
 - Install PyTorch
@@ -23,7 +29,7 @@ pip install torch torchvision torchaudio
 - Install Jupyter
 
 ```
-pip install Jupyter
+pip install jupyter
 ```
 
 - Install Matplotlib
