@@ -80,6 +80,7 @@
   * Quantization
     * [Quantization Arithmetic](./deep_learning/quantization/quantization_arithmetic.md)
     * [PyTorch](https://pytorch.org/docs/stable/quantization.html)
+      * [Practical Quantization in PyTorch](./deep_learning/quantization/PyTorch/pytorch_practical_quantization.ipynb)
       * Eager Mode Quantization
         * [Resnet18 Static Quantization on CIFAR-10](./deep_learning/quantization/PyTorch/resnet18_cifar10.ipynb)
         * [Resnet18 QAT on CIFAR-10](./deep_learning/quantization/PyTorch/qat_resnet18_cifar10.ipynb)
