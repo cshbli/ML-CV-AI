@@ -17,7 +17,7 @@ source ~/venv/torch1.13.0/bin/activate
 - Install NumPy SciPy Pandas
 
 ```
-pip install numpy, scipy, pandas
+pip install numpy scipy pandas
 ```
 
 - Install PyTorch
@@ -44,8 +44,14 @@ pip install onnx
 ```
 
 - Install onnxruntime
+
 ```
 pip install onnxruntime onnxruntime-gpu
+```
+
+- Install onnxoptimizer
+```
+pip install onnxoptimizer
 ```
 
 - Install OpenCV
@@ -58,6 +64,22 @@ pip install opencv-python
 
 ```
 pip install scikit-learn
+```
+
+- Install graphviz
+
+```
+sudo apt install graphviz
+```
+
+```
+pip install graphviz
+```
+
+- Install torchviz
+
+```
+pip install torchviz
 ```
 
 ## Verification
