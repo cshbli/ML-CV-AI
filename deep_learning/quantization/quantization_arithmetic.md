@@ -2,8 +2,18 @@
    * [Fixed-point and floating-point](#fixed-point-and-floating-point)
    * [Quantizing floating-point](#quantizing-floating-point)
    * [Quantized arithmetic](#quantized-arithmetic)
+   * [Inferencing with INT8](#inferencing-with-int8)
   
 Quantization for deep learning is the process of approximating a neural network that uses floating-point numbers, which by default are 32-bit, by a neural network of low bit width numbers. This results in a smaller model size and faster computation.
+
+* Benefits:
+  * Reduced bandwidth
+  * Reduced footprint
+  * Higher compute throughput
+  * Lower power consumption
+
+* Challenge:
+  * Maintaing accuracy
 
 Quantization process can be divided into two parts: converting model from FP32 to INT8, and inferencing with INT8.
 
@@ -47,7 +57,37 @@ Quantizing float value is as Equations below, and can be summarized in two steps
 
 ![](./figs/quantizing_float_point_values.png)
 
-Note that, rounding is needed in these steps when the floating-point operation result doesn’t equal to an integer. Considering mapping [−1,1] FP32 range to INT8 range [0,255]. We have x<sub>scale</sub>=2/255, and x<sub>zero_point</sub>=255−255/2≈127. 
+Note that, rounding is needed in these steps when the floating-point operation result doesn’t equal to an integer. Considering mapping [−1,1] FP32 range to INT8 range [0,255]. We have x<sub>scale</sub>=2/255, and x<sub>zero_point</sub>=255−255/2≈127.
+
+![](./figs/8-bit-signed-integer-quantization.png)
+*Figure: 8-bit signed integer quantization of a floating-point tensor*
+
+### Quantization Range
+
+Quantization is a balance between quantization error and clipping error.
+
+* Full-range:
+  * Good representation of outlier (large values)
+  * Low resolution at distribution mass
+* Reduced-range:
+  * Outlier are clipped
+  * Higher resolution for small values
+
+<img src="figs/quantization_range.png">  
+
+### Quantization Granularity
+
+* Scale per-tensor (Weights/Activations)
+  * Single scale for the entire tensor.
+  * Fast and simple
+  * Coarse: higher error
+
+* Scale per-channel (Weights)
+  * Vector of scale elements:
+  * Higher compute storage overheads
+  * Fine: lower error
+
+<img src="figs/quantization_granularity.png">
 
 It’s obverious that there is error in quantization process. The error is inevitable just like the quantization in digital signal processing, where the quantization terminology comes from. Figure below shows the quantization and the error of digital signal processing.
 
@@ -69,6 +109,15 @@ Equation 17-26 are the quantized addition arithmetic.
 *Equation: Quantized addition arithmetic*
 
 Besides multiplication and addition, there are many other arithemtic operations such as division, subtraction, exponentation and so on. There are particular methods, which can be decomposed into multiplication and addition, to represent these operations in quanzation regardless of whether it is complex or not. With theses methods the quantized neural network forwards and generates valid result just like the network it quantizes from.
+
+## Inferencing with INT8
+
+* Some frameworks simply introduce Quantize and Dequantize layer which converts FP32 to INT8 and the reverse.
+
+ * Some other frameworks convert the network into INT8 format as a whole, online or offline. 
+
+![](./figs/mixed-fp32int8-pure-int8.svg)
+*Figure: Mixed FP32/INT8 and Pure INT8 Inference. Red color is FP32, green color is INT8 or quantization*
    
 ## References
 * [Quantizing deep convolutional networks for efficient inference: A white paper](https://arxiv.org/pdf/1806.08342.pdf) by Google.
