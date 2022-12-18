@@ -76,7 +76,9 @@
         * [Graph vs GraphDef](./framework/Graph_and_GraphDef.md)
         * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
         * [TFRecord to Store and Extract Data](./framework/TFRecord.ipynb)
-        * [Convert a Global Average Pooling layer to Conv2D](./framework/gap_to_conv2d.ipynb)    
+        * [Convert a Global Average Pooling layer to Conv2D](./framework/gap_to_conv2d.ipynb) 
+    * ONNX
+      * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
   * Quantization
     * [Quantization Arithmetic](./deep_learning/quantization/quantization_arithmetic.md)
     * [PyTorch](https://pytorch.org/docs/stable/quantization.html)
@@ -96,6 +98,8 @@
       * [Mobilenet v2 Quantization with ONNX Runtime on CPU](./deep_learning/quantization/ONNX/mobilenet.ipynb)
   * Transformer
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
+  * [Compiler](./deep_learning/compiler/README.md)
+     * [GLOW](https://github.com/pytorch/glow)
 * Computer Vision  
   * [Overview](./computer_vision/README.md)
   * [Object Detection](./object_detection/README.md)
@@ -138,26 +142,10 @@
       * 3D Point
       * 3D Object Recognition (3D Cube)
       * 3D Segmentation
-      * Sensor Fusion: Cuboids/Segmentation/Tracking
-
-* Deep Learning Optimization
-  * Efficient Training
-  * Efficient Neural Network
-  * [Model Optimization](./optimization/README.md)
-    * [Quantization](./optimization/quantization/README.md) 
-    * Pruning
-    * Compression
-      * [Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding](https://arxiv.org/pdf/1510.00149.pdf)
-   * Matrix Operation Optimization
-   * [Deep Learning Compiler](./optimization/compiler/README.md)
-     * [GLOW](https://github.com/pytorch/glow)
+      * Sensor Fusion: Cuboids/Segmentation/Tracking   
 * Text
   * [Word2Vec](./text/Word2Vec.md)
-  * [Doc2Vec](./text/Doc2Vec.md)
-* Generative Adversarial Networks
-  * Deep Convolutional Generative Adversarial Networks (DCGANs)    
-* Neural Network Exchange
-  * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
+  * [Doc2Vec](./text/Doc2Vec.md)  
      
 ## Small Techniques and Utilities
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
