@@ -899,4 +899,23 @@ python train.py --data coco.yaml --epochs 100 --weights yolov5m.pt --cfg yolov5m
       17/99      4.56G    0.04752    0.06833    0.02455        140        640: 100%|██████████| 3697/3697 [1:04:51<00:00,  1.05s/it]
                  Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 79/79 [01:26<00:00,  1.10s/it]
                    all       5000      36335      0.653      0.527      0.572      0.384
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      32/99      5.25G    0.04661    0.06751    0.02325        152        640: 100%|██████████| 3697/3697 [1:04:45<00:00,  1.05s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 79/79 [01:26<00:00,  1.09s/it]
+                   all       5000      36335      0.657      0.543      0.584      0.394
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      33/99      5.25G    0.04647    0.06741    0.02317        231        640: 100%|██████████| 3697/3697 [1:04:46<00:00,  1.05s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 79/79 [01:26<00:00,  1.09s/it]
+                   all       5000      36335      0.659      0.543      0.584      0.394
+
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+      34/99      5.25G    0.04641    0.06719    0.02308        167        640: 100%|██████████| 3697/3697 [1:04:51<00:00,  1.05s/it]
+                 Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 79/79 [01:26<00:00,  1.09s/it]
+                   all       5000      36335       0.66      0.543      0.585      0.394                   
+```
+
+```
+python train.py --data coco.yaml --epochs 50 --weights yolov5m.pt --hyp data/hyps/hyp.m-relu-tune.yaml --batch-size 64
 ```
