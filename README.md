@@ -83,15 +83,13 @@
     * [Quantization Arithmetic](./deep_learning/quantization/quantization_arithmetic.md)
     * [PyTorch](https://pytorch.org/docs/stable/quantization.html)
       * [Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/)
-      * [Practical Quantization in PyTorch](https://pytorch.org/blog/quantization-in-practice/)
-        * [Practical Quantization in PyTorch Notebook](./deep_learning/quantization/PyTorch/pytorch_practical_quantization.ipynb)        
+      * [Practical Quantization in PyTorch](https://pytorch.org/blog/quantization-in-practice/)        
       * [PyTorch Numeric Suite Tutorial](https://pytorch.org/tutorials/prototype/numeric_suite_tutorial.html)
       * [Torch Quantization Design Proposal](https://github.com/pytorch/pytorch/wiki/torch_quantization_design_proposal)
       * Eager Mode Quantization
-        * [Resnet18 Static Quantization on CIFAR-10](./deep_learning/quantization/PyTorch/resnet18_cifar10.ipynb)
+        * [MobileNetV2 QAT on CIFAR-10](./deep_learning/quantization/PyTorch/mobilenetv2_cifar10.ipynb)        
         * [Resnet18 QAT on CIFAR-10](./deep_learning/quantization/PyTorch/qat_resnet18_cifar10.ipynb)
-        * [Static quantization with Eager Mode in PyTorch](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html)
-          * [MobileNetv2 Static Quantization, Per-Channel and QAT on ImageNet](./deep_learning/quantization/PyTorch/pytorch_static_quantization.ipynb)          
+        * [Static quantization with Eager Mode in PyTorch](https://pytorch.org/tutorials/advanced/static_quantization_tutorial.html)          
       * FX Graph Graph Mode Quantization
     * [ONNX](https://onnxruntime.ai/docs/performance/quantization.html)
       * [ONNX Runtime Qunatization Example MobilenetV2 with QDQ Debugging](./deep_learning/quantization/ONNX/quantization_example.md)
