@@ -3,14 +3,19 @@ from torch import Tensor
 from torchvision.models.utils import load_state_dict_from_url
 from typing import Callable, Any, Optional, List
 
+from torch.quantization import QuantStub, DeQuantStub
+from torchvision.models.quantization.utils import _replace_relu
+
 from bstnnx_training.PyTorch.QAT import modules as bstnn
 
 
-__all__ = ['MobileNetV2', 'mobilenet_v2']
+__all__ = ['MobileNetV2', 'mobilenet_v2', 'QuantizableMobileNetV2', 'quantiable_mobilenet_v2']
 
 
 model_urls = {
     'mobilenet_v2': 'https://download.pytorch.org/models/mobilenet_v2-b0353104.pth',
+    'mobilenet_v2_qnnpack':
+        'https://download.pytorch.org/models/quantized/mobilenet_v2_qnnpack_37f702c5.pth'
 }
 
     
@@ -104,8 +109,8 @@ class InvertedResidual(nn.Module):
         self._is_cn = stride > 1
 
     def forward(self, x: Tensor) -> Tensor:
-        if self.use_res_connect:
-            return x + self.conv(x)
+        if self.use_res_connect:            
+            return x + self.conv(x)            
         else:
             return self.conv(x)
 
@@ -187,9 +192,9 @@ class MobileNetV2(nn.Module):
         # building classifier
         self.classifier = nn.Sequential(
             nn.Dropout(0.2),
-#             nn.Linear(self.last_channel, num_classes),
-            
+
             # QAT Modification
+            # nn.Linear(self.last_channel, num_classes),
             Reshape(-1, self.last_channel, 1, 1),
             nn.Conv2d(self.last_channel, num_classes, kernel_size=1),
             Reshape(-1, num_classes)
@@ -240,5 +245,95 @@ def mobilenet_v2(pretrained: bool = False, progress: bool = True, **kwargs: Any)
     if pretrained:
         state_dict = load_state_dict_from_url(model_urls['mobilenet_v2'],
                                               progress=progress)
+        model.load_state_dict(state_dict)
+    return model
+
+
+class QuantizableInvertedResidual(InvertedResidual):
+    def __init__(self, *args, **kwargs):
+        super(QuantizableInvertedResidual, self).__init__(*args, **kwargs)
+        
+        # QAT Modification
+        self.use_bstnn = kwargs.get('use_bstnn', False)
+        if self.use_bstnn:
+            self.add = bstnn.Add()
+        else:
+            self.skip_add = nn.quantized.FloatFunctional()
+
+    def forward(self, x):
+        # QAT Modification
+        if self.use_res_connect and self.use_bstnn:
+            return self.add(x, self.conv(x))
+        elif self.use_res_connect:
+            return self.skip_add.add(x, self.conv(x))
+        else:
+            return self.conv(x)
+
+    def fuse_model(self):
+        for idx in range(len(self.conv)):
+            if type(self.conv[idx]) == nn.Conv2d:
+                fuse_modules(self.conv, [str(idx), str(idx + 1)], inplace=True)
+
+
+class QuantizableMobileNetV2(MobileNetV2):
+    def __init__(self, *args, **kwargs):
+        """
+        MobileNet V2 main class
+
+        Args:
+           Inherits args from floating point MobileNetV2
+        """
+        super(QuantizableMobileNetV2, self).__init__(*args, **kwargs)
+        self.quant = QuantStub()
+        self.dequant = DeQuantStub()
+
+    def forward(self, x):
+        x = self.quant(x)
+        x = self._forward_impl(x)
+        x = self.dequant(x)
+        return x
+
+    def fuse_model(self):
+        for m in self.modules():
+            if type(m) == ConvBNReLU:
+                fuse_modules(m, ['0', '1', '2'], inplace=True)
+            if type(m) == QuantizableInvertedResidual:
+                m.fuse_model()
+
+
+def quantizable_mobilenet_v2(pretrained=False, progress=True, quantize=False, **kwargs):
+    """
+    Constructs a MobileNetV2 architecture from
+    `"MobileNetV2: Inverted Residuals and Linear Bottlenecks"
+    <https://arxiv.org/abs/1801.04381>`_.
+
+    Note that quantize = True returns a quantized model with 8 bit
+    weights. Quantized models only support inference and run on CPUs.
+    GPU inference is not yet supported
+
+    Args:
+     pretrained (bool): If True, returns a model pre-trained on ImageNet.
+     progress (bool): If True, displays a progress bar of the download to stderr
+     quantize(bool): If True, returns a quantized model, else returns a float model
+    """
+    model = QuantizableMobileNetV2(block=QuantizableInvertedResidual, **kwargs)
+    #_replace_relu(model)
+
+    if quantize:
+        # TODO use pretrained as a string to specify the backend
+        backend = 'qnnpack'
+        quantize_model(model, backend)
+    else:
+        assert pretrained in [True, False]
+
+    if pretrained:
+        if quantize:
+            model_url = quant_model_urls['mobilenet_v2_' + backend]
+        else:
+            model_url = model_urls['mobilenet_v2']
+
+        state_dict = load_state_dict_from_url(model_url,
+                                              progress=progress)
+
         model.load_state_dict(state_dict)
     return model
