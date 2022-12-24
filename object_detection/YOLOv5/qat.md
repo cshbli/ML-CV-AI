@@ -1,16 +1,15 @@
 # YOLOv5 QAT
 
-## 1. Retrain the YOLOv5
+- QAT requires PyTorch version 1.9.1.
+  - For YOLOv5, before install requirements.txt, please install torchvision version 0.10.1 first
+    ```
+    pip install torchvision==0.10.1
+    pip install -r requirements.txt  
+    ```
 
-### 1.0 Retrain with torch1.9.1 is OK
-
-```
-pip install torchvision==0.10.1
-pip install -r requirements.txt
-```
+## 1. Retrain the YOLOv5 by replacing SiLU with ReLU
 
 ### 1.1 Change default activation to ReLU
-
 ```
 class Conv(nn.Module):
     # Standard convolution with args(ch_in, ch_out, kernel, stride, padding, groups, dilation, activation)
@@ -163,3 +162,24 @@ python train.py --data coco.yaml --epochs 50 --weights yolov5m.pt --hyp data/hyp
                  Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 40/40 [01:25<00:00,  2.13s/it]
                    all       5000      36335       0.71      0.568      0.619      0.431
 ```
+### 1.3 Export to ONNX
+
+- It is weird, that after changing `Add` to add module, the accuracy dramastically dropped. Let's see what are the differences.
+
+- Using torch1.13.0 doesn't solve the issue.
+
+```
+python export.py --weights runs/train/exp/weights/best.pt --include onnx --opset 13
+```
+
+- After changing `Add` to add module, export again. `best.pt` includes model structure. We need to get state_dict, then export.
+
+- After changing `Concat` to bst Concat:
+  - Without quantization, it is OK.
+  - After `fuse_modules`, still OK. 
+  - What happend in `quantizer.prepare_qat()`?
+
+```
+python train.py --data coco128.yaml --epochs 1 --weights runs/train/exp/weights/best.pt --hyp data/hyps/hyp.m-relu-tune.yaml --batch-size 16
+```
+
