@@ -1,5 +1,7 @@
 # YOLOv5 QAT
 
+## 0. Prepare Environment
+
 - QAT requires PyTorch version 1.9.1.
   - For YOLOv5, before install requirements.txt, please install torchvision version 0.10.1 first
     ```
@@ -7,7 +9,71 @@
     pip install -r requirements.txt  
     ```
 
-## 1. Retrain the YOLOv5 by replacing SiLU with ReLU
+### 0.1 Create a virtual environment with PyTorch 1.9.1
+
+```
+python3 -m venv ./venv/torch1.9.1
+
+source ~/venv/torch1.9.1/bin/activate
+
+pip install setuptools numpy==1.23.5
+
+pip install torch==1.9.1
+
+pip install torchvision==0.10.1
+```
+
+### 0.2 QAT setup
+
+- Remove the Tensorflow installation
+
+```
+install_requires.extend([
+    'torch==1.9.1',
+    'torchviz',
+    'onnx==1.9.0',
+    'onnxoptimizer==0.2.6',
+    'onnxruntime-gpu==1.9.0',
+    'tf2onnx==1.9.2',
+    # 'tensorflow==1.15.2',
+    'tqdm'
+])
+```
+
+- Setup
+```
+pip install Cython
+
+python setup.py develop
+```
+
+- In case there are some errors:
+```
+AttributeError: module 'numpy' has no attribute 'object'
+```
+
+It seems numpy 1.24.0 has some errors. Try:
+```
+pip install numpy==1.23.5
+
+1 - pip uninstall -y numpy
+2 - pip uninstall -y setuptools
+3 - pip install setuptools
+4 - pip install numpy
+```
+
+### 0.3 YOLOv5 installation
+```
+pip install -r requirements.txt
+```
+
+## 2. Retrain float YOLOv5
+
+```
+python train.py --data coco.yaml --epochs 300 --weights runs/train/act_relu/weights/best.pt --hyp data/hyps/hyp.m-relu-tune.yaml --batch-size 64
+```
+
+## 1. Retrain YOLOv5 by replacing SiLU with ReLU
 
 ### 1.1 Change default activation to ReLU
 ```
