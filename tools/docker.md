@@ -16,6 +16,10 @@ To create a container layer from an image, use the command __docker create__.
 
 <img src="fig/container-vs-virtual-machine.png">
 
+<img src="fig/image1.jpg">
+
+<img src="fig/Cx1eo.png">
+
 ### Show the docker images
 ```
 docker images
@@ -25,7 +29,11 @@ docker images
 ```
 docker ps
 ```
+You can see all containers with
 
+```
+docker ps -a
+```
 ## How to Create a Docker Image
 
 ### Interactive Method
