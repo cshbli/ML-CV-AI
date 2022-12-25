@@ -14,9 +14,7 @@ A `Docker container` is a virtualized run-time environment where users can isola
 
 To create a container layer from an image, use the command __docker create__.
 
-<img src="fig/container-vs-virtual-machine.png">
-
-<img src="fig/image1.jpg">
+You can create multiple containers from the same docker image.
 
 <img src="fig/Cx1eo.png">
 
@@ -34,6 +32,13 @@ You can see all containers with
 ```
 docker ps -a
 ```
+
+## Docker Containers and Virtual Machines
+
+<img src="fig/container-vs-virtual-machine.png">
+
+<img src="fig/Docker-vs-VM-Memory-usage.webp">
+
 ## How to Create a Docker Image
 
 ### Interactive Method
@@ -99,6 +104,8 @@ The following is a set of simplified steps to creating an image interactively:
 __Advantages__: Clean, compact and repeatable recipe-based images. Easier lifecycle management and easier integration into continuous integration (CI) and continuous delivery (CD) processes. 
 
 The Dockerfile approach is the method of choice for real-world, enterprise-grade container deployments. It’s a more systematic, flexible, and efficient way to build Docker images and the key to compact, reliable, and secure container environments.
+
+<img src="fig/image1.jpg">
 
 In short, the Dockerfile method is a three-step process whereby you create the Dockerfile and add the commands you need to assemble the image.
 
