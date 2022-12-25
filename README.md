@@ -145,7 +145,8 @@
   * [Word2Vec](./text/Word2Vec.md)
   * [Doc2Vec](./text/Doc2Vec.md)  
      
-## Small Techniques and Utilities
+## Miscellaneous
+* [Docker](./tools/docker.md)
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
 * [PyQt5 and designer Installation](./tools/PyQt5.md)
 * [Notes](./tools/notes.md)
