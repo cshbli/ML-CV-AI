@@ -257,6 +257,8 @@ class DetectionModel(BaseModel):
 
 We are not going to do QAT for the last several layers. Thoese layers will be processed by DSP.
 
+<img src="pic/yolov5m_qat.png">
+
 ```
 class Detect(nn.Module):
     # YOLOv5 Detect head for detection models
@@ -307,45 +309,22 @@ class Detect(nn.Module):
         return x if self.training else (torch.cat(z, 1),) if self.export else (torch.cat(z, 1), x)
 ```
 
-<img src="pic/yolov5m_qat.png">
-
 ## 2. Retrain float YOLOv5
 
-- Assume we have replacing SiLU with ReLU pretrained model at `runs/train/act_relu/weights/best.pt`. If not, starting from `yolov5m.pt`. 
-
-```
-python train.py --data coco.yaml --epochs 300 --weights runs/train/act_relu/weights/best.pt --hyp data/hyps/hyp.m-relu-tune.yaml --batch-size 64
-```
-
-## 1. Retrain YOLOv5 by replacing SiLU with ReLU
-
-### 1.1 Change default activation to ReLU
-```
-class Conv(nn.Module):
-    # Standard convolution with args(ch_in, ch_out, kernel, stride, padding, groups, dilation, activation)
-    # default_act = nn.SiLU()  # default activation
-    default_act = nn.ReLU()
-
-    def __init__(self, c1, c2, k=1, s=1, p=None, g=1, d=1, act=True):
-        super().__init__()
-        self.conv = nn.Conv2d(c1, c2, k, s, autopad(k, p, d), groups=g, dilation=d, bias=False)
-        self.bn = nn.BatchNorm2d(c2)
-        self.act = self.default_act if act is True else act if isinstance(act, nn.Module) else nn.Identity()
-
-    def forward(self, x):
-        return self.act(self.bn(self.conv(x)))
-
-    def forward_fuse(self, x):
-        return self.act(self.conv(x))
-```
-
-- Once we changed the default_act to ReLU, we can't use auto batch size anymore. 
-- We need specifiy the `batch-size`
-
-### 1.2 Retrain on the COCO
+### 2.0 Accuracy check by replacing SiLU with ReLU
 
 - Make sure to change learning rate, otherwise it will long time to converge.
-- Also we can change the default `batch-size` from 16 to 64
+  - We use a new hyps yaml here `hyp.m-relu-tune.yaml`. It is based on `hyp.scratch-low.yaml`, changed lr to smaller value.
+    ```
+    lr0: 0.001  # initial learning rate (SGD=1E-2, Adam=1E-3), changed from 0.01
+    lrf: 0.001  # final OneCycleLR learning rate (lr0 * lrf), changed from 0.01
+    ...
+    warmup_bias_lr: 0.01  # warmup initial bias lr, changed from 0.1
+    ...
+    ```
+- Once we changed the default_act to ReLU, we can't use auto batch size anymore. 
+- We need specifiy the `batch-size`
+  - Also we can change the default `batch-size` from 16 to 64
 
 ```
 python train.py --data coco.yaml --epochs 50 --weights yolov5m.pt --hyp data/hyps/hyp.m-relu-tune.yaml --batch-size 64
@@ -472,7 +451,22 @@ python train.py --data coco.yaml --epochs 50 --weights yolov5m.pt --hyp data/hyp
                  Class     Images  Instances          P          R      mAP50   mAP50-95: 100%|██████████| 40/40 [01:25<00:00,  2.13s/it]
                    all       5000      36335       0.71      0.568      0.619      0.431
 ```
-### 1.3 Export to ONNX
+
+### 2.1 After applying all model changes 
+
+- Assume we have replacing SiLU with ReLU pretrained model at `runs/train/act_relu/weights/best.pt`. If not, starting from `yolov5m.pt`. 
+
+```
+python train.py --data coco.yaml --epochs 300 --weights runs/train/act_relu/weights/best.pt --hyp data/hyps/hyp.m-relu-tune.yaml --batch-size 64
+```
+
+
+
+
+
+
+
+## Notes
 
 - It is weird, that after changing `Add` to add module, the accuracy dramastically dropped. Let's see what are the differences.
 
