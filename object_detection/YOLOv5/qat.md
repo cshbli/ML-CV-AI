@@ -316,7 +316,7 @@ class Detect(nn.Module):
 ### 2.0 Accuracy check by replacing SiLU with ReLU
 
 - Make sure to change learning rate, otherwise it will long time to converge.
-  - We use a new hyps yaml here `hyp.m-relu-tune.yaml`. It is based on `hyp.scratch-low.yaml`, changed lr to smaller value.
+  - We use a new hyps yaml here [hyp.m-relu-tune.yaml](./hyp.m-relu-tune.yaml). It is based on `hyp.scratch-low.yaml`, changed lr to smaller value.
     ```
     lr0: 0.001  # initial learning rate (SGD=1E-2, Adam=1E-3), changed from 0.01
     lrf: 0.001  # final OneCycleLR learning rate (lr0 * lrf), changed from 0.01
@@ -462,10 +462,7 @@ python train.py --data coco.yaml --epochs 50 --weights yolov5m.pt --hyp data/hyp
 python train.py --data coco.yaml --epochs 300 --weights runs/train/act_relu/weights/best.pt --hyp data/hyps/hyp.m-relu-tune.yaml --batch-size 64
 ```
 
-
-
-
-
+The Result log is [results_act_relu_add_cat.csv](./results_act_relu_add_cat.csv)
 
 
 ## Notes
