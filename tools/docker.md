@@ -136,6 +136,11 @@ docker build -f Dockerfile -t my-nginx:0.1 .
   apt-get install openssh-server
   ```
 
+- Enable the ssh service
+  ```
+  sudo systemctl enable ssh
+  ```
+
 - Enable root login in the container
 
   By default, ssh disables root login: you are expected to log in as user and then use su or sudo to become root.
@@ -256,5 +261,5 @@ dokcer rm -f CONTAINER-NAME
 
 ```
 docker image rm DOCKER-IMAGE
-docker image rm -r DOCKER-IMAGE
+docker image rm -f DOCKER-IMAGE
 ```

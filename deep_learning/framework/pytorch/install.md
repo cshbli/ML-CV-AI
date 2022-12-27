@@ -14,6 +14,11 @@ python3 -m venv ./venv/torch1.13.0
 source ~/venv/torch1.13.0/bin/activate
 ```
 
+- Update pip
+```
+python -m pip install --upgrade pip
+```
+
 - Install NumPy SciPy Pandas
 
 ```
