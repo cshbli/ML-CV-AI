@@ -113,3 +113,15 @@ torch.cuda.device_count()
 torch.cuda.get_device_name(0)
 torch.cuda.current_device()
 ```
+
+Sometimes especially while using docker, although torch.cuda.is_available() returns True. It is possible that some errors like the following will pop up:
+```
+RuntimeError: CUDA error: no kernel image is available for execution on the device
+```
+
+To make sure the CUDA is available:
+
+```
+x = torch.rand(5, 3).to('cuda')
+print(x)
+```
