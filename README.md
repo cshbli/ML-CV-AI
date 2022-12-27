@@ -147,6 +147,7 @@
      
 ## Miscellaneous
 * [Docker](./tools/docker.md)
+  * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
 * [PyQt5 and designer Installation](./tools/PyQt5.md)
 * [Notes](./tools/notes.md)

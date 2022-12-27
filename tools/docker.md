@@ -1,5 +1,12 @@
 # Docker
 
+* [Docker Image and Docker Container](./docker.md#docker-image-and-docker-container)
+* [Docker Containers and Virtual Machines](./docker.md#docker-containers-and-virtual-machines)
+* [How to Create a Docker Image](./docker.md#how-to-create-a-docker-image)
+  * [Interactive Method](./docker.md#interactive-method)
+  * [Dockerfile Method](./docker.md#dockerfile-method)
+* [Tips](./docker.md#tips)
+
 ## Docker Image and Docker Container
 
 A `Docker image` is a read-only template that contains the source code, libraries, dependencies, tools, and other files for creating `a container` that can run on the `Docker platform`.
@@ -120,4 +127,134 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y nginx curl && rm 
 Now use the Docker build command to create your Docker image. Use the -t flag to set an image name and tag:
 ```
 docker build -f Dockerfile -t my-nginx:0.1 .
+```
+
+## Visual Studio Code remote connect to a docker container
+
+- Install SSH inside the container
+  ```
+  apt-get install openssh-server
+  ```
+
+- Enable root login in the container
+
+  By default, ssh disables root login: you are expected to log in as user and then use su or sudo to become root.
+
+  That said, if you want to disable this behaviour, edit `/etc/ssh/sshd_config` and add the line `PermitRootLogin Yes`.
+
+  ```
+  vim /etc/ssh/sshd_config
+  ```
+
+  ```
+  # PermitRootLogin prohibit-password
+  PermitRootLogin yes
+  RSAAuthentication yes
+  PubkeyAuthentication yes
+  ```
+
+- Set password for root user in the container
+  ```
+  passwd
+  ```
+
+- Start SSH server
+  ```
+  /etc/init.d/ssh restart
+  ```  
+
+- Publish port `22` as __8022__ or something similar, while starting the container
+  ```
+  docker run -p 8022:22 --name CONTIANER-NAME -it DOCKER-IMAGE
+  ```
+
+- Visual Studio Code Remote Host Config
+
+  ```
+  Host NAME-EASY-TO-IDENTIFY
+      HostName 10.1.70.71
+      User root
+      Port 8022
+  ```    
+
+## Tips
+
+### Show all docker images
+```
+docker images
+```
+
+### Show all docker containers
+
+- Show active containers
+  ```
+  docker ps
+  ```
+- Show all containers
+  ```
+  docker ps -a
+  ```
+
+### Force stopping a container
+```
+docker kill CONTAINER-ID
+```
+
+### Interactive bash shell
+
+The `-it` instructs Docker to allocate a __pseudo-TTY__ connected to the container's stdin; creating an interactive bash shell in the container.
+
+```
+docker run -it DOCKER-IMAGE
+```
+
+### Enable GPUs
+As Docker doesn’t provide your system’s GPUs by default, you need to create containers with the `--gpus` flag for your hardware to show up. You can either specify specific devices to enable or use the `all` keyword.
+
+```
+docker run --gpus all -it DOCKER-IMAGE
+```
+Show GPU status
+```
+nvidia-smi
+```
+
+
+### Detached mode
+
+You can start a docker container in detached mode with a `-d` option. So the container starts up and run in background. That means, you start up the container and could use the console after startup for other commands.
+
+```
+docker run -d -it DOCKER-IMAGE
+```
+
+### Give names to containers
+
+You can give names to your containers using the `--name` flag for docker run.
+
+If `--name` is not provided Docker will automatically generate an alphanumeric string for the container name.
+
+```
+docker run --name CONTAINER-NAME -it DOCKER-IMAGE
+```
+
+### Published ports
+By default, when you create or run a container using docker create or docker run, it does not publish any of its ports to the outside world. To make a port available to services outside of Docker, use the `--publish` or `-p` flag. This creates a firewall rule which maps a container port to a port on the Docker host to the outside world. 
+
+```
+docker run -p 8022:22 --name CONTIANER-NAME -it DOCKER-IMAGE
+```
+
+### Remove a docker container
+
+```
+docker rm CONTAINER-NAME
+dokcer rm -f CONTAINER-NAME
+```
+
+## Remove a docker image
+
+```
+docker image rm DOCKER-IMAGE
+docker image rm -r DOCKER-IMAGE
 ```
