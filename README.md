@@ -67,16 +67,16 @@
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
   * Deep Learning Framework
     * PyTorch
-        * [PyTorch Installation](./framework/pytorch/install.md)
-        * [PyTorch Quickstart](./framework/pytorch/quickstart_tutorial.ipynb)
+        * [PyTorch Installation](./deep_learning/framework/pytorch/install.md)
+        * [PyTorch Quickstart](./deep_learning/framework/pytorch/quickstart_tutorial.ipynb)
     * Tensorflow
-        * [logits, softmax and softmax_cross_entropy_with_logits](./framework/logits_softmax.ipynb)
-        * [Protobuf and Flat Buffers](./framework/protobuf.md)
-        * [tf.placeholder vs tf.Variable](./framework/placeholder_variable.ipynb)
-        * [Graph vs GraphDef](./framework/Graph_and_GraphDef.md)
-        * [Save and Restore Tensorflow Models](./framework/save_and_restore_tensorflow_models.ipynb)
-        * [TFRecord to Store and Extract Data](./framework/TFRecord.ipynb)
-        * [Convert a Global Average Pooling layer to Conv2D](./framework/gap_to_conv2d.ipynb) 
+        * [logits, softmax and softmax_cross_entropy_with_logits](./deep_learning/framework/logits_softmax.ipynb)
+        * [Protobuf and Flat Buffers](./deep_learning/framework/protobuf.md)
+        * [tf.placeholder vs tf.Variable](./deep_learning/framework/placeholder_variable.ipynb)
+        * [Graph vs GraphDef](./deep_learning/framework/Graph_and_GraphDef.md)
+        * [Save and Restore Tensorflow Models](./deep_learning/framework/save_and_restore_tensorflow_models.ipynb)
+        * [TFRecord to Store and Extract Data](./deep_learning/framework/TFRecord.ipynb)
+        * [Convert a Global Average Pooling layer to Conv2D](./deep_learning/framework/gap_to_conv2d.ipynb) 
     * ONNX
       * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
   * Quantization
