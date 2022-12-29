@@ -87,6 +87,14 @@ pip install graphviz
 pip install torchviz
 ```
 
+### Fetch specified wheel 
+
+- example:
+
+```
+pip3 install torch==1.9.1+cu111 torchvision==0.10.1+cu111 torchaudio==0.9.1 -f https://download.pytorch.org/whl/torch_stable.html
+```
+
 ## Verification
 
 To ensure that PyTorch was installed correctly, we can verify the installation by running sample PyTorch code. Here we will construct a randomly initialized tensor.
