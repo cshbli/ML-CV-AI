@@ -148,9 +148,13 @@
 ## Miscellaneous
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
+* [Git](./tools/git.md)
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
 * [PyQt5 and designer Installation](./tools/PyQt5.md)
 * [Notes](./tools/notes.md)
+
+## Resources
+* [Netron](https://netron.app/)
 
 ## Dataset
 * [Kaggle Datasets](https://www.kaggle.com/datasets)
