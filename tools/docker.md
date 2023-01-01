@@ -257,9 +257,19 @@ docker rm CONTAINER-NAME
 dokcer rm -f CONTAINER-NAME
 ```
 
-## Remove a docker image
+### Remove a docker image
 
 ```
 docker image rm DOCKER-IMAGE
 docker image rm -f DOCKER-IMAGE
+```
+
+### configure docker proxy
+You can set the proxy environment variables when starting the container, for example:
+
+```
+docker run \
+  -e http_proxy=http://username:password@proxy2.domain.com \
+  -e https_proxy=http://username:password@proxy2.domain.com \
+  DOCKER-IMAGE
 ```

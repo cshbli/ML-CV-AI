@@ -147,6 +147,8 @@
   * [Doc2Vec](./text/Doc2Vec.md)  
      
 ## Miscellaneous
+* Python
+  * [Advanced Python Functions](./tools/advanced_python_functions.ipynb)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)
@@ -157,6 +159,7 @@
 ## Resources
 * [Netron](https://netron.app/)
 * [Hugging Face](https://huggingface.co/)
+* [PyTorch Image Models](https://github.com/rwightman/pytorch-image-models)
 
 ## Dataset
 * [Kaggle Datasets](https://www.kaggle.com/datasets)
