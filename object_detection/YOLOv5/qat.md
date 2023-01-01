@@ -465,6 +465,21 @@ python train.py --data coco.yaml --epochs 300 --weights runs/train/act_relu/weig
 The Result log is [results_act_relu_add_cat.csv](./results_act_relu_add_cat.csv)
 
 
+## Yolov5m V5.0
+
+### Retrain after applying all model changes
+```
+python train.py --data coco.yaml --epochs 50 --weights weights/yolov5m.pt --hyp data/hyp.m-relu-tune.yaml --batch-size 32 --device 0,1
+```
+
+The result log is [results_v5.0_act_relu_add_cat.txt](./results_v5.0_act_relu_add_cat.txt)
+
+### Verify the QAT flow with coco128
+
+```
+python train.py --data coco128.yaml --epochs 50 --weights runs/train/act_relu_add_cat/weights/best.pt --hyp data/hyp.m-relu-tune.yaml --batch-size 8 --bst_qat --device 0
+```
+
 ## Notes
 
 - It is weird, that after changing `Add` to add module, the accuracy dramastically dropped. Let's see what are the differences.
