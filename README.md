@@ -156,6 +156,7 @@
 
 ## Resources
 * [Netron](https://netron.app/)
+* [Hugging Face](https://huggingface.co/)
 
 ## Dataset
 * [Kaggle Datasets](https://www.kaggle.com/datasets)
