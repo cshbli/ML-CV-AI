@@ -98,6 +98,7 @@
   * Transformer
     * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
+  * [RepVgg](./deep_learning/RepVgg/RepVgg.ipynb)
   * [Compiler](./deep_learning/compiler/README.md)
      * [GLOW](https://github.com/pytorch/glow)
 
