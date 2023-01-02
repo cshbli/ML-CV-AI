@@ -149,6 +149,7 @@
 ## Miscellaneous
 * Python
   * [Advanced Python Functions](./tools/advanced_python_functions.ipynb)
+  * [Replacing Loops with Vectorization](./tools/python_vectorization.ipynb)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)
