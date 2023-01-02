@@ -96,9 +96,11 @@
       * [ONNX Runtime Qunatization Example MobilenetV2 with QDQ Debugging](./deep_learning/quantization/ONNX/quantization_example.md)
       * [Mobilenet v2 Quantization with ONNX Runtime on CPU](./deep_learning/quantization/ONNX/mobilenet.ipynb)
   * Transformer
+    * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
   * [Compiler](./deep_learning/compiler/README.md)
      * [GLOW](https://github.com/pytorch/glow)
+
 * Computer Vision  
   * [Overview](./computer_vision/README.md)
   * [Object Detection](./object_detection/README.md)
@@ -152,6 +154,8 @@
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)
+* [Markdown and LaTeX introduction](https://ashki23.github.io/markdown-latex.html)
+  * [PDF print out](./tools/Markdown%20and%20LaTeX%20introduction.pdf)
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
 * [PyQt5 and designer Installation](./tools/PyQt5.md)
 * [Notes](./tools/notes.md)
