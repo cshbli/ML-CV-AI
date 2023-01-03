@@ -97,8 +97,9 @@
       * [Mobilenet v2 Quantization with ONNX Runtime on CPU](./deep_learning/quantization/ONNX/mobilenet.ipynb)
   * Transformer
     * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)
+    * [The illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
-  * [RepVgg](./deep_learning/RepVgg/RepVgg.ipynb)
+  * [RepVGG: Making VGG-style ConvNets Great Again](./deep_learning/RepVgg/RepVgg.ipynb)
   * [Compiler](./deep_learning/compiler/README.md)
      * [GLOW](https://github.com/pytorch/glow)
 
@@ -166,6 +167,7 @@
 * [Netron](https://netron.app/)
 * [Hugging Face](https://huggingface.co/)
 * [PyTorch Image Models](https://github.com/rwightman/pytorch-image-models)
+* [Learn OpenCV : C++ and Python Examples](https://github.com/spmallick/learnopencv)
 
 ## Dataset
 * [Kaggle Datasets](https://www.kaggle.com/datasets)
