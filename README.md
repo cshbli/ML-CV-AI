@@ -117,6 +117,7 @@
         * [NMS in PyTorch](./object_detection/concepts/nms_pytorch.ipynb)
       * [Region Proposal Network (RPN)](./object_detection/concepts/README.md#region-proposal-network-rpn)
     * [YOLOv7](./object_detection/YOLOv7/README.md)
+      * [YOLOv7 QAT](./object_detection/YOLOv7/qat.md)
     * [YOLOv5](./object_detection/YOLOv5/README.md)
       * [Object Detection using YOLOv5 and OpenCV DNN](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
       * [YOLOv5 Post Training Quantization](./object_detection/YOLOv5/quantization.ipynb)
