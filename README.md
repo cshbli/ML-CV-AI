@@ -95,6 +95,9 @@
     * [ONNX](https://onnxruntime.ai/docs/performance/quantization.html)
       * [ONNX Runtime Qunatization Example MobilenetV2 with QDQ Debugging](./deep_learning/quantization/ONNX/quantization_example.md)
       * [Mobilenet v2 Quantization with ONNX Runtime on CPU](./deep_learning/quantization/ONNX/mobilenet.ipynb)
+    * [TensorRT](https://github.com/pytorch/TensorRT/tree/main/notebooks)
+      * [Docker Environment Setup](./deep_learning/quantization/TensorRT/docker.md)
+      * [VGG16 QAT on CIFAR-10](./deep_learning/quantization/TensorRT/vgg-qat.ipynb)
   * Transformer
     * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)
     * [The illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
