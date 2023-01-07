@@ -98,6 +98,7 @@
     * [TensorRT](https://github.com/pytorch/TensorRT/tree/main/notebooks)
       * [Docker Environment Setup](./deep_learning/quantization/TensorRT/docker.md)
       * [VGG16 QAT on CIFAR-10](./deep_learning/quantization/TensorRT/vgg-qat.ipynb)
+      * [YOLOv5 Quant Example](https://github.com/maggiez0138/yolov5_quant_sample)
   * Transformer
     * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)
     * [The illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
