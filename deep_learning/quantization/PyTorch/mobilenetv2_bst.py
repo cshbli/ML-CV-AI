@@ -1,12 +1,13 @@
-import torch
 from torch import nn
 from torch import Tensor
-# from torchvision.models.utils import load_state_dict_from_url
-from torch.hub import load_state_dict_from_url
+from torchvision.models.utils import load_state_dict_from_url
 from typing import Callable, Any, Optional, List
 
 from torch.quantization import QuantStub, DeQuantStub
 from torchvision.models.quantization.utils import _replace_relu
+
+from bstnnx_training.PyTorch.QAT import modules as bstnn
+
 
 __all__ = ['MobileNetV2', 'mobilenet_v2', 'QuantizableMobileNetV2', 'quantiable_mobilenet_v2']
 
@@ -58,8 +59,7 @@ class ConvBNActivation(nn.Sequential):
         if norm_layer is None:
             norm_layer = nn.BatchNorm2d
         if activation_layer is None:
-            # activation_layer = nn.ReLU6
-            activation_layer = nn.ReLU
+            activation_layer = nn.ReLU6
         super(ConvBNReLU, self).__init__(
             nn.Conv2d(in_planes, out_planes, kernel_size, stride, padding, dilation=dilation, groups=groups,
                       bias=False),
@@ -184,6 +184,11 @@ class MobileNetV2(nn.Module):
         # make it nn.Sequential
         self.features = nn.Sequential(*features)
         
+        # QAT Modification
+        self.use_bstnn = kwargs.get('use_bstnn', False)
+        if self.use_bstnn:
+            self.avgpool = bstnn.A1000A0AvgPool2d(kernel_size=(7, 7))
+
         # building classifier
         self.classifier = nn.Sequential(
             nn.Dropout(0.2),
@@ -213,7 +218,13 @@ class MobileNetV2(nn.Module):
         # (this one) needs to have a name other than `forward` that can be accessed in a subclass
         x = self.features(x)
         # Cannot use "squeeze" as batch-size can be 1 => must use reshape with x.shape[0]
-        x = nn.functional.adaptive_avg_pool2d(x, (1, 1)).reshape(x.shape[0], -1)
+        
+        # QAT Modification
+        if self.use_bstnn:
+            x = self.avgpool(x)
+            x = x.reshape(x.shape[0], -1)
+        else:
+            x = nn.functional.adaptive_avg_pool2d(x, (1, 1)).reshape(x.shape[0], -1)
         x = self.classifier(x)
         return x
 
@@ -243,11 +254,17 @@ class QuantizableInvertedResidual(InvertedResidual):
         super(QuantizableInvertedResidual, self).__init__(*args, **kwargs)
         
         # QAT Modification
-        self.skip_add = nn.quantized.FloatFunctional()
+        self.use_bstnn = kwargs.get('use_bstnn', False)
+        if self.use_bstnn:
+            self.add = bstnn.Add()
+        else:
+            self.skip_add = nn.quantized.FloatFunctional()
 
     def forward(self, x):
         # QAT Modification
-        if self.use_res_connect:
+        if self.use_res_connect and self.use_bstnn:
+            return self.add(x, self.conv(x))
+        elif self.use_res_connect:
             return self.skip_add.add(x, self.conv(x))
         else:
             return self.conv(x)
@@ -255,7 +272,7 @@ class QuantizableInvertedResidual(InvertedResidual):
     def fuse_model(self):
         for idx in range(len(self.conv)):
             if type(self.conv[idx]) == nn.Conv2d:
-                torch.ao.quantization.fuse_modules(self.conv, [str(idx), str(idx + 1)], inplace=True)
+                fuse_modules(self.conv, [str(idx), str(idx + 1)], inplace=True)
 
 
 class QuantizableMobileNetV2(MobileNetV2):
@@ -279,7 +296,7 @@ class QuantizableMobileNetV2(MobileNetV2):
     def fuse_model(self):
         for m in self.modules():
             if type(m) == ConvBNReLU:
-                torch.ao.quantization.fuse_modules(m, ['0', '1', '2'], inplace=True)
+                fuse_modules(m, ['0', '1', '2'], inplace=True)
             if type(m) == QuantizableInvertedResidual:
                 m.fuse_model()
 
