@@ -273,3 +273,17 @@ docker run \
   -e https_proxy=http://username:password@proxy2.domain.com \
   DOCKER-IMAGE
 ```
+
+### Remove all stopped containers
+
+To clean unused containers, plus networks and dangling images.
+
+```
+docker system prune
+```
+or 
+```
+docker container prune
+docker image prune
+docker network prune
+```
