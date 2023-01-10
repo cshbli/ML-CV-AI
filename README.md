@@ -124,7 +124,7 @@
       * [YOLOv7 QAT](./object_detection/YOLOv7/qat.md)
     * [YOLOv5](./object_detection/YOLOv5/README.md)
       * [Object Detection using YOLOv5 and OpenCV DNN](./object_detection/YOLOv5/object_detection_using_yolov5.ipynb)
-      * [YOLOv5 Post Training Quantization](./object_detection/YOLOv5/quantization.ipynb)
+      * [YOLOv5 Post Training Quantization with ONNX](https://github.com/cshbli/yolov5_qat/blob/ptq_onnx/ptq_onnx.ipynb)
       * [YOLOv5 QAT](./object_detection/YOLOv5/qat.md)
     * [SSD - Single Shot Detector](./object_detection/SSD/README.md)
     * [RetinaNet](./object_detection/RetinaNet/README.md)

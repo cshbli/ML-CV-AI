@@ -2,7 +2,7 @@
 
 ## Store git personal access token
 
-```
+```bash
 cat ~/.netrc
 
 machine github.com login <login-id> password <token-password>
@@ -17,12 +17,12 @@ git config --global -add safe.directory <repo_path>
 ## Git to Ignore File Mode Changes
 
 ### Ignoring file mode changes
-```
+```bash
 git config core.filemode false
 ```
 
 Attaching the `--global` flag makes it a default for the logged user:
-```
+```bash
 git config --global core.filemode false
 ```
 
@@ -31,7 +31,7 @@ The `core.fileMode` is not recommended practice. It covers only the executable b
 
 The appropriate way to solve this kind of problem is to manage the folder and file permission separately by running the following:
 
-```
+```bash
 find . -type d -exec chmod a+rwx {} \; # Make folders traversable and read/write
 find . -type f -exec chmod a+rw {} \;  # Make files read/write
 ```
@@ -51,3 +51,12 @@ The application of this level includes the operating system user. Global configu
 --system
 
 This configuration includes all users on an operating system and all repositories. The System-level configuration file is placed in the git config file of the system root path.
+
+## Remove the last commit
+
+Be careful that this will create an "alternate reality" for people who have already fetch/pulled/cloned from the remote repository. But in fact, it's quite simple:
+
+```bash
+git reset HEAD^ # remove commit locally
+git push origin +HEAD # force-push the new HEAD commit
+```
