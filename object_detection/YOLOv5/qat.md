@@ -465,6 +465,13 @@ python train.py --data coco.yaml --epochs 300 --weights runs/train/act_relu/weig
 The Result log is [results_act_relu_add_cat.csv](./results_act_relu_add_cat.csv)
 
 
+### Verify the QAT flow with coco128
+
+```
+python train.py --data coco128.yaml --epochs 50 --weights runs/train/act_relu_add_cat/weights/best.pt --hyp data/hyps/hyp.m-relu-tune.yaml --batch-size 8 --bst_qat --device 0
+```
+
+
 ## Yolov5m V5.0
 
 ### Retrain after applying all model changes
