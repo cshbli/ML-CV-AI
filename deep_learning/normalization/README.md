@@ -12,6 +12,18 @@
    <img src="visual_comparison_of_normalizations.png" width="800px" title="A visual comparison of various normalization methods">
  </p>
 
+ We assume that the activations at any layer would be of the dimensions NxCxHxW (and, of course, in the real number space), where, 
+ - N = Batch Size, 
+ - C = Number of Channels (filters) in that layer, 
+ - H = Height of each activation map, 
+ - W = Width of each activation map.
+
+ Generally, normalization of activations require `shifting` and `scaling` the activations by `mean` and `standard deviation` respectively. Batch Normalization, Instance Normalization and Layer Normalization differ in the manner these statistics are calculated.
+
+ <p align="center">
+  <img src="1_3ieGJOruPtmgTYlb7ZTtnw.webp">
+ </p>
+
 ## Benefits of using normalization
 * It makes the Optimization faster because normalization doesn’t allow weights to explode all over the place and restricts them to a certain range.
  <p align="center">
@@ -37,6 +49,13 @@
 * Which norm technique would be the best trade-off for computation and accuracy for your network ?
 
 ## Batch Normalization
+
+<p align="center">
+<img src="1_a7tkJTGmDLD4ovMmGCgziA.webp">
+<img src="1_JqbhYjs4yYieoAG1tjzkkA.webp">
+</p>
+
+In “Batch Normalization”, mean and variance are calculated for each individual channel across all samples and both spatial dimensions.
 
   The mainstream normalization technique for almost all convolutional neural networks today is <b>Batch Normalization (BN)</b>, which has been widely adopted in the development of deep learning. Proposed by Google in 2015, BN can not only accelerate a model’s converging speed, but also alleviate problems such as Gradient Dispersion in the deep neural network, making it easier to train models.
  
@@ -134,6 +153,12 @@ for v in variables.keys():
 
 ## Layer Normalization
 
+<p align="center">
+<img src="1_Fe3rXQBU15z4CoiG3zInKg.webp">
+</p>
+
+In “Layer Normalization”, mean and variance are calculated for each individual sample across all channels (and maybe both spatial dimensions).
+
  Layer normalization normalizes input across the features instead of normalizing input features across the batch dimension in batch normalization.
  
  A mini-batch consists of multiple examples with the same number of features. Mini-batches are matrices(or tensors) where one axis corresponds to the batch and the other axis(or axes) correspond to the feature dimensions.
@@ -148,7 +173,15 @@ for v in variables.keys():
  
 ## Instance Normalization
 
+<p align="center">
+<img src="1_wa1PwStln3dWKkqEKrlinA.webp">
+<img src="1_H8WrL_Xqxdle8qWgMr82tA.webp">
+</p>
+
+In “Instance Normalization”, mean and variance are calculated for each individual channel for each individual sample across both spatial dimensions.
+
  Layer normalization and instance normalization is very similar to each other but the difference between them is that instance normalization normalizes across each channel in each training example instead of normalizing across input features in an training example. Unlike batch normalization, the instance normalization layer is applied at test time as well(due to non-dependency of mini-batch).
+
  <p align="center">
   <img src="instance_normalization_formula.png" width="600px" title="Instance Normalization">
  </p>
@@ -158,6 +191,7 @@ for v in variables.keys():
  This technique is originally devised for <b>style transfer</b>, the problem instance normalization tries to address is that the network should be agnostic to the contrast of the original image.
  
 ## Group Normalization
+
  Group Normalization normalizes over group of channels for each training examples. We can say that, Group Norm is in between Instance Norm and Layer Norm.
  
  When we put all the channels into a single group, group normalization becomes Layer normalization. And, when we put each channel into different groups it becomes Instance normalization.
@@ -196,3 +230,4 @@ for v in variables.keys():
 * [Group Normalization](https://arxiv.org/pdf/1803.08494.pdf) Yuxin Wu, Kaiming He.
 * [Batch-Instance Normalization for Adaptively Style-Invariant Neural Networks](https://arxiv.org/pdf/1805.07925.pdf) Hyeonseob Nam, Kyo-Eun Kim
 * [Weight Normalization: A Simple Reparameterization to Accelerate Training of Deep Neural Networks](https://arxiv.org/pdf/1602.07868.pdf) Tim Salimans, Diederik P. Kingma.
+* [Batch Normalization, Instance Normalization, Layer Normalization: Structural Nuances](https://becominghuman.ai/all-about-normalization-6ea79e70894b)
