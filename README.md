@@ -43,7 +43,7 @@
     * [Perceptron](./machine_learning/perceptron.ipynb)
     * Support Vector Machines
     * [Decision Tree](./machine_learning/decision_tree.ipynb)
-    * [Random Forest](./machine_learning/iris_tutorial.ipynb)
+    * [Random Forest](./machine_learning/random_forest/Random_Forest_Tutorial.ipynb)
     * XGBoost
     * K-Nearest Neighbors (KNN)
     * Naive Bayes Classification
