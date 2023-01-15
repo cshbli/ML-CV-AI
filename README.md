@@ -156,6 +156,9 @@
   * [Word2Vec](./text/Word2Vec.md)
   * [Doc2Vec](./text/Doc2Vec.md)  
      
+## Data Structure and Algorithms
+  * [Heap and Heap Sort in Python](./data_structure/heap_sort.ipynb)
+
 ## Miscellaneous
 * Python
   * [Advanced Python Functions](./tools/advanced_python_functions.ipynb)
