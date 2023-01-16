@@ -3,7 +3,69 @@
   * [Convolution Arithmetic](#convolution-arithmetic)
   * [Transposed Convolution (Deconvolution)](#transposed-convolution)
   * [Grouped Convolution](#grouped-convolution)
-  
+
+## Convolution
+
+<img src="./1_FhMz-8or03woirJcWOsmBA.webp">
+
+Output size:
+```
+n_new = (n_old - f + 1)x(n_old - f + 1) = (5 - 3 + 1)x(5 - 3 + 1) = 3x3
+```
+Here,
+
+- n_new = size of the new output image
+
+- n_old = size of the input image
+
+- f = filter size
+
+This formula is applicable when the stride is 1, and the padding is 0. So it means if stride jumps 1 pixel at a time towards the horizontal side and vertical side, then we will get the 3x3 output image.
+
+### Convolution with Multiple Filters
+
+<img src="./convolution-with-multiple-filters2.png">
+
+Here we have 2 filters: Filter 1 and Filter 2.
+
+Filter size is 3x3.
+
+### Stride
+
+- It is used to move the filter horizontally or vertically way operations after each pixel jump movement. The jumps and movement are decided by the value of the stride, as shown in the below image.
+
+<img src="./1_sngQpKR69gpwBrTzN6Q3aQ.webp">
+
+- When we use stride, the formula becomes
+
+```
+n_new = [(n_old + 2*p - f)/s + 1]*[(n_old + 2*p - f)/s + 1]
+```
+
+### Padding
+
+<img src="./1_WW57BXqSoH2EeyBhuocuiw.webp">
+
+- The padding is used to keep the boundary information to the next step. It is also used to keep the original input image size so that the information holds still to the other convolutional layers.
+
+- We can do padding with zero value and also do reflective padding with the same value as in the boundary of the original image. The main advantage of using the reflective padding is to stop the discontinuation from the 0 paddings.
+
+- When we use the padding, the formula becomes
+
+```
+n_new = (n_old - f + 2p + 1)x(n_old - f + 2p + 1) = (5 - 3 + 2*1 + 1)x(5 - 3 + 2*1 + 1) = 5x5
+```
+
+Here:
+
+- n_new = size of the new output image
+
+- n_old = size of the input image
+
+- f = filter size
+
+- p = number of padding
+
 ## 1x1 Convolution
 
 The following picture illustrates how 1 x 1 convolution works for an input layer with dimension H x W x D. After 1 x 1 convolution with filter size 1 x 1 x D, the output channel is with dimension H x W x 1. If we apply N such 1 x 1 convolutions and then concatenate results together, we could have a output layer with dimension H x W x N.

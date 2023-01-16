@@ -35,8 +35,11 @@
   * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
   * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
   * [Data Preprocessing: Scaling and Standardization](./machine_learning/data_preprocessing.ipynb)
+    * [Standardization and Scaling in Data Preprocessing](./machine_learning/standardization_and_scaling.ipynb)
     * [Data Preprecessing for Mixed Feature Data Types](./machine_learning/column_transformer.ipynb)
+    * [Dealing with Categorical Data: Encoding Features for ML Alogorithms](./machine_learning/categorical_data_encoding.ipynb)
     * [Data Cleaning: Outlier Detection and Removal](./machine_learning/outlier.ipynb)
+  * [Hyper-Parameters Tuning](./machine_learning/hyper_parameters.md)
   * Machine Learning Models
     * Linear Regression
     * [Logistic Regression](./machine_learning/logistic_regression.ipynb)
@@ -64,6 +67,7 @@
 * Deep Learning
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Covolution](./deep_learning/convolution/README.md)
+  * [Pooling](./deep_learning/pooling.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
   * Deep Learning Framework
@@ -164,6 +168,7 @@
   * [Advanced Python Functions](./tools/advanced_python_functions.ipynb)
   * [Replacing Loops with Vectorization](./tools/python_vectorization.ipynb)
   * [Python Tuples vs. Lists](./tools/python_tuples_vs_lists.ipynb)
+  * [Useful Pandas Functions](./tools/pandas.ipynb)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)
