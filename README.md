@@ -171,6 +171,7 @@
   * [PDF print out](./tools/Markdown%20and%20LaTeX%20introduction.pdf)
 * [Visualize Tensorflow graph with Tensorboard](./tools/tensorboard.md)
 * [PyQt5 and designer Installation](./tools/PyQt5.md)
+* [CodeGPT: The VSCode Extension with ChatGPT-Like Functionalities](./tools/CodeGPT.md)
 * [Notes](./tools/notes.md)
 
 ## Resources
