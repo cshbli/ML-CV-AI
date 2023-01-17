@@ -44,8 +44,9 @@
     * Linear Regression
     * [Logistic Regression](./machine_learning/logistic_regression.ipynb)
     * [Perceptron](./machine_learning/perceptron.ipynb)
-    * Support Vector Machines
-    * [Decision Tree](./machine_learning/decision_tree.ipynb)
+    * [Support Vector Machines](./machine_learning/svm/svm.ipynb)
+    * [Decision Tree](./machine_learning/decision_tree/decision_tree.ipynb)
+      * [Decision Tree with IRIS](./machine_learning/decision_tree/decision_tree_iris.ipynb)
     * [Random Forest](./machine_learning/random_forest/Random_Forest_Tutorial.ipynb)
     * XGBoost
     * K-Nearest Neighbors (KNN)
