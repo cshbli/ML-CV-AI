@@ -67,7 +67,7 @@
 
 * Deep Learning
   * [Activation Functions](./deep_learning/activation_function.md)
-  * [Covolution](./deep_learning/convolution/README.md)
+  * [Convolution](./deep_learning/convolution/README.md)
   * [Pooling](./deep_learning/pooling.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)

@@ -30,6 +30,10 @@ Here we have 2 filters: Filter 1 and Filter 2.
 
 Filter size is 3x3.
 
+Suppose we have an input image of size 32*32*3. And we apply 10 filters of size 5*5*3 with valid padding. The output would have the dimensions as 28*28*10.
+
+<img src="./activation-map.png">
+
 ### Stride
 
 - It is used to move the filter horizontally or vertically way operations after each pixel jump movement. The jumps and movement are decided by the value of the stride, as shown in the below image.
