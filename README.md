@@ -41,7 +41,7 @@
     * [Data Cleaning: Outlier Detection and Removal](./machine_learning/outlier.ipynb)
   * [Hyper-Parameters Tuning](./machine_learning/hyper_parameters.md)
   * Machine Learning Models
-    * Linear Regression
+    * [Linear Regression](./machine_learning/regression.ipynb)
     * [Logistic Regression](./machine_learning/logistic_regression.ipynb)
     * [Perceptron](./machine_learning/perceptron.ipynb)
     * [Support Vector Machines](./machine_learning/svm/svm.ipynb)
@@ -164,6 +164,9 @@
      
 ## Data Structure and Algorithms
   * [Heap and Heap Sort in Python](./data_structure/heap_sort.ipynb)
+
+## Linear Algebra
+  * [Matrix Factorization](./linear_algebra/matrix_factorization.ipynb)
 
 ## Miscellaneous
 * Python
