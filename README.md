@@ -28,6 +28,7 @@
     * [Local Minima and Saddle Point](./introduction/gradient_descent.md#local-minima-and-saddle-point)
     * [Vanishing and Exploding Gradient](./introduction/gradient_descent.md#vanishing-and-exploding-gradient)
     * [Exploding Gradient](./introduction/exploding_gradient.md)
+    * [Optimization Algorithms SGD, Adam, RMSProp](./introduction/optimization_algorithms.ipynb)
 
 * Machine Learning  
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
