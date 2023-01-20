@@ -4,6 +4,22 @@
   * [Transposed Convolution (Deconvolution)](#transposed-convolution)
   * [Grouped Convolution](#grouped-convolution)
 
+## A Standard Neural Network to Recognize an Image
+
+<img src="./0_bapkWzxX1rq9idHn.webp">
+
+The above figure shows the matrix data “6” is fed into the standard neural network. A matrix is two-dimensional but the input layer is one-dimensional. How can it fit a neural network model? A very simple and probably naïve way is to separate the columns and stack them vertically into a single column. The matrix data “6” is 28 columns and 28 rows. We stack the 28 columns vertically into a long column so the length of the vector is 28 x 28 = 784.
+
+<b>When separating the columns and stacking them into a long column, we lose the spatial and temporal relationships in an image.</b> This is not the best way to create distinct features for image “6”.
+
+## A Convolutional Neural Network to Recognize an Image
+
+<img src="./1_oFhlkiVPlELo_U6YHEOcbQ.webp">
+
+A feature is something distinct about the original image. Maybe we should take many snapshots of an image, and each of the snapshots has some distinct features for an image. Let’s see an eagle image in the above figure. It would be a huge loss of information if we slice the eagle image into columns and stack them to become one column. Let’s borrow an idea from the camera’s filters. Different filters can produce different filtered images. Each of the filtered images identifies something unique. This treatment retains the spatial and temporal relationships in the original image. The above figure is a hypothetical example that the original image becomes five filtered images. The filtered images can be further filtered to make even more abstract images. These abstract images are the “features”. Although each feature is not very recognizable, together these features can refer to the original eagle image. These features become the inputs for a standard neural network. These features are still in 2-D matrix form, they will become a 1-D vector to feed into the neural network.
+
+<img src="./1_UR2HZhPlQXti05Guo99RlA.webp">
+
 ## Convolution
 
 <img src="./1_FhMz-8or03woirJcWOsmBA.webp">

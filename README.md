@@ -68,6 +68,7 @@
 * Deep Learning
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Convolution](./deep_learning/convolution/README.md)
+    * [Convolution Filters](./deep_learning/convolution/convolution_filters.ipynb)
   * [Pooling](./deep_learning/pooling.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
@@ -138,7 +139,7 @@
      
   * Classification  
     * [Transfer Learning with PyTorch tutorial](./classification/transfer_learning_tutorial.ipynb) 
-  * Object Segmentation
+  * Image/Object Segmentation 
     * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](./object_segmentation/nuclei_segmentation.md)
   * Image Translation
     * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
