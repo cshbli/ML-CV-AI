@@ -158,14 +158,15 @@
       * 3D Object Recognition (3D Cube)
       * 3D Segmentation
       * Sensor Fusion: Cuboids/Segmentation/Tracking   
+
 * Text
   * [Word2Vec](./text/Word2Vec.md)
   * [Doc2Vec](./text/Doc2Vec.md)  
      
-## Data Structure and Algorithms
+* Data Structure and Algorithms
   * [Heap and Heap Sort in Python](./data_structure/heap_sort.ipynb)
 
-## Linear Algebra
+* Linear Algebra
   * [Matrix Factorization](./linear_algebra/matrix_factorization.ipynb)
 
 ## Miscellaneous
