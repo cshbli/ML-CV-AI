@@ -75,6 +75,7 @@
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
   * Deep Learning Framework
+    * [PyTorch vs Tensorflow](./deep_learning/framework/tensorflow_vs_pytorch.md)
     * PyTorch
         * [PyTorch Installation](./deep_learning/framework/pytorch/install.md)
         * [PyTorch Quickstart](./deep_learning/framework/pytorch/quickstart_tutorial.ipynb)
@@ -170,6 +171,9 @@
 
 * Linear Algebra
   * [Matrix Factorization](./linear_algebra/matrix_factorization.ipynb)
+
+* Data Mining
+  * [Association Rules](./data_mining/association_rule.ipynb)
 
 ## Miscellaneous
 * Python
