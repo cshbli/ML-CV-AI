@@ -53,10 +53,10 @@
     * XGBoost
     * K-Nearest Neighbors (KNN)
     * Naive Bayes Classification
-    * Clustering
-      * K-means
+    * [Clustering](./machine_learning/clustering/clustering.md)
+      * [Centroid Model: K-means](./machine_learning/clustering/k_means.ipynb)
       * Mean Shift
-      * Hierarchical
+      * [Connectivity Model: Hierarchical Clustering](./machine_learning/clustering/hierarchical_clustering.ipynb)
     * Ensemble
       * Bagging
         * [Random Forest](./machine_learning/iris_tutorial.ipynb)
@@ -79,6 +79,7 @@
     * PyTorch
         * [PyTorch Installation](./deep_learning/framework/pytorch/install.md)
         * [PyTorch Quickstart](./deep_learning/framework/pytorch/quickstart_tutorial.ipynb)
+        * [Access A Layer by the Module Name](./deep_learning/framework/pytorch/layer_access.ipynb)
     * Tensorflow
         * [logits, softmax and softmax_cross_entropy_with_logits](./deep_learning/framework/logits_softmax.ipynb)
         * [Protobuf and Flat Buffers](./deep_learning/framework/protobuf.md)
@@ -93,6 +94,7 @@
   * Quantization
     * [Quantization Arithmetic](./deep_learning/quantization/quantization_arithmetic.md)
     * [PyTorch](https://pytorch.org/docs/stable/quantization.html)
+      * [Selective Quantization](./deep_learning/quantization/PyTorch/selective_quantization.ipynb)
       * [Introduction to Quantization on PyTorch](https://pytorch.org/blog/introduction-to-quantization-on-pytorch/)
       * [Practical Quantization in PyTorch](https://pytorch.org/blog/quantization-in-practice/)        
       * [PyTorch Numeric Suite Tutorial](https://pytorch.org/tutorials/prototype/numeric_suite_tutorial.html)
