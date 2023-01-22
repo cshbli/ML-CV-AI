@@ -57,6 +57,7 @@
       * [Centroid Model: K-means](./machine_learning/clustering/k_means.ipynb)
       * Mean Shift
       * [Connectivity Model: Hierarchical Clustering](./machine_learning/clustering/hierarchical_clustering.ipynb)
+      * [Density Model: DBSCAN](./machine_learning/clustering/DBSCAN.ipynb)
     * Ensemble
       * Bagging
         * [Random Forest](./machine_learning/iris_tutorial.ipynb)
