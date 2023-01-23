@@ -22,6 +22,24 @@ A feature is something distinct about the original image. Maybe we should take m
 
 ## Convolution
 
+Here are a few terminologies:
+
+  * Kernel size: The kernel size defines the field of view of the convolution.
+  
+  * Stride: it defines the step size of the kernel when sliding through the image. Stride of 1 means that the kernel slides through the image pixel by pixel. Stride of 2 means that the kernel slides through image by moving 2 pixels per step (i.e., skipping 1 pixel). We can use stride (>= 2) for downsampling an image.
+  
+  * Padding: the padding defines how the border of an image is handled. A padded convolution will keep the spatial output dimensions equal to the input image, by padding 0 around the input boundaries if necessary. On the other hand, unpadded convolution only perform convolution on the pixels of the input image, without adding 0 around the input boundaries. The output size is smaller than the input size.
+  
+This following illustration describes a 2D convolution using a kernel size of 3, stride of 1 and padding of 1.
+
+![](./convolution.gif)
+
+For an input image with size of i, kernel size of k, padding of p, and stride of s, the output image from convolution has size o:
+
+![](./convolution_arithmetic.png)
+
+One convolution example:
+
 <img src="./1_FhMz-8or03woirJcWOsmBA.webp">
 
 Output size:
@@ -51,6 +69,10 @@ Suppose we have an input image of size 32*32*3. And we apply 10 filters of size 
 <img src="./activation-map.png">
 
 ### Stride
+
+An example of stride 2 convolution:
+
+<img src="./1_BMngs93_rm2_BpJFH2mS0Q.gif">
 
 - It is used to move the filter horizontally or vertically way operations after each pixel jump movement. The jumps and movement are decided by the value of the stride, as shown in the below image.
 
@@ -101,24 +123,6 @@ Initially, 1 x 1 convolutions were proposed in the Network-in-network paper. The
   * Applying nonlinearity again after convolution
 
 The first two advantages can be observed in the image above. After 1 x 1 convolution, we significantly reduce the dimension depth-wise. Say if the original input has 200 channels, the 1 x 1 convolution will embed these channels (features) into a single channel. The third advantage comes in as after the 1 x 1 convolution, non-linear activation such as ReLU can be added. The non-linearity allows the network to learn more complex function.
-
-## Convolution Arithmetic
-
-Here are a few terminologies:
-
-  * Kernel size: The kernel size defines the field of view of the convolution.
-  
-  * Stride: it defines the step size of the kernel when sliding through the image. Stride of 1 means that the kernel slides through the image pixel by pixel. Stride of 2 means that the kernel slides through image by moving 2 pixels per step (i.e., skipping 1 pixel). We can use stride (>= 2) for downsampling an image.
-  
-  * Padding: the padding defines how the border of an image is handled. A padded convolution will keep the spatial output dimensions equal to the input image, by padding 0 around the input boundaries if necessary. On the other hand, unpadded convolution only perform convolution on the pixels of the input image, without adding 0 around the input boundaries. The output size is smaller than the input size.
-  
-This following illustration describes a 2D convolution using a kernel size of 3, stride of 1 and padding of 1.
-
-![](./convolution.gif)
-
-For an input image with size of i, kernel size of k, padding of p, and stride of s, the output image from convolution has size o:
-
-![](./convolution_arithmetic.png)
 
 ## Transposed Convolution
 

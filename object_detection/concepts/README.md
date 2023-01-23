@@ -86,6 +86,8 @@ With this rescaling, the large number of easily classified examples (mostly back
 
 __Intersection Over Union (IoU)__ is a number that quantifies the degree of overlap between two boxes. In the case of object detection and segmentation, __IoU__ evaluates the overlap of the __Ground Truth__ and __Prediction__ region.
 
+<img src="pic/iou-2.png">
+
 For example, in the image below:
 
   * The predicted bounding box (the coordinates delimiting where the model predicts the night table in the painting is located) is outlined in purple.

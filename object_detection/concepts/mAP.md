@@ -8,6 +8,8 @@ Note that __True Negative__ is not applicable to object detection and segmentati
 
 Interestingly, Average Precision (AP) is not the average of Precision (P). The term AP has evolved with time. For simplicity, we can say that it is the area under the precision-recall curve.
 
+<img src="pic/mAP/ap.gif">
+
 ## How to calculate Average Precision (AP) manually?
 Let us consider the following image that has various classes. The IoU threshold is set at 0.5. The ground truths are already known.
 

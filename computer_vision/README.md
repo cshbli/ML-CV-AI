@@ -10,6 +10,8 @@ Many high-performing methods in modern computer vision software are based on a c
 
 Computer vision involves some fundamental visual perception tasks:
 
+<img src="pic/1_pWoHu_uUDebBSSNmyMydLQ.png">
+
 - __Image classification__: 
 - __Object detection__: Determine whether image data contains one or multiple specified or learned objects or object classes. 
 
@@ -29,7 +31,7 @@ Computer vision involves some fundamental visual perception tasks:
   - __Instance segmentation__: It returns a unique label to every instance of a particular object in the image.
 
 <p align="center">
-<img src="pic/image-segmentation-vs-instance-segmentation.webp">
+<img src="pic/0_QeOs5RvXlkbDkLOy.png">
 </p>
 
 - __Object tracking__: Detect an object in an image and then tracking the object through a series of frames.

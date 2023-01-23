@@ -71,6 +71,8 @@
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
 
 * Deep Learning
+  * [Batch Size, Training Steps and Epochs](./deep_learning/batch_epoch.md)
+  * [Hyperparameters](./deep_learning/hyper-parameters.md)
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Convolution](./deep_learning/convolution/README.md)
     * [Convolution Filters](./deep_learning/convolution/convolution_filters.ipynb)
@@ -201,6 +203,7 @@
 * [Hugging Face](https://huggingface.co/)
 * [PyTorch Image Models](https://github.com/rwightman/pytorch-image-models)
 * [Learn OpenCV : C++ and Python Examples](https://github.com/spmallick/learnopencv)
+* [Machine Learning Tutorial](https://www.javatpoint.com/machine-learning)
 
 ## Dataset
 * [Kaggle Datasets](https://www.kaggle.com/datasets)
