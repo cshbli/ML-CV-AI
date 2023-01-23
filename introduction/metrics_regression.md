@@ -34,14 +34,14 @@ $$ RMSE = \sqrt{\dfrac{1}{N}\sum_{i=1}^N(y_i - \hat y_i)^2}$$
 ### Disadvantages
 - Just like MSE, RMSE is also susceptible to outliers.
 
-## R-Squared ($R^2$)
+## R-Squared (R<sup>2</sup> score)
 
 $$ R^2 = \dfrac{Variance\quad considered\quad by\quad model}{Total\quad Variance}$$
 
 $$ R^2 = 1 - \dfrac{SS_{regression}}{SS_{total}} = 1 - \dfrac{\sum(y_i - \hat y_i)2}{\sum(y_i - y_{mean})^2}$$
 
 ### Advantages
-- R-square is a handy, and an intuitive metric of how well the model fits the data. Therefore, it is a good metric for a baseline model evaluation. 
+- R-squared is a handy, and an intuitive metric of how well the model fits the data. Therefore, it is a good metric for a baseline model evaluation. 
 
 ### Disadvantages
 - R-squared can’t determine if the predictions are biased, that is why looking at the residual plots in addition is a good idea.
