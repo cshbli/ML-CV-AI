@@ -4,7 +4,9 @@
   * [Artificial Neural Network](./introduction/neural_network.md)
   * [Deep Neural Network](./introduction/deep_neural_network.md)
   * [Generative Adversarial Networks-GANs](./introduction/gan.md)
-  * [Machine Learning Performance Evaluation Metrics](./introduction/metrics.md)
+  * Machine Learning Performance Evaluation Metrics
+    * [Evaluation for Classification](./introduction/metrics_classification.ipynb)
+    * [Evaluation for Regression](./introduction/metrics_regression.md)
     * [Mean Average Precision (mAP) for Image Recognition](./object_detection/concepts/mAP.md)
   * [Overfitting and Underfitting](./introduction/overfitting.md)
     * [Bias and Variance](./introduction/overfitting.md#bias-and-variance)
