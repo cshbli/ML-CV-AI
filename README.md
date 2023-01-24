@@ -73,6 +73,7 @@
 * Deep Learning
   * [Batch Size, Training Steps and Epochs](./deep_learning/batch_epoch.md)
   * [Hyperparameters](./deep_learning/hyper-parameters.md)
+    * [Deep Learning Tuning Playbook](https://github.com/google-research/tuning_playbook)
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Convolution](./deep_learning/convolution/README.md)
     * [Convolution Filters](./deep_learning/convolution/convolution_filters.ipynb)
@@ -181,6 +182,10 @@
 
 * Data Mining
   * [Association Rules](./data_mining/association_rule.ipynb)
+
+* Kalman Filter
+  * [Kalman Filter Tutorial](https://www.kalmanfilter.net/default.aspx)
+  * [Kalman Filter Implementation in Python](./kalman_filter/kalman_filter_30.ipynb)
 
 ## Miscellaneous
 * Python
