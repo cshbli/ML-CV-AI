@@ -170,6 +170,9 @@
       * 3D Segmentation
       * Sensor Fusion: Cuboids/Segmentation/Tracking   
 
+* Image Processing
+  * [Color Temperature Kelvin to RGB](./image_processing/color_science/kelvin_to_rgb.ipynb)
+
 * Text
   * [Word2Vec](./text/Word2Vec.md)
   * [Doc2Vec](./text/Doc2Vec.md)  
