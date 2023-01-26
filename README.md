@@ -172,6 +172,7 @@
 
 * Image Processing
   * [Color Temperature Kelvin to RGB](./image_processing/color_science/kelvin_to_rgb.ipynb)
+  * [Color Science for Python](https://github.com/colour-science/colour)
 
 * Text
   * [Word2Vec](./text/Word2Vec.md)
