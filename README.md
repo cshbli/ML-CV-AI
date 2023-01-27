@@ -175,6 +175,7 @@
   * [Color Science for Python](https://github.com/colour-science/colour)
 
 * Text
+  * [TF-IDF: Term Frequency, Inverse Document Frequency](./text/tf_idf.ipynb)
   * [Word2Vec](./text/Word2Vec.md)
   * [Doc2Vec](./text/Doc2Vec.md)  
      
