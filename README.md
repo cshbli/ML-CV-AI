@@ -86,6 +86,7 @@
         * [PyTorch Installation](./deep_learning/framework/pytorch/install.md)
         * [PyTorch Quickstart](./deep_learning/framework/pytorch/quickstart_tutorial.ipynb)
         * [Access A Layer by the Module Name](./deep_learning/framework/pytorch/layer_access.ipynb)
+        * [PyTorch Computational Graph](./deep_learning/framework/pytorch/computational_graph.ipynb)
     * Tensorflow
         * [logits, softmax and softmax_cross_entropy_with_logits](./deep_learning/framework/logits_softmax.ipynb)
         * [Protobuf and Flat Buffers](./deep_learning/framework/protobuf.md)
