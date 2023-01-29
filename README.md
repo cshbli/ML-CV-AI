@@ -197,6 +197,7 @@
   * [Advanced Python Functions](./tools/advanced_python_functions.ipynb)
   * [Replacing Loops with Vectorization](./tools/python_vectorization.ipynb)
   * [Python Tuples vs. Lists](./tools/python_tuples_vs_lists.ipynb)
+  * [Python type() vs. isinstance()](./tools/python_type_vs_isinstance.ipynb)
   * [Useful Pandas Functions](./tools/pandas.ipynb)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
