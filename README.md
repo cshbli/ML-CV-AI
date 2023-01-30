@@ -200,6 +200,7 @@
   * [Python Tuples vs. Lists](./tools/python_tuples_vs_lists.ipynb)
   * [Python type() vs. isinstance()](./tools/python_type_vs_isinstance.ipynb)
   * [Useful Pandas Functions](./tools/pandas.ipynb)
+  * [Python Synthetic Data Generators](./tools/python/synthetic_data.ipynb)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)

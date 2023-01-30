@@ -8,6 +8,31 @@ cat ~/.netrc
 machine github.com login <login-id> password <token-password>
 ```
 
+## Synchronizing Local & Remote
+
+```
+git clone https://github.com/random_user/random_project
+```
+
+If you already have the project locally.
+
+```
+git pull
+```
+
+## Create your branch
+
+To create a branch:
+
+```
+git checkout -b "first_development"
+```
+
+Switch to a brach:
+```
+git checkout "first_development"
+```
+
 ## Git running into a different owner than the repository
 
 ```

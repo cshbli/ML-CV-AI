@@ -190,10 +190,6 @@ The rise of computer vision is largely based on the success of deep learning met
 
 Data augmentation is a set of techniques that enhance the size and quality of machine learning training datasets so that better deep learning models can be trained with them.
 
-<p align="center">
-<img src="pic/image-dataset-and-data-augmentation-concept.webp">
-</p>
-
 Early experiments showing the effectiveness of data augmentations come from simple image transformations, for example, horizontal flipping, color space augmentations, and random cropping. Such transformations encode many of the invariances that present challenges to image recognition tasks.
 
 <p align="center">
@@ -202,9 +198,18 @@ Early experiments showing the effectiveness of data augmentations come from simp
 
 There are different methods for image data augmentation: 
 
-- __Geometric transformations__: Augmenting image data using flipping horizontally or vertically, random cropping, rotation augmentation, translation to shift images left/right/up/down, or noise injection. 
+- __Geometric transformations__: rotation, translation, scaling, flipping — change the size, orientation, and position of objects in images.
+
+<img src="pic/1_2Z2ALQqaq8hTlff6B-WXCA.webp">
+
 - __Color distortion__ contains changing brightness, hue, or saturation of images. Altering the color distribution or manipulating the RGB color channel histogram is used to increase model resistance to lighting biases. 
+
+<img src="pic/1_nCd7pJ6eyQp0PrSxcohbgg.webp">
+
+- <b>Noise and blur</b>: adding random noise and blurring effects to simulate different levels of image quality
+
 - __Kernel filters__ use image processing techniques to sharpen and blur images. Those methods aim to increase details about objects of interest or to improve motion blur resistance. 
+
 - __Mixing images__ applies techniques to blend different images together by averaging their pixel values for each RGB channel, or with random image cropping and patching. While counterintuitive to humans, the method has shown to be effective in increasing model performance. 
 
 - __Information deletion__ uses random erasing, cutout, and hide-and-seek methods to mask random image parts, optimally using patches filled with random pixel values. Deleting a level of information is used to increase occlusion resistance in image recognition, resulting in a notable increase in model robustness.
