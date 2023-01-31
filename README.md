@@ -175,7 +175,6 @@
   * [Color Temperature Kelvin to RGB](./image_processing/color_science/kelvin_to_rgb.ipynb)
   * [HSV Color Space](./image_processing/color_science/hsv.md)
   * [Color Science for Python](https://github.com/colour-science/colour)
-
   * Utilities
     * [Split images](./image_processing/utils/image_split.ipynb)
 
@@ -188,7 +187,7 @@
   * [Heap and Heap Sort in Python](./data_structure/heap_sort.ipynb)
 
 * Linear Algebra
-  * [Matrix Factorization](./linear_algebra/matrix_factorization.ipynb)
+  * [Matrix Factorization and SVD](./linear_algebra/matrix_factorization.ipynb)
 
 * Data Mining
   * [Association Rules](./data_mining/association_rule.ipynb)
