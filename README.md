@@ -151,7 +151,9 @@
      
   * Classification  
     * [Transfer Learning with PyTorch tutorial](./classification/transfer_learning_tutorial.ipynb) 
-  * Image/Object Segmentation 
+  * Segmentation
+    * Color Segmentation
+      * [Color Image Segmentation in HSV Color Space](./object_segmentation/color/hsv_color_segmentation.ipynb)
     * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](./object_segmentation/nuclei_segmentation.md)
   * Image Translation
     * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
