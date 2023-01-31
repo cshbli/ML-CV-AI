@@ -1,4 +1,4 @@
-﻿# Machine Learning, Computer Vision and Data Science
+﻿# Machine Learning, Computer Vision and Artificial Intelligence
 * Introductions
   * [Artificial Intelligence, Machine Learning (ML) and Deep Learning (DL)](./introduction/machine_learning_and_deep_learning.md)
   * [Artificial Neural Network](./introduction/neural_network.md)
