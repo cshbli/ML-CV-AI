@@ -32,7 +32,12 @@
     * [Exploding Gradient](./introduction/exploding_gradient.md)
     * [Optimization Algorithms SGD, Adam, RMSProp](./introduction/optimization_algorithms.ipynb)
 
-* Machine Learning  
+* Machine Learning
+
+<p aling="center">  
+<img src="./machine_learning/machine_learning_pipeline.png">
+</p>
+
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
     * [IRIS with Different Machine Learning Algorithms](./machine_learning/iris.ipynb)
   * [Data Loading](./machine_learning/data_loading.ipynb)
