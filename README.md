@@ -184,6 +184,11 @@
       * Sensor Fusion: Cuboids/Segmentation/Tracking
 
 * Image Processing
+
+<p align="center">
+<img src="./image_processing/cv_ip_cg.png">
+</p>
+
   * [Color Temperature Kelvin to RGB](./image_processing/color_science/kelvin_to_rgb.ipynb)
   * [HSV Color Space](./image_processing/color_science/hsv.md)
   * [Color Science for Python](https://github.com/colour-science/colour)
