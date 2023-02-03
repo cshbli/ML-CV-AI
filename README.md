@@ -4,6 +4,18 @@
 <img src="./ml_cv_ai.png">
 </p>
 
+<p align="center">
+<img src="./image_processing/cv_ip_cg.png">
+</p>
+
+<p align="center">  
+<img src="./machine_learning/machine_learning_pipeline.png">
+</p>
+
+<p align="center">
+<img src="./machine_learning_algorithms.png">
+</p>
+
 * Introductions
   * [Artificial Intelligence, Machine Learning (ML) and Deep Learning (DL)](./introduction/machine_learning_and_deep_learning.md)
   * [Artificial Neural Network](./introduction/neural_network.md)
@@ -38,11 +50,6 @@
     * [Optimization Algorithms SGD, Adam, RMSProp](./introduction/optimization_algorithms.ipynb)
 
 * Machine Learning
-
-<p aling="center">  
-<img src="./machine_learning/machine_learning_pipeline.png">
-</p>
-
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
     * [IRIS with Different Machine Learning Algorithms](./machine_learning/iris.ipynb)
   * [Data Loading](./machine_learning/data_loading.ipynb)
@@ -184,11 +191,6 @@
       * Sensor Fusion: Cuboids/Segmentation/Tracking
 
 * Image Processing
-
-<p align="center">
-<img src="./image_processing/cv_ip_cg.png">
-</p>
-
   * [Color Temperature Kelvin to RGB](./image_processing/color_science/kelvin_to_rgb.ipynb)
   * [HSV Color Space](./image_processing/color_science/hsv.md)
   * [Color Science for Python](https://github.com/colour-science/colour)
