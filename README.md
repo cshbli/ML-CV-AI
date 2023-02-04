@@ -1,19 +1,19 @@
 ﻿# Machine Learning, Computer Vision and Artificial Intelligence
 
 <p align="center">
-<img src="./ml_cv_ai.png">
+<img src="./introduction/pic/ml_cv_ai.png">
 </p>
 
 <p align="center">
-<img src="./image_processing/cv_ip_cg.png">
+<img src="./image_processing/figs/cv_ip_cg.png">
 </p>
 
 <p align="center">  
-<img src="./machine_learning/machine_learning_pipeline.png">
+<img src="./machine_learning/pic/machine_learning_pipeline.png">
 </p>
 
 <p align="center">
-<img src="./machine_learning_algorithms.png">
+<img src="./machine_learning/pic/machine_learning_algorithms.png">
 </p>
 
 * Introductions
