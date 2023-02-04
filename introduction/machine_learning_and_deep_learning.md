@@ -16,7 +16,7 @@ Artificial intelligence, or AI, is one of the oldest fields of computer science 
 The field of AI revolved around the intersection of computer science and cognitive science. AI can refer to anything from a computer program playing a game of chess to self-driving cars and computer vision systems. Due to the successes in machine learning (ML), AI now raises enormous interest. AI, and particularly machine learning (ML), is the machine’s ability to keep improving its performance without humans having to explain exactly how to accomplish all of the tasks it’s given. Within the past few years, machine learning has become far more effective and widely available. We can now build systems that learn how to perform tasks on their own.
 
 <p align="center">
-<img src="pic/data-science-artificial-intelligence-machine-learning-vs-deep-learning-768x554.webp">
+<img src="pic/ml_cv_ai.png">
 </p>
 
 ## What is Machine Learning (ML)?
@@ -27,18 +27,12 @@ Unlike developing and coding a software program with specific instructions to co
 
 Machine Learning is a very practical field of artificial intelligence with the aim to develop software that can automatically learn from previous data to gain knowledge from experience and to gradually improve its learning behavior to make predictions based on new data.
 
-### Machine Learning vs. AI 
-
-Even while Machine Learning is a subfield of AI, the terms AI and ML are often used interchangeably. Machine Learning can be seen as the “workhorse of AI” and the adoption of data-intensive machine learning methods. 
-
-Machine learning takes in a set of data inputs and then learns from that inputted data. Hence, machine learning methods use data for context understanding, sense-making, and decision-making under uncertainty. 
-
-As part of AI systems, machine learning algorithms are commonly used to identify trends and recognize patterns in data.
-
-The enormous progress in machine learning has been driven by the development of novel statistical learning algorithms along with the availability of big data (large data sets) and low-cost computation.
+<p align="center">
+<img src="../machine_learning/pic/machine_learning_pipeline.png">
+</p>
 
 <p align="center">
-<img src="pic/Types-of-Learning-Styles-for-Machine-Learning.webp">
+<img src="../machine_learning/pic/machine_learning_algorithms.png">
 </p>
 
 ## What Is Deep Learning (DL)? 
@@ -59,7 +53,6 @@ Deep learning is a part of machine learning, but it’s different from tradition
 <img src="pic/machine-learning-vs-deep-learning.webp">
 </p>
 
- 
 
 
 ## References
