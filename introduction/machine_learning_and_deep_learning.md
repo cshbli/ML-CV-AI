@@ -27,9 +27,18 @@ Unlike developing and coding a software program with specific instructions to co
 
 Machine Learning is a very practical field of artificial intelligence with the aim to develop software that can automatically learn from previous data to gain knowledge from experience and to gradually improve its learning behavior to make predictions based on new data.
 
+### Different Types of Machine Learning
+
+<p align="center">
+<img src="./pic/machine_learning_types.png">
+</p>
+
+### A Roadmap for Building Machine Learning System
 <p align="center">
 <img src="../machine_learning/pic/machine_learning_pipeline.png">
 </p>
+
+### Machine Learning Algorithm Selection
 
 <p align="center">
 <img src="../machine_learning/pic/machine_learning_algorithms.png">
