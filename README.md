@@ -5,6 +5,10 @@
 </p>
 
 <p align="center">
+<img src="./introduction/pic/machine_learning_types.png">
+</p>
+
+<p align="center">
 <img src="./image_processing/figs/cv_ip_cg.png">
 </p>
 
@@ -175,6 +179,8 @@
   * Image Translation
     * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
     * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
+  * 3D
+    * [PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation](https://github.com/cshbli/PointNet)
   * [Deepface](https://github.com/serengil/deepface)
 
   * Data Annotation
