@@ -42,7 +42,8 @@
     * [Data Augmentation (DL)](./introduction/overfitting.md#data-augmentation)
   * [Gradient Descent](./introduction/gradient_descent.md)
     * [Cost Function and Loss Function](./introduction/gradient_descent.md#cost-function-and-loss-function)
-      * [Information, Entropy, Cross Entropy, Binary Cross Entropy, KL Divergence](./machine_learning/concepts/entropy.md)
+      * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE, KL Divergence](./machine_learning/concepts/entropy.md)
+      * [Focal Loss](./machine_learning/concepts/focal_loss.md)
     * [Learning Rate](./introduction/gradient_descent.md#learning-rate)
     * [Batch Gradient Descent (BGD)](./introduction/gradient_descent.md#batch-gradient-descent-bgd)
     * [Stochastic Gradient Descent (SGD)](./introduction/gradient_descent.md#stochastic-gradient-descent-sgd)
@@ -88,7 +89,8 @@
         * XGBoost
       * Voting
   * [Concepts](./glossary/README.md)
-    * [Information, Entropy, Cross Entropy, Binary Cross Entropy, KL Divergence](./machine_learning/concepts/entropy.md)    
+    * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE, KL Divergence](./machine_learning/concepts/entropy.md)
+    * [Focal Loss](./machine_learning/concepts/focal_loss.md)
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
 
 * Deep Learning
@@ -97,6 +99,7 @@
     * [Deep Learning Tuning Playbook](https://github.com/google-research/tuning_playbook)
   * [Activation Functions](./deep_learning/activation_function.md)
   * [Convolution](./deep_learning/convolution/README.md)
+    * [1D Convolution](./deep_learning/convolution/conv_1d.md)
     * [Convolution Filters](./deep_learning/convolution/convolution_filters.ipynb)
   * [Pooling](./deep_learning/pooling.md)
   * [Normalization](./deep_learning/normalization/README.md)

@@ -151,3 +151,7 @@ Where H(P, Q) is the cross-entropy of Q from P, H(P) is the entropy of P and KL(
 Like KL divergence, cross-entropy is not symmetrical, meaning that:
 
 $$H(P, Q) \neq H(Q, P)$$
+
+## References
+
+* [Cross-Entropy Loss Function](https://towardsdatascience.com/cross-entropy-loss-function-f38c4ec8643e)
