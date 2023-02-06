@@ -27,12 +27,12 @@ $$\large f(x)=\dfrac{2}{1+ e^{-2x}}-1=2\times Sigmoid(2x) - 1$$
 It is the __most widely used activation function__ as a model using it learns much faster than with the previous two. It is not as computationally expensive as the previous two and not sensitive to vanishing gradient. It returns 0 for all values less than 0 and a value for all which are more or equal to 0. I have also seen advice to use ReLU when you are not sure what to use.
 
 Formula is f(x) = max(0,x)
-$$\large f(x)=
+
+$$f(x)=
 \begin{cases}
 x & \quad \text{when $x \geq 0$} \\
 0 & \quad \text{otherwise}
-\end{cases}
-$$
+\end{cases}$$
 
 <p align="center">
 <img src="pic/0_buw9lzDaZHIncw3W.png">
