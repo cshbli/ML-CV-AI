@@ -203,6 +203,8 @@
   * [Color Temperature Kelvin to RGB](./image_processing/color_science/kelvin_to_rgb.ipynb)
   * [HSV Color Space](./image_processing/color_science/hsv.md)
   * [Color Science for Python](https://github.com/colour-science/colour)
+  * Focus
+    * [Image Focus Checking](./image_processing/focus/image_blurry.ipynb)
   * Utilities
     * [Split images](./image_processing/utils/image_split.ipynb)
 
