@@ -203,6 +203,7 @@
   * [Color Temperature Kelvin to RGB](./image_processing/color_science/kelvin_to_rgb.ipynb)
   * [HSV Color Space](./image_processing/color_science/hsv.md)
   * Color Correction and Calibration
+    * [Histogram Matching](./image_processing/color_correction/histogram_matching.ipynb)
     * [Color Correction with Color Card](./image_processing/color_correction/color_correction_card.ipynb)
   * Focus
     * [Image Focus Checking](./image_processing/focus/image_blurry.ipynb)
