@@ -41,6 +41,7 @@
     * [Dropout for Neural Networks (DL)](./introduction/overfitting.md#dropout-for-neural-networks)
     * [Data Augmentation (DL)](./introduction/overfitting.md#data-augmentation)
   * [Gradient Descent](./introduction/gradient_descent.md)
+    * [Backpropagation](./introduction/back_propagation.md)
     * [Cost Function and Loss Function](./introduction/gradient_descent.md#cost-function-and-loss-function)
       * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE, KL Divergence](./machine_learning/concepts/entropy.md)
       * [Focal Loss](./machine_learning/concepts/focal_loss.md)
@@ -218,7 +219,8 @@
 
 * Text
   * [TF-IDF: Term Frequency, Inverse Document Frequency](./text/tf_idf.ipynb)
-  * [Word2Vec](./text/Word2Vec.md)
+  * [Word Embedding](./text/word_embedding.md)
+    * [Word2Vec](./text/word_embedding.md#word2vec)
   * [Doc2Vec](./text/Doc2Vec.md)  
      
 * Data Structure and Algorithms
