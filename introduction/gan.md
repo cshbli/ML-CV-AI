@@ -1,10 +1,19 @@
-# Generative Adversarial Networks-GANs
+# Generative Adversarial Network (GAN)
 
 A generative adversarial network is a class of machine learning frameworks. Based on a training data set, a GAN learns to generate new data with the same statistics as the training set. The data created by the GAN can be anything, such as images, videos, or text.
 
 A `generative model` is a type of machine learning algorithm that is used to generate new data based on a given set of input data. This can be useful for tasks such as image generation, text generation, and other types of data synthesis.
 
 The `discriminative model` is a type of machine learning algorithm that is used to distinguish between different categories of data, for example, for image classification and object detection. A generative modeling algorithm, on the other hand, is used to generate new data that is similar to the data that was used to train the model. One of the key differences between generative and discriminative models is that a generative model can generate new examples, while a discriminative model can classify data.
+
+GAN consists of two models:
+
+* A discriminator D estimates the probability of a given sample coming from the real dataset. It works as a critic and is optimized to tell the fake samples from the real ones.
+* A generator G outputs synthetic samples given a noise variable input z (z brings in potential output diversity). It is trained to capture the real data distribution so that its generative samples can be as real as possible, or in other words, can trick the discriminator to offer a high probability.
+
+<img src="pic/GAN.png">
+
+These two models compete against each other during the training process: the generator G is trying hard to trick the discriminator, while the critic model D is trying hard not to be cheated. This interesting zero-sum game between two models motivates both to improve their functionalities.
 
 ## How do GANs work? 
 

@@ -131,27 +131,6 @@ The use of cross-entropy for classification often gives different specific names
 - Binary Cross-Entropy: Cross-entropy as a loss function for a binary classification task.
 - Categorical Cross-Entropy: Cross-entropy as a loss function for a multi-class classification task.
 
-# KL Divergence
-
-The KL divergence is often referred to as the “relative entropy.”
-
-- Cross-Entropy: Average number of total bits to represent an event from Q instead of P.
-- Relative Entropy (KL Divergence): Average number of extra bits to represent an event from Q instead of P.
-
-$$KL(P || Q) = – \sum_{x \in X} P(x) * log(\dfrac{P(x)} {Q(x)})$$
-
-The value within the sum is the divergence for a given event.
-
-As such, we can calculate the cross-entropy by adding the entropy of the distribution plus the additional entropy calculated by the KL divergence. This is intuitive, given the definition of both calculations; for example:
-
-$$H(P, Q) = H(P) + KL(P || Q)$$
-
-Where H(P, Q) is the cross-entropy of Q from P, H(P) is the entropy of P and KL(P || Q) is the divergence of Q from P.
-
-Like KL divergence, cross-entropy is not symmetrical, meaning that:
-
-$$H(P, Q) \neq H(Q, P)$$
-
 ## References
 
 * [Cross-Entropy Loss Function](https://towardsdatascience.com/cross-entropy-loss-function-f38c4ec8643e)

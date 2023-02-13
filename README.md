@@ -24,7 +24,11 @@
   * [Artificial Intelligence, Machine Learning (ML) and Deep Learning (DL)](./introduction/machine_learning_and_deep_learning.md)
   * [Artificial Neural Network](./introduction/neural_network.md)
   * [Deep Neural Network](./introduction/deep_neural_network.md)
-  * [Generative Adversarial Networks-GANs](./introduction/gan.md)
+  * Generative Model
+    * [Generative Adversarial Network-GAN](./introduction/gan.md)
+    * [Autoencoder](./introduction/autoencoder.md)
+    * [Diffusion Models](./introduction/diffusion_model.md)
+    * [Stable Diffusion](./introduction/stable_diffusion_model.md)
   * Machine Learning Performance Evaluation Metrics
     * [Evaluation for Classification](./introduction/metrics_classification.ipynb)
     * [Evaluation for Regression](./introduction/metrics_regression.md)
@@ -43,7 +47,8 @@
   * [Gradient Descent](./introduction/gradient_descent.md)
     * [Backpropagation](./introduction/back_propagation.md)
     * [Cost Function and Loss Function](./introduction/gradient_descent.md#cost-function-and-loss-function)
-      * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE, KL Divergence](./machine_learning/concepts/entropy.md)
+      * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE](./machine_learning/concepts/entropy.md)
+      * [KL Divergence and JS Divergence](./machine_learning/concepts/kl_divergence.md)
       * [Focal Loss](./machine_learning/concepts/focal_loss.md)
     * [Learning Rate](./introduction/gradient_descent.md#learning-rate)
     * [Batch Gradient Descent (BGD)](./introduction/gradient_descent.md#batch-gradient-descent-bgd)
@@ -83,6 +88,7 @@
       * Mean Shift
       * [Connectivity Model: Hierarchical Clustering](./machine_learning/clustering/hierarchical_clustering.ipynb)
       * [Density Model: DBSCAN](./machine_learning/clustering/DBSCAN.ipynb)
+    * [Association Rules](./data_mining/association_rule.ipynb)      
     * Ensemble
       * Bagging
         * [Random Forest](./machine_learning/iris_tutorial.ipynb)
@@ -90,7 +96,8 @@
         * XGBoost
       * Voting
   * [Concepts](./glossary/README.md)
-    * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE, KL Divergence](./machine_learning/concepts/entropy.md)
+    * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE](./machine_learning/concepts/entropy.md)
+    * [KL Divergence and JS Divergence](./machine_learning/concepts/kl_divergence.md)
     * [Focal Loss](./machine_learning/concepts/focal_loss.md)
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
 
