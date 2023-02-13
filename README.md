@@ -95,6 +95,8 @@
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
 
 * Deep Learning
+  * [A Visual and Interactive Guide to the Basics of Neural Networks](https://jalammar.github.io/visual-interactive-guide-basics-neural-networks/)
+  * [A Visual And Interactive Look at Basic Neural Network Math](https://jalammar.github.io/feedforward-neural-networks-visual-interactive/)
   * [Batch Size, Training Steps and Epochs](./deep_learning/batch_epoch.md)
   * [Hyperparameters](./deep_learning/hyper-parameters.md)
     * [Deep Learning Tuning Playbook](https://github.com/google-research/tuning_playbook)
@@ -147,6 +149,8 @@
     * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)
     * [The illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
     * [Vision Transformer](https://github.com/google-research/vision_transformer)
+  * Stable Diffusion
+    * [The Illustrated Stable Diffusion](https://jalammar.github.io/illustrated-stable-diffusion/)
   * [RepVGG: Making VGG-style ConvNets Great Again](./deep_learning/RepVgg/RepVgg.ipynb)
   * [Compiler](./deep_learning/compiler/README.md)
      * [GLOW](https://github.com/pytorch/glow)
@@ -217,11 +221,15 @@
     * [Split images](./image_processing/utils/image_split.ipynb)
   * [Color Science with Python](https://github.com/colour-science/colour)
 
-* Text
+* Text and NLP
   * [TF-IDF: Term Frequency, Inverse Document Frequency](./text/tf_idf.ipynb)
   * [Word Embedding](./text/word_embedding.md)
     * [Word2Vec](./text/word_embedding.md#word2vec)
-  * [Doc2Vec](./text/Doc2Vec.md)  
+    * [The Illustrated Word2vec](https://jalammar.github.io/illustrated-word2vec/)
+  * [Doc2Vec](./text/Doc2Vec.md)
+  * [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning)](https://jalammar.github.io/illustrated-bert/)
+  * [How GPT-3 Works - Visualizations and Animations](https://jalammar.github.io/how-gpt3-works-visualizations-animations/)
+  * [The Illustrated GPT-2 (Visualizing Transformer Language Models)](https://jalammar.github.io/illustrated-gpt2/)
      
 * Data Structure and Algorithms
   * [Heap and Heap Sort in Python](./data_structure/heap_sort.ipynb)
@@ -241,9 +249,14 @@
   * [Advanced Python Functions](./tools/advanced_python_functions.ipynb)
   * [Replacing Loops with Vectorization](./tools/python_vectorization.ipynb)
   * [Python Tuples vs. Lists](./tools/python_tuples_vs_lists.ipynb)
-  * [Python type() vs. isinstance()](./tools/python_type_vs_isinstance.ipynb)
-  * [Useful Pandas Functions](./tools/pandas.ipynb)
+  * [Python type() vs. isinstance()](./tools/python_type_vs_isinstance.ipynb)  
   * [Python Synthetic Data Generators](./tools/python/synthetic_data.ipynb)
+  * [A Visual Intro to NumPy and Data Representation](https://jalammar.github.io/visual-numpy/)
+  * Pandas
+    * [Useful Pandas Functions](./tools/pandas.ipynb)
+    * [A Gentle Visual Intro to Data Analysis in Python Using Pandas](https://jalammar.github.io/gentle-visual-intro-to-data-analysis-python-pandas/)
+    * [Visualizing Pandas' Pivoting and Reshaping Functions
+](https://jalammar.github.io/visualizing-pandas-pivoting-and-reshaping/)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)
