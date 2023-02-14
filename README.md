@@ -29,6 +29,7 @@
     * [Autoencoder](./introduction/autoencoder.md)
     * [Diffusion Models](./introduction/diffusion_model.md)
     * [Stable Diffusion](./introduction/stable_diffusion_model.md)
+    * [ChatGPT](./introduction/chatgpt.md)
   * Machine Learning Performance Evaluation Metrics
     * [Evaluation for Classification](./introduction/metrics_classification.ipynb)
     * [Evaluation for Regression](./introduction/metrics_regression.md)

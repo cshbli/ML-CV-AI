@@ -86,6 +86,6 @@ To quickly summarize:
 
 ## References
 
-* [Stable DiffusionClearly Explained!](https://medium.com/@steinsfu/stable-diffusion-clearly-explained-ed008044e07e)
+* [Stable Diffusion Clearly Explained!](https://medium.com/@steinsfu/stable-diffusion-clearly-explained-ed008044e07e)
 
 * R. Rombach, A. Blattmann, D. Lorenz, P. Esser, and B. Ommer, [High-resolution image synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752).
