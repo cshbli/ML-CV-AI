@@ -18,9 +18,23 @@ The training of the Diffusion Model can be divided into two parts:
 
 ## Forward Diffusion Process
 
+The forward diffusion process adds Gaussian noise to the input image step by step. Nonetheless, it can be done faster using the following closed-form formula to directly get the noisy image at a specific time step t:
+
+<p align="center">
+<img src="pic/1_zz0WZyMHZBqLu7DZnpkhlw.webp">
+</p>
+
 <img src="pic/1_zghUHsVaD9c1ebV_ixrkxg.webp">
 
 ## Reverse Diffusion Process
+
+Since the reverse diffusion process is not directly computable, we train a neural network εθ to approximate it.
+
+The training objective (loss function) is as follows:
+
+<p align="center">
+<img src="pic/1_JQ_4MQaVu8j2wuEym1vIZw.webp">
+</p>
 
 <img src="pic/1_CfarzOOYM-_ytQQC0vpOHg.webp">
 
@@ -38,6 +52,10 @@ In each epoch:
 
 <img src="pic/1_AQH76e-TTTUAZ09uZ7tzgA.webp">
 
+## Sampling
+
+Sampling means painting an image from Gaussian noise. The following diagram shows how we can use the trained U-Net to generate an image:
+
 <img src="pic/1_S8XcA8cQIjHLxUsOUPk39Q.webp">
 
 ## Summary
@@ -51,10 +69,6 @@ In each epoch:
 * To approximate the desired denoising step q, we just need to approximate the noise εₜ using a neural network εθ.
 
 * Training on the simplified loss function yields better sample quality.
-
-## Latent Diffusion Model
-
-<img src="pic/latent-diffusion-arch.png">
 
 ## References
 

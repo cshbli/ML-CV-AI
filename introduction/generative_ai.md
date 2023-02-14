@@ -10,3 +10,9 @@ AlphaGo: 2016
 2022/09: AIGC AI painting/drawing
 
 2022/11 ChatGPT
+
+DALL-E2: Diffusion CLIP(Constrastive Language-Image Pre-training model)
+GPT-3: Generative Pre-trained Transformer
+Midjourney: GAN
+NightCafe: CLIP + VQGAN(Vector Quantized Generative Adversarial Netowrk), Stable Diffusion
+DreamStudio AI: Stable Diffusion 2.0
