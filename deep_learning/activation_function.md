@@ -1,6 +1,28 @@
 # Activation Functions
  
-Activation function decides whether to activate a neuron or not by calculating weighted sum and further adding bias to it. Without it neural network is just a linear regression model in its sense and __activation function introduces non-linearity into the output__.
+Activation function decides whether to activate a neuron or not by calculating weighted sum and further adding bias to it. Without it neural network is just a linear regression model in its sense and <b>activation function introduces non-linearity into the output</b>.
+
+## Softmax
+
+Softmax is an activation function that scales numbers/logits into probabilities. It is often used as the last activation function of a neural network to normalize the output of a network to a probability distribution over predicted output classes. 
+
+It is used in tranformers. 
+
+$$Softmax(y)_i = \dfrac{exp(y_i)}{\sum_{j=1}^nexp(y_j)} $$
+
+<img src="pic/1_KvygqiInUpBzpknb-KVKJw.webp">
+
+<img src="pic/1_7GYzhELpAzBHfibnU3-R2w.webp">
+
+### Softmax normalization and Standard normalization
+
+softmax([2,4]) = [0.119, 0.881]
+
+softmax([4,8]) = [0.018, 0.982]
+
+std_norm([2,4]) = [0.333, 0.667]
+
+std_norm([4,8]) = [0.333, 0.667]
 
 ## Sigmoid / logistic function
 
