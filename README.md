@@ -9,6 +9,14 @@
 </p>
 
 <p align="center">
+<img src="./introduction/pic/deep_learning_feature_extraction.png">
+</p>
+
+<p align="center">
+<img src="./introduction/pic/deep_learning_generative_models.png">
+</p>
+
+<p align="center">
 <img src="./image_processing/figs/cv_ip_cg.png">
 </p>
 
@@ -18,6 +26,10 @@
 
 <p align="center">
 <img src="./machine_learning/pic/machine_learning_algorithms.png">
+</p>
+
+<p align="center">
+<img src="./introduction/pic/3D_deep_learning.png">
 </p>
 
 * Introductions
