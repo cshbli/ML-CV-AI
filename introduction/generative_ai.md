@@ -17,6 +17,11 @@ Midjourney: GAN
 NightCafe: CLIP + VQGAN(Vector Quantized Generative Adversarial Netowrk), Stable Diffusion
 DreamStudio AI: Stable Diffusion 2.0
 
+<img src="pic/1__nXM1QK_jEGjH_-imJDQ5A.png">
+
+<img src="pic/gen_models_diag_2.svg">
+
+
 * [Hierachical Text-Conditional Image Generation with CLIP Latents](https://arxiv.org/pdf/2204.06125.pdf)(2022 DALL-E 2 Paper)
 * [Zero-Shot Text-to-Image Generation](https://arxiv.org/pdf/2102.12092v2.pdf)(2021 DALL-E Paper)
 * [Learning Transferable Visual Models From Natural Language Supervision](https://arxiv.org/pdf/2103.00020.pdf)(CLIP paper)
