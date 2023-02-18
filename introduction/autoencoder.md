@@ -1,6 +1,18 @@
-# Autoencoder
+# Encoder-Decoder, Autoencoder and U-Net
 
-Autoencoder is a neural network designed to learn an identity function in an unsupervised way to reconstruct the original input while compressing the data in the process so as to discover a more efficient and compressed representation. 
+## Encoder-Decoder Architecture
+
+<img src="pic/1_GvN7ekDa8rFPAZIc_xUmIw.png">
+
+### RNN/LSTM based seq2seq model
+
+<img src="pic/1_1JcHGUU7rFgtXC_mydUA_Q.jpeg">
+
+## Autoencoder
+
+<img src="pic/1_pttBvMhZPbxgK9QYDhpNHQ.png">
+
+Auto Encoders are a special case of encoder-decoder models. In the case of auto encoders, the input and the output domains are the same.
 
 It consists of two networks:
 
@@ -11,6 +23,14 @@ It consists of two networks:
 <img src="pic/autoencoder-architecture.png">
 
 The encoder network essentially accomplishes the dimensionality reduction, just like how we would use Principal Component Analysis (PCA) or Matrix Factorization (MF) for. In addition, the autoencoder is explicitly optimized for the data reconstruction from the code. A good intermediate representation not only can capture latent variables, but also benefits a full decompression process.
+
+## U-Net Architecture
+
+<img src="pic/u-net-architecture.png">
+
+In encoder-decoder nets there is exactly one latent space (L) with a nonlinear mapping from the input (X) to that space (E: X->L), and a corresponding mapping from that latent space to the output space (D: L->Y). There's a clear distinction between the encoder and decoder: the encoder changes representation of each sample into some "code" in the latent space, and the decoder is able to construct outputs given only such codes. This means you can take such a network apart and use the encoder and decoder separately.
+
+In U-Nets however this is not the case. There, the output mapping also depends directly on the input space - instead of L->Y, there is [X+L]->Y (a "skip" connection). This means there are no real "encoder" and "decoder" parts, in the sense of mapping the sample onto some well-defined latent space and then computing the output from it. You cannot split a U-Net into parts and use them separately, as in order to compute the output, the input is needed as well.
 
 ## Denoising Autoencoder
 

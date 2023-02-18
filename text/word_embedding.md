@@ -24,9 +24,11 @@ If you’ve encountered dimensionality reduction before you’ll know this is ty
 
 There are actually two ways to implement word2vec, `CBOW (Continuous Bag-Of-Words)` and `Skip-gram`.
 
-In CBOW we have a window around some target word and then consider the words around it (its context). We supply those words as input into our network and then use it to try to predict the target word.
+<img src="figs/Word2Vec-Training-Models.webp">
 
-Skip-gram does the opposite, you have a target word, and you try to predict the words that are in the window around that word, i.e. predict the context around a word.
+The CBOW model learns the embedding by predicting the current word based on its context. 
+
+Skip-gram does the opposite, the continuous skip-gram model learns by predicting the surrounding words given a current word.
 
 The input words are passed in as `one-hot encoded vectors`. This will go into a hidden layer of linear units, then into a softmax layer to make a prediction. The idea here is to train the hidden layer weight matrix to find efficient representations for our words. This weight matrix is usually called the `embedding` matrix, and can be queried as a look-up table.
 

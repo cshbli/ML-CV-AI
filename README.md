@@ -38,7 +38,7 @@
   * [Deep Neural Network](./introduction/deep_neural_network.md)
   * Generative Model
     * [Generative Adversarial Network-GAN](./introduction/gan.md)
-    * [Autoencoder](./introduction/autoencoder.md)
+    * [Encoder-Decoder, Autoencoder and U-Net](./introduction/autoencoder.md)
     * [Diffusion Models](./introduction/diffusion_model.md)
     * [Stable Diffusion](./introduction/stable_diffusion_model.md)
     * [ChatGPT](./introduction/chatgpt.md)
