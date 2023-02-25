@@ -130,20 +130,22 @@
   * Deep Learning Framework
     * [PyTorch vs Tensorflow](./deep_learning/framework/tensorflow_vs_pytorch.md)
     * PyTorch
-        * [PyTorch Installation](./deep_learning/framework/pytorch/install.md)
-        * [PyTorch Quickstart](./deep_learning/framework/pytorch/quickstart_tutorial.ipynb)
-        * [Access A Layer by the Module Name](./deep_learning/framework/pytorch/layer_access.ipynb)
-        * [PyTorch Computational Graph](./deep_learning/framework/pytorch/computational_graph.ipynb)
+      * [PyTorch Installation](./deep_learning/framework/pytorch/install.md)
+      * [PyTorch Quickstart](./deep_learning/framework/pytorch/quickstart_tutorial.ipynb)
+      * [Access A Layer by the Module Name](./deep_learning/framework/pytorch/layer_access.ipynb)
+      * [Extract an Intermediate Layer](./deep_learning/framework/pytorch/extract_intermediate_layer.ipynb)
+      * [PyTorch Computational Graph](./deep_learning/framework/pytorch/computational_graph.ipynb)
     * Tensorflow
-        * [logits, softmax and softmax_cross_entropy_with_logits](./deep_learning/framework/logits_softmax.ipynb)
-        * [Protobuf and Flat Buffers](./deep_learning/framework/protobuf.md)
-        * [tf.placeholder vs tf.Variable](./deep_learning/framework/placeholder_variable.ipynb)
-        * [Graph vs GraphDef](./deep_learning/framework/Graph_and_GraphDef.md)
-        * [Save and Restore Tensorflow Models](./deep_learning/framework/save_and_restore_tensorflow_models.ipynb)
-        * [TFRecord to Store and Extract Data](./deep_learning/framework/TFRecord.ipynb)
-        * [Convert a Global Average Pooling layer to Conv2D](./deep_learning/framework/gap_to_conv2d.ipynb) 
+      * [logits, softmax and softmax_cross_entropy_with_logits](./deep_learning/framework/logits_softmax.ipynb)
+      * [Protobuf and Flat Buffers](./deep_learning/framework/protobuf.md)
+      * [tf.placeholder vs tf.Variable](./deep_learning/framework/placeholder_variable.ipynb)
+      * [Graph vs GraphDef](./deep_learning/framework/Graph_and_GraphDef.md)
+      * [Save and Restore Tensorflow Models](./deep_learning/framework/save_and_restore_tensorflow_models.ipynb)
+      * [TFRecord to Store and Extract Data](./deep_learning/framework/TFRecord.ipynb)
+      * [Convert a Global Average Pooling layer to Conv2D](./deep_learning/framework/gap_to_conv2d.ipynb) 
     * ONNX
       * [Create a toy model with LayerNormalization](./deep_learning/framework/onnx/onnx_layernorm_transformer.py)
+      * [Get intermediary layer output of an ONNX model](./deep_learning/framework/onnx/onnx_output_intermediate_layer.md)
       * [NNEF and ONNX: Similarities and Differences](https://www.khronos.org/blog/nnef-and-onnx-similarities-and-differences)
   * Quantization
     * [Quantization Arithmetic](./deep_learning/quantization/quantization_arithmetic.md)
