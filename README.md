@@ -132,9 +132,15 @@
     * PyTorch
       * [PyTorch Installation](./deep_learning/framework/pytorch/install.md)
       * [PyTorch Quickstart](./deep_learning/framework/pytorch/quickstart_tutorial.ipynb)
-      * [Access A Layer by the Module Name](./deep_learning/framework/pytorch/layer_access.ipynb)
-      * [Extract an Intermediate Layer](./deep_learning/framework/pytorch/extract_intermediate_layer.ipynb)
       * [PyTorch Computational Graph](./deep_learning/framework/pytorch/computational_graph.ipynb)
+        * [Update the parameters of a neural netowrk](./deep_learning/framework/pytorch/update_parameters.md)
+        * [Leaf Tensor in-place update](./deep_learning/framework/pytorch/leaf_tensor_in_place_update.ipynb)
+      * [PyTorch Access A Layer by the Module Name](./deep_learning/framework/pytorch/layer_access.ipynb)
+        * [modules() vs children()](./deep_learning/framework/pytorch/modules_vs_children.ipynb)
+        * [nn.Parameter](./deep_learning/framework/pytorch/parameter.ipynb)
+      * [PyTorch Extract an Intermediate Layer](./deep_learning/framework/pytorch/extract_intermediate_layer.ipynb)      
+      * [nn.Module vs nn.Functional](./deep_learning/framework/pytorch/module_vs_functional.ipynb)
+      * [ModuleList and ParameterList](./deep_learning/framework/pytorch/ModuleList_and_ParameterList.ipynb)      
     * Tensorflow
       * [logits, softmax and softmax_cross_entropy_with_logits](./deep_learning/framework/logits_softmax.ipynb)
       * [Protobuf and Flat Buffers](./deep_learning/framework/protobuf.md)
@@ -268,6 +274,7 @@
 
 ## Miscellaneous
 * Python
+  * [Python Debugging pdb cheatsheet](./tools/fig/python-debugging-cheatsheet.png)
   * [Advanced Python Functions](./tools/advanced_python_functions.ipynb)
   * [Replacing Loops with Vectorization](./tools/python_vectorization.ipynb)
   * [Python Tuples vs. Lists](./tools/python_tuples_vs_lists.ipynb)
