@@ -222,6 +222,7 @@
     * [PointNet: Deep Learning on Point Sets for 3D Classification and Segmentation](https://github.com/cshbli/PointNet)
     * PointPillars
       * [PointPillars Introduction](./3D/point_pillars.md)
+    * [Depth Estimation from Stereo Images](./3D/depth_estimation/stero.md)
   * [Deepface](https://github.com/serengil/deepface)
 
   * Data Annotation
@@ -284,8 +285,7 @@
   * Pandas
     * [Useful Pandas Functions](./tools/pandas.ipynb)
     * [A Gentle Visual Intro to Data Analysis in Python Using Pandas](https://jalammar.github.io/gentle-visual-intro-to-data-analysis-python-pandas/)
-    * [Visualizing Pandas' Pivoting and Reshaping Functions
-](https://jalammar.github.io/visualizing-pandas-pivoting-and-reshaping/)
+    * [Visualizing Pandas' Pivoting and Reshaping Functions](https://jalammar.github.io/visualizing-pandas-pivoting-and-reshaping/)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)
