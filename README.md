@@ -51,7 +51,7 @@
     * [Train Test Split](./introduction/overfitting.md#train-test-split)
     * [Cross Validation](./introduction/overfitting.md#cross-validation)
     * [Feature Selection (ML)](./machine_learning/feature_selection.ipynb)
-    * [Dimensionality Reduction (ML)](./machine_learning/dimensionality_reduction.ipynb)
+    * [Dimensionality Reduction (ML)](./machine_learning/PCA.ipynb)
     * [Normalization (DL)](./deep_learning/normalization/README.md)  
     * [Regularization](./introduction/overfitting.md#regularization)
       * [Ridge Regression and Lasso Regression](./machine_learning/regression.ipynb)
@@ -101,6 +101,8 @@
       * Mean Shift
       * [Connectivity Model: Hierarchical Clustering](./machine_learning/clustering/hierarchical_clustering.ipynb)
       * [Density Model: DBSCAN](./machine_learning/clustering/DBSCAN.ipynb)
+    * Dimensionality Reduction
+      * [PCA](./machine_learning/PCA.ipynb)
     * [Association Rules](./data_mining/association_rule.ipynb)      
     * Ensemble
       * Bagging
