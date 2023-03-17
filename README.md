@@ -101,9 +101,11 @@
       * Mean Shift
       * [Connectivity Model: Hierarchical Clustering](./machine_learning/clustering/hierarchical_clustering.ipynb)
       * [Density Model: DBSCAN](./machine_learning/clustering/DBSCAN.ipynb)
-    * Dimensionality Reduction
-      * [PCA](./machine_learning/PCA.ipynb)
-        * [Image Compression Using PCA](./machine_learning/PCA/pca_mnist_image_compression.ipynb)
+    * Principal Component Analysis (PCA)
+      * [PCA with Scikit-learn on IRIS dataset](./machine_learning/PCA/pca_scikit_learn.ipynb)
+      * [PCA: feature transformation intuitive guide](./machine_learning/PCA/pca_feature_transformation.md)
+      * [Statistical and Mathematical Concepts behind PCA](./machine_learning/PCA/pca_math.ipynb)
+      * [Image Compression Using PCA](./machine_learning/PCA/pca_mnist_image_compression.ipynb)
     * [Association Rules](./data_mining/association_rule.ipynb)      
     * Ensemble
       * Bagging
