@@ -51,7 +51,7 @@
     * [Train Test Split](./introduction/overfitting.md#train-test-split)
     * [Cross Validation](./introduction/overfitting.md#cross-validation)
     * [Feature Selection (ML)](./machine_learning/feature_selection.ipynb)
-    * [Dimensionality Reduction (ML)](./machine_learning/dimensionality_reducetion.md)
+    * [Dimensionality Reduction (ML)](./machine_learning/dimensionality_reduction.md)
     * [Normalization (DL)](./deep_learning/normalization/README.md)  
     * [Regularization](./introduction/overfitting.md#regularization)
       * [Ridge Regression and Lasso Regression](./machine_learning/regression.ipynb)
