@@ -3,3 +3,4 @@ workspace/
 **/.DS_Store
 data/
 **/*.pth
+**/*.bkp
