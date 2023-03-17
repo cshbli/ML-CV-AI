@@ -54,6 +54,15 @@ Deep learning is best characterized by its layered structure, which is the found
 
 The hierarchy of concepts allows the computer to autonomously learn complicated concepts by building them out of simpler ones. Therefore, a graph of these hierarchies would be many layers deep (hence the name deep neural network).
 
+<p align="center">
+<img src="pic/deep_learning_feature_extraction.png">
+</p>
+
+<p align="center">
+<img src="pic/deep_learning_generative_models.png">
+</p>
+
+
 ## Deep Learning vs. Machine Learning 
 
 Deep learning is a part of machine learning, but it’s different from traditional machine learning methods. Deep Learning has specific advantages over other forms of Machine Learning, making DL the most popular algorithmic technology of the current era. 
@@ -61,8 +70,6 @@ Deep learning is a part of machine learning, but it’s different from tradition
 <p align="center">
 <img src="pic/machine-learning-vs-deep-learning.webp">
 </p>
-
-
 
 ## References
 

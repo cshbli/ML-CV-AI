@@ -2,6 +2,10 @@
 
 Computer vision enables computer systems to analyze digital images, videos, and other visual input with computational methods to derive information that can be used to take action or make decisions based on it.
 
+<p align="center">
+<img src="pic/cv_ip_cg.png">
+</p>
+
 Many high-performing methods in modern computer vision software are based on a convolutional neural network (CNN).
 
 <p align="center">

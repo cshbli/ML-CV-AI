@@ -1,39 +1,7 @@
 ﻿# Machine Learning, Computer Vision and Artificial Intelligence
 
-<p align="center">
-<img src="./introduction/pic/ml_cv_ai.png">
-</p>
-
-<p align="center">
-<img src="./introduction/pic/machine_learning_types.png">
-</p>
-
-<p align="center">
-<img src="./introduction/pic/deep_learning_feature_extraction.png">
-</p>
-
-<p align="center">
-<img src="./introduction/pic/deep_learning_generative_models.png">
-</p>
-
-<p align="center">
-<img src="./image_processing/figs/cv_ip_cg.png">
-</p>
-
-<p align="center">  
-<img src="./machine_learning/pic/machine_learning_pipeline.png">
-</p>
-
-<p align="center">
-<img src="./machine_learning/pic/machine_learning_algorithms.png">
-</p>
-
-<p align="center">
-<img src="./introduction/pic/3D_deep_learning.png">
-</p>
-
 * Introductions
-  * [Artificial Intelligence, Machine Learning (ML) and Deep Learning (DL)](./introduction/machine_learning_and_deep_learning.md)
+  * [Artificial Intelligence (AI), Machine Learning (ML) and Deep Learning (DL)](./introduction/machine_learning_and_deep_learning.md)
   * [Artificial Neural Network](./introduction/neural_network.md)
   * [Deep Neural Network](./introduction/deep_neural_network.md)
   * Generative Model
@@ -220,7 +188,9 @@
   * Image Translation
     * [Pix2Pix - Image-to-Image Translation with Conditional Adversarial Networks](./image_translation/pix2pix/README.md)
     * [CycleGAN - Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks](./image_translation/CycleGAN/README.md)
+
   * 3D
+    * [3D Technology Map](./3D/3D_deep_learning.png)
     * Point Cloud
       * [Introduction to Point Cloud](./3D/point_cloud_processing.ipynb)
       * [Estimate Point Clouds From Depth Images](./3D/point_cloud_rgbd.ipynb)
