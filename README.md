@@ -18,8 +18,7 @@
     * [Bias and Variance](./introduction/overfitting.md#bias-and-variance)
     * [Train Test Split](./introduction/overfitting.md#train-test-split)
     * [Cross Validation](./introduction/overfitting.md#cross-validation)
-    * [Feature Selection (ML)](./machine_learning/feature_selection.ipynb)
-    * [Dimensionality Reduction (ML)](./machine_learning/dimensionality_reduction.md)
+    * [Feature Selection and Dimensionality Reduction (ML)](./machine_learning/data_preprocessing/dimensionality_reduction.md)
     * [Normalization (DL)](./deep_learning/normalization/README.md)  
     * [Regularization](./introduction/overfitting.md#regularization)
       * [Ridge Regression and Lasso Regression](./machine_learning/regression.ipynb)
@@ -47,11 +46,20 @@
   * [Data Loading](./machine_learning/data_loading.ipynb)
   * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
   * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
-  * [Data Preprocessing: Scaling and Standardization](./machine_learning/data_preprocessing.ipynb)
-    * [Standardization and Scaling in Data Preprocessing](./machine_learning/standardization_and_scaling.ipynb)
-    * [Data Preprecessing for Mixed Feature Data Types](./machine_learning/column_transformer.ipynb)
-    * [Dealing with Categorical Data: Encoding Features for ML Alogorithms](./machine_learning/categorical_data_encoding.ipynb)
-    * [Data Cleaning: Outlier Detection and Removal](./machine_learning/outlier.ipynb)
+  * [Data Preprocessing](./machine_learning/data_preprocessing/data_preprocessing.md)
+    * Data Cleaning
+      * [Data Cleaning: Outlier Detection and Removal](./machine_learning/data_preprocessing/outlier.ipynb)
+    * Data Transformation
+      * [Scaling in Data Preprocessing](./machine_learning/data_preprocessing/scaling.ipynb)
+      * [Discretization in Data Preprocessing](./machine_learning/data_preprocessing/discretization.ipynb)
+      * [Categorical Data Encoding](./machine_learning/data_preprocessing/categorical_data_encoding.ipynb)
+        * [ColumnTransformer and Pipeline for Mixed Data Types](./machine_learning/data_preprocessing/column_transformer.ipynb)      
+    * [Data Reduction](./machine_learning/data_preprocessing/dimensionality_reduction.md)
+      * Principal Component Analysis (PCA)
+        * [PCA with Scikit-learn on IRIS dataset](./machine_learning/PCA/pca_scikit_learn.ipynb)
+        * [PCA: feature transformation intuitive guide](./machine_learning/PCA/pca_feature_transformation.md)
+        * [Statistical and Mathematical Concepts behind PCA](./machine_learning/PCA/pca_math.ipynb)
+        * [Image Compression Using PCA](./machine_learning/PCA/pca_mnist_image_compression.ipynb)
   * [Hyper-Parameters Tuning](./machine_learning/hyper_parameters.md)
   * Machine Learning Models
     * [Linear Regression](./machine_learning/regression.ipynb)
@@ -69,11 +77,6 @@
       * Mean Shift
       * [Connectivity Model: Hierarchical Clustering](./machine_learning/clustering/hierarchical_clustering.ipynb)
       * [Density Model: DBSCAN](./machine_learning/clustering/DBSCAN.ipynb)
-    * Principal Component Analysis (PCA)
-      * [PCA with Scikit-learn on IRIS dataset](./machine_learning/PCA/pca_scikit_learn.ipynb)
-      * [PCA: feature transformation intuitive guide](./machine_learning/PCA/pca_feature_transformation.md)
-      * [Statistical and Mathematical Concepts behind PCA](./machine_learning/PCA/pca_math.ipynb)
-      * [Image Compression Using PCA](./machine_learning/PCA/pca_mnist_image_compression.ipynb)
     * [Association Rules](./data_mining/association_rule.ipynb)      
     * Ensemble
       * Bagging
