@@ -87,6 +87,7 @@
   * [Concepts](./glossary/README.md)
     * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE](./machine_learning/concepts/entropy.md)
     * [KL Divergence and JS Divergence](./machine_learning/concepts/kl_divergence.md)
+    * [Correlation](./machine_learning/concepts/correlation.ipynb)
     * [Focal Loss](./machine_learning/concepts/focal_loss.md)
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
 

@@ -4,3 +4,4 @@ workspace/
 data/
 **/*.pth
 **/*.bkp
+**/*.dtmp
