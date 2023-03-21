@@ -84,6 +84,9 @@
       * Boosting
         * XGBoost
       * Voting
+  * Machine Learning Model Explainability
+    * [Machine Learning Pipeline with Explainability](./machine_learning/pic/model_explainability.jpg)
+    * [SHAP: Explain Any Machine Learning Model](./machine_learning/shap.ipynb)
   * [Concepts](./glossary/README.md)
     * [Information, Entropy, Cross Entropy, Categorical CE, Binary CE](./machine_learning/concepts/entropy.md)
     * [KL Divergence and JS Divergence](./machine_learning/concepts/kl_divergence.md)
