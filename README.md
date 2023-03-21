@@ -44,8 +44,9 @@
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
     * [IRIS with Different Machine Learning Algorithms](./machine_learning/iris.ipynb)
   * [Data Loading](./machine_learning/data_loading.ipynb)
-  * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
-  * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
+  * Data Exploration
+    * [Understanding Data with Statistics: Summary, Distributions, Correlations and Skewness](./machine_learning/data_statistics.ipynb)
+    * [Understanding Data with Visualizaiton: Histogram, Density, Box and Correlation Matrix Plots](./machine_learning/data_visualization.ipynb)
   * [Data Preprocessing](./machine_learning/data_preprocessing/data_preprocessing.md)
     * Data Cleaning
       * [Data Cleaning: Outlier Detection and Removal](./machine_learning/data_preprocessing/outlier.ipynb)
