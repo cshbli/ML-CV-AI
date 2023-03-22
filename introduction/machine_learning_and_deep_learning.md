@@ -38,11 +38,15 @@ Machine Learning is a very practical field of artificial intelligence with the a
 <img src="../machine_learning/pic/machine_learning_pipeline.png">
 </p>
 
+### Explainable Machine Learning
+
 Here is another roadmap with model explainablity.
 
 <p align="center">
 <img src="../machine_learning/pic/model_explainability.jpg">
 </p>
+
+### Data Exploration
 
 Data Exploration includes data statistics and data visualization.
 
@@ -50,11 +54,15 @@ Data Exploration includes data statistics and data visualization.
 <img src="../machine_learning/pic/descriptive_statistics.jpg">
 </p>
 
+### Data preprocessing
+
 Data preprocessing may involve data cleaning, data transformation and data reduction.
 
 <p align="center">
 <img src="../machine_learning/data_preprocessing/figs/data_preprocessing.jpg">
 </p>
+
+### Data Reduction
 
 There are two types of data reduction: feature selection and feature extraction.
 
