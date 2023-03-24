@@ -45,11 +45,23 @@ There are two common ways you can approach the feature selection:
 
 The popular methods can be classified as the following:
 
-- <b>Filtered-based method</b>: The most straightforward methodology. The features are selected independently of any machine learning algorithms. Using statistics (e.g., `Pearson Correlation`, `LDA`, etc.), we select important features based on how each feature impacts the target outcome. This is the least compute-intensive and fastest methodology.
+- <b>Filtered-based method</b>: The most straightforward methodology. The features are selected independently of any machine learning algorithms. Using statistics (e.g., `Pearson Correlation`), we select important features based on how each feature impacts the target outcome. This is the least compute-intensive and fastest methodology.
+    * <b>Pros</b>: They are model agnostic, easy to compute and interpret.
+    * <b>Example</b>: Correlation, Information Value
 
-- <b>Wrapper method</b>: This method selects the features based on ML training metric results. Each subset gets a score after training, then we add or remove features and eventually stop when we achieve the desired ML metric threshold. This could be forward, backward or recursive selection. This is the most compute-intensive method since you need to train many ML models.
+- <b>Wrapper method</b>: This method selects the features based on ML training metric results. Each subset gets a score after training, then we add or remove features and eventually stop when we achieve the desired ML metric threshold. This could be forward, backward or recursive selection. 
+    * <b>Pros</b>: As the method is model specific, the selected features perform well on the selected method.
+    * <b>Cons</b>: Computationally most expensive and also have the risk of overfitting to a specific model.
+    * <b>Example</b>: Forward Selection, Backward Elimination, Recursive Feature Elimination.
 
-- <b>Embedded method</b>: This method is more complex and combines filtered and wrapper methodologies together. The most popular examples of this method are LASSO and a tree algorithm.
+- <b>Embedded method</b>: Models like Lasso regression have their own built-in feature selection methods where they add a penalizing term to the regression equation to reduce over-fitting.
+    * <b>Pros</b>: Embedded
+    * <b>Cons</b>: Limited models with built-in feature selection methods
+    * <b>Example</b>: Lasso Regression
+
+Here’s a quick summary of the methods:
+
+<img src="figs/1_6mvNaERwEDKqbg54aZLBSg.webp">
 
 ## Advantages of Dimensionality Reduction
 
@@ -74,3 +86,9 @@ The popular methods can be classified as the following:
 - [11 Dimensionality reduction techniques you should know in 2021](https://towardsdatascience.com/11-dimensionality-reduction-techniques-you-should-know-in-2021-dcb9500d388b)
 
 - [Feature Selection Techniques](https://medium.com/@data.science.enthusiast/feature-selection-techniques-forward-backward-wrapper-selection-9587f3c70cfa)
+
+- [Deep-dive on ML techniques for feature selection in Python - Part 1](https://towardsdatascience.com/deep-dive-on-ml-techniques-for-feature-selection-in-python-part-1-3574269d5c69)
+
+- [Deep-dive on ML techniques for feature selection in Python — Part 2](https://towardsdatascience.com/deep-dive-on-ml-techniques-for-feature-selection-in-python-part-2-c258f8a2ac43)
+
+- [Deep-dive on ML techniques for feature selection in Python — Part 3](https://towardsdatascience.com/deep-dive-on-ml-techniques-for-feature-selection-in-python-part-3-de2a7593247f)
