@@ -61,7 +61,9 @@
         * [PCA: feature transformation intuitive guide](./machine_learning/PCA/pca_feature_transformation.md)
         * [Statistical and Mathematical Concepts behind PCA](./machine_learning/PCA/pca_math.ipynb)
         * [Image Compression Using PCA](./machine_learning/PCA/pca_mnist_image_compression.ipynb)
-      * [Linear Discriminant Analysis (LDA)](./machine_learning/LDA/LDA.ipynb)
+      * Linear Discriminant Analysis (LDA)
+        * [LDA with scikit-learn on Wine dataset](./machine_learning/LDA/LDA.ipynb)
+        * [Statistical and Mathematical concepts behind LDA](./machine_learning/LDA/LDA_math.ipynb)
   * [Hyper-Parameters Tuning](./machine_learning/hyper_parameters.md)
   * Machine Learning Models
     * [Linear Regression](./machine_learning/regression.ipynb)
