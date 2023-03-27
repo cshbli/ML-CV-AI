@@ -77,7 +77,7 @@
     * [Random Forest](./machine_learning/random_forest/Random_Forest_Tutorial.ipynb)
     * XGBoost
     * K-Nearest Neighbors (KNN)
-    * Naive Bayes Classification
+    * [Naive Bayes Classification](./machine_learning/naive_bayes/naive_bayes.ipynb)
     * [Clustering](./machine_learning/clustering/clustering.md)
       * [Centroid Model: K-means](./machine_learning/clustering/k_means.ipynb)
       * Mean Shift
