@@ -64,7 +64,9 @@
       * Linear Discriminant Analysis (LDA)
         * [LDA with scikit-learn on Wine dataset](./machine_learning/LDA/LDA.ipynb)
         * [Statistical and Mathematical concepts behind LDA](./machine_learning/LDA/LDA_math.ipynb)
-  * [Hyper-Parameters Tuning](./machine_learning/hyper_parameters.md)
+  * [Hyper-Parameters Tuning](./machine_learning/hyper_parameter/hyper_parameters.md)
+    * [Bayesian Optimization of Hyperparameter Tuning With scikit-opitmize](./machine_learning/hyper_parameter/bayesian_optimization_scikit_optimize.ipynb)
+    * [Bayesian Optimization of Hyperparameter Tuning With Hyperopt](./machine_learning/hyper_parameter/bayesian_optimization_hyperopt.ipynb)
   * Machine Learning Models
     * [Linear Regression](./machine_learning/regression.ipynb)
     * [Logistic Regression](./machine_learning/logistic_regression.ipynb)

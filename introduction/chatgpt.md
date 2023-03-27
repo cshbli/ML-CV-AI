@@ -2,6 +2,10 @@
 
 ## Large Language Models (LLMs)
 
+Language models can learn a library of text (called corpus) and predict words or sequences of words with probabilistic distributions, i.e. how likely a word or sequence can occur. 
+
+<img src="pic/0_9cIphEN4LvZnkkI5.png">
+
 The most basic training of language models involves predicting a word in a sequence of words. Most commonly, this is observed as either next-token-prediction and masked-language-modeling.
 
 <img src="pic/1_bRAm5gHJKsW1Jq7JOoIV4Q.webp">
@@ -12,17 +16,15 @@ The most basic training of language models involves predicting a word in a seque
 
 2. The input data is processed individually and sequentially rather than as a whole corpus. This means that when an LSTM is trained, the window of context is fixed, extending only beyond an individual input for several steps in the sequence. This limits the complexity of the relationships between words and the meanings that can be derived.
 
-### Transformers (Google Brain Team, 2017)
+## The transformer and GPT (Generative Pre-training Transformer) timeline
 
-## GPT (Generative Pre-training Transformer) and Self-Attention
+<img src="pic/0_F_HXSMSw_lO1jJb5.png">
 
-* GPT-1 2018
-* GPT-2 2019
-* GPT-3 2020
-* InstructGPT 2022
-* ChatGTP 2022
+### Transformer Architecture
 
-<img src="pic/1_ZwsjoypmN27gS3VrOrsbpw.webp">
+<img src="pic/0_NwVkRiRwD668BV5z.png">
+
+The encoder and decoder are the main components of transformer architecture. The encoder is responsible for analyzing and “understanding” the input text and the decoder is responsible for generating output.
 
 The self-attention mechanism that drives GPT works by converting tokens (pieces of text, which can be a word, sentence, or other grouping of text) into vectors that represent the importance of the token in the input sequence. To do this, the model,
 
@@ -65,3 +67,5 @@ Proximal Policy Optimization (PPO) step: the reward model is used to further fin
 * [How ChatGPT Works: The Model Behind The Bot](https://towardsdatascience.com/how-chatgpt-works-the-models-behind-the-bot-1ce5fca96286)
 
 * [Training language models to follow instructions with human feedback](https://arxiv.org/pdf/2203.02155.pdf) (2022/03 InstructGPT paper)
+
+* [How ChatGPT really works, explained for non-technical people](https://bootcamp.uxdesign.cc/how-chatgpt-really-works-explained-for-non-technical-people-71efb078a5c9)
