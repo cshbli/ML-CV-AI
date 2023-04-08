@@ -276,6 +276,14 @@
     * [Useful Pandas Functions](./tools/pandas.ipynb)
     * [A Gentle Visual Intro to Data Analysis in Python Using Pandas](https://jalammar.github.io/gentle-visual-intro-to-data-analysis-python-pandas/)
     * [Visualizing Pandas' Pivoting and Reshaping Functions](https://jalammar.github.io/visualizing-pandas-pivoting-and-reshaping/)
+* Android
+  * [Service and Thread](./tools/Android/service_and_thread.md)
+  * [Different Ways to Get Context](./tools/Android/context.md)
+  * [Application Class](./tools/Android/application.md)  
+  * [Miscellaneous](./tools/Android/miscellaneous.md)
+* Java
+  * [Gson](./tools/Java/gson.md)
+  * [Miscellaneous](./tools/Java/miscellaneous.md)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)

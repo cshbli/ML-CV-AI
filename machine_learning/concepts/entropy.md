@@ -28,8 +28,8 @@ For p(x) — probability distribution and a random variable X, entropy is define
 
 $$ H(X) = 
 \begin{cases}
-- \int_x p(x)log_bp(x), \quad if \,X \, is \,continuous \\
-- \sum_{x \in X}p(x)log_bp(x), \quad if \,X \,is\, discrete
+- \int_xp(x)log_bp(x), \quad if \,X \, is \,continuous \\
+- \sum_{x \in X}p(x)log_bp(x), \quad if \,X \,is\, discrete \\
 \end{cases}
 $$
 
