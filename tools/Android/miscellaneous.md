@@ -1,6 +1,34 @@
 # Miscellaneous
 
-# Start Activity and Close Current
+## Alert Dialog
+
+```
+// setup the alert builder
+AlertDialog.Builder builder = new AlertDialog.Builder(this);
+builder.setTitle("Delete");
+builder.setMessage("Are you sure to delete?");
+
+builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        // Do something
+        
+
+    }});
+builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+
+        // cancel
+        dialog.cancel();
+    }});
+
+// create and show the alert dialog
+AlertDialog dialog = builder.create();
+dialog.show();
+```
+
+## Start Activity and Close Current
 
 ```
 import android.app.Activity;

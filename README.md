@@ -279,7 +279,8 @@
 * Android
   * [Service and Thread](./tools/Android/service_and_thread.md)
   * [Different Ways to Get Context](./tools/Android/context.md)
-  * [Application Class](./tools/Android/application.md)  
+  * [Application Class](./tools/Android/application.md)
+  * [Alert Dialog]
   * [Miscellaneous](./tools/Android/miscellaneous.md)
 * Java
   * [Gson](./tools/Java/gson.md)
