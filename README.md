@@ -285,6 +285,8 @@
 * Java
   * [Gson](./tools/Java/gson.md)
   * [Miscellaneous](./tools/Java/miscellaneous.md)
+* Kotlin
+  * [Kotlin with VS Code](./tools/Kotlin/IDE.md)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Git](./tools/git.md)
