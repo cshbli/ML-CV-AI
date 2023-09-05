@@ -8,6 +8,7 @@
   * [Python type() vs. isinstance()](./tools/python_type_vs_isinstance.ipynb)  
   * [Python Synthetic Data Generators](./tools/python/synthetic_data.ipynb)
   * [A Visual Intro to NumPy and Data Representation](https://jalammar.github.io/visual-numpy/)
+  * [Args, kwargs and Asterisks](./tools/python/args_kwargs_asterisks.ipynb)
   * Pandas
     * [Useful Pandas Functions](./tools/pandas.ipynb)
     * [A Gentle Visual Intro to Data Analysis in Python Using Pandas](https://jalammar.github.io/gentle-visual-intro-to-data-analysis-python-pandas/)
