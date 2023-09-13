@@ -16,16 +16,17 @@
 * Android
   * [Service and Thread](./tools/Android/service_and_thread.md)
   * [Different Ways to Get Context](./tools/Android/context.md)
-  * [Application Class](./tools/Android/application.md)
-  * [Alert Dialog]
+  * [Application Class](./tools/Android/application.md)  
   * [Miscellaneous](./tools/Android/miscellaneous.md)
 * Java
   * [Gson](./tools/Java/gson.md)
   * [Miscellaneous](./tools/Java/miscellaneous.md)
 * Kotlin
   * [Kotlin with VS Code](./tools/Kotlin/IDE.md)
+* OpenCV
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
+* [Conda and Virtual Environment](./tools/venv.md)
 * [Git](./tools/git.md)
 * [Markdown and LaTeX introduction](https://ashki23.github.io/markdown-latex.html)
   * [PDF print out](./tools/Markdown%20and%20LaTeX%20introduction.pdf)
