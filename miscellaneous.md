@@ -24,6 +24,8 @@
 * Kotlin
   * [Kotlin with VS Code](./tools/Kotlin/IDE.md)
 * OpenCV
+  * [Simple Blob Detection with Java/C++](./tools/OpenCV/blob_detection.md)
+  * [Miscellaneous](./tools/OpenCV/opencv.md)
 * [Docker](./tools/docker.md)
   * [Visual Studio Code remote connect to a docker container](./tools/docker.md#visual-studio-code-remote-connect-to-a-docker-container)
 * [Conda and Virtual Environment](./tools/venv.md)
