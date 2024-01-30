@@ -1,5 +1,6 @@
 # Miscellaneous: Python, Java, Kotlin, Android, Docker, etc
-
+* Programming Styles
+  * [C/C++](./tools/styles-c.md)
 * Python
   * [Python Debugging pdb cheatsheet](./tools/fig/python-debugging-cheatsheet.png)
   * [Advanced Python Functions](./tools/advanced_python_functions.ipynb)
