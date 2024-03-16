@@ -12,13 +12,20 @@
 
 * HTML 
   * standard markup language for Web pages.
+  * Define the content of web pages  
 
 * CSS
   * CSS is the language we use to style an HTML document.
+  * specify the layout of web pages.
 
 * JavaScript
   * JavaScript is the world's most popular programming language.
   * JavaScript is the programming language of the Web.
+  * JavaScript to program the behavior of web pages.
+
+* React
+  * React is a JavaScript library for building user interfaces.  
+  * React, sometimes referred to as a frontend JavaScript framework, is a JavaScript library created by Facebook.
 
 * SQL
   * SQL is a standard language for storing, manipulating and retrieving data in databases.
@@ -28,9 +35,6 @@
 
 * Bootstrap
   * Bootstrap is the world's most famous free CSS framework.
-
-* React
-  * React is a JavaScript library for building user interfaces.
 
 * jQuery
   * jQuery is a JavaScript Library.
