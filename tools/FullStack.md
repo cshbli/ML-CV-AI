@@ -6,9 +6,42 @@
 </p>
 
 * Skills required for different sectors
-<p align="center">
-<img src="fig/Skills-Required-for-different-sectors.png">
-</p>
+  * Software Engineer
+    * C/C++
+    * Java
+    * Python
+    * JavaScript
+    * C#
+  * Web Development
+    * HTML
+    * CSS
+    * JavaScript
+    * Node.js
+    * Python
+  * App Development
+    * Java
+    * Kotlin
+    * Swift
+    * React Native
+    * Flutter
+  * AI, ML and Data Scient
+    * Python
+    * Java
+    * Julia
+    * R
+    * Haskell
+  * Cyber Security
+    * Linux
+    * Networking
+    * Social Engineering
+    * Python
+    * C++
+  * Game Development
+    * C++
+    * Java
+    * C#
+    * Unity 3D
+    * Unreal          
 
 * HTML 
   * standard markup language for Web pages.
@@ -27,6 +60,15 @@
   * React is a JavaScript library for building user interfaces.  
   * React, sometimes referred to as a frontend JavaScript framework, is a JavaScript library created by Facebook.
 
+* [Node.js](./NodeJS.md)
+  * Node.js is an open source server environment.
+  * Node.js allows you to run JavaScript on the server.
+
+* Ruby
+  * <b>Ruby</b> is an interpreted, high-level, general-purpose programming language. It was designed with an emphasis on programming productivity and simplicity. In Ruby, everything is an object, including primitive data types.
+  * <b>RubyGems</b> is a package manager for the Ruby programming language that provides a standard format for distributing Ruby programs and libraries (in a self-contained format called a "gem"), a tool designed to easily manage the installation of gems, and a server for distributing them.
+  * <b>Ruby on Rails</b> (simplified as Rails) is a server-side web application framework written in Ruby under the MIT License. Rails is a model–view–controller (MVC) framework, providing default structures for a database, a web service, and web pages.
+
 * SQL
   * SQL is a standard language for storing, manipulating and retrieving data in databases.
 
@@ -43,11 +85,7 @@
 * XML
   * XML stands for eXtensible Markup Language.
   * XML was designed to store and transport data.
-  * XML was designed to be both human- and machine-readable.  
-
-* Node.js
-  * Node.js is an open source server environment.
-  * Node.js allows you to run JavaScript on the server.
+  * XML was designed to be both human- and machine-readable.
 
 * R
   * R is often used for statistical computing and graphical presentation to analyze and visualize data.  
@@ -114,3 +152,7 @@
    * Java-based framework         
 * Windows Presentation Foundation (WPF)
    * Building Windows desktop applications
+
+* CocoaPods
+   * CocoaPods is a dependency manager for Swift and Objective-C Cocoa projects. It has over 99 thousand libraries and is used in over 3 million apps. CocoaPods can help you scale your projects elegantly. 
+   * CocoaPods is built with Ruby and is installable with the default Ruby available on macOS.   
