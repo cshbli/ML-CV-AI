@@ -60,10 +60,15 @@
   * React is a JavaScript library for building user interfaces.  
   * React, sometimes referred to as a frontend JavaScript framework, is a JavaScript library created by Facebook.
 
-* [Node.js](./NodeJS.md)
-  * Node.js is an open source server environment.
-  * Node.js allows you to run JavaScript on the server.
+* Web Framework
+  * Web Application Framework or simply Web Framework represents a collection of libraries and modules that enables a web application developer to write applications without having to bother about low-level details such as protocols, thread management etc.
 
+* [Node.js](./NodeJS.md)
+
+* [Django](./Django.md)
+
+* [Flask](./flask.md)
+  
 * Ruby
   * <b>Ruby</b> is an interpreted, high-level, general-purpose programming language. It was designed with an emphasis on programming productivity and simplicity. In Ruby, everything is an object, including primitive data types.
   * <b>RubyGems</b> is a package manager for the Ruby programming language that provides a standard format for distributing Ruby programs and libraries (in a self-contained format called a "gem"), a tool designed to easily manage the installation of gems, and a server for distributing them.
