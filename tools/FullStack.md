@@ -56,10 +56,8 @@
   * JavaScript is the programming language of the Web.
   * JavaScript to program the behavior of web pages.
 
-* React
-  * React is a JavaScript library for building user interfaces.  
-  * React, sometimes referred to as a frontend JavaScript framework, is a JavaScript library created by Facebook.
-
+* [React](./React.md)
+  
 * Web Framework
   * Web Application Framework or simply Web Framework represents a collection of libraries and modules that enables a web application developer to write applications without having to bother about low-level details such as protocols, thread management etc.
 
