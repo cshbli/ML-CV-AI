@@ -101,6 +101,7 @@
     * [Correlation](./machine_learning/concepts/correlation.ipynb)
     * [Focal Loss](./machine_learning/concepts/focal_loss.md)
     * [Synthetic Minority Oversampling Technique (SMOTE)](./machine_learning/concepts/smote.md)
+    * [Zero-Shot Learning](./machine_learning/concepts/zero_shot_learning.md)
 
 * Deep Learning
   * [A Visual and Interactive Guide to the Basics of Neural Networks](https://jalammar.github.io/visual-interactive-guide-basics-neural-networks/)
@@ -162,15 +163,37 @@
       * [Docker Environment Setup](./deep_learning/quantization/TensorRT/docker.md)
       * [VGG16 QAT on CIFAR-10](./deep_learning/quantization/TensorRT/vgg-qat.ipynb)
       * [YOLOv5 Quant Example](https://github.com/maggiez0138/yolov5_quant_sample)
-  * Transformer
-    * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)
-    * [The illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
-    * [Vision Transformer](https://github.com/google-research/vision_transformer)
   * Stable Diffusion
     * [The Illustrated Stable Diffusion](https://jalammar.github.io/illustrated-stable-diffusion/)
   * [RepVGG: Making VGG-style ConvNets Great Again](./deep_learning/RepVgg/RepVgg.ipynb)
   * [Compiler](./deep_learning/compiler/README.md)
      * [GLOW](https://github.com/pytorch/glow)
+
+* LLM
+  * Introductions and Tutorials
+    * [Token Embedding](./LLM/token_embedding.md)
+      * [Word Embedding](./text/word_embedding.md)
+        * [Word2Vec](./text/word_embedding.md#word2vec)
+        * [What Are Word Embeddings for Text?](https://machinelearningmastery.com/what-are-word-embeddings/)
+        * [The Illustrated Word2vec](https://jalammar.github.io/illustrated-word2vec/)
+    * Attention
+      * [Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention)](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
+      * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)
+    * Transformer      
+      * [The illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
+      * [Vision Transformer](https://github.com/google-research/vision_transformer)
+  * [HuggingFace](./LLM/HuggingFace.md)
+
+* VLM
+  * [Vision Language Models Explained](https://huggingface.co/blog/vlms)
+  * [CLIP: Contrastive Language-Image Pre-Training](https://github.com/openai/CLIP)
+    * [SigLIP: Sigmoid Loss for Language Image Pre-Training](https://huggingface.co/docs/transformers/v4.48.0/model_doc/siglip)
+    * [BLIP and BLIP-2: Boostrapping Lanugage-Image Pre-training](https://huggingface.co/blog/blip-2)
+  * [BAAI: Aquila-VL](https://huggingface.co/BAAI/Aquila-VL-2B-llava-qwen)
+  * [DriveVLM: The Convergence of Autonomous Driving and Large Vision-Language Models](https://tsinghua-mars-lab.github.io/DriveVLM/)
+  * [Senna: Bridging Large Vision-Language Models and End-to-End Autonomous Driving](https://github.com/hustvl/Senna)
+  * [LLaVA: Large Language and Vision Assistant](https://llava-vl.github.io/)
+  * [LLaVA-OneVision: Easy Visual Task Transfer](https://llava-vl.github.io/blog/2024-08-05-llava-onevision/)
 
 * Computer Vision  
   * [Overview](./computer_vision/README.md)
@@ -242,10 +265,7 @@
   * [Color Science with Python](https://github.com/colour-science/colour)
 
 * Text and NLP
-  * [TF-IDF: Term Frequency, Inverse Document Frequency](./text/tf_idf.ipynb)
-  * [Word Embedding](./text/word_embedding.md)
-    * [Word2Vec](./text/word_embedding.md#word2vec)
-    * [The Illustrated Word2vec](https://jalammar.github.io/illustrated-word2vec/)
+  * [TF-IDF: Term Frequency, Inverse Document Frequency](./text/tf_idf.ipynb)  
   * [Doc2Vec](./text/Doc2Vec.md)
   * [The Illustrated BERT, ELMo, and co. (How NLP Cracked Transfer Learning)](https://jalammar.github.io/illustrated-bert/)
   * [How GPT-3 Works - Visualizations and Animations](https://jalammar.github.io/how-gpt3-works-visualizations-animations/)
