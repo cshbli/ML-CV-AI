@@ -21,7 +21,7 @@ The main difference between the LLaMa architecture and the transformers’:
 |HIP|AMD GPUs|Heterogeneous-Interface Parallel Programming|
 |Metal|Apple GPUs|
 |CANN|Huawei Ascend AI processors|Compute Architecture for Neural Networks|
-|MUSA|Biren AI processors|Multiverse Unified System Architecture|
+|MUSA|Moore Threads MTT GPU|Multiverse Unified System Architecture|
 |Vulkan|Cross-platform (NVIDIA, AMD, Apple, Intel) |Low-level API for rendering and compute|
 | |Cross-platform (Windows, Linux, MacOS, Android) |On platform like Android, it is the de facto standard for GPU computing|
 |Kompute|High-leve framework for <b>Vulkan</b>-based GPU computing|
@@ -32,6 +32,7 @@ The main difference between the LLaMa architecture and the transformers’:
 | | OpenBLAS: Optimized BLAS library| Open-source, optimized for various CPUs (Intel, AMD, ARM)|
 | | cuBLAS: NVIDIA CUDA BLAS library| NVIDIA GPUs|
 | | rocBLAS: AMD ROC BLAS library| AMD GPUs using the HIP platform|
+|BLIS|BLAS-like library for high-performance dense linear algebra|
 |RPC|Distributed or remote computing|remote procedure call|
 
 ## Build a project outside of the source tree
