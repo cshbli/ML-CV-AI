@@ -183,6 +183,7 @@
       * [The illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
       * [Vision Transformer](https://github.com/google-research/vision_transformer)
   * [HuggingFace](./LLM/HuggingFace.md)
+  * [llama.cpp](./LLM/llama.cpp.md)
 
 * VLM
   * [Vision Language Models Explained](https://huggingface.co/blog/vlms)
