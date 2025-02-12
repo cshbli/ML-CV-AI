@@ -35,6 +35,44 @@ The main difference between the LLaMa architecture and the transformers’:
 |BLIS|BLAS-like library for high-performance dense linear algebra|
 |RPC|Distributed or remote computing|remote procedure call|
 
+### Key Differences Between Metal and CoreML
+|Feature|	Metal|	CoreML|
+|---|---|---|
+|Purpose|	High-performance graphics and GPU compute API.|	Framework for integrating and running machine learning models.|
+|Focus Area|	Rendering and compute tasks for games, AR, and GPU workloads.|	On-device inference for machine learning models.|
+|Target Developer|	Game developers, graphics/rendering experts, GPU compute developers.|	App developers incorporating AI/ML features.|
+|Device Usage|	Optimizes GPU for graphics or parallel computations.|	Leverages CPU, GPU, and Neural Engine for ML inference.|
+|Example Application|	High-performance 3D games, ARKit apps, or video editing.|	Object detection, text classification, or image processing in apps.
+
+#### MLX
+- MLX is a NumPy-like array framework designed for efficient and flexible machine learning on Apple silicon, brought to you by Apple machine learning research.
+
+- The Python API closely follows NumPy with a few exceptions. MLX also has a fully featured C++ API which closely follows the Python API.
+
+### iOS Inference Framework Comparison Table
+|Feature|	CoreML|	TensorFlow Lite (TFLite)|	ONNX Runtime|
+|---|---|---|---|
+|Native to iOS|	Yes|	No|	No|
+|Cross-Platform|	No|	Yes|	Yes|
+|Performance on iOS|	Excellent (fully optimized).|	Good (with Core ML/GPU delegates).|	Moderate (less optimized).|
+|Ease of Integration|	Best for iOS developers.|	Requires TensorFlow Lite APIs.|	Requires ONNX Runtime setup.|
+|Hardware Utilization|	Fully optimized (Neural Engine, GPU).|	Can use GPU/CoreML delegate.|	Less efficient without conversion.|
+|Model Format Support|	Only CoreML format.|	TensorFlow and TFLite formats.|	Any framework supporting ONNX.|
+|Workflow Simplicity|	Simple (Xcode and Swift integration).|	Moderate (requires extra setup).|	More complex (manual tuning needed).|
+
+### Android Inference Framework Comparison Table
+|Feature|	TensorFlow Lite|	ONNX Runtime|	ExecuTorch|	Others (MNN/NCNN)|
+|---|---|---|---|---|
+|Optimization for Android|	Excellent (designed for mobile).|	Good (general-purpose, NNAPI support).|	Moderate (not as optimized).|	Excellent (mobile-first frameworks).|
+|Hardware Acceleration|	NNAPI, GPU Delegate, Hexagon DSP.|	NNAPI, GPU Delegate.|	NNAPI, GPU Delegate.|	NNAPI, GPU (varies by framework).|
+|Model Compatibility|	Best with TensorFlow-trained models.|	Supports PyTorch, TensorFlow, etc.|	Best with PyTorch-trained models.|	Limited (specific use cases).|
+|Ease of Use|	Simple for TensorFlow users.|	Requires ONNX conversion.|	Simple for PyTorch users.|	Moderate to complex.|
+|Cross-Platform|	Yes (Android, iOS, embedded).|	Yes (Android, iOS, Linux, Windows).|	Yes (Android, iOS, Linux, Mac, embedded).|	Primarily Android (some iOS support).|
+|Binary Size|	Smallest.|	Moderate.|	Larger.|	Very small.|
+
+- MNN (Alibaba)
+- NCNN (Tencent)
+
 ## Build a project outside of the source tree
 - Please see this [example](https://github.com/ggerganov/llama.cpp/tree/master/examples/simple-cmake-pkg) 
 
