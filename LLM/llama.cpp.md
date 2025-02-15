@@ -35,7 +35,19 @@ The main difference between the LLaMa architecture and the transformers’:
 |BLIS|BLAS-like library for high-performance dense linear algebra|
 |RPC|Distributed or remote computing|remote procedure call|
 
+### AVX/AVX2/AVX-512/AMX Comparison Table
+
+|Feature|	AVX|	AVX2|	AVX-512|	AMX|
+|---|---|---|---|---|
+|Bit-width|	256 bits|	256 bits|	512 bits|	Tile-based (Matrix ops)|
+|Registers|	YMM|	YMM|	ZMM|	Tile registers|
+|Focus|	Floating-point|	Floating-point & integers|	Vector ops, AI, HPC|	Matrix multiplication|
+|Performance|	Moderate|	Higher|	Very high|	Specialized for AI/ML|
+|Applications|	Multimedia, HPC|	HPC, ML, video encoding|	AI, scientific computing|	AI, deep learning|
+
+
 ### Key Differences Between Metal and CoreML
+
 |Feature|	Metal|	CoreML|
 |---|---|---|
 |Purpose|	High-performance graphics and GPU compute API.|	Framework for integrating and running machine learning models.|
@@ -50,6 +62,7 @@ The main difference between the LLaMa architecture and the transformers’:
 - The Python API closely follows NumPy with a few exceptions. MLX also has a fully featured C++ API which closely follows the Python API.
 
 ### iOS Inference Framework Comparison Table
+
 |Feature|	CoreML|	TensorFlow Lite (TFLite)|	ONNX Runtime|
 |---|---|---|---|
 |Native to iOS|	Yes|	No|	No|
@@ -61,6 +74,7 @@ The main difference between the LLaMa architecture and the transformers’:
 |Workflow Simplicity|	Simple (Xcode and Swift integration).|	Moderate (requires extra setup).|	More complex (manual tuning needed).|
 
 ### Android Inference Framework Comparison Table
+
 |Feature|	TensorFlow Lite|	ONNX Runtime|	ExecuTorch|	Others (MNN/NCNN)|
 |---|---|---|---|---|
 |Optimization for Android|	Excellent (designed for mobile).|	Good (general-purpose, NNAPI support).|	Moderate (not as optimized).|	Excellent (mobile-first frameworks).|

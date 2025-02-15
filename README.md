@@ -44,8 +44,11 @@
 * LLM
   * Introductions and Tutorials
     * [Attention](./LLM/attention.md)
+      * [FlashAttention](./LLM/flash_attention.md)
       * [Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention)](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
       * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)      
+    * [Key-Value Cache](./LLM/key_value_cache.md)
+    * [AWQ: Activation Aware Quantization](./LLM/awq.md)
     * [Token Embedding](./LLM/token_embedding.md)
       * [Word Embedding](./text/word_embedding.md)
         * [Word2Vec](./text/word_embedding.md#word2vec)
@@ -62,7 +65,10 @@
     * Python based
       * [vLLM](https://github.com/vllm-project/vllm)
       * [SGLang](https://github.com/sgl-project/sglang)
-      * [KTransformers](https://github.com/kvcache-ai/ktransformers)    
+      * [KTransformers](https://github.com/kvcache-ai/ktransformers)
+      * [lmdeploy](https://github.com/InternLM/lmdeploy)
+    * Rust based
+      * [LlamaEdge](https://github.com/LlamaEdge/LlamaEdge)
     * Kernel Optimization
       * [Marlin: a Mixed Auto-Regressive Linear kernel, an extremely optimized FP16xINT4 matmul kernel](https://github.com/IST-DASLab/marlin)
 
