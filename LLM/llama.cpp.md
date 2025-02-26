@@ -16,7 +16,7 @@ The main difference between the LLaMa architecture and the transformers’:
 
 |Backend|Supported Platforms|Notes|
 |---|---|---|
-|CPU|All|mutli-threading and SIMD(AVX, AVX2, AVX512)|
+|CPU|All|mutli-threading and SIMD(AVX, AVX2, AVX512, AMX)|
 |CUDA|NVIDIA GPUs|Compute Unified Device Architecture|
 |HIP|AMD GPUs|Heterogeneous-Interface Parallel Programming|
 |Metal|Apple GPUs|
@@ -26,7 +26,7 @@ The main difference between the LLaMa architecture and the transformers’:
 | |Cross-platform (Windows, Linux, MacOS, Android) |On platform like Android, it is the de facto standard for GPU computing|
 |Kompute|High-leve framework for <b>Vulkan</b>-based GPU computing|
 |OpenCL|Cross-platform (NVIDIA, AMD, Intel) |Enables acceleration on devices that don't support CUDA or Metal|
-|SYCL|C++ for Heterogeneous computing|high-level programming model builds on the foundation of <b>OpenCL</b>|
+|SYCL|C++ for Heterogeneous computing (Intel GPUs)|high-level programming model builds on the foundation of <b>OpenCL</b>|
 |BLAS|Cross-platform math libraries for matrix operations|Basic Linear Algebra Subprograms|
 | | Intel MKL: Intel Math Kernel Library| using AVX/AVX2/AVX512 instructions for SIMD|
 | | OpenBLAS: Optimized BLAS library| Open-source, optimized for various CPUs (Intel, AMD, ARM)|
@@ -37,6 +37,10 @@ The main difference between the LLaMa architecture and the transformers’:
 
 ### AVX/AVX2/AVX-512/AMX Comparison Table
 
+- Advanced Vector Extensions (AVX) instruction set
+- Advanced Matrix Extensions (AMX). Intel-specific extension. 
+- AMD CPUs also support AVX/AVX2/AVX-512
+
 |Feature|	AVX|	AVX2|	AVX-512|	AMX|
 |---|---|---|---|---|
 |Bit-width|	256 bits|	256 bits|	512 bits|	Tile-based (Matrix ops)|
@@ -45,6 +49,54 @@ The main difference between the LLaMa architecture and the transformers’:
 |Performance|	Moderate|	Higher|	Very high|	Specialized for AI/ML|
 |Applications|	Multimedia, HPC|	HPC, ML, video encoding|	AI, scientific computing|	AI, deep learning|
 
+#### Neon Instruction Set
+
+The `NEON instruction set` is an advanced SIMD (Single Instruction, Multiple Data) extension to the ARM architecture, designed to accelerate parallel processing tasks like multimedia, signal processing, and machine learning on ARM-based CPUs. Introduced with ARMv7-A in 2005 and enhanced in later versions (e.g., ARMv8-A in the M3 chip), NEON is ARM’s equivalent to Intel’s AVX or SSE, enabling CPUs to perform the same operation on multiple data elements simultaneously.
+
+Example:
+```
+#include <arm_neon.h>
+#include <stdio.h>
+
+void addFloats(float* a, float* b, float* result, int n) {
+    for (int i = 0; i < n; i += 4) {
+        // Load 4 floats from each array into 128-bit registers
+        float32x4_t va = vld1q_f32(&a[i]);
+        float32x4_t vb = vld1q_f32(&b[i]);
+        // Add them in parallel
+        float32x4_t vr = vaddq_f32(va, vb);
+        // Store result
+        vst1q_f32(&result[i], vr);
+    }
+}
+
+int main() {
+    float a[4] = {1.0, 2.0, 3.0, 4.0};
+    float b[4] = {5.0, 6.0, 7.0, 8.0};
+    float result[4];
+    addFloats(a, b, result, 4);
+    for (int i = 0; i < 4; i++) {
+        printf("%f ", result[i]); // Outputs: 6.0 8.0 10.0 12.0
+    }
+    return 0;
+}
+```
+
+- Compile: `gcc -o neon_add neon_add.c -march=armv8-a+simd` (on ARM64).
+- How It Works: `vld1q_f32` loads 4 floats, `vaddq_f32` adds them, and  `vst1q_f32` stores the result—all in one cycle per vector.
+
+#### NEON vs. AVX
+
+- NEON: Leaner, power-efficient, ubiquitous in ARM (phones, Apple Silicon).
+- AVX: Wider registers, more complex ops, higher power draw.
+
+|Feature|	NEON (ARM)	| AVX (Intel)|
+|---|---|---|
+|Register Size|	128-bit	|256-bit (AVX), 512-bit (AVX-512)
+|Introduced	|2005 (ARMv7-A)|	2011 (Sandy Bridge)
+|Scope	|ARM CPUs (e.g., M3)|	x86 CPUs (e.g., i9)
+|Instructions|	Broad SIMD ops	|Broader + FMA, AVX-512 adds more
+|Use Case|	Mobile, embedded, ML	|Desktop, server, HPC
 
 ### Key Differences Between Metal and CoreML
 
@@ -126,6 +178,50 @@ graph TD
         G[ggml_tensor<br/>Tensor data structure]
     end
 ```
+
+## Layer Offloading
+
+Llama.cpp allows you to specify how many model layers (e.g., transformer layers in an LLM) are offloaded to the GPU, with the remainder staying on the CPU.
+
+- Default Behavior: Without GPU support compiled in or if `-ngl` is set to 0, all computations run on the CPU using optimized tensor operations (via the GGML library). With GPU support enabled, you can offload some or all layers to the GPU, depending on VRAM capacity and your settings.
+
+### How Layers Are Distributed
+1. User Specification:
+
+    - You explicitly set the number of layers to offload. For example, `-ngl 32` offloads 32 layers to the GPU, and any additional layers stay on the CPU.
+    - If you set `-ngl` higher than the model’s total layers (e.g., `-ngl 100` for a 33-layer model like LLaMA 7B), it offloads all layers to the GPU, assuming VRAM permits.
+    - Setting `-ngl -1` in some contexts (like Python bindings) attempts to offload all layers automatically.
+
+2. Model Architecture:
+
+    - LLMs like LLaMA consist of stacked transformer layers (e.g., 32 for 7B, 40 for 13B). Llama.cpp offloads these layers sequentially from the bottom up. So, if you offload 20 out of 32 layers, the first 20 run on the GPU, and the last 12 run on the CPU.
+    - Key-value caches (used for context in generation) can also be offloaded alongside layers, increasing VRAM usage.
+
+3. VRAM Management:
+
+    - The GPU handles the offloaded layers’ computations and stores their weights in VRAM. If VRAM is insufficient, you’ll encounter errors unless you reduce -ngl to fit within your GPU’s memory (e.g., a 7B model in 4-bit quantization needs ~6-8 GB VRAM fully offloaded).
+    - Remaining layers and their weights stay in system RAM, processed by the CPU.
+
+4. Backend Integration:
+
+    - CUDA (NVIDIA GPUs): With CUDA support compiled (e.g., `make LLAMA_CUBLAS=1`), llama.cpp uses NVIDIA’s cuBLAS library for GPU acceleration. Layers offloaded to the GPU benefit from parallel matrix operations.
+    - Metal (Apple GPUs): On macOS, Metal support offloads layers to the integrated GPU, optimized for Apple Silicon.
+    - SYCL (Intel GPUs): For Intel GPUs, SYCL enables layer offloading with similar logic.
+    - The CPU uses GGML’s SIMD-optimized routines for any layers not offloaded.
+
+Performance Implications
+
+- Full GPU Offload: Offloading all layers (e.g., -ngl 32 for a 7B model with enough VRAM) maximizes GPU parallelism, yielding the fastest inference (e.g., 20-50 tokens/s on an NVIDIA RTX 3090 with a 7B model in Q4).
+- Partial Offload: Splitting layers (e.g., 20 on GPU, 12 on CPU) balances VRAM constraints but introduces a performance hit due to data transfer between GPU and CPU RAM over the PCIe bus. This hybrid mode is slower than full GPU or full CPU but allows larger models on limited VRAM (e.g., 13B on a 12 GB GPU).
+- CPU Only: With no offload (`-ngl 0`), inference relies solely on CPU cores, typically achieving 5-15 tokens/s on modern CPUs (e.g., Ryzen 9) for a 7B model.
+
+Multi-GPU Support
+
+For systems with multiple GPUs, llama.cpp can split layers across them using the `--split-mode` and `--tensor-split` options:
+
+- --split-mode layer (default): Distributes layers across GPUs (e.g., 16 layers per GPU on two GPUs for a 32-layer model).
+- --split-mode row: Splits tensor rows across GPUs, less common for layer-based models.
+- --tensor-split 0.5,0.5: Allocates 50% of the workload to each of two GPUs (adjust fractions based on GPU count and VRAM).
 
 ## llama.cpp core functions
 
