@@ -88,7 +88,104 @@ The main difference between the LLaMa architecture and the transformers’:
 - NCNN (Tencent)
 
 ## Build a project outside of the source tree
-- Please see this [example](https://github.com/ggerganov/llama.cpp/tree/master/examples/simple-cmake-pkg) 
+- Please see this [example](https://github.com/ggerganov/llama.cpp/tree/master/examples/simple-cmake-pkg)
+
+## Core Structures and Classes
+
+```mermaid
+graph TD
+    A[llama_model] --> B[llama_hparams]
+    A --> C[llama_model_loader]
+    A --> D[llama_layer]
+    A --> E[llama_layer_posnet]
+    A --> F[llama_layer_convnext]
+    
+    D --> G[ggml_tensor]
+    E --> G
+    F --> G
+    
+    C --> G
+    C -.->|loads| D
+    C -.->|loads| E
+    C -.->|loads| F
+    C -.->|loads| B
+
+    subgraph "Model Core"
+        A
+        B[llama_hparams<br/>Model hyperparameters]
+    end
+
+    subgraph "Layer Types"
+        D[llama_layer<br/>Transformer layer]
+        E[llama_layer_posnet<br/>Positional network]
+        F[llama_layer_convnext<br/>ConvNeXt layer]
+    end
+
+    subgraph "Loading & Memory"
+        C[llama_model_loader<br/>Loads model from files]
+        G[ggml_tensor<br/>Tensor data structure]
+    end
+```
+
+## llama.cpp core functions
+
+### ggml_backend_load_all()
+
+The ggml_backend_load_best function is responsible for finding and loading the best available version of a specific backend by name. Here's how it works:
+
+1. It searches for backend libraries matching the pattern [lib]ggml-{name}-*.[so|dll] in the following locations:
+    - Current directory (./)
+    - Executable's directory
+    - Or a user-specified search path if provided
+
+2. For each matching library file found, it:
+    - Attempts to load the library
+    - Looks for a ggml_backend_score() function in the library
+    - If found, calls this function to get a "score" indicating how well the backend will perform on the current system
+    - Keeps track of the library with the highest score
+3. If no library with a score is found, it falls back to trying to load a basic version of the backend ([lib]ggml-{name}.[so|dll])
+
+4. Returns the backend registration for the best-scoring version found, or NULL if none are found/loadable
+
+For example, when called with name = "cuda", it might find:
+```
+ggml-cuda.dll           (base version)
+ggml-cuda-sm75.dll     (score: 75)
+ggml-cuda-sm86.dll     (score: 86)
+```
+
+And would load the sm86 version as it has the highest score, indicating better performance for that GPU architecture.
+
+This allows for optimized versions of backends to be automatically selected based on the specific hardware capabilities of the system.
+
+### llama_model_load_from_file()
+
+The llama_model_load_from_file_impl function is a core function in llama.cpp that handles loading a LLaMA model from files. Here's a breakdown of its key responsibilities:
+
+1. Model Device Setup:
+    - Determines the device type (CPU, GPU, etc.) based on the model file and available backends.
+    - Sets up the appropriate backend for the model.
+
+2. Device Management:
+    - Handles single GPU mode vs multi-GPU mode
+    - Logs available device memory and capabilities
+    - Sets up device priorities and configurations
+
+3. Model Loading:
+    - Reads the model file(s) from disk
+    - Handles model splitting across multiple files if necessary
+    - Validates model architecture and parameters
+    - Initializes model weights and tensors
+
+4. Error Handling:
+    - Provides error messages if model loading fails
+    - Logs detailed information about the model and device
+
+5. Progress Tracking:   
+    - Provides progress callback functionality during loading
+    - Shows percentage completion through the loading process
+
+This function is central to llama.cpp as it handles the critical task of getting the model from disk into a usable state in memory, properly configured for the available hardware.
 
 ## llama.swiftui example
 
