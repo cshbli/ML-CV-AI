@@ -84,7 +84,7 @@
   * [LLaVA-OneVision: Easy Visual Task Transfer](https://llava-vl.github.io/blog/2024-08-05-llava-onevision/)
 
 * Conversational AI
-  * [Introduction](./TTS/TTS.md)
+  * [Introduction](./conversational/conversational.md)
 
 * Machine Learning
   * [IRIS classification with Scikit-learn quickstart](./machine_learning/iris_tutorial.ipynb)
