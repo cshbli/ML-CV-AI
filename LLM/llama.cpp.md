@@ -179,6 +179,52 @@ graph TD
     end
 ```
 
+## What is a layer?
+
+### Transformer Architecture Basics
+LLaMA (Large Language Model Meta AI) follows the standard transformer architecture, which consists of multiple stacked "layers." Each layer in a transformer model is typically a <b>transformer block</b> that processes input data sequentially. For LLaMA, which is a decoder-only model (like GPT), these layers are responsible for generating or understanding text by applying a series of computations.
+
+A single transformer layer (or block) in LLaMA generally includes:
+
+- <b>Multi-Head Self-Attention</b>: This mechanism allows the model to weigh the importance of different tokens in the input sequence relative to each other.
+- <b>Feed-Forward Neural Network (FFN)</b>: A fully connected network applied independently to each token’s representation, typically with a hidden size larger than the input/output size (e.g., 4x the model dimension in LLaMA).
+- <b>Normalization Layers</b>: Layer normalization (e.g., RMSNorm in LLaMA) is applied before or after the attention and FFN components to stabilize training and inference.
+- <b>Residual Connections</b>: These add the input of the layer to its output, helping with gradient flow during training.
+
+Each layer transforms the input embeddings (or hidden states) and passes them to the next layer, progressively refining the representation of the text.
+
+### Layers in llama.cpp
+llama.cpp is a C++ implementation of LLaMA designed for efficient inference on CPUs (and optionally GPUs via extensions). In this codebase, a "layer" corresponds to one of these transformer blocks, and the model is composed of multiple such layers stacked together. The exact number of layers depends on the specific LLaMA model variant (e.g., 7B, 13B, 70B), with larger models having more layers.
+
+For example:
+
+- LLaMA 7B: 32 layers
+- LLaMA 13B: 40 layers
+- LLaMA 70B: 80 layers
+
+In the llama.cpp source code (e.g., llama.h or llama.cpp), layers are represented structurally. The model weights are organized by layer, with each layer containing weights for:
+
+- Self-attention (query, key, value, and output projection matrices: wq, wk, wv, wo).
+- Feed-forward network (e.g., w1, w2, w3 for the SwiGLU activation in LLaMA).
+- Normalization parameters (e.g., RMSNorm weights).
+When llama.cpp performs inference, it processes the input token embeddings through each layer sequentially, applying the attention and FFN computations as defined by the transformer block.
+
+### What Does "Layer" Mean Practically in llama.cpp?
+
+- <b>Computationally</b>: A layer is a unit of processing. During inference, llama.cpp iterates over all layers (e.g., 32 times for LLaMA 7B) to compute the output for a given input.
+- <b>Memory</b>: Each layer has associated weights, and the total memory footprint of the model scales with the number of layers and their size (determined by the hidden dimension and number of attention heads).
+- <b>Quantization</b>: When quantizing models in llama.cpp (e.g., to 4-bit or 8-bit precision), the weights of each layer are quantized individually, which can affect performance and memory usage.
+- <b>Parallelism</b>: Features like layer offloading (to GPU) or splitting layers across multiple threads rely on treating layers as discrete units.
+
+### Example in Context
+If you see a log or configuration in llama.cpp mentioning "layers," it might refer to:
+
+- How many transformer blocks are loaded into memory (e.g., --n-layers for offloading).
+- The progress of computation (e.g., "processing layer 10 of 32").
+
+### Summary
+In llama.cpp, a layer is a single transformer block in the LLaMA model, consisting of self-attention, a feed-forward network, and normalization, with associated weights. The model’s depth (number of layers) defines its capacity, and llama.cpp processes these layers iteratively during inference. 
+
 ## Layer Offloading
 
 Llama.cpp allows you to specify how many model layers (e.g., transformer layers in an LLM) are offloaded to the GPU, with the remainder staying on the CPU.

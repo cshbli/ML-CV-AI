@@ -24,6 +24,10 @@ transformers-cli env
 ```
 It will show your environment details and confirm if everything is set up correctly.
 
+## safetensors
+
+Safetensors is a file format designed to store and load machine learning model weights (tensors) in a secure and efficient manner. It was developed as an alternative to formats like Pickle (.pkl), which can pose security risks due to their ability to execute arbitrary code when loading untrusted files. Safetensors addresses these concerns by providing a safer, faster, and more lightweight way to handle model weights, particularly for frameworks like PyTorch and TensorFlow.
+
 ## transformers library
 
 The Hugging Face [transformers](https://github.com/huggingface/transformers) library is a high-level Python framework built for natural language processing tasks. It provides a unified API for accessing pre-trained transformer models like BERT, GPT, and others.
