@@ -12,6 +12,20 @@ The main difference between the LLaMa architecture and the transformers’:
 - <b>SwigGLU activation function (PaLM):</b> the original non-linearity ReLU activation function is replaced by the SwiGLU activation function, which leads to performance improvements.
 - <b>Rotary embeddings (GPTNeao):</b> the rotary positional embeddings (RoPE) was added at each layer of the network after removing the absolute positional embeddings.
 
+### Decoder-Only Architecture
+
+A decoder-only architecture refers to a type of transformer model that consists solely of the decoder component from the original transformer framework, omitting the encoder entirely. This design is tailored for tasks where the model generates output autoregressively—predicting the next token in a sequence based on all previous tokens—without requiring a separate input encoding phase. It’s widely used in large language models (LLMs) like GPT, LLaMA, and DeepSeek-R1.
+
+<img src="./images/f6133c18-bfaf-4578-8c5a-e5ac7809f65b_1632x784.png">
+
+#### The Original Transformer Context
+The transformer architecture, introduced in "Attention is All You Need" (Vaswani et al., 2017), has two main components:
+
+- Encoder: Processes the input sequence (e.g., a sentence to translate) into a contextualized representation. It uses bidirectional self-attention, allowing each token to attend to all tokens in the input.
+- Decoder: Generates the output sequence (e.g., the translated sentence) autoregressively, using causal (masked) self-attention to ensure each token only attends to previous positions, plus cross-attention to the encoder’s output.
+
+In tasks like machine translation, the encoder-decoder setup excels because the encoder captures the full input context, and the decoder generates the output step-by-step.
+
 ## Computation Acceleration
 
 |Backend|Supported Platforms|Notes|

@@ -55,9 +55,11 @@
         * [Word2Vec](./text/word_embedding.md#word2vec)
         * [What Are Word Embeddings for Text?](https://machinelearningmastery.com/what-are-word-embeddings/)
         * [The Illustrated Word2vec](https://jalammar.github.io/illustrated-word2vec/)    
-    * Transformer
+    * [Transformer](./LLM/transformer.md)
       * [Vision Transformer](https://github.com/google-research/vision_transformer)
+    * [Knowledge Distillation](./LLM/knowledge_distillation.md)
   * [HuggingFace](./LLM/HuggingFace.md)
+  * [DeepSeek](./LLM/DeepSeek.md)
   * LLM Inference Optimizations
     * C/C++ based
       * [llama.cpp](./LLM/llama.cpp.md)

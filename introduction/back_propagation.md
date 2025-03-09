@@ -1,5 +1,13 @@
 # Backpropagation
 
+## Forward and Backward Computation During Training
+
+In deep learning, forward and backward propagation are the two main steps in training a neural network. In the forward stage, the input data is passed through the network layer by layer, each layer applies transformations and then produce the output. In the Backward stage, the loss is calculated using the loss function(e.g., cross entropy, MSE, etc), back-propagation computes the gradient of the loss with respect to weights, gradients are propagated backward, layer by layer, using the chain rule of differentiation. And then weights are updated using an optimization algorithm(e.g., Adam).
+
+<img src="pic/1_K0M2WWY08l26xzUpan6Jtg.webp">
+
+## Backpropagation
+
 <img src="pic/0_VHvavv03ptQ4jBiP.png">
 
 The mathematical foundations of neural networks are differentiable graphs — chains of computations whose derivative can be calculated. It is this property that allows the weights between nodes to be optimised through a process called Backpropagation, and what allows a network to learn from its mistakes.

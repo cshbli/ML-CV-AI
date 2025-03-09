@@ -40,6 +40,8 @@ The next step is to calculate the attention weights. The attention weights are c
 
 <img src="./images/transformer_multi-headed_self-attention-recap.png"/>
 
+<img src="./images/1_NxgzoM0zSKAWrl0dp47B7A.webp">
+
 ## References
 
 * [The illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)

@@ -98,3 +98,13 @@ token_embeddings = outputs.last_hidden_state  # Contextualized embeddings
 |Contextuality	|Static	|Contextualized
 |Common Algorithms	|Word2Vec, GloVe	|BERT, GPT, Transformer models
 |Applications	|Simple NLP tasks	| Context-sensitive tasks
+
+## Tokenization and Vectoring Text for an LLM
+
+LLMs take text as input, but this text undergoes extensive processing before the LLM actually sees it. First, the text is tokenized (shown below)—or converted into a list of discrete tokens. These tokens are just words and sub-words. The LLM has a fixed set of tokens that it understands and is trained on, referred to as the model’s “vocabulary”. Vocabulary sizes change between models, but sizes of 64K to 256K total tokens are relatively common.
+
+<img src="./images/b8aadf17-3bf6-4b79-9688-b6bfbc5840b1_1830x888.webp">
+
+After the text has been converted to tokens, we can vectorize each token in the input. In addition to having a vocabulary, an LLM has a token embedding layer, which stores a (learned1) vector embedding for every token in its vocabulary. We can lookup the vector for each token in this layer, forming an input matrix. If each token embedding is d-dimensional and there are C total tokens in our input, then the total size of this input matrix is C by d; see below.
+
+<img src="./images/e2f723f2-056a-4fc0-a3f7-7aa151fe297e_1194x1026.webp">
