@@ -3,6 +3,42 @@
 ## Code Structure
 
 ```mermaid
+graph TD
+    A[llama_model] --> B[llama_hparams]
+    A --> C[llama_model_loader]
+    A --> D[llama_layer]
+    A --> E[llama_layer_posnet]
+    A --> F[llama_layer_convnext]
+    
+    D --> G[ggml_tensor]
+    E --> G
+    F --> G
+    
+    C --> G
+    C -.->|loads| D
+    C -.->|loads| E
+    C -.->|loads| F
+    C -.->|loads| B
+
+    subgraph "Model Core"
+        A
+        B[llama_hparams<br/>Model hyperparameters]
+    end
+
+    subgraph "Layer Types"
+        D[llama_layer<br/>Transformer layer]
+        E[llama_layer_posnet<br/>Positional network]
+        F[llama_layer_convnext<br/>ConvNeXt layer]
+    end
+
+    subgraph "Loading & Memory"
+        C[llama_model_loader<br/>Loads model from files]
+        G[ggml_tensor<br/>Tensor data structure]
+    end
+```
+
+
+```mermaid
 graph TD;
     A["llama_context::decode()<br> <sub>in llama-context.cpp"</sub>] --> B["llama_context::graph_build()<br> <sub>in llama-context.cpp"</sub>];
     B --> C["llama_context::graph_compute()<br> <sub>in llama-context.cpp"</sub>]
@@ -28,7 +64,250 @@ graph TD;
     end
 ```
 
-## llama.cpp Archtiecture
+### ggml_backend_load_all() in ggml-backend-reg.cpp
+
+The ggml_backend_load_best function is responsible for finding and loading the best available version of a specific backend by name. Here's how it works:
+
+1. It searches for backend libraries matching the pattern [lib]ggml-{name}-*.[so|dll] in the following locations:
+    - Current directory (./)
+    - Executable's directory
+    - Or a user-specified search path if provided
+
+2. For each matching library file found, it:
+    - Attempts to load the library
+    - Looks for a ggml_backend_score() function in the library
+    - If found, calls this function to get a "score" indicating how well the backend will perform on the current system
+    - Keeps track of the library with the highest score
+3. If no library with a score is found, it falls back to trying to load a basic version of the backend ([lib]ggml-{name}.[so|dll])
+
+4. Returns the backend registration for the best-scoring version found, or NULL if none are found/loadable
+
+For example, when called with name = "cuda", it might find:
+```
+ggml-cuda.dll           (base version)
+ggml-cuda-sm75.dll     (score: 75)
+ggml-cuda-sm86.dll     (score: 86)
+```
+
+And would load the sm86 version as it has the highest score, indicating better performance for that GPU architecture.
+
+This allows for optimized versions of backends to be automatically selected based on the specific hardware capabilities of the system.
+
+### llama_model_load_from_file()
+
+The llama_model_load_from_file_impl function is a core function in llama.cpp that handles loading a LLaMA model from files. Here's a breakdown of its key responsibilities:
+
+1. Model Device Setup:
+    - Determines the device type (CPU, GPU, etc.) based on the model file and available backends.
+    - Sets up the appropriate backend for the model.
+
+2. Device Management:
+    - Handles single GPU mode vs multi-GPU mode
+    - Logs available device memory and capabilities
+    - Sets up device priorities and configurations
+
+3. Model Loading:
+    - Reads the model file(s) from disk
+    - Handles model splitting across multiple files if necessary
+    - Validates model architecture and parameters
+    - Initializes model weights and tensors
+
+4. Error Handling:
+    - Provides error messages if model loading fails
+    - Logs detailed information about the model and device
+
+5. Progress Tracking:   
+    - Provides progress callback functionality during loading
+    - Shows percentage completion through the loading process
+
+This function is central to llama.cpp as it handles the critical task of getting the model from disk into a usable state in memory, properly configured for the available hardware.
+
+### llama_context::decode() in llama-context.cpp
+
+- Input Processing
+- KV Cache Management
+- Inference Pipeline
+    - <b>graph_build()</b>
+    - <b>graph_compute()</b>
+- Output Generation
+- Preformance Optimization
+
+### llama_model::build_graph() in llama-model.cpp
+
+The `llama_model::build_graph()` function is a crucial component in llama.cpp that constructs the computational graph needed for inferencing with the language model. Here's what it does:
+
+1. **Dynamic Graph Construction** - Creates a computational graph tailored to a specific model architecture (Llama, Mamba, RWKV, etc.)
+
+2. **Architecture-Specific Builder Selection** - Uses a factory pattern to select the appropriate builder class based on the model's architecture type:
+   ```cpp
+   switch (arch) {
+       case LLM_ARCH_LLAMA:
+           llm = std::make_unique<llm_build_llama>(*this, params, gf);
+           break;
+       case LLM_ARCH_MAMBA:
+           llm = std::make_unique<llm_build_mamba>(*this, params, gf);
+           break;
+       // Many more architectures...
+   }
+   ```
+
+3. **Graph Building** - When a builder is instantiated, its constructor automatically:
+   - Creates the complete neural network flow
+   - Adds all tensor operations to the graph (`gf`)
+   - Sets up the connections between layers
+   - Configures attention mechanisms, feed-forward networks, etc.
+
+4. **Pooling Layer Addition** - After the main architecture is built, it adds any required pooling layer:
+   ```cpp
+   llm->build_pooling(gf, cls, cls_b, cls_out, cls_out_b);
+   ```
+
+5. **Result Production** - Returns a pointer to the graph result, which contains:
+   - `t_logits` - The tensor containing the model's output logits
+   - `t_embd` - The tensor containing the model's embedding output
+
+This function enables llama.cpp to handle many model architectures (70+ in the code) through a uniform interface while applying architecture-specific optimizations and computational patterns.
+
+### `llm_build_llama` - The Core Graph Builder for Llama Models
+
+`llm_build_llama` is a crucial class in llama.cpp that constructs the computational graph for Llama-architecture models. It inherits from `llm_graph_context` and is responsible for translating the model's weights and architecture into a computational graph that can be executed by the GGML backend.
+
+1. **Graph Construction**: It builds a complete forward pass graph for Llama models by connecting tensor operations in the proper sequence.
+
+2. **Input Processing**:
+   - Sets up token embeddings
+   - Handles positional information
+   - Prepares KV caching for efficient inference
+
+3. **Layer Processing**: For each transformer layer, it builds:
+   - RMS normalization
+   - Self-attention mechanism with RoPE (Rotary Position Embeddings)
+   - Feed-forward network with SwiGLU activation
+   - Residual connections
+
+4. **Attention Mechanism**:
+   - Calculates Query, Key, and Value matrices
+   - Applies RoPE to handle positional information
+   - Builds the appropriate attention pattern with proper scaling
+   - Handles multi-query attention patterns
+
+5. **MoE Support**: For mixture-of-experts models, it constructs:
+   - Expert routing gates
+   - Multiple FFN experts
+   - Expert combination logic
+
+6. **Output Processing**:
+   - Final normalization
+   - Projection to vocabulary logits
+   - Applies any final scaling needed
+
+#### Implementation Details:
+
+The class follows a builder pattern, constructing the graph incrementally through operations on GGML tensors. It uses callbacks to mark important tensors in the graph, which enables debugging and optimization. The core of the implementation is the layer-by-layer construction, with careful attention to architecture-specific details like scaling factors and normalization types.
+
+This builder is specialized for Llama-style models but shares patterns with other architecture builders in the codebase.
+
+### `graph_compute()` Function in llama-context.cpp
+
+The `graph_compute()` method in `llama_context` is responsible for executing the computational graph built for inferencing. It's a crucial part of the execution pipeline that actually runs the model computations.
+
+1. **Thread Management**   
+2. **CPU Backend Configuration**
+3. **Multi-Backend Thread Configuration**
+4. **Asynchronous Graph Execution**:
+   ```cpp
+   auto status = ggml_backend_sched_graph_compute_async(sched.get(), gf);
+   ```
+   - Submits the computational graph to the scheduler for asynchronous execution
+   - This allows overlapping of I/O and computation for better performance
+
+This function represents the point where all the tensor operations defined in the graph are actually executed on the hardware, whether that's CPU, GPU, or other accelerators.
+
+### `ggml_backend_sched_alloc_graph()` Function in ggml-backend.cpp
+
+This function is responsible for memory allocation for computational graphs in llama.cpp's heterogeneous backend system. It's a critical component that prepares the memory needed for model inference across different hardware devices.
+
+1. **Graph Splitting**:
+   ```cpp
+   ggml_backend_sched_split_graph(sched, graph);
+   ```
+   - Divides the computation graph into subgraphs that can execute efficiently on different backends (CPU, CUDA, Metal, etc.)
+   - Assigns each tensor and operation to the optimal backend
+   - Creates necessary copies for tensors that need to be shared between backends
+   - Builds connection points between subgraphs
+
+2. **Memory Allocation**:
+   ```cpp
+   if (!ggml_backend_sched_alloc_splits(sched)) {
+       return false;
+   }
+   ```
+   - Allocates actual memory for each tensor in the computational graph
+   - Tries to reuse previous allocations when possible
+   - Creates new allocations when backend assignments have changed
+   - Ensures tensors that need to communicate are properly aligned and accessible
+   - Optimizes memory usage across all available backends
+
+This function helps llama.cpp efficiently utilize multiple computing devices simultaneously by handling all the complex memory management required for heterogeneous computing. It's called prior to inference to ensure all memory is properly set up before computation begins.
+
+### `ggml_backend_sched_compute_splits()` 
+
+This function is critical for executing the computational graph after it has been split across multiple backends (like CPU, CUDA, Metal, etc.). Here's what it does:
+
+1. **Execute Each Graph Split**: 
+   - Processes each split of the computational graph that was previously divided by `ggml_backend_sched_split_graph()`
+   - Each split runs on its designated backend (CPU, GPU, etc.)
+
+2. **Handle Cross-Backend Transfers**:   
+
+3. **Manage Synchronization**:   
+
+4. **Support Async Execution**:   
+
+5. **Pipeline Parallelism**:   
+
+6. **Callback Integration**:   
+
+This function is the execution engine that makes llama.cpp's multi-backend architecture work. It enables efficient utilization of heterogeneous hardware by coordinating tensor movement and computation across different devices while maintaining correct execution order and data consistency.
+
+### `ggml_backend_graph_compute_async()` Function in ggml-backend.cpp
+
+This function is a critical component in the GGML backend system that handles asynchronous execution of computational graphs across different hardware accelerators. Here's what it does:
+
+```cpp
+enum ggml_status ggml_backend_graph_compute_async(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
+    return backend->iface.graph_compute(backend, cgraph);
+}
+```
+
+1. **Dispatches Computation**: Forwards the graph computation request to the appropriate backend implementation (CPU, CUDA, Metal, etc.)
+
+2. **Non-Blocking Operation**: Unlike its synchronous counterpart, it launches computation but returns immediately without waiting for completion
+
+3. **Backend-Specific Execution**: Each backend implements its own version of `graph_compute()` that knows how to:
+   - Schedule operations on the specific hardware
+   - Manage memory transfers
+   - Optimize for the particular accelerator
+
+4. **Status Reporting**: Returns an enumerated status value indicating success or specific failure modes
+
+#### Key Differences from Synchronous Version:
+
+For comparison, the synchronous version is:
+
+```cpp
+enum ggml_status ggml_backend_graph_compute(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
+    enum ggml_status err = ggml_backend_graph_compute_async(backend, cgraph);
+    ggml_backend_synchronize(backend);
+    return err;
+}
+```
+
+The asynchronous version enables overlapping computation with other operations, which is crucial for maximizing performance in complex applications like LLM inference where you might want to process the next batch of tokens while still generating the current ones.
+
+This function is part of the backend abstraction layer that allows llama.cpp to run efficiently across diverse hardware platforms while maintaining a unified programming interface.
+
+## Llama Archtiecture
 
 Llama.cpp’s backbone is the original Llama models, which is also based on the transformer architecture.
 
@@ -113,7 +392,7 @@ It is important to distinguish between two types of tensors.
     };
 ```
 
-nb is a bit more sophisticated. It contains the stride: the number of bytes between consequetive elements in each dimension. In the first dimension this will be the size of the primitive element. In the second dimension it will be the row size times the size of an element, and so on. For example, for a 4x3x2 tensor:
+`nb` is a bit more sophisticated. It contains the stride: the number of bytes between consequetive elements in each dimension. In the first dimension this will be the size of the primitive element. In the second dimension it will be the row size times the size of an element, and so on. For example, for a 4x3x2 tensor:
 
 <img src="./images/llama_cpp_tensor_stride.png.webp">
 
@@ -321,43 +600,6 @@ int main() {
 ## Build a project outside of the source tree
 - Please see this [example](https://github.com/ggerganov/llama.cpp/tree/master/examples/simple-cmake-pkg)
 
-## Core Structures and Classes
-
-```mermaid
-graph TD
-    A[llama_model] --> B[llama_hparams]
-    A --> C[llama_model_loader]
-    A --> D[llama_layer]
-    A --> E[llama_layer_posnet]
-    A --> F[llama_layer_convnext]
-    
-    D --> G[ggml_tensor]
-    E --> G
-    F --> G
-    
-    C --> G
-    C -.->|loads| D
-    C -.->|loads| E
-    C -.->|loads| F
-    C -.->|loads| B
-
-    subgraph "Model Core"
-        A
-        B[llama_hparams<br/>Model hyperparameters]
-    end
-
-    subgraph "Layer Types"
-        D[llama_layer<br/>Transformer layer]
-        E[llama_layer_posnet<br/>Positional network]
-        F[llama_layer_convnext<br/>ConvNeXt layer]
-    end
-
-    subgraph "Loading & Memory"
-        C[llama_model_loader<br/>Loads model from files]
-        G[ggml_tensor<br/>Tensor data structure]
-    end
-```
-
 ## What is a layer?
 
 ### Transformer Architecture Basics
@@ -447,252 +689,6 @@ For systems with multiple GPUs, llama.cpp can split layers across them using the
 - --split-mode layer (default): Distributes layers across GPUs (e.g., 16 layers per GPU on two GPUs for a 32-layer model).
 - --split-mode row: Splits tensor rows across GPUs, less common for layer-based models.
 - --tensor-split 0.5,0.5: Allocates 50% of the workload to each of two GPUs (adjust fractions based on GPU count and VRAM).
-
-## llama.cpp core functions
-
-### ggml_backend_load_all() in ggml-backend-reg.cpp
-
-The ggml_backend_load_best function is responsible for finding and loading the best available version of a specific backend by name. Here's how it works:
-
-1. It searches for backend libraries matching the pattern [lib]ggml-{name}-*.[so|dll] in the following locations:
-    - Current directory (./)
-    - Executable's directory
-    - Or a user-specified search path if provided
-
-2. For each matching library file found, it:
-    - Attempts to load the library
-    - Looks for a ggml_backend_score() function in the library
-    - If found, calls this function to get a "score" indicating how well the backend will perform on the current system
-    - Keeps track of the library with the highest score
-3. If no library with a score is found, it falls back to trying to load a basic version of the backend ([lib]ggml-{name}.[so|dll])
-
-4. Returns the backend registration for the best-scoring version found, or NULL if none are found/loadable
-
-For example, when called with name = "cuda", it might find:
-```
-ggml-cuda.dll           (base version)
-ggml-cuda-sm75.dll     (score: 75)
-ggml-cuda-sm86.dll     (score: 86)
-```
-
-And would load the sm86 version as it has the highest score, indicating better performance for that GPU architecture.
-
-This allows for optimized versions of backends to be automatically selected based on the specific hardware capabilities of the system.
-
-### llama_model_load_from_file()
-
-The llama_model_load_from_file_impl function is a core function in llama.cpp that handles loading a LLaMA model from files. Here's a breakdown of its key responsibilities:
-
-1. Model Device Setup:
-    - Determines the device type (CPU, GPU, etc.) based on the model file and available backends.
-    - Sets up the appropriate backend for the model.
-
-2. Device Management:
-    - Handles single GPU mode vs multi-GPU mode
-    - Logs available device memory and capabilities
-    - Sets up device priorities and configurations
-
-3. Model Loading:
-    - Reads the model file(s) from disk
-    - Handles model splitting across multiple files if necessary
-    - Validates model architecture and parameters
-    - Initializes model weights and tensors
-
-4. Error Handling:
-    - Provides error messages if model loading fails
-    - Logs detailed information about the model and device
-
-5. Progress Tracking:   
-    - Provides progress callback functionality during loading
-    - Shows percentage completion through the loading process
-
-This function is central to llama.cpp as it handles the critical task of getting the model from disk into a usable state in memory, properly configured for the available hardware.
-
-### llama_context::decode() in llama-context.cpp
-
-- Input Processing
-- KV Cache Management
-- Inference Pipeline
-    - <b>graph_build()</b>
-    - <b>graph_compute()</b>
-- Output Generation
-- Preformance Optimization
-
-### llama_model::build_graph() in llama-model.cpp
-
-The `llama_model::build_graph()` function is a crucial component in llama.cpp that constructs the computational graph needed for inferencing with the language model. Here's what it does:
-
-1. **Dynamic Graph Construction** - Creates a computational graph tailored to a specific model architecture (Llama, Mamba, RWKV, etc.)
-
-2. **Architecture-Specific Builder Selection** - Uses a factory pattern to select the appropriate builder class based on the model's architecture type:
-   ```cpp
-   switch (arch) {
-       case LLM_ARCH_LLAMA:
-           llm = std::make_unique<llm_build_llama>(*this, params, gf);
-           break;
-       case LLM_ARCH_MAMBA:
-           llm = std::make_unique<llm_build_mamba>(*this, params, gf);
-           break;
-       // Many more architectures...
-   }
-   ```
-
-3. **Graph Building** - When a builder is instantiated, its constructor automatically:
-   - Creates the complete neural network flow
-   - Adds all tensor operations to the graph (`gf`)
-   - Sets up the connections between layers
-   - Configures attention mechanisms, feed-forward networks, etc.
-
-4. **Pooling Layer Addition** - After the main architecture is built, it adds any required pooling layer:
-   ```cpp
-   llm->build_pooling(gf, cls, cls_b, cls_out, cls_out_b);
-   ```
-
-5. **Result Production** - Returns a pointer to the graph result, which contains:
-   - `t_logits` - The tensor containing the model's output logits
-   - `t_embd` - The tensor containing the model's embedding output
-
-This function enables llama.cpp to handle many model architectures (70+ in the code) through a uniform interface while applying architecture-specific optimizations and computational patterns.
-
-
-### `llm_build_llama` - The Core Graph Builder for Llama Models
-
-`llm_build_llama` is a crucial class in llama.cpp that constructs the computational graph for Llama-architecture models. It inherits from `llm_graph_context` and is responsible for translating the model's weights and architecture into a computational graph that can be executed by the GGML backend.
-
-1. **Graph Construction**: It builds a complete forward pass graph for Llama models by connecting tensor operations in the proper sequence.
-
-2. **Input Processing**:
-   - Sets up token embeddings
-   - Handles positional information
-   - Prepares KV caching for efficient inference
-
-3. **Layer Processing**: For each transformer layer, it builds:
-   - RMS normalization
-   - Self-attention mechanism with RoPE (Rotary Position Embeddings)
-   - Feed-forward network with SwiGLU activation
-   - Residual connections
-
-4. **Attention Mechanism**:
-   - Calculates Query, Key, and Value matrices
-   - Applies RoPE to handle positional information
-   - Builds the appropriate attention pattern with proper scaling
-   - Handles multi-query attention patterns
-
-5. **MoE Support**: For mixture-of-experts models, it constructs:
-   - Expert routing gates
-   - Multiple FFN experts
-   - Expert combination logic
-
-6. **Output Processing**:
-   - Final normalization
-   - Projection to vocabulary logits
-   - Applies any final scaling needed
-
-#### Implementation Details:
-
-The class follows a builder pattern, constructing the graph incrementally through operations on GGML tensors. It uses callbacks to mark important tensors in the graph, which enables debugging and optimization. The core of the implementation is the layer-by-layer construction, with careful attention to architecture-specific details like scaling factors and normalization types.
-
-This builder is specialized for Llama-style models but shares patterns with other architecture builders in the codebase.
-
-### `graph_compute()` Function in llama-context.cpp
-
-The `graph_compute()` method in `llama_context` is responsible for executing the computational graph built for inferencing. It's a crucial part of the execution pipeline that actually runs the model computations.
-
-1. **Thread Management**   
-2. **CPU Backend Configuration**
-3. **Multi-Backend Thread Configuration**
-4. **Asynchronous Graph Execution**:
-   ```cpp
-   auto status = ggml_backend_sched_graph_compute_async(sched.get(), gf);
-   ```
-   - Submits the computational graph to the scheduler for asynchronous execution
-   - This allows overlapping of I/O and computation for better performance
-
-This function represents the point where all the tensor operations defined in the graph are actually executed on the hardware, whether that's CPU, GPU, or other accelerators.
-
-### `ggml_backend_sched_alloc_graph()` Function in ggml-backend.cpp
-
-This function is responsible for memory allocation for computational graphs in llama.cpp's heterogeneous backend system. It's a critical component that prepares the memory needed for model inference across different hardware devices.
-
-1. **Graph Splitting**:
-   ```cpp
-   ggml_backend_sched_split_graph(sched, graph);
-   ```
-   - Divides the computation graph into subgraphs that can execute efficiently on different backends (CPU, CUDA, Metal, etc.)
-   - Assigns each tensor and operation to the optimal backend
-   - Creates necessary copies for tensors that need to be shared between backends
-   - Builds connection points between subgraphs
-
-2. **Memory Allocation**:
-   ```cpp
-   if (!ggml_backend_sched_alloc_splits(sched)) {
-       return false;
-   }
-   ```
-   - Allocates actual memory for each tensor in the computational graph
-   - Tries to reuse previous allocations when possible
-   - Creates new allocations when backend assignments have changed
-   - Ensures tensors that need to communicate are properly aligned and accessible
-   - Optimizes memory usage across all available backends
-
-This function helps llama.cpp efficiently utilize multiple computing devices simultaneously by handling all the complex memory management required for heterogeneous computing. It's called prior to inference to ensure all memory is properly set up before computation begins.
-
-### `ggml_backend_sched_compute_splits()` 
-
-This function is critical for executing the computational graph after it has been split across multiple backends (like CPU, CUDA, Metal, etc.). Here's what it does:
-
-1. **Execute Each Graph Split**: 
-   - Processes each split of the computational graph that was previously divided by `ggml_backend_sched_split_graph()`
-   - Each split runs on its designated backend (CPU, GPU, etc.)
-
-2. **Handle Cross-Backend Transfers**:   
-
-3. **Manage Synchronization**:   
-
-4. **Support Async Execution**:   
-
-5. **Pipeline Parallelism**:   
-
-6. **Callback Integration**:   
-
-This function is the execution engine that makes llama.cpp's multi-backend architecture work. It enables efficient utilization of heterogeneous hardware by coordinating tensor movement and computation across different devices while maintaining correct execution order and data consistency.
-
-### `ggml_backend_graph_compute_async()` Function in ggml-backend.cpp
-
-This function is a critical component in the GGML backend system that handles asynchronous execution of computational graphs across different hardware accelerators. Here's what it does:
-
-```cpp
-enum ggml_status ggml_backend_graph_compute_async(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
-    return backend->iface.graph_compute(backend, cgraph);
-}
-```
-
-1. **Dispatches Computation**: Forwards the graph computation request to the appropriate backend implementation (CPU, CUDA, Metal, etc.)
-
-2. **Non-Blocking Operation**: Unlike its synchronous counterpart, it launches computation but returns immediately without waiting for completion
-
-3. **Backend-Specific Execution**: Each backend implements its own version of `graph_compute()` that knows how to:
-   - Schedule operations on the specific hardware
-   - Manage memory transfers
-   - Optimize for the particular accelerator
-
-4. **Status Reporting**: Returns an enumerated status value indicating success or specific failure modes
-
-#### Key Differences from Synchronous Version:
-
-For comparison, the synchronous version is:
-
-```cpp
-enum ggml_status ggml_backend_graph_compute(ggml_backend_t backend, struct ggml_cgraph * cgraph) {
-    enum ggml_status err = ggml_backend_graph_compute_async(backend, cgraph);
-    ggml_backend_synchronize(backend);
-    return err;
-}
-```
-
-The asynchronous version enables overlapping computation with other operations, which is crucial for maximizing performance in complex applications like LLM inference where you might want to process the next batch of tokens while still generating the current ones.
-
-This function is part of the backend abstraction layer that allows llama.cpp to run efficiently across diverse hardware platforms while maintaining a unified programming interface.
 
 ## llama.swiftui example
 
