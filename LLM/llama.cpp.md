@@ -47,7 +47,7 @@ graph TD;
         B -->|LLM Architecture|D{Which LLM?}
         D -->|DeepSeek|E[llm_build_deepseek<br> <sub>in llama-model.cpp</sub>]
         D -->|LLaMA|F[llm_build_llma<br> <sub>in llama-model.cpp</sub>]
-        D -->|Qwen|G[llm_build_qwen<br> <sub>in llama-model.cpp<sub>]
+        D -->|Qwen2|G[llm_build_qwen2<br> <sub>in llama-model.cpp<sub>]
         D -->|Qwen2VL|H[llm_buildqwen2vl<br> <sub>in llama-model.cpp<sub>]
     end    
 
