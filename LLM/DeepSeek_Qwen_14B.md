@@ -1,4 +1,4 @@
-# llama.cpp
+# DeepSeek_Qwen_14B Model
 
 ## Model Download
 - [DeepSeek-R1-Distill-Qwen-14B](https://huggingface.co/bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF)
@@ -62,9 +62,33 @@ llama_model_loader: - kv  13:     qwen2.attention.layer_norm_rms_epsilon f32    
 llama_model_loader: - kv  14:                          general.file_type u32              = 7
 llama_model_loader: - kv  15:                       tokenizer.ggml.model str              = gpt2
 llama_model_loader: - kv  16:                         tokenizer.ggml.pre str              = deepseek-r1-qwen
+llama_model_loader: - kv  17:                      tokenizer.ggml.tokens arr[str,152064]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  18:                  tokenizer.ggml.token_type arr[i32,152064]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  19:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+llama_model_loader: - kv  20:                tokenizer.ggml.bos_token_id u32              = 151646
+llama_model_loader: - kv  21:                tokenizer.ggml.eos_token_id u32              = 151643
+llama_model_loader: - kv  22:            tokenizer.ggml.padding_token_id u32              = 151654
+llama_model_loader: - kv  23:               tokenizer.ggml.add_bos_token bool             = true
+llama_model_loader: - kv  24:               tokenizer.ggml.add_eos_token bool             = false
+llama_model_loader: - kv  25:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+llama_model_loader: - kv  26:               general.quantization_version u32              = 2
 llama_model_loader: - type  f32:  141 tensors
 llama_model_loader: - type q8_0:  198 tensors
 ```
+
+## Required OPs 
+- RMS Normalization
+- Add (Bias, Residual connection)
+- RoPE (For Q, K)
+- SiLU (FFN activation)
+- Mul (LoRA and FFN)
+- Lookup (get_rows, Token embedding)
+- MatMul (LoRA, Token embedding)
+- Scale (LoRA, Token embedding)
+- Reshape (Attention)
+- Tanh (Attention Soft capping)
+- Softmax (Attention)
+- Permute (Attention)
 
 ## llm_build_qwen2() in llama-model.cpp
 
