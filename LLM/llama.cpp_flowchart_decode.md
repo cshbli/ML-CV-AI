@@ -5,12 +5,13 @@
 ```mermaid
 graph TD;
     decode["llama_decode"] --> A["llama_context::decode()<br> <sub>in llama-context.cpp"</sub>]
-    A --> init["llama_context::graph_init()"]
+    A --> kv_update["kv_self_update"]
+    kv_update --> init["llama_context::graph_init()"]
     init --> build_graph["llama_context::graph_build()<br> <sub>in llama-context.cpp"</sub>];
     build_graph --> alloc_graph["ggml_backend_sched_alloc_graph"]
     alloc_graph --> compute_graph["llama_context::graph_compute()<br> <sub>in llama-context.cpp</sub>"]
-    compute_graph --> output["Extract Output"]
-
+    compute_graph --> kv_cache_update["Update KV cache ring buffer"]
+    kv_cache_update --> output["Extract Output"]
 
     subgraph "graph_build()"        
         D["Architecture?"] -->|DeepSeek|E[llm_build_deepseek<br> <sub>in llama-model.cpp</sub>]
