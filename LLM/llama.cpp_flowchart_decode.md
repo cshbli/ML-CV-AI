@@ -45,6 +45,99 @@ graph TD;
 - Output Generation
 - Preformance Optimization
 
+### llm_build_qwen2 function deep dive
+Please check [llama.cpp_flowchart_decode_graph_build_qwen.md](llama.cpp_flowchart_decode_graph_build_qwen.md) for more detailed information about how to build Qwen graph.
+
+## `llama_context::kv_self_update()` in `llama-context.cpp`
+
+This function manages and updates the key-value (KV) cache, which is crucial for efficient inference in large language models.
+
+```mermaid
+flowchart TD
+    start([Start]) --> check_shift{"Has shifts to apply?"}
+    
+    check_shift -->|Yes| can_shift{"Context supports<br>K-shift?"}
+    check_shift -->|No| check_defrag
+    
+    can_shift -->|No| abort["ABORT: Context doesn't<br>support K-shift"]
+    can_shift -->|Yes| log_shift["Log: applying K-shift"]
+    
+    log_shift --> has_rope{"Does model use<br>RoPE?"}
+    
+    has_rope -->|Yes| apply_shift["Apply K-shift:
+    1. Reset scheduler
+    2. Initialize graph
+    3. Build shift computation
+    4. Execute graph
+    5. Set need_reserve flag"]
+    
+    has_rope -->|No| skip_shift["Skip rope application"]
+    
+    apply_shift --> clear_shift["Clear shift state:
+    1. Set has_shift = false
+    2. Reset all delta values"]
+    
+    skip_shift --> clear_shift
+    
+    clear_shift --> check_defrag{"Defragmentation<br>needed?"}
+    
+    check_defrag -->|Yes| log_defrag["Log: defragmenting KV cache"]
+    check_defrag -->|No| check_need_reserve
+    
+    log_defrag --> prepare_defrag{"Prepare defrag<br>successful?"}
+    
+    prepare_defrag -->|Yes| apply_defrag["Apply defragmentation:
+    1. Reset scheduler
+    2. Initialize graph
+    3. Build defrag computation
+    4. Execute graph
+    5. Set need_reserve flag"]
+    
+    prepare_defrag -->|No| clear_defrag
+    
+    apply_defrag --> clear_defrag["Set do_defrag = false"]
+    
+    clear_defrag --> check_need_reserve{"Need to reserve<br>worst-case graph?"}
+    
+    check_need_reserve -->|Yes| log_reserve["Log: reserving worst case graph"]
+    check_need_reserve -->|No| finish
+    
+    log_reserve --> build_worstcase["Build worst-case graph:
+    1. Simulate full KV cache
+    2. Set batch parameters
+    3. Create computation graph"]
+    
+    build_worstcase --> reset_sched["Reset scheduler"]
+    
+    reset_sched --> reserve["Allocate compute buffers"]
+    
+    reserve --> check_alloc{"Allocation<br>successful?"}
+    
+    check_alloc -->|No| log_error["Log error message"]
+    check_alloc -->|Yes| finish
+    
+    log_error --> finish([End])
+```
+
+### Key Functions:
+
+1. **K-shift Application**:
+   - Updates positional encodings when token positions change
+   - Crucial for maintaining correct attention patterns when manipulating sequences
+   - Only applied when using rotary position embeddings (RoPE)
+
+2. **KV Cache Defragmentation**:
+   - Rearranges fragmented KV cache to make it contiguous
+   - Moves tensors to more optimal positions
+   - Improves memory efficiency and performance
+
+3. **Worst-case Graph Reservation**:
+   - After updates that change memory layout, rebuilds computation graphs
+   - Ensures sufficient memory allocation for future operations
+   - Prevents reallocation during inference
+
+This function is critical for long-context generation, enabling efficient reuse of computed key-value pairs while maintaining their correct positional relationships in the transformer architecture.
+
 ## `graph_build()` in `llama-model.cpp`
 
 The `graph_build()` function constructs the computational graph for model inference in llama.cpp - it's the function that defines the flow of operations needed to process tokens.
@@ -179,6 +272,139 @@ flowchart TD
    - Maintains mapping between tensors and their assigned backends
 
 This function is a critical part of llama.cpp's ability to efficiently run large language models across heterogeneous computing devices, ensuring optimal use of available hardware.
+
+## `ggml_backend_sched_split_graph()` in `ggml-backend.cpp`
+
+This function enables efficient multi-device inference by splitting the computation graph across different hardware backends (CPU, GPU, etc.) in an optimal way.
+
+```mermaid
+flowchart TD
+    start([Start]) --> reset["Reset state:
+    - Clear split count
+    - Reset graph inputs
+    - Initialize context"]
+    
+    reset --> assign1["PASS 1: Initial assignment
+    Assign backends based on:
+    - Pre-allocated tensors
+    - Weight locations
+    - Input requirements"]
+    
+    assign1 --> assign2["PASS 2: Expand assignments
+    - Expand GPU backends up/down
+    - Keep operations on same device
+    - Skip unsupported operations"]
+    
+    assign2 --> assign3["PASS 3: Optimize assignments
+    - Upgrade to higher priority backends
+    - Assign remaining unassigned nodes
+    - Balance performance and memory"]
+    
+    assign3 --> assign4["PASS 4: Finalize assignments
+    - Assign any remaining tensors
+    - Handle view operations
+    - Ensure all tensors have backends"]
+    
+    assign4 --> split["PASS 5: Split the graph
+    - Create split boundaries at backend changes
+    - Track inputs that need copying
+    - Build subgraphs for each backend"]
+    
+    split --> create_copies["Create tensor copies for cross-backend transfers
+    - Make copies of tensors needed on multiple backends
+    - Set up pipeline parallelism with multiple copies
+    - Track dependencies between originals and copies"]
+    
+    create_copies --> build_graph["Build modified computation graph:
+    - Insert copy operations
+    - Replace tensor references as needed
+    - Organize for efficient execution"]
+    
+    build_graph --> finish([End])
+```
+
+### Key Features
+
+1. **Intelligent Backend Selection**
+   - Assigns operations to the most appropriate hardware
+   - Considers tensor pre-allocation, weights location, and operation support
+   - Prioritizes GPU backends for compute-intensive operations
+
+2. **Minimizes Data Transfers**
+   - Groups operations to reduce cross-device transfers
+   - Creates tensor copies only when necessary
+   - Tracks which tensors must be moved between devices
+
+3. **Pipeline Parallelism**
+   - Supports multiple copies of tensors for parallel execution
+   - Enables overlapped computation across devices
+   - Creates efficient execution schedule
+
+4. **Optimization Heuristics**
+   - Expands GPU use to adjacent operations when possible
+   - Upgrades operations to faster backends when buffer types are compatible
+   - Balances computation and memory considerations
+
+This function is the foundation of llama.cpp's ability to efficiently utilize heterogeneous computing resources, enabling large models to run effectively across combinations of CPU, GPU, and other specialized hardware.
+
+## `ggml_backend_sched_alloc_splits()` in `ggml-backend.cpp`
+
+This function allocates memory for computation graph splits across different hardware backends (CPU, GPU, etc.) in the llama.cpp inference engine.
+
+```mermaid
+flowchart TD
+    start([Start]) --> check_changes["Check for backend assignment changes"]
+    
+    check_changes --> check_nodes["Compare each node's current and previous backend"]
+    check_nodes --> backend_diff{"Any nodes using different 
+    buffer types than before?"}
+    
+    backend_diff -->|No| check_leafs["Compare each leaf's current and previous backend"]
+    check_leafs --> leaf_diff{"Any leaves using different
+    buffer types than before?"}
+    
+    backend_diff -->|Yes| set_changed["Set backend_ids_changed = true"]
+    leaf_diff -->|Yes| set_changed
+    
+    leaf_diff -->|No| try_alloc{"Try direct allocation:
+    backend_ids_changed OR 
+    !ggml_gallocr_alloc_graph()"}
+    set_changed --> try_alloc
+    
+    try_alloc -->|Success| return_true["Return true (success)"]
+    
+    try_alloc -->|Failure| synchronize["Synchronize all backends
+    (wait for pending operations)"]
+    
+    synchronize --> reserve["Reserve memory with a plan:
+    ggml_gallocr_reserve_n()"]
+    
+    reserve --> try_again{"Try allocation again with
+    reserved memory layout"}
+    
+    try_again -->|Success| return_true
+    try_again -->|Failure| log_error["Log error message"]
+    log_error --> return_false["Return false (failure)"]
+```
+
+### Key Components
+
+1. **Change Detection**
+   - Determines if backend assignments have changed since last allocation
+   - Only reallocates when necessary (buffer types differ)
+   - Checks both computation nodes and leaf tensors (data)
+
+2. **Optimization Strategy**
+   - First attempts direct allocation (fast path)
+   - Falls back to a two-phase approach (reserve then allocate) if needed
+   - Synchronizes backends before re-allocation to ensure safety
+
+3. **Memory Management**
+   - Uses `galloc` (graph allocator) to manage memory across devices
+   - Tracks specific backend and buffer type for each tensor
+   - Handles different memory spaces (CPU RAM, GPU VRAM, etc.)
+
+This function is essential for efficiently distributing the computation across heterogeneous hardware by ensuring each tensor has appropriate memory allocated on the correct device before computation begins.
 
 ## `graph_compute()` in `llama-context.cpp`
 

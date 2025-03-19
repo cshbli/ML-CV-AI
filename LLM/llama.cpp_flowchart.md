@@ -9,7 +9,9 @@ flowchart TD
   model_load --> get_vocab["llama_model_get_vocab"]
   get_vocab --> tokenize["llama_tokenize"]
   tokenize --> default_context(["llama_context_default_params"])
-  default_context --> sampler_chain_default("llama_sampler_chain_default_params")
+  default_context --> context_init(["llama_init_from_model"])
+  context_init --> sampler_chain_default("llama_sampler_chain_default_params")
+  context_init -.-> kv_cache_init("llama_kv_cache_unified::init")
   sampler_chain_default --> sampler_chain_init("llama_sampler_chain_init")
   sampler_chain_init --> sampler_chain_add("llama_sampler_chain_add")
   sampler_chain_add --> get_one_batch("llama_batch_get_one")
@@ -58,9 +60,12 @@ flowchart TD
   classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
   classDef process fill:#faa,stroke:#333,stroke-width:1px;
 
-  class decode CoreProcess;
-  class tokenize,sample,convert process;  
+  class decode,kv_cache_init CoreProcess;
+  class model_load,tokenize,context_init,sample,convert process;  
 ```
+
+### llama_decode function deep dive
+Please check [llama.cpp_flowchart_decode.md](llama.cpp_flowchart_decode.md) for more detailed information about this function.
 
 ## `ggml_backend_load_all()` in `ggml-backend-reg.cpp`
 
@@ -193,21 +198,21 @@ flowchart TD
     check_split_mode -->|LAYER| keep_all["Keep all devices"]
     
     use_main_gpu --> log_devices
-    keep_all --> log_devices["Get device info (name, memory)"]
+    keep_all --> log_devices["Get device info (name, memory)<br>ggml_backend_dev_memory"]
     
-    log_devices --> load_arch["Load model architecture"]
+    log_devices --> load_arch["Load model architecture<br>model.load_arch()"]
 
     subgraph llama_model_load[llama_model_load]
     
     
-    load_arch --> load_hparams["Load hyperparameters"]
-    load_hparams --> load_vocab["Load vocabulary"]
-    load_vocab --> load_stats["Load model stats"]
+    load_arch --> load_hparams["Load hyperparameters<br>model.load_hparams"]
+    load_hparams --> load_vocab["Load vocabulary<br>model.load_vocab"]
+    load_vocab --> load_stats["Load model stats<br>model.load_stats"]
     
     load_stats --> vocab_only{"params.vocab_only?"}
     
     vocab_only -->|Yes| skip_tensors["Skip loading weights"]
-    vocab_only -->|No| load_tensors["Load model tensors/weights"]
+    vocab_only -->|No| load_tensors["Load model tensors/weights<br>model.load_tensors"]
     
     skip_tensors --> check_status
     load_tensors --> check_status{"Check loading<br>status"}
@@ -218,6 +223,9 @@ flowchart TD
     
     free_model --> return_null["Return nullptr"]
     end
+
+    classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
+    class load_tensors CoreProcess;
 ```
 
 ### Key Operations
@@ -239,6 +247,162 @@ flowchart TD
    - Tensors: Actual model weights (unless in vocab_only mode)
 
 This is the primary entry point for loading models in llama.cpp and supports various configurations including memory mapping, tensor checking, and GPU offloading.
+
+## `llama_model::load_tensors()` in `llama-model.cpp`
+
+This function is responsible for loading model weights (tensors) from disk into memory and allocating them optimally across available computing devices.
+
+```mermaid
+flowchart TD
+    start([Start]) --> setup["Set up buffer types for
+    CPU and GPU devices"]
+    
+    setup --> determine["Determine memory distribution:
+    - Calculate split points for multi-device usage
+    - Assign layers to appropriate devices
+    - Handle GPU offloading decisions"]
+    
+    determine --> create_tensors["Create tensors based on architecture:
+    - Token embeddings
+    - Attention layers (Q,K,V)
+    - Feed-forward networks (FFN)
+    - Layer normalization
+    - Output projection"]
+    
+    create_tensors --> select_backend["Select appropriate backend for each tensor:
+    - Check hardware compatibility
+    - Choose optimal memory placement
+    - Handle tensor operations (MUL_MAT, ADD, etc.)"]
+    
+    select_backend --> allocate["Allocate memory buffers:
+    - Create backend-specific buffers
+    - Set up memory mapping if enabled
+    - Configure memory locking if requested"]
+    
+    allocate --> load_data["Load weight data from files:
+    - Copy data to appropriate buffers
+    - Track progress via callbacks
+    - Handle multi-file models"]
+    
+    load_data --> finalize["Finalize loading:
+    - Register tensors by name
+    - Report memory usage statistics
+    - Handle GPU offloading information"]
+    
+    finalize --> finish([Return success/failure])
+
+    classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
+    class load_data CoreProcess
+```
+
+### Key Features
+
+1. **Architecture-Specific Loading**: Handles 50+ model architectures (LLaMA, Falcon, Gemma, etc.) with specialized tensor layouts
+
+2. **Multi-Device Support**: Distributes model layers across:
+   - Multiple GPUs
+   - CPU + GPU combinations
+   - Various specialized accelerators
+
+3. **Memory Optimization**:
+   - Uses memory mapping for efficiency when possible
+   - Properly aligns tensors for hardware acceleration
+   - Minimizes copying between host and device memory
+
+4. **Operation-Based Tensor Management**:
+   - Assigns tensors to appropriate devices based on operations (matrix multiply, addition, etc.)
+   - Handles specialized operations like RoPE (Rotary Position Embedding)
+
+This function enables efficient inference by ensuring model weights are optimally placed across available computing resources, critical for running large language models on consumer hardware.
+
+## `llama_model_loader::load_all_data()` in `llama-model-loader.cpp`
+
+This function loads the actual weight data from files into memory for all tensors in a model. It's a crucial part of the model loading process that transfers data from storage to computation buffers.
+
+```mermaid
+flowchart TD
+    start([Start]) --> setup["Set up loading resources:
+    - Read buffers
+    - Validation futures
+    - Async upload buffers"]
+    
+    setup --> prepare_gpu["Check for GPU upload capabilities:
+    - Pinned memory support
+    - Event synchronization
+    - Host-to-device transfer"]
+    
+    prepare_gpu --> loop["Process each tensor in context"]
+    
+    loop --> report["Call progress callback
+    size_done/size_data"]
+    
+    report -->|"Continue"| check_method{"Loading method?"}
+    report -->|"Cancelled"| return_false["Return false (cancelled)"]
+    
+    check_method -->|"Memory mapping"| mmap["Memory-mapped loading:
+    1. Get mapping for tensor's file
+    2. Point tensor data to mapped address 
+    3. Optionally validate in parallel"]
+    
+    check_method -->|"Direct reading"| check_buffer{"Tensor in
+    host memory?"}
+    
+    check_buffer -->|"Yes"| direct_load["Read directly from file
+    to tensor memory"]
+    
+    check_buffer -->|"No"| check_async{"Can use
+    async uploads?"}
+    
+    check_async -->|"Yes"| async_load["Load chunks through
+    pinned memory buffers:
+    1. Read chunk to host buffer
+    2. Async transfer to GPU
+    3. Record sync event"]
+    
+    check_async -->|"No"| simple_copy["Read to temporary buffer
+    then copy to tensor"]
+    
+    mmap --> update_counters["Update size_done counter"]
+    direct_load --> update_counters
+    async_load --> update_counters
+    simple_copy --> update_counters
+    
+    update_counters --> more_tensors{"More tensors?"}
+    more_tensors -->|"Yes"| loop
+    more_tensors -->|"No"| cleanup["Cleanup:
+    1. Sync & free events
+    2. Free temp buffers
+    3. Check validation results"]
+    
+    cleanup --> check_done{"All data loaded?"}
+    
+    check_done -->|"Yes"| final_cleanup["Unmap unused memory regions"]
+    check_done -->|"No"| return_true
+    
+    final_cleanup --> final_callback["Call progress callback (100%)"]
+    
+    final_callback -->|"Continue"| return_true["Return true (success)"]
+    final_callback -->|"Cancelled"| return_false
+```
+
+### Key Features
+
+1. **Multiple Loading Methods**:
+   - **Memory Mapping**: Zero-copy access to model data directly from files
+   - **Direct Loading**: Reading data from files into pre-allocated memory
+   - **Asynchronous GPU Uploads**: Efficient pinned-memory transfers for GPU tensors
+
+2. **Performance Optimizations**:
+   - Parallel validation of tensor data
+   - Asynchronous uploads for GPU memory
+   - Pinned memory staging buffers for efficient transfers
+   - Unmapping of unused memory regions
+
+3. **Progress Reporting and Cancellation**:
+   - Reports loading progress through callback
+   - Honors cancellation requests at multiple points
+
+This function is critical for memory efficiency in llama.cpp, enabling several techniques that allow large models to run on consumer hardware.
 
 ## `llama_tokenize()` in `llama-vocab.cpp`
 
@@ -402,6 +566,153 @@ flowchart TD
    - Reserves memory for efficient graph execution
 
 This function is the bridge between a loaded model and the ability to perform inference with it, handling all the necessary setup for efficient execution.
+
+## `llama_context::llama_context()` Constructor Analysis
+
+The `llama_context` constructor is the fundamental initialization function in llama.cpp that prepares the model for inference. It takes a model reference and parameters, then configures everything needed for efficient model execution.
+
+```mermaid
+flowchart TD
+    start([Start]) --> params["Initialize parameters:
+    - Context window size
+    - Batch sizes
+    - Threading configuration
+    - Position encoding settings"]
+    
+    params --> validate["Validate parameters:
+    - Check context sizes
+    - Ensure batch size is valid
+    - Verify configuration compatibility
+    - Handle special cases per architecture"]
+    
+    validate --> log["Log configuration:
+    - Context parameters
+    - Sequence settings
+    - Attention mechanism
+    - RoPE settings"]
+    
+    log --> backends["Initialize backends:
+    - Set up GPU backends from model devices
+    - Add acceleration backends (BLAS, etc.)
+    - Initialize CPU backend as fallback
+    - Configure threading functions"]
+    
+    backends --> memory["Set up memory systems:
+    - Create output buffers
+    - Initialize KV cache
+    - Allocate computation buffers
+    - Set up appropriate memory types"]
+    
+    memory --> compute["Configure compute infrastructure:
+    - Create computation context
+    - Set up scheduler
+    - Initialize pipeline parallelism (if multiple devices)
+    - Optimize backend selection"]
+    
+    compute --> reserve["Reserve worst-case resources:
+    - Build maximum size graph
+    - Reserve memory for computation
+    - Set up buffer allocation
+    - Log memory usage stats"]
+    
+    reserve --> finish([End])
+```
+
+## Key Components:
+
+1. **Parameter Processing**:
+   - Handles context window sizing
+   - Configures RoPE (Rotary Position Embedding) parameters
+   - Sets up model-specific adaptations
+
+2. **Hardware Acceleration**:
+   - Creates a prioritized list of backends (GPU → Accelerators → CPU)
+   - Configures thread pools for parallel execution
+   - Sets up pipeline parallelism for multi-device execution
+
+3. **Memory Management**:
+   - Allocates KV cache based on model requirements
+   - Creates output buffers for logits/embeddings
+   - Sets up computation buffers optimized for each backend
+   - Configures memory sharing between devices when beneficial
+
+4. **Inference Engine Setup**:
+   - Builds graph scheduler for distributing computation
+   - Reserves worst-case computation graph
+   - Sets up callbacks and abort handlers
+   - Configures tensor operation routing
+
+This constructor is the foundation for all model inference, establishing the resources and execution framework that enables efficient language model inference across diverse hardware setups.
+
+## `llama_kv_cache_unified::init()` in `llama-kv-cache.cpp`
+
+This function initializes the key-value (KV) cache for a language model, which is critical for efficient inference by storing previously computed keys and values.
+
+```mermaid
+flowchart TD
+    start([Start]) --> set_flags["Set initial state:
+    - has_shift = false
+    - detect if model is recurrent
+    - determine v_trans based on model type
+    - set can_shift flag based on architecture"]
+    
+    set_flags --> log_info["Log initialization parameters:
+    - kv_size, offload, type_k, type_v
+    - n_layer, can_shift"]
+    
+    log_info --> init_counters["Initialize counters:
+    - head = 0 (starting position)
+    - size = kv_size (total capacity)
+    - used = 0 (no cells used yet)
+    - Set data types"]
+    
+    init_counters --> setup_cells["Set up cells storage:
+    - Clear cells array
+    - Resize to kv_size"]
+    
+    setup_cells --> create_contexts["Create GGML contexts:
+    - One context per buffer type
+    - Set up memory for tensor overhead"]
+    
+    create_contexts --> create_tensors["Create K/V tensors for each layer:
+    1. Determine dimensions based on model
+    2. Choose buffer type (GPU/CPU)
+    3. Create tensors with proper names
+    4. Push to k_l and v_l vectors"]
+    
+    create_tensors --> allocate_memory["Allocate memory:
+    - For each context/buffer type
+    - Allocate tensor memory
+    - Clear memory to prevent NaNs
+    - Log buffer sizes"]
+    
+    allocate_memory -->|Success| return_true["Return true"]
+    allocate_memory -->|Failure| return_false["Return false"]
+```
+
+### Key Components
+
+1. **Model-Specific Configuration**:
+   - Detects if model is recurrent (like Mamba or RWKV)
+   - Sets up appropriately for transformer vs. state-space models
+   - Configures value transposition based on model needs
+
+2. **Memory Management**:
+   - Creates appropriate buffer types (CPU/GPU) based on offload parameter
+   - Allocates memory efficiently for different hardware
+   - Supports GPU offloading for specific layers
+
+3. **Tensor Organization**:
+   - Creates tensors for each layer's keys and values
+   - Handles grouped query attention (GQA) dimensions
+   - Sets up proper naming for debugging
+
+4. **Optimization Features**:
+   - Configures "can_shift" capability for context extension
+   - Sets up memory layouts optimized for specific models
+   - Provides clear logging for debugging
+
+This initialization function is a critical part of llama.cpp's efficiency, as proper KV cache setup dramatically improves inference speed by avoiding redundant computations for previously seen tokens.
 
 ## `llama_sampler_chain_default_params()` in `llama.cpp`
 
@@ -636,7 +947,7 @@ flowchart TD
     -3: Computation failed"]
 ```
 
-## Key Components
+### Key Components
 
 1. **Batch Processing**:
    - Handles both token IDs and direct embedding inputs
@@ -659,6 +970,9 @@ flowchart TD
    - Sequence embeddings with different pooling types
 
 The function is the central execution point that brings together all the components of the model (attention, feed-forward networks, embedding lookups) to perform the actual language model inference.
+
+### llama_decode function deep dive
+Please check [llama.cpp_flowchart_decode.md](llama.cpp_flowchart_decode.md) for more detailed information about this function.
 
 ## `llama_sampler_sample()` in `llama-sampling.cpp`
 
