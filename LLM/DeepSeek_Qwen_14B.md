@@ -571,7 +571,3 @@ This is part of llama.cpp's more advanced control features that allow fine-grain
   - `_S` (small): More aggressive memory savings, potentially faster but less accurate.
   - `_M` (medium): Balanced approach.
   - `_L` (large): Larger blocks or more precision-preserving, at the cost of slightly more memory.
-
-
-
-## References
