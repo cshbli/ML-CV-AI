@@ -5,7 +5,9 @@
 ```mermaid
 flowchart TD
   start([start]) --> backend_load["ggml_backend_load_all"]
-  backend_load --> model_load["llama_model_load_from_file"]
+  backend_load --> default_params["llama_model_default_params"]
+  default_params --> model_load["llama_model_load_from_file"]
+  click model_load "#llama_model_load_from_file() in llama.cpp"
   model_load --> get_vocab["llama_model_get_vocab"]
   get_vocab --> tokenize["llama_tokenize"]
   tokenize --> default_context(["llama_context_default_params"])
@@ -174,7 +176,7 @@ The function initializes the following configuration parameters:
 
 On Apple devices with Metal support, the function automatically configures GPU offloading for optimal performance, assuming Apple GPUs typically have sufficient VRAM.
 
-## `llama_model_load_from_file()` in `llama.cpp`
+## llama_model_load_from_file() in llama.cpp
 
 This function loads an LLM (Large Language Model) from a GGUF file into memory and prepares it for inference.
 
