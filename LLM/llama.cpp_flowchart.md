@@ -7,7 +7,6 @@ flowchart TD
   start([start]) --> backend_load["ggml_backend_load_all"]
   backend_load --> default_params["llama_model_default_params"]
   default_params --> model_load["llama_model_load_from_file"]
-  click model_load "#llama_model_load_from_file() in llama.cpp"
   model_load --> get_vocab["llama_model_get_vocab"]
   get_vocab --> tokenize["llama_tokenize"]
   tokenize --> default_context(["llama_context_default_params"])
@@ -202,28 +201,28 @@ flowchart TD
     use_main_gpu --> log_devices
     keep_all --> log_devices["Get device info (name, memory)<br>ggml_backend_dev_memory"]
     
-    log_devices --> load_arch["Load model architecture<br>model.load_arch()"]
+    log_devices --> model_loader_init["Create new llama_model_loader instance<br>llama_model_loader"]    
 
     subgraph llama_model_load[llama_model_load]
     
-    
-    load_arch --> load_hparams["Load hyperparameters<br>model.load_hparams"]
-    load_hparams --> load_vocab["Load vocabulary<br>model.load_vocab"]
-    load_vocab --> load_stats["Load model stats<br>model.load_stats"]
-    
-    load_stats --> vocab_only{"params.vocab_only?"}
-    
-    vocab_only -->|Yes| skip_tensors["Skip loading weights"]
-    vocab_only -->|No| load_tensors["Load model tensors/weights<br>model.load_tensors"]
-    
-    skip_tensors --> check_status
-    load_tensors --> check_status{"Check loading<br>status"}
-    
-    check_status -->|Success| return_model["Return model pointer"]
-    check_status -->|Error| free_model["Free model"]
-    check_status -->|Cancelled| free_model
-    
-    free_model --> return_null["Return nullptr"]
+      model_loader_init --> load_arch["Load model architecture<br>model.load_arch()"]
+      load_arch --> load_hparams["Load hyperparameters<br>model.load_hparams"]
+      load_hparams --> load_vocab["Load vocabulary<br>model.load_vocab"]
+      load_vocab --> load_stats["Load model stats<br>model.load_stats"]
+      
+      load_stats --> vocab_only{"params.vocab_only?"}
+      
+      vocab_only -->|Yes| skip_tensors["Skip loading weights"]
+      vocab_only -->|No| load_tensors["Load model tensors/weights<br>model.load_tensors"]
+      
+      skip_tensors --> check_status
+      load_tensors --> check_status{"Check loading<br>status"}
+      
+      check_status -->|Success| return_model["Return model pointer"]
+      check_status -->|Error| free_model["Free model"]
+      check_status -->|Cancelled| free_model
+      
+      free_model --> return_null["Return nullptr"]
     end
 
     classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
@@ -249,6 +248,76 @@ flowchart TD
    - Tensors: Actual model weights (unless in vocab_only mode)
 
 This is the primary entry point for loading models in llama.cpp and supports various configurations including memory mapping, tensor checking, and GPU offloading.
+
+## `llama_model_loader` in llama-model-loader.cpp
+
+The `llama_model_loader` constructor initializes the infrastructure for loading large language models from GGUF files, setting up metadata access without immediately loading the full weights.
+
+```mermaid
+flowchart TD
+    start([Start]) --> parse_overrides["Process parameter overrides
+    (if provided)"]
+    
+    parse_overrides --> load_meta["Load main GGUF file metadata:
+    - Create gguf_context
+    - Extract architecture information
+    - Initialize file handles"]
+    
+    load_meta --> index_tensors["Build tensor index:
+    - Map tensor names to file locations
+    - Track tensor sizes and offsets
+    - Count total elements and bytes"]
+    
+    index_tensors --> check_split{"Is model split?
+    (n_split > 1)"}
+    
+    check_split -->|Yes| load_splits["Load split metadata:
+    1. Verify main file is idx=0
+    2. Generate list of split filenames
+    3. Load metadata from each split
+    4. Add tensors from each to unified index"]
+    
+    check_split -->|No| analyze_model["Analyze model information:
+    - Count tensors of each type
+    - Determine model quantization format
+    - Set LLAMA_FTYPE based on predominant type"]
+    
+    load_splits --> analyze_model
+    
+    analyze_model --> log_metadata["Log detailed metadata:
+    - Print all key-value pairs
+    - Output tensor type statistics
+    - Show quantization information"]
+    
+    log_metadata --> check_mmap["Check if mmap is supported
+    on current platform"]
+    
+    check_mmap --> finish([End constructor])
+```
+
+### Key Features
+
+1. **Metadata Extraction**:
+   - Loads model architecture, hyperparameters, and configuration
+   - Builds a map of all tensors with their locations and sizes
+   - Supports parameter overrides via command line or API
+
+2. **Multi-File Support**:
+   - Handles models split across multiple files (sharded models)
+   - Validates file consistency and ordering
+   - Creates a unified view of tensors across all files
+
+3. **Memory Efficiency**:
+   - Delays actual weight loading until needed
+   - Prepares for memory mapping when supported
+   - Only loads metadata initially, not the full model
+
+4. **Analysis & Diagnostics**:
+   - Determines model quantization format
+   - Outputs detailed statistics and information
+   - Validates model consistency
+
+This constructor is the first step in loading a model, creating the scaffolding that enables efficient, on-demand loading of the actual weight data when needed for inference.
 
 ## `llama_model::load_tensors()` in `llama-model.cpp`
 

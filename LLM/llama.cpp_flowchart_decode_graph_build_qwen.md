@@ -10,6 +10,12 @@ cmake -B build -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
 ```
 
+For realease version:
+```
+cmake -B build 
+cmake --build build --config Release
+```
+
 ## 14B model
 ### model check
 ```
@@ -40,6 +46,17 @@ llama_model_loader: - type q8_0:  338 tensors
 ### model check
 ```
 ./llama-cli -m ~/Projects/models/DeepSeek-R1-Distill-Qwen-7B-Q8_0.gguf --verbose
+```
+
+```
+register_backend: registered backend Metal (1 devices)
+register_device: registered device Metal (Apple M1 Pro)
+register_backend: registered backend BLAS (1 devices)
+register_device: registered device BLAS (Accelerate)
+register_backend: registered backend CPU (1 devices)
+register_device: registered device CPU (Apple M1 Pro)
+llama_model_load_from_file_impl: using device Metal (Apple M1 Pro) - 10922 MiB free
+llama_model_loader: loaded meta data with 27 key-value pairs and 339 tensors from /Users/hongbingli/Projects/models/DeepSeek-R1-Distill-Qwen-7B-Q8_0.gguf (version GGUF V3 (latest))
 ```
 
 #### meta data
