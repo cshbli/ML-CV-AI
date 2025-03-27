@@ -1,5 +1,9 @@
 # llama.cpp
 
+- Please check [llama.cpp_flowchart.md](./llama.cpp_flowchart.md) for end-to-end flowchart. 
+- Please check [llama.cpp_flowchart_decode.md](llama.cpp_flowchart_decode.md) for more detailed information about `llama_decode` function.
+- Please check [llama.cpp_flowchart_decode_graph_build_qwen.md](llama.cpp_flowchart_decode_graph_build_qwen.md) for more detailed information about how to build Qwen graph.
+
 ## Llama Archtiecture
 
 Llama.cpp’s backbone is the original Llama models, which is also based on the transformer architecture.

@@ -1,0 +1,37 @@
+* LLM
+  * Introductions and Tutorials
+    * [Attention](./attention.md)
+      * [FlashAttention](./flash_attention.md)
+      * [PagedAttention](./paged_attention.md)
+      * [Visualizing A Neural Machine Translation Model (Mechanics of Seq2seq Models With Attention)](https://jalammar.github.io/visualizing-neural-machine-translation-mechanics-of-seq2seq-models-with-attention/)
+      * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)      
+    * [Key-Value Cache](./key_value_cache.md)
+    * [AWQ: Activation Aware Quantization](./awq.md)
+    * [Token Embedding](./token_embedding.md)
+      * [Word Embedding](./text/word_embedding.md)
+        * [Word2Vec](./text/word_embedding.md#word2vec)
+        * [What Are Word Embeddings for Text?](https://machinelearningmastery.com/what-are-word-embeddings/)
+        * [The Illustrated Word2vec](https://jalammar.github.io/illustrated-word2vec/)    
+    * [Transformer](./transformer.md)
+      * [Vision Transformer](https://github.com/google-research/vision_transformer)
+    * [Knowledge Distillation](./knowledge_distillation.md)
+  * [HuggingFace](./HuggingFace.md)
+  * [DeepSeek](./DeepSeek.md)
+  * LLM Inference Optimizations
+    * C/C++ based
+      * [llama.cpp](./llama.cpp.md)
+        * [End-to-End flowchart](./llama.cpp_flowchart.md)
+        * [llama_decode deep dive](./llama.cpp_flowchart_decode.md)
+        * [build Qwen graph](./llama.cpp_flowchart_decode_graph_build_qwen.md)
+      * [llamafile](https://github.com/Mozilla-Ocho/llamafile)
+      * [PowerInfer](https://github.com/SJTU-IPADS/PowerInfer)
+    * Python based
+      * [vLLM](https://github.com/vllm-project/vllm)
+      * [SGLang](https://github.com/sgl-project/sglang)
+      * [KTransformers](https://github.com/kvcache-ai/ktransformers)
+      * [lmdeploy](https://github.com/InternLM/lmdeploy)
+    * Rust based
+      * [LlamaEdge](https://github.com/LlamaEdge/LlamaEdge)
+    * Kernel Optimization
+      * [Marlin: a Mixed Auto-Regressive Linear kernel, an extremely optimized FP16xINT4 matmul kernel](https://github.com/IST-DASLab/marlin)
+  * [ax-llm](./ax-llm.md)

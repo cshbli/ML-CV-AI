@@ -63,6 +63,9 @@
   * LLM Inference Optimizations
     * C/C++ based
       * [llama.cpp](./LLM/llama.cpp.md)
+        * [End-to-End flowchart](./LLM/llama.cpp_flowchart.md)
+        * [llama_decode deep dive](./LLM/llama.cpp_flowchart_decode.md)
+        * [build Qwen graph](./LLM/llama.cpp_flowchart_decode_graph_build_qwen.md)
       * [llamafile](https://github.com/Mozilla-Ocho/llamafile)
       * [PowerInfer](https://github.com/SJTU-IPADS/PowerInfer)
     * Python based
@@ -74,6 +77,7 @@
       * [LlamaEdge](https://github.com/LlamaEdge/LlamaEdge)
     * Kernel Optimization
       * [Marlin: a Mixed Auto-Regressive Linear kernel, an extremely optimized FP16xINT4 matmul kernel](https://github.com/IST-DASLab/marlin)
+  * [ax-llm](./LLM/ax-llm.md)
 
 * VLM
   * [Vision Language Models Explained](https://huggingface.co/blog/vlms)
