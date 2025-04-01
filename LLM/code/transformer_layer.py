@@ -46,9 +46,9 @@ class GroupedQueryAttention(nn.Module):
         self.num_heads_per_group = num_q_heads // num_groups
         
         self.rms_norm = RMSNorm(embed_dim)
-        self.q_proj = nn.Linear(embed_dim, num_q_heads * head_dim, bias=False)
-        self.k_proj = nn.Linear(embed_dim, num_groups * head_dim, bias=False)
-        self.v_proj = nn.Linear(embed_dim, num_groups * head_dim, bias=False)
+        self.q_proj = nn.Linear(embed_dim, num_q_heads * head_dim, bias=True)
+        self.k_proj = nn.Linear(embed_dim, num_groups * head_dim, bias=True)
+        self.v_proj = nn.Linear(embed_dim, num_groups * head_dim, bias=True)
         self.out_proj = nn.Linear(num_q_heads * head_dim, embed_dim, bias=False)
         
         self.rope = RotaryPositionEmbedding(head_dim, max_seq_len)
@@ -88,7 +88,7 @@ class GroupedQueryAttention(nn.Module):
         attn_output = self.out_proj(attn_output)
         
         output = x_norm + attn_output  # Residual connection
-        
+
         return output
 
 class FeedForwardNetwork(nn.Module):
