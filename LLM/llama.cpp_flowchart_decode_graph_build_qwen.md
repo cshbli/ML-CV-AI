@@ -3,6 +3,7 @@
 ## Model Download
 - [DeepSeek-R1-Distill-Qwen-14B](https://huggingface.co/bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF)
 - [DeepSeek-R1-Distill-Qwen-7B](https://huggingface.co/unsloth/DeepSeek-R1-Distill-Qwen-7B-GGUF)
+- [DeepSeek-R1-Distill-Qwen-1.5B](https://huggingface.co/unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF)
 
 ## llama.cpp build
 ```
@@ -56,6 +57,140 @@ register_device: registered device BLAS (Accelerate)
 register_backend: registered backend CPU (1 devices)
 register_device: registered device CPU (Apple M1 Pro)
 llama_model_load_from_file_impl: using device Metal (Apple M1 Pro) - 10922 MiB free
+```
+
+```
+llama_model_loader: tensor_name: token_embd.weight, n_elements: 544997376, n_bytes: 579059712.
+llama_model_loader: tensor_name: blk.0.attn_norm.weight, n_elements: 545000960, n_bytes: 579074048.
+llama_model_loader: tensor_name: blk.0.ffn_down.weight, n_elements: 612896256, n_bytes: 651212800.
+llama_model_loader: tensor_name: blk.0.ffn_gate.weight, n_elements: 680791552, n_bytes: 723351552.
+llama_model_loader: tensor_name: blk.0.ffn_up.weight, n_elements: 748686848, n_bytes: 795490304.
+llama_model_loader: tensor_name: blk.0.ffn_norm.weight, n_elements: 748690432, n_bytes: 795504640.
+llama_model_loader: tensor_name: blk.0.attn_k.bias, n_elements: 748690944, n_bytes: 795506688.
+llama_model_loader: tensor_name: blk.0.attn_k.weight, n_elements: 750525952, n_bytes: 797456384.
+llama_model_loader: tensor_name: blk.0.attn_output.weight, n_elements: 763371008, n_bytes: 811104256.
+llama_model_loader: tensor_name: blk.0.attn_q.bias, n_elements: 763374592, n_bytes: 811118592.
+llama_model_loader: tensor_name: blk.0.attn_q.weight, n_elements: 776219648, n_bytes: 824766464.
+llama_model_loader: tensor_name: blk.0.attn_v.bias, n_elements: 776220160, n_bytes: 824768512.
+llama_model_loader: tensor_name: blk.0.attn_v.weight, n_elements: 778055168, n_bytes: 826718208.
+llama_model_loader: tensor_name: blk.1.attn_norm.weight, n_elements: 778058752, n_bytes: 826732544.
+llama_model_loader: tensor_name: blk.1.ffn_down.weight, n_elements: 845954048, n_bytes: 898871296.
+llama_model_loader: tensor_name: blk.1.ffn_gate.weight, n_elements: 913849344, n_bytes: 971010048.
+llama_model_loader: tensor_name: blk.1.ffn_up.weight, n_elements: 981744640, n_bytes: 1043148800.
+llama_model_loader: tensor_name: blk.1.ffn_norm.weight, n_elements: 981748224, n_bytes: 1043163136.
+llama_model_loader: tensor_name: blk.1.attn_k.bias, n_elements: 981748736, n_bytes: 1043165184.
+llama_model_loader: tensor_name: blk.1.attn_k.weight, n_elements: 983583744, n_bytes: 1045114880.
+llama_model_loader: tensor_name: blk.1.attn_output.weight, n_elements: 996428800, n_bytes: 1058762752.
+llama_model_loader: tensor_name: blk.1.attn_q.bias, n_elements: 996432384, n_bytes: 1058777088.
+llama_model_loader: tensor_name: blk.1.attn_q.weight, n_elements: 1009277440, n_bytes: 1072424960.
+llama_model_loader: tensor_name: blk.1.attn_v.bias, n_elements: 1009277952, n_bytes: 1072427008.
+llama_model_loader: tensor_name: blk.1.attn_v.weight, n_elements: 1011112960, n_bytes: 1074376704.
+...
+llama_model_loader: tensor_name: blk.27.attn_norm.weight, n_elements: 6837561344, n_bytes: 7265853440.
+llama_model_loader: tensor_name: blk.27.ffn_down.weight, n_elements: 6905456640, n_bytes: 7337992192.
+llama_model_loader: tensor_name: blk.27.ffn_gate.weight, n_elements: 6973351936, n_bytes: 7410130944.
+llama_model_loader: tensor_name: blk.27.ffn_up.weight, n_elements: 7041247232, n_bytes: 7482269696.
+llama_model_loader: tensor_name: blk.27.ffn_norm.weight, n_elements: 7041250816, n_bytes: 7482284032.
+llama_model_loader: tensor_name: blk.27.attn_k.bias, n_elements: 7041251328, n_bytes: 7482286080.
+llama_model_loader: tensor_name: blk.27.attn_k.weight, n_elements: 7043086336, n_bytes: 7484235776.
+llama_model_loader: tensor_name: blk.27.attn_output.weight, n_elements: 7055931392, n_bytes: 7497883648.
+llama_model_loader: tensor_name: blk.27.attn_q.bias, n_elements: 7055934976, n_bytes: 7497897984.
+llama_model_loader: tensor_name: blk.27.attn_q.weight, n_elements: 7068780032, n_bytes: 7511545856.
+llama_model_loader: tensor_name: blk.27.attn_v.bias, n_elements: 7068780544, n_bytes: 7511547904.
+llama_model_loader: tensor_name: blk.27.attn_v.weight, n_elements: 7070615552, n_bytes: 7513497600.
+llama_model_loader: tensor_name: output_norm.weight, n_elements: 7070619136, n_bytes: 7513511936.
+llama_model_loader: tensor_name: output.weight, n_elements: 7615616512, n_bytes: 8092571648.
+```
+
+- For QWEN2, 1 embedding weight tensor, 1 output norm weight tensor, 1 output weight tensor. 12 weight and bias tensors for each layer, 28 layers.
+So the total is 1 + 2 + 12 * 28 = 339 tensors.
+
+```
+            case LLM_ARCH_QWEN2:
+            case LLM_ARCH_QWEN2VL:
+                {
+                    tok_embd = create_tensor(tn(LLM_TENSOR_TOKEN_EMBD, "weight"), {n_embd, n_vocab}, 0);
+
+                    // output
+                    output_norm = create_tensor(tn(LLM_TENSOR_OUTPUT_NORM, "weight"), {n_embd}, 0);
+                    output      = create_tensor(tn(LLM_TENSOR_OUTPUT,      "weight"), {n_embd, n_vocab}, TENSOR_NOT_REQUIRED);
+                    // if output is NULL, init from the input tok embed
+                    if (output == NULL) {
+                        output = create_tensor(tn(LLM_TENSOR_TOKEN_EMBD, "weight"), {n_embd, n_vocab}, TENSOR_DUPLICATED);
+                    }
+
+                    for (int i = 0; i < n_layer; ++i) {
+                        auto & layer = layers[i];
+
+                        layer.attn_norm = create_tensor(tn(LLM_TENSOR_ATTN_NORM, "weight", i), {n_embd}, 0);
+
+                        layer.wq = create_tensor(tn(LLM_TENSOR_ATTN_Q,   "weight", i), {n_embd, n_embd}, 0);
+                        layer.wk = create_tensor(tn(LLM_TENSOR_ATTN_K,   "weight", i), {n_embd, n_embd_gqa}, 0);
+                        layer.wv = create_tensor(tn(LLM_TENSOR_ATTN_V,   "weight", i), {n_embd, n_embd_gqa}, 0);
+                        layer.wo = create_tensor(tn(LLM_TENSOR_ATTN_OUT, "weight", i), {n_embd, n_embd}, 0);
+
+                        // optional bias tensors
+                        layer.bq = create_tensor(tn(LLM_TENSOR_ATTN_Q,   "bias", i), {n_embd}, 0);
+                        layer.bk = create_tensor(tn(LLM_TENSOR_ATTN_K,   "bias", i), {n_embd_gqa}, 0);
+                        layer.bv = create_tensor(tn(LLM_TENSOR_ATTN_V,   "bias", i), {n_embd_gqa}, 0);
+
+                        layer.ffn_norm = create_tensor(tn(LLM_TENSOR_FFN_NORM, "weight", i), {n_embd}, 0);
+
+                        layer.ffn_gate = create_tensor(tn(LLM_TENSOR_FFN_GATE, "weight", i), {n_embd,   n_ff}, 0);
+                        layer.ffn_down = create_tensor(tn(LLM_TENSOR_FFN_DOWN, "weight", i), {  n_ff, n_embd}, 0);
+                        layer.ffn_up   = create_tensor(tn(LLM_TENSOR_FFN_UP,   "weight", i), {n_embd,   n_ff}, 0);
+                    }
+                } break;
+```               
+
+- The weights and bias of all layers have the same shape and type
+```
+tok_emdb shape: [3584,152064,1,1], type: 8
+output_norm shape: [3584,1,1,1], type: 0
+output shape: [3584,152064,1,1], type: 8
+layer 0
+layer.attn_norm shape: [3584,1,1,1], type: 0
+layer.wq shape: [3584,3584,1,1], type: 8
+layer.wk shape: [3584,512,1,1], type: 8
+layer.wv shape: [3584,512,1,1], type: 8
+layer.wo shape: [3584,3584,1,1], type: 8
+layer.bq shape: [3584,1,1,1], type: 0
+layer.bk shape: [512,1,1,1], type: 0
+layer.bv shape: [512,1,1,1], type: 0
+layer.ffn_norm shape: [3584,1,1,1], type: 0
+layer.ffn_gate shape: [3584,18944,1,1], type: 8
+layer.ffn_down shape: [18944,3584,1,1], type: 8
+layer.ffn_up shape: [3584,18944,1,1], type: 8
+layer 1
+layer.attn_norm shape: [3584,1,1,1], type: 0
+layer.wq shape: [3584,3584,1,1], type: 8
+layer.wk shape: [3584,512,1,1], type: 8
+layer.wv shape: [3584,512,1,1], type: 8
+layer.wo shape: [3584,3584,1,1], type: 8
+layer.bq shape: [3584,1,1,1], type: 0
+layer.bk shape: [512,1,1,1], type: 0
+layer.bv shape: [512,1,1,1], type: 0
+layer.ffn_norm shape: [3584,1,1,1], type: 0
+layer.ffn_gate shape: [3584,18944,1,1], type: 8
+layer.ffn_down shape: [18944,3584,1,1], type: 8
+layer.ffn_up shape: [3584,18944,1,1], type: 8
+...
+layer 27
+layer.attn_norm shape: [3584,1,1,1], type: 0
+layer.wq shape: [3584,3584,1,1], type: 8
+layer.wk shape: [3584,512,1,1], type: 8
+layer.wv shape: [3584,512,1,1], type: 8
+layer.wo shape: [3584,3584,1,1], type: 8
+layer.bq shape: [3584,1,1,1], type: 0
+layer.bk shape: [512,1,1,1], type: 0
+layer.bv shape: [512,1,1,1], type: 0
+layer.ffn_norm shape: [3584,1,1,1], type: 0
+layer.ffn_gate shape: [3584,18944,1,1], type: 8
+layer.ffn_down shape: [18944,3584,1,1], type: 8
+layer.ffn_up shape: [3584,18944,1,1], type: 8
+```
+
+```
 llama_model_loader: loaded meta data with 27 key-value pairs and 339 tensors from /Users/hongbingli/Projects/models/DeepSeek-R1-Distill-Qwen-7B-Q8_0.gguf (version GGUF V3 (latest))
 ```
 
@@ -93,6 +228,29 @@ llama_model_loader: - type  f32:  141 tensors
 llama_model_loader: - type q8_0:  198 tensors
 ```
 
+- Head count: 28
+- Each head dimemsion: 3584 / 28 = 128
+- GQA group number: 4
+- Heads per group: 7 (4 * 7 = 28)
+- All heads within the same group share the same K and V. 
+
+#### How It Works Step-by-Step
+1. Input Embedding: Start with an input embedding of size 3584.
+2. Query Computation:
+   - A weight matrix 𝑊𝑄 of shape [3584, 3584] (or split into 28 heads with [3584, 128] per head) transforms the input into 28 query vectors, each 128-dimensional.
+   - Total query size: 28 × 128 = 3584.
+3. Key/Value Computation:
+   - A weight matrix 𝑊𝐾 of shape [3584, 512] transforms the input into key vectors. Since there are 4 groups, this produces 4 key vectors, each 128-dimensional (4 × 128 = 512).
+   - Similarly, 𝑊𝑉 of shape [3584, 512] produces 4 value vectors, each 128-dimensional.
+   - These 4 key and 4 value vectors correspond to the 4 groups.
+4. Sharing in Groups:
+   - Each of the 4 groups gets one 128-dimensional key vector and one 128-dimensional value vector.
+   - Within each group, all 7 query heads (each with their own 128-dimensional query vector) use the same group-specific key and value vectors to compute attention.
+5. Attention Mechanism:
+   - For each group, the 7 query heads compute attention scores by taking the dot product of their individual query vectors with the shared key vector, followed by a softmax, and then weighting the shared value vector.
+   - This process repeats for all 4 groups.
+6. Output: The outputs from all 28 heads are concatenated (28 × 128 = 3584) and typically passed through an output projection layer to produce the final result.
+
 ## Required OPs 
 - RMS Normalization
 - Add (Bias, Residual connection)
@@ -110,6 +268,7 @@ llama_model_loader: - type q8_0:  198 tensors
 ## llm_build_qwen2() in llama-model.cpp
 
 Here's a Mermaid flow chart that visualizes the computational graph for the Qwen2 architecture as implemented in `llm_build_qwen2()`:
+- No LORA
 
 ```mermaid
 flowchart TD

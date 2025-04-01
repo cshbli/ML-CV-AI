@@ -293,6 +293,9 @@ flowchart TD
     on current platform"]
     
     check_mmap --> finish([End constructor])
+
+    classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
+    class index_tensors CoreProcess
 ```
 
 ### Key Features
@@ -318,6 +321,41 @@ flowchart TD
    - Validates model consistency
 
 This constructor is the first step in loading a model, creating the scaffolding that enables efficient, on-demand loading of the actual weight data when needed for inference.
+
+## `load()` Function in `llama-vocab.cpp`
+
+The `llama_vocab::impl::load` function is a core component responsible for loading and initializing the vocabulary and tokenizer from a model file. Here's what it does:
+
+### Key Responsibilities:
+
+1. **Determine Tokenizer Type**:
+   - Reads the tokenizer model type from metadata (SPM, BPE, WPM, UGM, RWKV)
+   - Sets appropriate defaults based on the tokenizer type
+
+2. **Load Special Tokens**:
+   - BOS (Beginning of Sequence), EOS (End of Sequence)
+   - Control tokens (EOT, EOM, FIM tokens, etc.)
+   - Detects model-specific tokens from their text representations
+
+3. **Build Token Tables**:
+   - Creates bidirectional mappings between token IDs and their text representations
+   - Sets token attributes (normal, control, byte, user-defined)
+   - For BPE: loads merge rules from the model file
+
+4. **Configure Tokenization Parameters**:
+   - Sets tokenization flags (add_space_prefix, clean_spaces, etc.)
+   - Configures model-specific behaviors (escape_whitespaces, add_bos, add_eos)
+
+5. **Build Optimization Structures**:
+   - Creates caches for special tokens
+   - Builds token-to-piece mapping cache for fast detokenization
+   - For UGM: loads precompiled character maps
+
+6. **Initialize Tokenizer Implementation**:
+   - Creates the appropriate tokenizer class based on vocabulary type
+   - Applies model-specific token attributes
+
+This function is critical for setting up the tokenizer to correctly encode text into tokens and decode tokens back to text according to the model's specific vocabulary requirements.
 
 ## `llama_model::load_tensors()` in `llama-model.cpp`
 
@@ -718,6 +756,10 @@ This constructor is the foundation for all model inference, establishing the res
 ## `llama_kv_cache_unified::init()` in `llama-kv-cache.cpp`
 
 This function initializes the key-value (KV) cache for a language model, which is critical for efficient inference by storing previously computed keys and values.
+
+- kv_size: input token number plus output token number. 
+- kv_size padded by 32. 
+- kv_size padded by 256 if flash attention is enabled.
 
 ```mermaid
 flowchart TD
