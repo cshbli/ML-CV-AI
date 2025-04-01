@@ -87,7 +87,7 @@ class GroupedQueryAttention(nn.Module):
         attn_output = attn_output.transpose(1, 2).contiguous().view(batch_size, seq_len, -1)
         attn_output = self.out_proj(attn_output)
         
-        output = x_norm + attn_output  # Residual connection
+        output = x + attn_output  # Residual connection
 
         return output
 
