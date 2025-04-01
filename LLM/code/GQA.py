@@ -12,10 +12,10 @@ class GroupedQueryAttention(nn.Module):
         self.num_heads_per_group = num_q_heads // num_groups  # 7 in this case
         
         # Query projection: one per head
-        self.q_proj = nn.Linear(embed_dim, num_q_heads * head_dim, bias=False)
+        self.q_proj = nn.Linear(embed_dim, num_q_heads * head_dim, bias=True)
         # Key/Value projections: one per group
-        self.k_proj = nn.Linear(embed_dim, num_groups * head_dim, bias=False)
-        self.v_proj = nn.Linear(embed_dim, num_groups * head_dim, bias=False)
+        self.k_proj = nn.Linear(embed_dim, num_groups * head_dim, bias=True)
+        self.v_proj = nn.Linear(embed_dim, num_groups * head_dim, bias=True)
         # Output projection
         self.out_proj = nn.Linear(num_q_heads * head_dim, embed_dim, bias=False)
         

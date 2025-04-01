@@ -69,7 +69,7 @@ Assumptions
 - Sequence length: Variable (to demonstrate KV caching)
 - KV cache stores past keys and values to enable efficient incremental decoding.
 
-[Example Code](./code/grouped_query_attention.py)
+[Example Code](./code/GQA.py)
 
 ### Explanation of the Code
 1. Model Structure:
