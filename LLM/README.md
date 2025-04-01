@@ -8,6 +8,7 @@
       * [The Attention Mechanism from Scratch](./deep_learning/transformer/attention.ipynb)      
     * [Key-Value Cache](./key_value_cache.md)
     * [AWQ: Activation Aware Quantization](./awq.md)
+    * [RMS Normalization](./rms_norm.md)
     * [Token Embedding](./token_embedding.md)
       * [Word Embedding](./text/word_embedding.md)
         * [Word2Vec](./text/word_embedding.md#word2vec)

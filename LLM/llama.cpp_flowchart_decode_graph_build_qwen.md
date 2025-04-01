@@ -246,10 +246,7 @@ llama_model_loader: - type q8_0:  198 tensors
 4. Sharing in Groups:
    - Each of the 4 groups gets one 128-dimensional key vector and one 128-dimensional value vector.
    - Within each group, all 7 query heads (each with their own 128-dimensional query vector) use the same group-specific key and value vectors to compute attention.
-5. Attention Mechanism:
-   - For each group, the 7 query heads compute attention scores by taking the dot product of their individual query vectors with the shared key vector, followed by a softmax, and then weighting the shared value vector.
-   - This process repeats for all 4 groups.
-6. Output: The outputs from all 28 heads are concatenated (28 × 128 = 3584) and typically passed through an output projection layer to produce the final result.
+5. Output: The outputs from all 28 heads are concatenated (28 × 128 = 3584) and typically passed through an output projection layer to produce the final result.
 
 ## Required OPs 
 - RMS Normalization

@@ -35,9 +35,14 @@ class GroupedQueryAttention(nn.Module):
             past_k, past_v = self.kv_cache
             # Compute new keys and values only for the current token(s)
             k_new = self.k_proj(x)
+            # Shape: [batch, seq_len, num_groups * head_dim]            
             v_new = self.v_proj(x)
+            # Shape: [batch, seq_len, num_groups * head_dim]
+            # Reshape and transpose to group keys/values
             k_new = k_new.view(batch_size, seq_len, self.num_groups, self.head_dim).transpose(1, 2)
+            # Shape: [batch, num_groups, seq_len, head_dim]
             v_new = v_new.view(batch_size, seq_len, self.num_groups, self.head_dim).transpose(1, 2)
+            # Shape: [batch, num_groups, seq_len, head_dim]
             # Concatenate past and new keys/values along sequence dimension
             k = torch.cat([past_k, k_new], dim=2)  # [batch, num_groups, past_seq_len + seq_len, head_dim]
             v = torch.cat([past_v, v_new], dim=2)  # [batch, num_groups, past_seq_len + seq_len, head_dim]
@@ -56,17 +61,24 @@ class GroupedQueryAttention(nn.Module):
         # Expand keys and values to match the number of query heads per group
         # Repeat each group's K and V for all heads in that group
         group_idx = torch.arange(self.num_groups, device=x.device).repeat_interleave(self.num_heads_per_group)
-        k_expanded = k[:, group_idx, :, :]  # [batch, num_q_heads, seq_len, head_dim]
-        v_expanded = v[:, group_idx, :, :]  # [batch, num_q_heads, seq_len, head_dim]
+        k_expanded = k[:, group_idx, :, :]  # [batch, num_q_heads, past_seq_len + seq_len, head_dim]
+        v_expanded = v[:, group_idx, :, :]  # [batch, num_q_heads, past_seq_len + seq_len, head_dim]
 
         # Attention computation
         attn_scores = torch.matmul(q, k_expanded.transpose(-1, -2)) / (self.head_dim ** 0.5)
+        # Shape: [batch, num_q_heads, seq_len, past_seq_len + seq_len]
+        if past_seq_len > 0:
+            # Mask out the future tokens in the attention scores
+            mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).to(x.device)
+            attn_scores = attn_scores.masked_fill(mask == 1, float('-inf'))
         attn_probs = F.softmax(attn_scores, dim=-1)
+        # Shape: [batch, num_q_heads, seq_len, past_seq_len + seq_len]
         attn_output = torch.matmul(attn_probs, v_expanded)
         # Shape: [batch, num_q_heads, seq_len, head_dim]
 
         # Reshape and project back to embed_dim
         attn_output = attn_output.transpose(1, 2).contiguous().view(batch_size, seq_len, self.num_q_heads * self.head_dim)
+        # Shape: [batch, seq_len, num_q_heads * head_dim]
         output = self.out_proj(attn_output)  # [batch, seq_len, embed_dim]
 
         return output
