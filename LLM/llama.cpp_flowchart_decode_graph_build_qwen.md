@@ -287,8 +287,10 @@ flowchart TD
         K_proj --> K_rope[Apply RoPE<br><sub>ggml_rope_ext</sub>]
         
         Q_rope --> attn[Multi-Head Attention<br>build_attn_mha]
-        K_rope --> attn
-        V_proj --> attn
+        K_rope --> KV_Cache[Apply KV Cache<br>build_attn_inp_kv_unified]
+        V_proj --> KV_Cache
+
+        KV_Cache --> attn
         
         attn --> residual1[Residual Connection<br>ggml_add]
         inp --> residual1
@@ -314,6 +316,9 @@ flowchart TD
     layer_loop --> final_norm[Final RMS Normalization<br> <sub>ggml_rms_norm</sub>]
     final_norm --> output_proj[Output Projection<br> <sub>build_lora_mm</sub>]
     output_proj --> logits[Logits]
+
+    classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
+    class KV_Cache CoreProcess
 ```
 
 ### Key Components

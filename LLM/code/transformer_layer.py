@@ -60,27 +60,42 @@ class GroupedQueryAttention(nn.Module):
         
         q = self.q_proj(x_norm).view(batch_size, seq_len, self.num_q_heads, self.head_dim).transpose(1, 2)
         
+        # Apply rotary embeddings to the query based on its position
+        q = self.rope(q, offset=past_seq_len)
+
         if use_cache and self.kv_cache is not None:
             past_k, past_v = self.kv_cache
+            # Generate new keys and values
             k_new = self.k_proj(x_norm).view(batch_size, seq_len, self.num_groups, self.head_dim).transpose(1, 2)
             v_new = self.v_proj(x_norm).view(batch_size, seq_len, self.num_groups, self.head_dim).transpose(1, 2)
+            
+            # Apply rotary embeddings to new keys before concatenating
+            k_new = self.rope(k_new, offset=past_seq_len)
+            
+            # Concatenate with past keys and values
             k = torch.cat([past_k, k_new], dim=2)
             v = torch.cat([past_v, v_new], dim=2)
         else:
+            # Generate keys and values for the entire sequence
             k = self.k_proj(x_norm).view(batch_size, seq_len, self.num_groups, self.head_dim).transpose(1, 2)
             v = self.v_proj(x_norm).view(batch_size, seq_len, self.num_groups, self.head_dim).transpose(1, 2)
-        
+            
+            # Apply rotary embeddings to keys
+            k = self.rope(k, offset=0)
+
         if use_cache:
             self.kv_cache = (k, v)
-
-        q = self.rope(q, offset=past_seq_len)
-        k = self.rope(k, offset=0)
-        
+                
         group_idx = torch.arange(self.num_groups, device=x.device).repeat_interleave(self.num_heads_per_group)
         k_expanded = k[:, group_idx, :, :]
         v_expanded = v[:, group_idx, :, :]
         
         attn_scores = torch.matmul(q, k_expanded.transpose(-1, -2)) / (self.head_dim ** 0.5)
+        # Causal Masking: For autoregressive models, add a causal mask to attn_scores before softmax.
+        if past_seq_len > 0:
+            # Mask out the future tokens in the attention scores
+            mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1).to(x.device)
+            attn_scores = attn_scores.masked_fill(mask == 1, float('-inf'))
         attn_probs = F.softmax(attn_scores, dim=-1)
         attn_output = torch.matmul(attn_probs, v_expanded)
         

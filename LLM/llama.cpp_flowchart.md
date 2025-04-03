@@ -770,7 +770,7 @@ flowchart TD
     - Resize to kv_size"]
 
     init_counters -.-> kv_size["kv_size: 
-    - kv_size: input token number plus max output token number. 
+    - kv_size: input token number <br> plus max output token number. 
     - kv_size padded by 32. 
     - kv_size padded by 256 <br>if flash attention is enabled."]
     
