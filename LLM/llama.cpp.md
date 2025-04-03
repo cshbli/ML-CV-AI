@@ -45,6 +45,91 @@ Following the diagram, the flow is as follows:
 5. One of several `sampling` techniques is used to choose the next token from the list of logits.
 6. The chosen token is returned as the output. To continue generating tokens, the chosen token is appended to the list of tokens from step (1), and the process is repeated. This can be continued until the desired number of tokens is generated, or the LLM emits a special end-of-stream (EOS) token.
 
+## GGML Context
+
+```
+struct ggml_context {
+    size_t mem_size;
+    void * mem_buffer;
+    bool   mem_buffer_owned;
+    bool   no_alloc;
+
+    int    n_objects;
+
+    struct ggml_object * objects_begin;
+    struct ggml_object * objects_end;
+};
+```
+
+The `ggml_context` is one of the fundamental structures in GGML (the tensor library used by llama.cpp), serving as a memory manager and allocation system. Based on the code, it has these key responsibilities:
+
+### Memory Management
+- Manages a single contiguous memory buffer for tensor allocations
+- Controls whether memory is owned by the context or provided externally
+- Tracks the total memory size available for allocations
+
+### Object Allocation and Tracking
+- Maintains a linked list of all allocated objects (tensors and other structures)
+- Keeps pointers to the beginning and end of this list
+- Counts the total number of allocated objects
+
+### Allocation Control
+- Can disable new allocations with the `no_alloc` flag
+- Allows for efficient memory reuse patterns
+
+When using GGML, you typically:
+1. Create a context with a defined memory size
+2. Allocate tensors and other objects within that context
+3. Perform operations using those tensors
+4. Free the entire context at once, which releases all allocated objects
+
+This approach provides more efficient memory usage than allocating each tensor separately, and simplifies memory management in tensor computation systems.
+
+## GGML Backend Buffer Type Interface
+
+```
+    struct ggml_backend_buffer_type_i {
+        const char *          (*get_name)      (ggml_backend_buffer_type_t buft);
+        // allocate a buffer of this type
+        ggml_backend_buffer_t (*alloc_buffer)  (ggml_backend_buffer_type_t buft, size_t size);
+        // tensor alignment
+        size_t                (*get_alignment) (ggml_backend_buffer_type_t buft);
+        // (optional) max buffer size that can be allocated (defaults to SIZE_MAX)
+        size_t                (*get_max_size)  (ggml_backend_buffer_type_t buft);
+        // (optional) data size needed to allocate the tensor, including padding (defaults to ggml_nbytes)
+        size_t                (*get_alloc_size)(ggml_backend_buffer_type_t buft, const struct ggml_tensor * tensor);
+        // (optional) check if tensor data is in host memory and uses standard ggml tensor layout (defaults to false)
+        bool                  (*is_host)       (ggml_backend_buffer_type_t buft);
+    };
+```    
+
+The `ggml_backend_buffer_type_i` structure defines the interface for different memory buffer types in GGML's hardware abstraction layer. It's a critical component that enables GGML to work with different types of memory across various computing devices.
+
+### Core Responsibilities
+
+This interface defines how a specific type of memory buffer (e.g., CPU memory, CUDA memory, Metal memory) behaves by providing function pointers for common operations:
+
+1. **Identification**
+   - `get_name`: Returns a human-readable name for the buffer type (like "CPU", "CUDA", etc.)
+
+2. **Memory Allocation**
+   - `alloc_buffer`: Creates a new buffer of this type with specified size
+   - `get_alignment`: Provides memory alignment requirements for optimal performance
+   - `get_max_size`: Returns maximum possible allocation size (hardware-dependent)
+   - `get_alloc_size`: Calculates required memory for a tensor including any padding
+
+3. **Memory Characteristics**
+   - `is_host`: Indicates if the buffer is in host memory with standard GGML layout
+
+### Benefits of This Design
+
+- **Hardware Abstraction**: Allows GGML to work with different memory types through a common interface
+- **Extensibility**: New hardware backends can be added by implementing this interface
+- **Optimization**: Each backend can implement memory operations optimized for its specific hardware
+- **Polymorphism**: Enables different memory types to be treated uniformly in higher-level code
+
+This interface is a key part of what allows GGML (and by extension llama.cpp) to run efficiently across different hardware platforms while maintaining a consistent API.
+
 ## Tensors
 
 It is important to distinguish between two types of tensors. 
