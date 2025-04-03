@@ -4,7 +4,7 @@
 classDiagram
     class ggml_tensor {
         type
-        buffer*
+        ggml_backend_buffer *buffer
         ne[GGML_MAX_DIMS]
         nb[GGML_MAX_DIMS]
         op

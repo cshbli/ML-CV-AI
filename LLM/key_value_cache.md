@@ -54,6 +54,8 @@ All of these state-of-the-art approaches to implementing self-attention don’t 
 
 ## What is key-value caching?
 
+<b>KV caching occurs during multiple token generation steps and only happens in the decoder.</b>
+
 During inference, transformers generate one token at a time. When we prompt the model to start generation by passing “She,” it will produce one word, such as “poured” (for the sake of avoiding distractions, let’s keep assuming one token is one word). Then, we can pass “She poured” to the model, and it produces “coffee.” Next, we pass “She poured coffee” and obtain the end-of-sequence token from the model, indicating that it considers generation to be complete.
 
 This means we have run the forward pass three times, each time multiplying the queries by the keys to obtain the attention scores (the same applies to the later multiplication by the values).
@@ -105,6 +107,17 @@ When processing the third token, we don’t need to recompute the previous token
 ### Generation step with KV caching enabled
 
 <img src="./images/1_4RwWnUm8zaUJmME0RkkUBQ.webp">
+
+## Another illustration
+This auto-regressive behavior repeats some operations, and we can better understand this by zooming in on the masked scaled dot-product attention computation that is calculated in the decoder.
+
+<img src="./images/1_8xqD4AYTwn6mQXNw0uhDCg.gif">
+
+Since the decoder is causal (i.e., the attention of a token only depends on its preceding tokens), at each generation step we are recalculating the same previous token attention, when we actually just want to calculate the attention for the new token.
+
+This is where KV comes into play. By caching the previous Keys and Values, we can focus on only calculating the attention for the new token.
+
+<img src="./images/1_uyuyOW1VBqmF5Gtv225XHQ.gif">
 
 ## Self Attention with KV Cache Example Code
 
@@ -159,3 +172,4 @@ Example
 
 * [Transformers Key-Value Caching Explained](https://neptune.ai/blog/transformers-key-value-caching)
 * [LLM Inference Series: 3. KV caching explained](https://medium.com/@plienhar/llm-inference-series-3-kv-caching-unveiled-048152e461c8)
+* [Transformers KV Caching Explained](https://medium.com/@joaolages/kv-caching-explained-276520203249)

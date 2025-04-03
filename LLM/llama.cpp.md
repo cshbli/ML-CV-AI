@@ -16,6 +16,12 @@ The main difference between the LLaMa architecture and the transformers’:
 - <b>SwigGLU activation function (PaLM):</b> the original non-linearity ReLU activation function is replaced by the SwiGLU activation function, which leads to performance improvements.
 - <b>Rotary embeddings (GPTNeao):</b> the rotary positional embeddings (RoPE) was added at each layer of the network after removing the absolute positional embeddings.
 
+### Llama3 architecture
+
+<img src="./images/1_CQs4ceLpN8tIN8QyezL2Ag.png">
+
+<img src="./images/1__xNP7aBpcmcMk4tXJ-Z8Mw.webp">
+
 ### Decoder-Only Architecture
 
 A decoder-only architecture refers to a type of transformer model that consists solely of the decoder component from the original transformer framework, omitting the encoder entirely. This design is tailored for tasks where the model generates output autoregressively—predicting the next token in a sequence based on all previous tokens—without requiring a separate input encoding phase. It’s widely used in large language models (LLMs) like GPT, LLaMA, and DeepSeek-R1.
