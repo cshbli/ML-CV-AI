@@ -757,50 +757,46 @@ This constructor is the foundation for all model inference, establishing the res
 
 This function initializes the key-value (KV) cache for a language model, which is critical for efficient inference by storing previously computed keys and values.
 
-- kv_size: input token number plus output token number. 
-- kv_size padded by 32. 
-- kv_size padded by 256 if flash attention is enabled.
-
 ```mermaid
 flowchart TD
-    start([Start]) --> set_flags["Set initial state:
-    - has_shift = false
-    - detect if model is recurrent
-    - determine v_trans based on model type
-    - set can_shift flag based on architecture"]
-    
-    set_flags --> log_info["Log initialization parameters:
-    - kv_size, offload, type_k, type_v
-    - n_layer, can_shift"]
-    
-    log_info --> init_counters["Initialize counters:
+    start([Start]) --> init_counters["Initialize counters:
     - head = 0 (starting position)
     - size = kv_size (total capacity)
     - used = 0 (no cells used yet)
-    - Set data types"]
+    - Set data types (fp16)"]    
     
     init_counters --> setup_cells["Set up cells storage:
     - Clear cells array
     - Resize to kv_size"]
+
+    init_counters -.-> kv_size["kv_size: 
+    - kv_size: input token number plus max output token number. 
+    - kv_size padded by 32. 
+    - kv_size padded by 256 if flash attention is enabled."]
     
     setup_cells --> create_contexts["Create GGML contexts:
-    - One context per buffer type
-    - Set up memory for tensor overhead"]
+    - One context per buffer type"]
     
     create_contexts --> create_tensors["Create K/V tensors for each layer:
     1. Determine dimensions based on model
     2. Choose buffer type (GPU/CPU)
     3. Create tensors with proper names
-    4. Push to k_l and v_l vectors"]
+    4. Push to k_l and v_l vectors"]    
     
-    create_tensors --> allocate_memory["Allocate memory:
-    - For each context/buffer type
-    - Allocate tensor memory
-    - Clear memory to prevent NaNs
-    - Log buffer sizes"]
+    create_tensors --> allocate_memory["Allocate memory: 
+    - Allocate tensor memory with context"]
+
+    create_tensors -.-> cache_size["Example:
+    - 28 layers, k_l and v_l size is 28
+    - embed_size: 3584, head: 28, group: 4
+    - K/V dimension: [kv_size, 512]
+    - input_token: 4 
+    - output_token: 1024
+    - kv_size: 1056
+    - Cache size: 1056 * 512 * 2 * 2 * 28= 57.75MB"]
     
     allocate_memory -->|Success| return_true["Return true"]
-    allocate_memory -->|Failure| return_false["Return false"]
+    allocate_memory -->|Failure| return_false["Return false"]    
 ```
 
 ### Key Components
