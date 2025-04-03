@@ -772,7 +772,7 @@ flowchart TD
     init_counters -.-> kv_size["kv_size: 
     - kv_size: input token number plus max output token number. 
     - kv_size padded by 32. 
-    - kv_size padded by 256 if flash attention is enabled."]
+    - kv_size padded by 256 <br>if flash attention is enabled."]
     
     setup_cells --> create_contexts["Create GGML contexts:
     - One context per buffer type"]
@@ -787,13 +787,15 @@ flowchart TD
     - Allocate tensor memory with context"]
 
     create_tensors -.-> cache_size["Example:
-    - 28 layers, k_l and v_l size is 28
-    - embed_size: 3584, head: 28, group: 4
-    - K/V dimension: [kv_size, 512]
+    - 28 layers 
+    - k_l/v_l: 28
+    - embed_size: 3584 
+    - head: 28, group: 4
+    - K/V: [kv_size, 512]
     - input_token: 4 
     - output_token: 1024
     - kv_size: 1056
-    - Cache size: 1056 * 512 * 2 * 2 * 28= 57.75MB"]
+    - Cache size: 1056 * 512 * 2 <br>* 2 * 28= 57.75MB"]
     
     allocate_memory -->|Success| return_true["Return true"]
     allocate_memory -->|Failure| return_false["Return false"]    
