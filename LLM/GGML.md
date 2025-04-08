@@ -389,3 +389,115 @@ The registry system is what allows llama.cpp to dynamically discover and use dif
 - OpenCL backends register with information about compatible devices
 
 This registry design enables llama.cpp's plugin architecture, where different hardware backends can be loaded at runtime based on what's available on the user's system.
+
+## GGML Graph Compute Thread
+
+- ggml-cpu.c
+
+The `ggml_graph_compute_thread()` is the core function that executes tensor operations in GGML's computational graph across multiple threads. Here's a flowchart explaining how it works:
+
+```mermaid
+flowchart TD
+    Start([Thread Start]) --> GetState["Get thread state from data parameter"]
+    GetState --> SetAffinity["Set NUMA thread affinity for optimized memory access"]
+    SetAffinity --> SetupParams["Set up computation parameters:
+    - ith: Thread index
+    - nth: Total threads
+    - wsize: Work buffer size
+    - wdata: Work buffer pointer"]
+    
+    SetupParams --> NodesLoop["Start loop through computation graph nodes"]
+    NodesLoop --> CheckAbort{"Check if
+    computation
+    aborted?"}
+    
+    CheckAbort -->|"Yes"| LoopEnd["Exit loop"]
+    CheckAbort -->|"No"| ProcessNode["Process current node with ggml_compute_forward()"]
+    
+    ProcessNode --> CheckMainThread{"Is main thread?
+    (ith == 0)"}
+    
+    CheckMainThread -->|"Yes"| CheckCallback{"Should abort?
+    (via callback)"}
+    CheckMainThread -->|"No"| NextNode["Move to next node"]
+    
+    CheckCallback -->|"Yes"| SetAbort["Mark computation as aborted
+    Set error code to ABORTED"]
+    CheckCallback -->|"No"| NextNode
+    
+    SetAbort --> NextNode
+    
+    NextNode --> Barrier{"Last node?"}
+    Barrier -->|"No"| SyncBarrier["Wait for all threads at barrier"]
+    Barrier -->|"Yes"| LoopEnd
+    
+    SyncBarrier --> NodesLoop
+    
+    LoopEnd --> FinalBarrier["Final barrier synchronization"]
+    FinalBarrier --> End([Thread End])
+
+    classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
+    class ProcessNode CoreProcess
+```
+
+### Key Features
+
+1. **Parallel Execution**: Divides work across multiple threads efficiently
+2. **Thread Coordination**: Uses barriers to synchronize at critical points
+3. **Graceful Abortion**: Supports stopping computation early via callbacks
+4. **Memory Optimizations**: Sets thread affinity for better memory access patterns
+5. **Work Sharing**: Each thread processes different parts of the same operations
+
+This design allows GGML to efficiently execute neural network operations like matrix multiplications, convolutions, and attention mechanisms in parallel across CPU cores, which is critical for the performance of llama.cpp.
+
+## GGML Compute Forward Function
+
+- ggml-cpu.c
+
+The `ggml_compute_forward` function is the core computation dispatcher in the GGML library. It processes tensor operations by routing each operation to its appropriate implementation based on the tensor's operation type.
+
+## Flowchart
+
+```mermaid
+flowchart TD
+    start([Start]) --> check_params["Check if params is valid"]
+    check_params --> check_op{"Is tensor->op == NONE<br>or tensor is empty?"}
+    check_op -->|Yes| ret["Return (no-op)"]
+    check_op -->|No| check_extra{"Check for extra_buffer<br>operations"}
+    check_extra -->|Handled| ret
+    check_extra -->|Not handled| dispatch{"Switch on tensor->op"}
+    
+    subgraph Dispatch Operation
+        dispatch --> basic["Basic Math Operations:<br>add, mul, sub, div, etc."]
+        dispatch --> unary["Unary Operations:<br>tanh, relu, gelu, etc."]
+        dispatch --> matrix["Matrix Operations:<br>nmul_mat, out_prod"]
+        dispatch --> shape["Shape Operations:<br>reshape, view, transpose"]
+        dispatch --> attention["Attention Operations:<br>flash_attn, diag_mask_inf"]
+        dispatch --> conv["Convolution Operations:<br>conv_1d, conv_2d"]
+        dispatch --> custom["Custom Operations:<br>map_custom1, map_binary"]
+        dispatch --> advanced["Advanced Operations:<br>rope, pool_2d, ssm_scan"]
+    end
+    
+    basic --> execute["Execute operation with<br>specialized implementation"]
+    unary --> execute
+    matrix --> execute
+    shape --> execute
+    attention --> execute
+    conv --> execute
+    custom --> execute
+    advanced --> execute
+    
+    execute --> ret
+    
+    ret([End])
+```
+
+### Key Points
+
+1. **Operation Validation**: First checks if the tensor operation is valid or needed
+2. **Hardware Specialization**: Checks for hardware-specific implementations with `ggml_cpu_extra_compute_forward`
+3. **Dispatch Process**: Uses a large switch statement with ~85 operations to route to the appropriate implementation
+4. **Implementation Pattern**: Each operation has its own specialized function (e.g., `ggml_compute_forward_add`)
+5. **Type Handling**: Many operations have separate implementations for different data types (F32, F16, etc.)
+
+This function is central to GGML's computation model, efficiently handling all supported tensor operations across different hardware configurations.

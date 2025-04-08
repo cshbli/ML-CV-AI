@@ -286,7 +286,7 @@ flowchart TD
         Q_proj --> Q_rope[Apply RoPE<br><sub>ggml_rope_ext</sub>]
         K_proj --> K_rope[Apply RoPE<br><sub>ggml_rope_ext</sub>]
         
-        Q_rope --> attn[Multi-Head Attention<br>build_attn_mha]
+        Q_rope --> attn[Multi-Head Attention<br>build_attn]
         K_rope --> KV_Cache[Apply KV Cache<br>build_attn_inp_kv_unified]
         V_proj --> KV_Cache
 
@@ -318,7 +318,7 @@ flowchart TD
     output_proj --> logits[Logits]
 
     classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
-    class KV_Cache CoreProcess
+    class attn CoreProcess
 ```
 
 ### Key Components
@@ -518,6 +518,196 @@ flowchart TD
 This function effectively implements the core LoRA equation: `W' = W + BA` where the adapted weight `W'` is used instead of the original weight `W`, but without explicitly materializing the full `W'` matrix - saving memory and computation.
 
 The function handles multiple LoRA adapters simultaneously, allowing for composable adaptations of the base model.
+
+## build_attn_inp_kv_unified 
+
+- llama-graph.cpp
+
+The `build_attn_inp_kv_unified()` function creates and initializes tensor structures needed for attention operations that work with the unified KV cache. It prepares attention masks that control which keys in the cache each query token can attend to.
+
+```mermaid
+flowchart TD
+    start([Start]) --> get_kv["Get KV cache pointer (kv_self)"]
+    get_kv --> create_inp["Create new input object for 
+    attention with unified KV cache"]
+    create_inp --> get_n_kv["Get number of KV cells (n_kv)"]
+    
+    get_n_kv --> create_mask["Create 2D attention mask tensor:
+    - Width: n_kv (keys in cache)
+    - Height: padded n_tokens (queries)
+    - Type: F32"]
+    
+    create_mask --> set_input["Set mask tensor as input node"]
+    
+    set_input --> check_flash{"Flash attention
+    enabled?"}
+    
+    check_flash -->|Yes| create_f16["Create F16 version 
+    of mask tensor"]
+    check_flash -->|No| use_f32["Use original F32 mask"]
+    
+    create_f16 --> check_swa{"Sliding window 
+    attention?"}
+    use_f32 --> check_swa
+    
+    check_swa -->|Yes| create_swa["Create additional mask 
+    for sliding window attention"]
+    create_swa --> set_swa["Set sliding window 
+    mask as input"]
+    set_swa --> check_swa_flash{"Flash attention
+    enabled?"}
+    check_swa_flash -->|Yes| create_swa_f16["Create F16 version
+    of SWA mask"]
+    check_swa_flash -->|No| use_swa_f32["Use F32 SWA mask"]
+    
+    create_swa_f16 --> add_input
+    use_swa_f32 --> add_input
+    check_swa -->|No| add_input["Add input object to result"]
+    
+    add_input --> return_inp["Return input object"]
+    
+    return_inp --> finish([End])
+```
+
+### Key Points
+
+1. **Purpose**: Creates attention mask tensors that control the visibility between query tokens and key-value pairs in the KV cache.
+
+2. **Mask dimensions**: The mask is sized to fit all active keys in the cache (width) and all query tokens in the current batch (height).
+
+3. **Format optimizations**: Creates half-precision (F16) versions of masks when using flash attention for better GPU performance.
+
+4. **Special cases**: Creates additional masks for sliding window attention (SWA) when enabled, which limits each token's attention to a fixed context window.
+
+The actual content of these masks will be populated later by the `set_input()` method based on sequence relationships, causal attention constraints, and position patterns.
+
+## build_attn()
+
+- llama-graph.cpp
+
+The `build_attn()` function is one of the core computational components of llama.cpp, responsible for constructing the attention mechanism in the transformer architecture. It has three overloaded versions for different attention scenarios.
+
+```mermaid
+flowchart TD
+    start([Start]) --> add_to_graph["Add Q, K, V tensors to graph"]
+    add_to_graph --> permute["Permute tensor dimensions for attention"]
+    permute --> calculate_attn["Calculate attention scores using build_attn_mha()"]
+    calculate_attn --> apply_lora{"Apply LoRA<br>if available"}
+    apply_lora -->|Yes| lora["Apply weight modifications<br>via build_lora_mm()"]
+    apply_lora -->|No| bias
+    lora --> bias{"Add bias<br>if available"}
+    bias -->|Yes| add_bias["Add wo_b bias tensor"]
+    bias -->|No| return
+    add_bias --> return["Return processed tensor"]
+```
+
+### Version Differences
+
+1. **With No KV Cache** (`llm_graph_input_attn_no_cache`):
+   - Directly computes attention between all queries and keys in the current batch
+   - All computation happens for tokens in the current context only
+
+2. **With Unified KV Cache** (`llm_graph_input_attn_kv_unified`):
+   - Stores new K and V tensors in the KV cache
+   - Retrieves previously computed K and V values from the cache
+   - Enables efficient inference by avoiding redundant computations
+   - Supports sliding window attention optimization
+
+3. **Cross-Attention** (`llm_graph_input_attn_cross`):
+   - Handles attention between different sequences (encoder-decoder models)
+   - Manages cross-attention masks between sequences
+
+Each version calls `build_attn_mha()` which computes the multi-head attention using either standard attention or Flash Attention when available, applying optimizations like softmax scaling and alibi position bias.
+
+## build_attn() with Unified KV Cache Attention
+
+- llama-graph.cpp
+
+```mermaid
+flowchart TD
+    start([Start]) --> add_to_graph["Add Q, K, V tensors to computation graph
+    with ggml_build_forward_expand()"]
+    
+    add_to_graph --> get_cache["Get KV cache pointer and parameters:
+    - kv_self: unified KV cache
+    - n_ctx: context size
+    - n_embd_k/v_gqa: embedding dimensions"]
+    
+    get_cache --> store_k["Store new K to KV cache:
+    1. Get view of K cache at head position
+    2. Copy RoPE-processed K using ggml_cpy()"]
+    
+    store_k --> reshape_v["Reshape V tensor to 2D:
+    [n_embd_v_gqa, n_tokens]"]
+    
+    reshape_v --> check_vtrans{"Flash attention 
+    enabled?"}
+    
+    check_vtrans -->|Yes| store_v_regular["Store V directly:
+    - Create view of V cache
+    - Copy V to cache"]
+    
+    check_vtrans -->|No| store_v_trans["Store V transposed:
+    - Create transposed view of V cache
+    - Transpose V tensor
+    - Copy to cache"]
+    
+    store_v_regular --> check_swa{"Sliding window 
+    attention?"}
+    store_v_trans --> check_swa
+    
+    check_swa -->|Yes| get_mask_swa["Get sliding window
+    attention mask"]
+    check_swa -->|No| get_mask["Get standard
+    attention mask"]
+    
+    get_mask_swa --> prepare_q["Prepare Q tensor:
+    Permute to match attention dims"]
+    get_mask --> prepare_q
+    
+    prepare_q --> prepare_k["Prepare K tensor:
+    1. Create view of cached K 
+    2. Shape: [n_embd_head_k, n_kv, n_head_kv]"]
+    
+    prepare_k --> prepare_v["Prepare V tensor:
+    Create view of cached V with
+    appropriate dimensions"]
+    
+    prepare_v --> build_mha["Compute attention with build_attn_mha():
+    - Pass Q, K, V, mask tensors
+    - Apply attention scaling
+    - Return output tensor"]
+    
+    build_mha --> check_wo{"Output projection 
+    provided?"}
+    
+    check_wo -->|Yes| apply_wo["Apply output projection:
+    - Matrix multiply with wo
+    - Apply LoRA if available"]
+    check_wo -->|No| check_bias
+    
+    apply_wo --> check_bias{"Bias provided?"}
+    
+    check_bias -->|Yes| add_bias["Add bias tensor wo_b"]
+    check_bias -->|No| return
+    
+    add_bias --> return["Return processed tensor"]
+    return --> finish([End])
+
+    classDef CoreProcess fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef process fill:#faa,stroke:#333,stroke-width:1px;
+    class build_mha CoreProcess
+    class store_k,store_v_trans,prepare_k,prepare_v process
+```
+
+The flowchart shows how the function efficiently:
+1. Stores new keys and values in the KV cache
+2. Retrieves and formats all necessary keys and values from the cache
+3. Correctly handles special cases like sliding window attention
+4. Manages tensor transposition based on the attention implementation
+5. Applies projections and biases to the attention output
+
+This unified approach allows reusing previously computed key-value pairs, which is essential for efficient autoregressive inference.
 
 ## `llm_graph_context::build_attn_mha()` in `llama-graph.cpp`
 
