@@ -625,22 +625,15 @@ Each version calls `build_attn_mha()` which computes the multi-head attention us
 
 ```mermaid
 flowchart TD
-    start([Start]) --> add_to_graph["Add Q, K, V tensors to computation graph
-    with ggml_build_forward_expand()"]
+    start([Start]) --> add_to_graph["Add Q, K, V tensors to graph"]
     
-    add_to_graph --> get_cache["Get KV cache pointer and parameters:
-    - kv_self: unified KV cache
-    - n_ctx: context size
-    - n_embd_k/v_gqa: embedding dimensions"]
+    add_to_graph --> get_cache["Get KV cache pointer and parameters"]
     
     get_cache --> store_k["Store new K to KV cache:
-    1. Get view of K cache at head position
-    2. Copy RoPE-processed K using ggml_cpy()"]
+    1. Get view of K cache
+    2. Copy RoPE-processed K"]
     
-    store_k --> reshape_v["Reshape V tensor to 2D:
-    [n_embd_v_gqa, n_tokens]"]
-    
-    reshape_v --> check_vtrans{"Flash attention 
+    store_k --> check_vtrans{"Flash attention 
     enabled?"}
     
     check_vtrans -->|Yes| store_v_regular["Store V directly:
@@ -648,30 +641,15 @@ flowchart TD
     - Copy V to cache"]
     
     check_vtrans -->|No| store_v_trans["Store V transposed:
-    - Create transposed view of V cache
     - Transpose V tensor
     - Copy to cache"]
     
-    store_v_regular --> check_swa{"Sliding window 
-    attention?"}
-    store_v_trans --> check_swa
+    store_v_regular --> prepare_q["Prepare Q tensor"]
+    store_v_trans --> prepare_q    
     
-    check_swa -->|Yes| get_mask_swa["Get sliding window
-    attention mask"]
-    check_swa -->|No| get_mask["Get standard
-    attention mask"]
+    prepare_q --> prepare_k["Prepare K tensor"]
     
-    get_mask_swa --> prepare_q["Prepare Q tensor:
-    Permute to match attention dims"]
-    get_mask --> prepare_q
-    
-    prepare_q --> prepare_k["Prepare K tensor:
-    1. Create view of cached K 
-    2. Shape: [n_embd_head_k, n_kv, n_head_kv]"]
-    
-    prepare_k --> prepare_v["Prepare V tensor:
-    Create view of cached V with
-    appropriate dimensions"]
+    prepare_k --> prepare_v["Prepare V tensor"]
     
     prepare_v --> build_mha["Compute attention with build_attn_mha():
     - Pass Q, K, V, mask tensors
