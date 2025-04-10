@@ -3,10 +3,43 @@
 ## Introduction to Matrix Data Order
 In computing, multi-dimensional arrays (matrices, tensors) represent data with multiple axes (e.g., rows, columns, depth). The data order (or memory layout) defines how these elements are arranged in a contiguous block of memory. This affects performance (e.g., cache efficiency), interoperability between libraries, and how algorithms process the data.
 
+The terms "innermost" and "outermost" are related to the loops used when iterating over the elements of these arrays, affecting how memory is accessed.
+
 Two fundamental concepts underpin data order:
 
-- Row-Major Order: Elements are stored row-by-row (left-to-right, top-to-bottom).
-- Column-Major Order: Elements are stored column-by-column (top-to-bottom, left-to-right).
+### Row-Major Order
+- Elements are stored row-by-row (left-to-right, top-to-bottom).
+- Often used in programming languages like <b>C/C++</b>, <b>Python(Numpy)</b>, <b>Java</b>, <b>Pascal</b>.
+- Access pattern (innermost and outermost loops):
+  - The `innermost` loop iterates over the columns within a row.
+  - The `outermost` loop iterates over the rows.
+- Offset: For (i, j) in a 2D array of width W, offset = i * W + j.
+- Advantages: Cache-friendly for row-wise access; intuitive for image-like data.
+
+For example, consider a 2D array:
+```
+  A = [[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]]
+```       
+In row-major order, this would be stored in memory as: 1, 2, 3, 4, 5, 6, 7, 8, 9
+
+### Column-Major Order
+- Elements are stored column-by-column (top-to-bottom, left-to-right).
+- Common in languages like <b>Fortran</b>, <b>MATLAB</b>, <b>R</b>, <b>Julia</b>.
+- Access pattern (innermost and outermost loops):
+  - The `innermost` loop iterates over the rows within a column.
+  - The `outermost` loop iterates over the columns.
+- Offset: For (i, j) in a 2D array of height H, offset = j * H + i.
+- Relevance: Less common in Python/ML but important for interoperability.
+
+Using the same array:
+```
+  A = [[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]]
+```       
+In column-major order, this would be stored in memory as: 1, 4, 7, 2, 5, 8, 3, 6, 9
 
 Higher-dimensional arrays extend these principles, leading to formats like WHD, DWH, NCHW, etc.
 
@@ -54,48 +87,6 @@ Memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 - Why NCHW?
   - Channels (C) are grouped together, optimizing for convolution operations where filters slide over spatial dimensions (H, W).
   - Batch (N) is outermost for parallel processing of multiple samples.
-
-### Python Default Data Order (NumPy)
-- Definition: Python’s NumPy uses row-major order (C-style) by default.
-- Memory Layout: The rightmost index varies fastest, and the leftmost varies slowest.
-- Example (2x3 array):
-```
-import numpy as np
-arr = np.array([[0, 1, 2], [3, 4, 5]])
-# Memory: [0, 1, 2, 3, 4, 5]
-```
-- Indices: (i, j) → Offset = i * W + j.
-- Higher Dimensions: For a 3D array (e.g., 2x3x4), it’s (D, H, W)-like:
-```
-arr = np.arange(24).reshape(2, 3, 4)
-# Memory: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
-```
-- Use Case: Default for Python scientific computing; aligns with WHD-like ordering.
-- Note: NumPy can use column-major (Fortran-style) with order='F', but it’s not default.
-
-### Row-Major Order
-- Definition: Elements are stored row-by-row; the rightmost index changes fastest.
-- Languages: C, C++, Python (NumPy), Java use row-major by default.
-- Example (2x3 matrix):
-```
-[[0, 1, 2],
- [3, 4, 5]]
-Memory: [0, 1, 2, 3, 4, 5]
-```
-- Offset: For (i, j) in a 2D array of width W, offset = i * W + j.
-- Advantages: Cache-friendly for row-wise access; intuitive for image-like data.
-
-### Column-Major Order (Comparison)
-- Definition: Elements are stored column-by-column; the leftmost index changes fastest.
-- Languages: Fortran, MATLAB, R use column-major.
-- Example (2x3 matrix):
-```
-[[0, 1, 2],
- [3, 4, 5]]
-Memory: [0, 3, 1, 4, 2, 5]
-```
-- Offset: For (i, j) in a 2D array of height H, offset = j * H + i.
-- Relevance: Less common in Python/ML but important for interoperability.
 
 ## Comparison Table
 
