@@ -4,6 +4,7 @@
 - [DeepSeek-R1-Distill-Qwen-14B](https://huggingface.co/bartowski/DeepSeek-R1-Distill-Qwen-14B-GGUF)
 - [DeepSeek-R1-Distill-Qwen-7B](https://huggingface.co/unsloth/DeepSeek-R1-Distill-Qwen-7B-GGUF)
 - [DeepSeek-R1-Distill-Qwen-1.5B](https://huggingface.co/unsloth/DeepSeek-R1-Distill-Qwen-1.5B-GGUF)
+- [DeepSeek-R1-Distill-Qwen-1.5B f16 132](https://huggingface.co/bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF)
 
 ## llama.cpp build
 ```
@@ -42,6 +43,46 @@ llama_model_loader: - type  f32:  241 tensors
 llama_model_loader: - type q8_0:  338 tensors
 ```
 
+## 1.5B model
+### model check
+```
+./llama-simple -m ~/Projects/models/DeepSeek-R1-Distill-Qwen-1.5B-Q8_0.gguf -n 64
+```
+
+```
+llama_model_loader: loaded meta data with 27 key-value pairs and 339 tensors from /Users/hongbingli/Projects/models/DeepSeek-R1-Distill-Qwen-1.5B-Q8_0.gguf (version GGUF V3 (latest))
+
+llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+llama_model_loader: - kv   1:                               general.type str              = model
+llama_model_loader: - kv   2:                               general.name str              = DeepSeek R1 Distill Qwen 1.5B
+llama_model_loader: - kv   3:                       general.organization str              = Deepseek Ai
+llama_model_loader: - kv   4:                           general.basename str              = DeepSeek-R1-Distill-Qwen
+llama_model_loader: - kv   5:                         general.size_label str              = 1.5B
+llama_model_loader: - kv   6:                          qwen2.block_count u32              = 28
+llama_model_loader: - kv   7:                       qwen2.context_length u32              = 131072
+llama_model_loader: - kv   8:                     qwen2.embedding_length u32              = 1536
+llama_model_loader: - kv   9:                  qwen2.feed_forward_length u32              = 8960
+llama_model_loader: - kv  10:                 qwen2.attention.head_count u32              = 12
+llama_model_loader: - kv  11:              qwen2.attention.head_count_kv u32              = 2
+llama_model_loader: - kv  12:                       qwen2.rope.freq_base f32              = 10000.000000
+llama_model_loader: - kv  13:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000001
+llama_model_loader: - kv  14:                          general.file_type u32              = 7
+llama_model_loader: - kv  15:                       tokenizer.ggml.model str              = gpt2
+llama_model_loader: - kv  16:                         tokenizer.ggml.pre str              = deepseek-r1-qwen
+llama_model_loader: - kv  17:                      tokenizer.ggml.tokens arr[str,151936]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+llama_model_loader: - kv  18:                  tokenizer.ggml.token_type arr[i32,151936]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+llama_model_loader: - kv  19:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+llama_model_loader: - kv  20:                tokenizer.ggml.bos_token_id u32              = 151646
+llama_model_loader: - kv  21:                tokenizer.ggml.eos_token_id u32              = 151643
+llama_model_loader: - kv  22:            tokenizer.ggml.padding_token_id u32              = 151654
+llama_model_loader: - kv  23:               tokenizer.ggml.add_bos_token bool             = true
+llama_model_loader: - kv  24:               tokenizer.ggml.add_eos_token bool             = false
+llama_model_loader: - kv  25:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+llama_model_loader: - kv  26:               general.quantization_version u32              = 2
+llama_model_loader: - type  f32:  141 tensors
+llama_model_loader: - type q8_0:  198 tensors
+```
+
 ## 7B model
 
 ### model check
@@ -73,18 +114,6 @@ llama_model_loader: tensor_name: blk.0.attn_q.bias, n_elements: 763374592, n_byt
 llama_model_loader: tensor_name: blk.0.attn_q.weight, n_elements: 776219648, n_bytes: 824766464.
 llama_model_loader: tensor_name: blk.0.attn_v.bias, n_elements: 776220160, n_bytes: 824768512.
 llama_model_loader: tensor_name: blk.0.attn_v.weight, n_elements: 778055168, n_bytes: 826718208.
-llama_model_loader: tensor_name: blk.1.attn_norm.weight, n_elements: 778058752, n_bytes: 826732544.
-llama_model_loader: tensor_name: blk.1.ffn_down.weight, n_elements: 845954048, n_bytes: 898871296.
-llama_model_loader: tensor_name: blk.1.ffn_gate.weight, n_elements: 913849344, n_bytes: 971010048.
-llama_model_loader: tensor_name: blk.1.ffn_up.weight, n_elements: 981744640, n_bytes: 1043148800.
-llama_model_loader: tensor_name: blk.1.ffn_norm.weight, n_elements: 981748224, n_bytes: 1043163136.
-llama_model_loader: tensor_name: blk.1.attn_k.bias, n_elements: 981748736, n_bytes: 1043165184.
-llama_model_loader: tensor_name: blk.1.attn_k.weight, n_elements: 983583744, n_bytes: 1045114880.
-llama_model_loader: tensor_name: blk.1.attn_output.weight, n_elements: 996428800, n_bytes: 1058762752.
-llama_model_loader: tensor_name: blk.1.attn_q.bias, n_elements: 996432384, n_bytes: 1058777088.
-llama_model_loader: tensor_name: blk.1.attn_q.weight, n_elements: 1009277440, n_bytes: 1072424960.
-llama_model_loader: tensor_name: blk.1.attn_v.bias, n_elements: 1009277952, n_bytes: 1072427008.
-llama_model_loader: tensor_name: blk.1.attn_v.weight, n_elements: 1011112960, n_bytes: 1074376704.
 ...
 llama_model_loader: tensor_name: blk.27.attn_norm.weight, n_elements: 6837561344, n_bytes: 7265853440.
 llama_model_loader: tensor_name: blk.27.ffn_down.weight, n_elements: 6905456640, n_bytes: 7337992192.
@@ -149,19 +178,6 @@ tok_emdb shape: [3584,152064,1,1], type: 8
 output_norm shape: [3584,1,1,1], type: 0
 output shape: [3584,152064,1,1], type: 8
 layer 0
-layer.attn_norm shape: [3584,1,1,1], type: 0
-layer.wq shape: [3584,3584,1,1], type: 8
-layer.wk shape: [3584,512,1,1], type: 8
-layer.wv shape: [3584,512,1,1], type: 8
-layer.wo shape: [3584,3584,1,1], type: 8
-layer.bq shape: [3584,1,1,1], type: 0
-layer.bk shape: [512,1,1,1], type: 0
-layer.bv shape: [512,1,1,1], type: 0
-layer.ffn_norm shape: [3584,1,1,1], type: 0
-layer.ffn_gate shape: [3584,18944,1,1], type: 8
-layer.ffn_down shape: [18944,3584,1,1], type: 8
-layer.ffn_up shape: [3584,18944,1,1], type: 8
-layer 1
 layer.attn_norm shape: [3584,1,1,1], type: 0
 layer.wq shape: [3584,3584,1,1], type: 8
 layer.wk shape: [3584,512,1,1], type: 8
@@ -261,6 +277,55 @@ llama_model_loader: - type q8_0:  198 tensors
 - Tanh (Attention Soft capping)
 - Softmax (Attention)
 - Permute (Attention)
+
+## Extract weights from GGUF
+
+- Clone the llama.cpp repo and use its Python bindings:
+
+```
+cd /path/to/llama.cpp
+pip install -e .  # Installs llama.cpp Python package locally
+```
+
+- This gives access to gguf utilities. Alternatively, install gguf standalone if available:
+```
+pip install gguf
+```
+
+- Run [GGUF_tensor_extract](./code/GGUF_tensor_extract.py) script
+   - Show all avialable tensors
+   ```
+   python GGUF_tensor_extract.py -m ~/Projects/models/DeepSeek-R1-Distill-Qwen-1.5B-f16.gguf
+   ```
+
+   - Extract one specific tensor (blk.0.ffn_down.weight, index: 11)
+   ```
+   python GGUF_tensor_extract.py -m ~/Projects/models/DeepSeek-R1-Distill-Qwen-1.5B-f16.gguf --index 11 --output weights/blk.0.ffn_down.weight.npy
+   ```
+
+   - Extract all tensors
+   ```
+   python GGUF_tensor_extract.py --model ~/Projects/models/DeepSeek-R1-Distill-Qwen-1.5B-f16.gguf --extract-all --output-dir weights_1.5B_f16
+   ```
+
+## Create ONNX models
+```
+python ffn.py --embed_dim 1536 --hidden_dim 8960 --load_weights --down_proj_weights weights_1.5B_f16/blk.0.ffn_down.weight.npy --gate_proj_weights weights_1.5B_f16/blk.0.ffn_gate.weight.npy --up_proj_weights weights_1.5B_f16/blk.0.ffn_up.weight.npy --dtype float16 --save_path models_1.5B_f16/blk.0.ffn
+```
+
+### Automating FFN Model Extraction for All Blocks
+
+1. Modify the bash script [extract_all_ffn_blocks.sh](./code/extract_all_ffn_blocks.sh) accordingly
+
+2. Make the script executable:
+   ```bash
+   chmod +x extract_all_ffn_blocks.sh
+   ```
+
+3. Run the script:
+   ```bash
+   ./extract_all_ffn_blocks.sh
+   ```
 
 ## llm_build_qwen2() in llama-model.cpp
 
@@ -908,12 +973,3 @@ In llama.cpp, this functionality enables:
 - **Style control**: Modifying the writing style or tone of generated text
 
 This is part of llama.cpp's more advanced control features that allow fine-grained influence over model behavior without full fine-tuning.
-
-## Quantization
-
-- <b>Bit Precision</b>: `Q8` > `Q6` > `Q5` > `Q4`. Lower bits mean less memory but more accuracy loss.
-- <b>K-Quantization</b>: The `_K` suffix indicates advanced block-wise quantization with the K-means-like technique, which is more sophisticated than plain quantization (like `_0`). It groups weights and assigns scale factors per block, reducing quantization errors.
-- <b>Variant Suffixes (`_S`, `_M`, `_L`)</b>: These tweak the block size or complexity of the K-quantization:
-  - `_S` (small): More aggressive memory savings, potentially faster but less accurate.
-  - `_M` (medium): Balanced approach.
-  - `_L` (large): Larger blocks or more precision-preserving, at the cost of slightly more memory.
