@@ -31,6 +31,8 @@ def parse_args():
                         help='Path to .npy file for gate_proj weights')
     parser.add_argument('--up_proj_weights', type=str, default=None,
                         help='Path to .npy file for up_proj weights')
+    parser.add_argument('--seq_len', type=int, default=1,
+                        help='Fixed sequence length for ONNX model (default: 1)')
     return parser.parse_args()
 
 
@@ -113,15 +115,16 @@ def load_weights_from_npy(model, layer_name, npy_path):
     print(f"Successfully loaded weights for {layer_name} from {npy_path}")    
 
     
-def save_model_and_convert_to_onnx(ffn, save_path="ffn_model", dtype=torch.float32):    
-    # Create dummy input for ONNX export
-    dummy_input = torch.randn(1, 1, ffn.embed_dim).to(dtype)  # [batch_size, seq_len, embed_dim]
+def save_model_and_convert_to_onnx(ffn, save_path="ffn_model", dtype=torch.float32, seq_len=32):    
+    # Create dummy input for ONNX export with fixed sequence length
+    dummy_input = torch.randn(1, seq_len, ffn.embed_dim).to(dtype)  # [batch_size, seq_len, embed_dim]
     
     # 1. Save PyTorch model
     torch.save({
         'model_state_dict': ffn.state_dict(),
         'embed_dim': ffn.embed_dim,
-        'hidden_dim': ffn.hidden_dim
+        'hidden_dim': ffn.hidden_dim,
+        'seq_len': seq_len
     }, f"{save_path}.pt")
     print(f"PyTorch model saved as {save_path}.pt")
     
@@ -263,6 +266,33 @@ def quantize_onnx_model_static(onnx_model_path, quantized_model_path):
     )
     print(f"Quantized ONNX model saved as {quantized_model_path}")
 
+# Hanlding Variable Length Inputs at Inference
+# This function pads or truncates the input tensor to a fixed sequence length
+def prepare_input_for_fixed_length_model(input_tensor, fixed_seq_len):
+    """
+    Pad or truncate input to match the fixed sequence length
+    
+    Parameters:
+    - input_tensor: Input tensor of shape [batch_size, seq_len, embed_dim]
+    - fixed_seq_len: Fixed sequence length expected by the model
+    
+    Returns:
+    - Padded/truncated tensor of shape [batch_size, fixed_seq_len, embed_dim]
+    """
+    batch_size, seq_len, embed_dim = input_tensor.shape
+    
+    if seq_len > fixed_seq_len:
+        # Truncate if input is longer than fixed length
+        return input_tensor[:, :fixed_seq_len, :]
+    elif seq_len < fixed_seq_len:
+        # Pad with zeros if input is shorter
+        padding = torch.zeros(batch_size, fixed_seq_len - seq_len, embed_dim, 
+                             device=input_tensor.device, dtype=input_tensor.dtype)
+        return torch.cat([input_tensor, padding], dim=1)
+    else:
+        # No change needed
+        return input_tensor    
+
 
 if __name__ == "__main__":
     args = parse_args()    
@@ -289,7 +319,7 @@ if __name__ == "__main__":
     print("Output shape after first token:", out1.shape)    
     
     if not args.only_test:
-        save_model_and_convert_to_onnx(ffn, save_path=args.save_path, dtype=dtype)
+        save_model_and_convert_to_onnx(ffn, save_path=args.save_path, dtype=dtype, seq_len=args.seq_len)
 
         if args.quantize:
             # # Method 1: Static quantization of PyTorch model            

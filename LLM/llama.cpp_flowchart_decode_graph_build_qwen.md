@@ -308,9 +308,15 @@ pip install gguf
    python GGUF_tensor_extract.py --model ~/Projects/models/DeepSeek-R1-Distill-Qwen-1.5B-f16.gguf --extract-all --output-dir weights_1.5B_f16
    ```
 
-## Create ONNX models
+## Create ONNX models for FFN part
+- For seq_len=1
 ```
-python ffn.py --embed_dim 1536 --hidden_dim 8960 --load_weights --down_proj_weights weights_1.5B_f16/blk.0.ffn_down.weight.npy --gate_proj_weights weights_1.5B_f16/blk.0.ffn_gate.weight.npy --up_proj_weights weights_1.5B_f16/blk.0.ffn_up.weight.npy --dtype float16 --save_path models_1.5B_f16/blk.0.ffn
+python ffn.py --embed_dim 1536 --hidden_dim 8960 --load_weights --down_proj_weights weights_1.5B_f16/blk.0.ffn_down.weight.npy --gate_proj_weights weights_1.5B_f16/blk.0.ffn_gate.weight.npy --up_proj_weights weights_1.5B_f16/blk.0.ffn_up.weight.npy --dtype float16 --save_path models_1.5B_f16_seq1/blk.0.ffn
+```
+
+- For seq_len=32
+```
+python ffn.py --embed_dim 1536 --hidden_dim 8960 --load_weights --down_proj_weights weights_1.5B_f16/blk.0.ffn_down.weight.npy --gate_proj_weights weights_1.5B_f16/blk.0.ffn_gate.weight.npy --up_proj_weights weights_1.5B_f16/blk.0.ffn_up.weight.npy --dtype float16 --seq_len 32 --save_path models_1.5B_f16_seq32/blk.0.ffn
 ```
 
 ### Automating FFN Model Extraction for All Blocks
@@ -326,6 +332,44 @@ python ffn.py --embed_dim 1536 --hidden_dim 8960 --load_weights --down_proj_weig
    ```bash
    ./extract_all_ffn_blocks.sh
    ```
+
+## Create ONNX models for Attention Part
+
+Please see [attention_onnx.py](./code/attention_onnx.py).
+
+1. Stateless KV Cache Handling:
+   - The model takes past key/value tensors as inputs
+   - Returns updated present key/value tensors as outputs
+   - This enables autoregressive generation in ONNX runtime
+
+2. Fixed Group Indexing:
+   - Replaced dynamic tensor indexing with explicit loops
+   - This avoids issues with ONNX export of complex indexing operations
+
+3. Fixed Causal Masking:
+   - Implemented a causal masking approach compatible with ONNX
+
+4. Two Export Modes:
+   - _with_past.onnx: For incremental decoding with KV cache
+   - _no_past.onnx: For initial token processing without past context
+
+```
+# Basic export with default parameters
+python attention_onnx.py --save_path models/blk.0.attn
+
+# Export with custom dimensions and float16 precision
+python attention_onnx.py --embed_dim 1536 --num_q_heads 24 --num_groups 4 --head_dim 64 --dtype float16 --save_path models/blk.0.attn
+
+# Export with loaded weights
+python attention_onnx.py --embed_dim 1536 --num_q_heads 24 --num_groups 4 --head_dim 64 \
+  --load_weights \
+  --q_proj_weights weights/blk.0.attn_q.weight.npy \
+  --k_proj_weights weights/blk.0.attn_k.weight.npy \
+  --v_proj_weights weights/blk.0.attn_v.weight.npy \
+  --out_proj_weights weights/blk.0.attn_output.weight.npy \
+  --dtype float16 \
+  --save_path models/blk.0.attn
+```
 
 ## llm_build_qwen2() in llama-model.cpp
 

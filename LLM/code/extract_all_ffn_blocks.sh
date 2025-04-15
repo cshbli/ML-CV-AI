@@ -13,7 +13,7 @@ do
         --gate_proj_weights weights_1.5B_f16/blk.$i.ffn_gate.weight.npy \
         --up_proj_weights weights_1.5B_f16/blk.$i.ffn_up.weight.npy \
         --dtype float16 \
-        --save_path models_1.5B_f16/blk.$i.ffn
+        --save_path models_1.5B_f16_seq1/blk.$i.ffn
     
     echo "Block $i complete!"
 done
