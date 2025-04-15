@@ -40,6 +40,17 @@ The Whisper architecture is a simple end-to-end approach, implemented as an enco
 
 <img src="./images/0_6z5dGBarJqLL7OXZ.webp">
 
+## G2P
+
+In Text-to-Speech (TTS) systems, <b>G2P</b> stands for <b>Grapheme-to-Phoneme</b> conversion. It refers to the process of converting written text (graphemes, which are the smallest units of a writing system, like letters or characters) into phonemes, which are the smallest units of sound in a language. This is a critical step in TTS, as it determines how words are pronounced by mapping text to their corresponding phonetic representations.
+
+For example:
+
+- The word "cat" (graphemes: c-a-t) is converted to phonemes like /kæt/ in American English.
+- G2P handles complexities like homographs (e.g., "read" can be /riːd/ or /rɛd/ depending on tense) or irregular pronunciations.
+
+G2P systems often use dictionaries, rules, or machine learning models to ensure accurate pronunciation, especially for languages with inconsistent spelling-to-sound rules.
+
 ## TTS Architecture
 
 ```mermaid
