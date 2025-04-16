@@ -56,10 +56,39 @@ G2P systems often use dictionaries, rules, or machine learning models to ensure 
 ```mermaid
 graph TD;
     A["Text Input: 'Hello world'"] --> B["Text Processing: Convert to phonemes (/həˈloʊ wɜrld/)"];
-    B --> C["Acoustic Model: Predict acoustic tokens"];
-    C --> D["Wave Tokenizer Decoding: Convert tokens to waveform"];
+    B --> C["Acoustic Model: Predict acoustic features (e.g., Mel spectrograms)"];
+    C --> D["Vocoder: Convert acoustic features to waveform"];
     D --> E["Speech Output: 'Hello world'"];
 ```
+
+- The <b>Text Processing</b> includes <b>Grapheme-to-Phoneme (G2P)</b> conversion, which maps text to phonemes (e.g., "Hello world" to /həˈloʊ wɜrld/).
+- The <b>Acoustic Model</b> generates intermediate acoustic features, such as Mel spectrograms, linear spectrograms, or other representations (e.g., F0, energy, or LPC coefficients). These are not yet audible audio but compact representations of the speech's spectral content.
+- The <b>Vocoder</b> takes these acoustic features and synthesizes them into a time-domain waveform, which is the final audio signal that can be played as speech. Example Vocoders:
+    - HiFi-GAN
+    - WaveNet
+    - WaveGlow
+
+<b>Feature extraction</b> (e.g., using HuBERT or Whisper) could occur within or before the <b>Acoustic Model</b> to generate or refine acoustic features.
+
+<b>Modern TTS Systems</b>: In end-to-end TTS models like <b>VITS</b> or <b>FastSpeech 2</b>, the acoustic model and vocoder are often tightly integrated, but the vocoder remains the distinct component for waveform synthesis.
+
+### Feature Extraction
+
+In Text-to-Speech (TTS) systems, feature extraction involves transforming raw audio or text inputs into representations (e.g., acoustic or phonetic features) that can be used to generate or synthesize speech. While <b>HuBERT</b> and <b>Whisper</b> are primarily designed for speech recognition tasks (Automatic Speech Recognition, or ASR), their feature extraction mechanisms can be adapted or analyzed for TTS applications, as both extract rich speech representations. 
+
+|Aspect	|HuBERT	|Whisper|
+|---|---|---|
+|Purpose|	Self-supervised speech representation learning for ASR, TTS, etc.	|Supervised multilingual ASR and speech translation.|
+|Input	|Raw waveform (16 kHz)	|Audio clips (16 kHz, up to 30s)|
+|Feature Extraction	|Convolutional encoder + MFCC clustering, masked prediction	|Mel spectrogram + convolutional layers, Transformer encoder|
+|Output Representation	|Contextualized embeddings (phonetic, prosodic)	|Hidden states (acoustic, transcription-focused)|
+|Training	|Self-supervised (LibriSpeech/Libri-light)	|Weakly supervised (680k–5M hours, multilingual)|
+|TTS Suitability	|High (direct use for acoustic/prosodic modeling)	|Low (requires adaptation for TTS)|
+|Computational Cost	|Moderate (up to ~1B parameters)	|High (up to 1.55B parameters)|
+
+For TTS feature extraction: 
+- <b>HuBERT</b> is generally more suitable due to its self-supervised learning approach, which produces rich, contextualized speech representations that capture phonetic and prosodic details critical for synthesis. 
+- <b>Whisper</b>, while powerful for ASR and translation, is less optimized for TTS, as its features are tailored for transcription and require significant post-processing to be useful for speech synthesis. If building a TTS system, HuBERT’s embeddings can be directly integrated into a synthesis pipeline, whereas Whisper’s encoder outputs would need additional mapping to prosodic or acoustic features.
 
 ## TEAL Architecture
 
