@@ -72,6 +72,25 @@ graph TD;
 
 <b>Modern TTS Systems</b>: In end-to-end TTS models like <b>VITS</b> or <b>FastSpeech 2</b>, the acoustic model and vocoder are often tightly integrated, but the vocoder remains the distinct component for waveform synthesis.
 
+```mermaid
+flowchart TD
+    A[Input Text] --> B[Text Preprocessing & Normalization]
+    B --> C[Linguistic Analysis]
+    C --> D[Grapheme-to-Phoneme Conversion]
+    D --> E[Prosody & Duration Modeling]
+    E --> F[Acoustic Feature Generation]
+    F --> G[Waveform Generation]
+    G --> H[Output Speech]
+```    
+
+- <b>Text Preprocessing and Normalization</b>: The input text is cleaned and normalized. This step addresses punctuation, abbreviations, numbers, dates, and other non-standard expressions to create a consistent format for further processing.
+- <b>Linguistic Analysis</b>: The preprocessed text undergoes linguistic analysis. The system tokenizes the text, often performing syntactic parsing and part-of-speech tagging to understand the context and structure, which aids in accurate pronunciation and prosody.
+- <b>Grapheme-to-Phoneme (G2P) Conversion</b>: In this step, the system converts written words (graphemes) into their corresponding sounds (phonemes). This phonemic transcription is crucial for accurately generating the sounds of the language.
+- <b>Prosody and Duration Modeling</b>: Prosody involves aspects like intonation, rhythm, and stress. Models predict these prosodic features as well as duration for each phoneme to ensure the speech sounds natural and expressive.
+- <b>Acoustic Feature Generation</b>: A key component is the acoustic model, often based on deep learning architectures (such as Tacotron, Transformer TTS, or FastSpeech). This model translates the linguistic and prosodic information into intermediate acoustic representations, typically a mel-spectrogram.
+- <b>Waveform Generation</b>: The mel-spectrogram is then converted into a time-domain audio signal using a vocoder (for example, WaveNet, WaveRNN, or MelGAN). The vocoder synthesizes the final waveform, producing human-like speech.
+- <b>Post-Processing (if needed)</b>: Finally, any necessary post-processing is applied to enhance the quality of the audio output, ensuring clarity and fidelity before delivering the final speech.
+
 ### Feature Extraction
 
 In Text-to-Speech (TTS) systems, feature extraction involves transforming raw audio or text inputs into representations (e.g., acoustic or phonetic features) that can be used to generate or synthesize speech. While <b>HuBERT</b> and <b>Whisper</b> are primarily designed for speech recognition tasks (Automatic Speech Recognition, or ASR), their feature extraction mechanisms can be adapted or analyzed for TTS applications, as both extract rich speech representations. 
