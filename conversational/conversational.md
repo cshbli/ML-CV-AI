@@ -113,6 +113,10 @@ For TTS feature extraction:
 
 <img src="./images/x1.png">
 
+## Spear Architecture
+
+<img src="./images/spear_arch.png">
+
 ## References
 
  - [TEAL: Tokenize and Embed ALl for multi-modal large language models](https://arxiv.org/html/2311.04589v3)
