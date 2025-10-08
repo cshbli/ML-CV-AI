@@ -40,4 +40,28 @@
 
   - Econometrics: Some questions may cover introductory econometrics concepts.
 
-Princeton University Master in Finance program has a math test, which covers the topics of calculus, probability and statistics, linear algebra, stochastics calculus. The test is about 90 minutes and 10-15 questions. What the tests look like?
+<img src="calculus_derivative_x_power_x.png">
+<img src="calculus_derivative_x_power_x_2.png">
+<img src="calculus_integration.png">
+<img src="calculus_multivariable_optimization.png">
+
+<img src="linear_algebra_matrix_properties.png">
+<img src="linear_algebra_eigenvectors_and_determinants.png">
+
+<img src="probability_and_statistics.png">
+<img src="probability_and_statistics_conditional_expectation.png">
+<img src="probability_insurance_and_accidents.png">
+<img src="probability_two_draws_without_replacement.png">
+<img src="probability_credit_risk_modelling.png">
+<img src="probability_investment_strategy.png">
+
+<img src="stochastic_calculus.png">
+<img src="stochastic_calculus_geometric_bronian_motion.png">
+
+<img src="brain_teaser_logic_puzzle.png">
+<img src="brain_teaser_algebra.png">
+
+<img src="infinite_fraction.png">
+
+<img src="stars_and_bars.png">
+<img src="stars_and_bars_2.png">
