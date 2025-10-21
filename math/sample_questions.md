@@ -3,8 +3,10 @@
 - [Calculus](#calculus)
 
   - [Derivative](#1-derivative)
+  - [Derivative 2](#derivative-2)
   - [Multivariable](#2-multivariable)
   - [Optimization](#3-optimization)
+  - [Optimization 2](#optimization-2)
   - [Integration](#4-integration)
   - [Multivariable Optimization](#5-multivariable-optimization)
   - Differential equations.
@@ -14,20 +16,24 @@
 
   - [Matrix operations](#matrix-operations)
   - [Eigenvalues](#eigenvalues)
+  - [Eigenvalues 2](#eigenvalues-2)
   - [Matrix properties](#matrix-properties)
   - [Eigenvectors and determinants](#eigenvectors-and-determinants)
   - Systems of linear equations.
 
 - [Probability and Statistics](#probability-and-statistics)
 
+  - [Basic Selection](#basic-selection)
   - [Bayes Theorem](#bayes-theorem)
   - [Bayes Theorem 2](#bayes-theorem-2)
   - [Conditional Probability](#conditional-probability)
   - [Conditional Probability 2](#conditional-probability-2)
   - [Binomial Probability](#binomial-probability)
+  - [Binomial Probability 2](#binomial-probability-2)
   - [Geometric Distribution](#geometric-distribution)
   - [Standard Normal Distribution](#standard-normal-distribution)
   - [Conditional Expectation](#conditional-expectation)
+  - [Statistics Mean](#statistics-mean)
   - Moments of distributions (mean, variance, covariance, correlation).
   - Law of Large Numbers and Central Limit Theorem.
   - Parameter estimation and hypothesis tests.
@@ -57,6 +63,10 @@ Derivative of x^x
 <img src="calculus_derivative_x_power_x.png">
 <img src="calculus_derivative_x_power_x_2.png">
 
+### Derivative 2
+
+<img src="calculus_derivative_2.png">
+
 ### 2. Multivariable
 Compute the gradient ∇f at (1,0) for f(x,y) = x²y + e^{xy}.
 - A) (2, 1)
@@ -81,6 +91,10 @@ Minimize f(x,y) = x² + y² subject to x + y = 1 using Lagrange multipliers. Wha
 
 0.5. Answer: A
 
+### Optimization 2
+
+<img src="calculus_optimization_2.png">
+
 ### 4. Integration
 <img src="calculus_integration.png">
 
@@ -99,6 +113,9 @@ For A = \begin{pmatrix} 2 & 1 \ 0 & 2 \end{pmatrix}, find the eigenvalues.
 
 <img src="linear_algebra_eigenvalues.png">
 
+### Eigenvalues 2
+<img src="linear_algebra_eigenvalues_2.png">
+
 ### Matrix Properties
 
 <img src="linear_algebra_matrix_properties.png">
@@ -107,6 +124,10 @@ For A = \begin{pmatrix} 2 & 1 \ 0 & 2 \end{pmatrix}, find the eigenvalues.
 <img src="linear_algebra_eigenvectors_and_determinants.png">
 
 ## Probability and Statistics
+
+### Basic Selection
+
+<img src="probability_basic_selection.png">
 
 ### Bayes Theorem
 
@@ -126,6 +147,10 @@ For A = \begin{pmatrix} 2 & 1 \ 0 & 2 \end{pmatrix}, find the eigenvalues.
 
 <img src="probability_and_statistics.png">
 
+### Binomial Probability 2
+
+<img src="probability_binomial.png">
+
 ### Geometric Distribution
 A fair coin is flipped until the first heads. Let X be the number of flips. P(X ≤ 2) = ?
 
@@ -139,6 +164,16 @@ For a standard normal Z, P(|Z| > 1.96) ≈ ? (Use 95% CI knowledge)
 ### Conditional Expectation
 
 <img src="probability_and_statistics_conditional_expectation.png">
+
+### Statistics Mean
+
+- Question: The average (arithmetic mean) of five numbers is 20. If four of the numbers are 15, 18, 22, and 25, what is the fifth number?
+- Solution Approach:
+  1. The sum of the five numbers is $\text{Average} \times \text{Count} = 20 \times 5 = 100$.
+  2. The sum of the four known numbers is $15 + 18 + 22 + 25 = 80$.
+  3. The fifth number is the total sum minus the sum of the four known numbers: $100 - 80 = 20$.
+  
+- Answer: $\mathbf{20}$
 
 ## Stochastic Calculus
 ### Standard Brownian Motion
