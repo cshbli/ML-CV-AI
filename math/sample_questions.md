@@ -5,6 +5,7 @@
   - [Derivative](#1-derivative)
   - [Derivative 2](#derivative-2)
   - [Multivariable](#2-multivariable)
+  - [Hessian and Convexity](#hessian-and-convexity)
   - [Optimization](#3-optimization)
   - [Optimization 2](#optimization-2)
   - [Integration](#4-integration)
@@ -21,6 +22,7 @@
   - [Eigenvalues 2](#eigenvalues-2)
   - [Matrix properties](#matrix-properties)
   - [Eigenvectors and determinants](#eigenvectors-and-determinants)
+  - [Positive Definite](#positive-definite)
   - [Practice A](#linear-algebra-practice-a)
   - [Practice B](#linear-algebra-practice-b)
   - [Practice C](#linear-algebra-practice-c)
@@ -31,6 +33,7 @@
   - [Basic Selection](#basic-selection)
   - [Bayes Theorem](#bayes-theorem)
   - [Bayes Theorem 2](#bayes-theorem-2)
+  - [Bayes Theorem 3](#bayes-theorem-3)
   - [Conditional Probability](#conditional-probability)
   - [Conditional Probability 2](#conditional-probability-2)
   - [Binomial Probability](#binomial-probability)
@@ -49,6 +52,7 @@
   - Linear Regression Models (OLS).
 
 - [Optimization](#optimization)
+  - [Lagrange Multipliers](#lagrange-multipliers)
   - [Practice A](#optimization-practice-a)
   - [Practice B](#optimization-practice-b)
   - [Practice C](#optimization-practice-c)
@@ -97,6 +101,12 @@ Compute the gradient ∇f at (1,0) for f(x,y) = x²y + e^{xy}.
 <img src="calculus_multivariable.png">
 
 (0,2). Answer: C
+
+### Hessian and Convexity
+Let f(x, y) = x^4 + y^4 − 2x^2y^2. Determine whether f is convex on R^2.
+
+<img src="hessian_and_convexity.png">
+<img src="hessian_and_convexity_2.png">
 
 ### 3. Optimization
 Minimize f(x,y) = x² + y² subject to x + y = 1 using Lagrange multipliers. What is the minimum value?
@@ -164,6 +174,11 @@ For A = \begin{pmatrix} 2 & 1 \ 0 & 2 \end{pmatrix}, find the eigenvalues.
 ### Eigenvectors and Determinants
 <img src="linear_algebra_eigenvectors_and_determinants.png">
 
+### Positive Definite
+For A = [[2, a], [a, 2]], find values of a for which A is positive definite.
+
+<img src="matrix_positive_definite.png">
+
 ### Linear Algebra Practice A
 <img src="linear_algebra_practice_a.png">
 
@@ -199,6 +214,19 @@ For A = \begin{pmatrix} 2 & 1 \ 0 & 2 \end{pmatrix}, find the eigenvalues.
 ### Bayes Theorem 2
 
 <img src="probability_investment_strategy.png">
+
+### Bayes Theorem 3
+
+Suppose a medical test for a disease has a 5% false-positive rate (it incorrectly reports a healthy person as sick) and a 1% false-negative rate (it incorrectly reports a sick person as healthy). The disease has a prevalence of 0.1% in the population (1 in 1000 people has it).
+
+If a randomly selected person tests positive, what is the probability they actually have the disease?
+
+<img src="bayes_theorem_3.png">
+
+### Expected Value
+A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the result is 4 or 5, you win $2. If the result is 6, you lose $4.What is the expected value of this game?Hint: The expected value $E(X)$ is the sum of all possible outcomes multiplied by their respective probabilities: $E(X) = \sum [x \cdot P(x)]$.
+
+<img src="probability_expected_value.png">
 
 ### Conditional Probability 
 <img src="probability_insurance_and_accidents.png">
@@ -266,6 +294,10 @@ You have 100 units of resource A and 50 of B. Product X needs 2A + 1B, Y needs 1
 - E) 30
 
 Answer is D) 50. Resource A is 2 times of B. Maximize product X will the most efficiently utilize all resources. 
+
+### Lagrange multipliers
+<img src="optimization_lagrange_multipliers.png">
+<img src="optimization_lagrange_multipliers_2.png">
 
 ### Optimization Practice A
 <img src="optimization_practice_a.png">
