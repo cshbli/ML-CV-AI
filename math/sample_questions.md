@@ -9,8 +9,10 @@
   - [Optimization 2](#optimization-2)
   - [Integration](#4-integration)
   - [Multivariable Optimization](#5-multivariable-optimization)
-  - Differential equations.
-  - Series expansions and function approximation.
+  - [Practice A](#calculus-practice-a)
+  - [Practice B](#calculus-practice-b)
+  - [Practice C](#calculus-practice-c)
+  - [Practice D](#calculus-practice-d)
 
 - [Linear Algebra](#linear-algebra)
 
@@ -19,7 +21,10 @@
   - [Eigenvalues 2](#eigenvalues-2)
   - [Matrix properties](#matrix-properties)
   - [Eigenvectors and determinants](#eigenvectors-and-determinants)
-  - Systems of linear equations.
+  - [Practice A](#linear-algebra-practice-a)
+  - [Practice B](#linear-algebra-practice-b)
+  - [Practice C](#linear-algebra-practice-c)
+  - [Practice D](#linear-algebra-practice-d)
 
 - [Probability and Statistics](#probability-and-statistics)
 
@@ -34,10 +39,20 @@
   - [Standard Normal Distribution](#standard-normal-distribution)
   - [Conditional Expectation](#conditional-expectation)
   - [Statistics Mean](#statistics-mean)
+  - [Practice A](#probability-and-statistics-practice-a)
+  - [Practice B](#probability-and-statistics-practice-b)
+  - [Practice C](#probability-and-statistics-practice-c)
+  - [Practice D](#probability-and-statistics-practice-d)
   - Moments of distributions (mean, variance, covariance, correlation).
   - Law of Large Numbers and Central Limit Theorem.
   - Parameter estimation and hypothesis tests.
   - Linear Regression Models (OLS).
+
+- [Optimization](#optimization)
+  - [Practice A](#optimization-practice-a)
+  - [Practice B](#optimization-practice-b)
+  - [Practice C](#optimization-practice-c)
+  - [Practice D](#optimization-practice-d)
 
 - [Stochastic Calculus](#stochastic-calculus)
 
@@ -53,6 +68,10 @@
   - [Infinite Fraction](#infinite-fraction)
   - [Stars and Bars Method](#stars-and-bars-method)
   - [Optimization](#optimization)
+  - [Practice A](#brain-teaser-practice-a)
+  - [Practice B](#brain-teaser-practice-b)
+  - [Practice C](#brain-teaser-practice-c)
+  - [Practice D](#brain-teaser-practice-d)
 
 - Econometrics 
   - Some questions may cover introductory econometrics concepts.
@@ -101,6 +120,28 @@ Minimize f(x,y) = x² + y² subject to x + y = 1 using Lagrange multipliers. Wha
 ### 5. Multivariable Optimization
 <img src="calculus_multivariable_optimization.png">
 
+### Calculus Practice A
+<img src="calculus_set_a.png">
+
+<img src="calculus_set_a_answers.png">
+
+### Calculus Practice B
+<img src="calculus_practice_b.png">
+
+<img src="calculus_practice_b_answers.png">
+
+### Calculus Practice C
+<img src="calculus_practice_c.png">
+
+<img src="calculus_practice_c_answers.png">
+
+### Calculus Practice D
+<img src="calculus_practice_d.png">
+
+<img src="calculus_practice_d_answers_1.png">
+<img src="calculus_practice_d_answers_2.png">
+
+
 ## Linear Algebra
 
 ### Matrix Operations
@@ -122,6 +163,28 @@ For A = \begin{pmatrix} 2 & 1 \ 0 & 2 \end{pmatrix}, find the eigenvalues.
 
 ### Eigenvectors and Determinants
 <img src="linear_algebra_eigenvectors_and_determinants.png">
+
+### Linear Algebra Practice A
+<img src="linear_algebra_practice_a.png">
+
+<img src="linear_algebra_practice_a_answers.png">
+
+### Linear Algebra Practice B
+<img src="linear_algebra_practice_b.png">
+
+<img src="linear_algebra_practice_b_answers.png">
+
+### Linear Algebra Practice C
+<img src="linear_algebra_practice_c.png">
+
+<img src="linear_algebra_practice_c_answers.png">
+
+### Linear Algebra Practice d
+<img src="linear_algebra_practice_d.png">
+
+<img src="linear_algebra_practice_d_answers_1.png">
+<img src="linear_algebra_practice_d_answers_2.png">
+
 
 ## Probability and Statistics
 
@@ -175,6 +238,55 @@ For a standard normal Z, P(|Z| > 1.96) ≈ ? (Use 95% CI knowledge)
   
 - Answer: $\mathbf{20}$
 
+### Probability and Statistics Practice A
+<img src="probability_and_statistics_practice_a.png">
+<img src="probability_and_statistics_practice_a_answers.png">
+
+### Probability and Statistics Practice B
+<img src="probability_and_statistics_practice_b.png">
+<img src="probability_and_statistics_practice_b_answers.png">
+
+### Probability and Statistics Practice C
+<img src="probability_and_statistics_practice_c.png">
+<img src="probability_and_statistics_practice_c_answers_1.png">
+<img src="probability_and_statistics_practice_c_answers_2.png">
+
+### Probability and Statistics Practice D
+<img src="probability_and_statistics_practice_d.png">
+<img src="probability_and_statistics_practice_d_answers_1.png">
+<img src="probability_and_statistics_practice_d_answers_2.png">
+
+## Optimization
+You have 100 units of resource A and 50 of B. Product X needs 2A + 1B, Y needs 1A + 3B. Maximize X + Y.
+
+- A) 25
+- B) 33
+- C) 40
+- D) 50
+- E) 30
+
+Answer is D) 50. Resource A is 2 times of B. Maximize product X will the most efficiently utilize all resources. 
+
+### Optimization Practice A
+<img src="optimization_practice_a.png">
+<img src="optimization_practice_a_answers.png">
+
+### Optimization Practice B
+<img src="optimization_practice_b.png">
+<img src="optimization_practice_b_answers_1.png">
+<img src="optimization_practice_b_answers_2.png">
+
+### Optimization Practice C
+<img src="optimization_practice_c.png">
+<img src="optimization_practice_c_answers_1.png">
+<img src="optimization_practice_c_answers_2.png">
+
+### Optimization Practice D
+<img src="optimization_practice_d.png">
+<img src="optimization_practice_d_answers_1.png">
+<img src="optimization_practice_d_answers_2.png">
+
+
 ## Stochastic Calculus
 ### Standard Brownian Motion
 For standard Brownian motion B(t), compute E[B(t)²].
@@ -215,13 +327,28 @@ Answer is B) 10.
 <img src="stars_and_bars.png">
 <img src="stars_and_bars_2.png">
 
-### Optimization
-You have 100 units of resource A and 50 of B. Product X needs 2A + 1B, Y needs 1A + 3B. Maximize X + Y.
 
-- A) 25
-- B) 33
-- C) 40
-- D) 50
-- E) 30
+### Brain Teaser Practice A
+<img src="brain_teaser_practice_a.png">
 
-Answer is D) 50. Resource A is 2 times of B. Maximize product X will the most efficiently utilize all resources. 
+<img src= "brain_teaser_practice_a_answers.png">
+
+### Brain Teaser Practice B
+<img src="brain_teaser_practice_b.png">
+
+<img src= "brain_teaser_practice_b_answers_1.png">
+<img src= "brain_teaser_practice_b_answers_2.png">
+
+### Brain Teaser Practice C
+<img src="brain_teaser_practice_c.png">
+
+<img src= "brain_teaser_practice_c_answers_1.png">
+<img src= "brain_teaser_practice_c_answers_2.png">
+
+### Brain Teaser Practice D
+<img src="brain_teaser_practice_d.png">
+
+<img src= "brain_teaser_practice_d_answer_1.png">
+<img src= "brain_teaser_practice_d_answer_2.png">
+<img src= "brain_teaser_practice_d_answer_3.png">
+<img src= "brain_teaser_practice_d_answer_4.png">
