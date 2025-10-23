@@ -2,26 +2,34 @@
 
 - [Calculus](#calculus)
 
-  - [Derivative](#1-derivative)
+  - [*Basic Derivative Rules](#basic-derivative-rules)
+  - [*Derivative Rules](#derivative-rules)
+  - [*Taylor and Maclaurin series](#taylor-and-maclaurin-series)
+  - [Derivative of x^x](#derivative-of-xx)
   - [Derivative 2](#derivative-2)
   - [Multivariable](#2-multivariable)
-  - [Hessian and Convexity](#hessian-and-convexity)
-  - [Optimization](#3-optimization)
+  - [Hessian and Convexity](#hessian-and-convexity)  
   - [Optimization 2](#optimization-2)
   - [Integration](#4-integration)
-  - [Multivariable Optimization](#5-multivariable-optimization)
   - [Practice A](#calculus-practice-a)
   - [Practice B](#calculus-practice-b)
   - [Practice C](#calculus-practice-c)
   - [Practice D](#calculus-practice-d)
 
+- [Optimization](#optimization)
+  - [*Lagrange Multipliers](#lagrange-multipliers)
+  - [Practice A](#optimization-practice-a)
+  - [Practice B](#optimization-practice-b)
+  - [Practice C](#optimization-practice-c)
+  - [Practice D](#optimization-practice-d)
+
 - [Linear Algebra](#linear-algebra)
 
-  - [Matrix operations](#matrix-operations)
-  - [Eigenvalues](#eigenvalues)
-  - [Eigenvalues 2](#eigenvalues-2)
+  - [*Determinant of a Square Matrix](#determinant-of-a-square-matrix)
+  - [*Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
+  - [*Optimization of Quadratic Forms](#optimization-of-quadratic-forms)
+  - [*Matrix operations](#matrix-operations)  
   - [Matrix properties](#matrix-properties)
-  - [Eigenvectors and determinants](#eigenvectors-and-determinants)
   - [Positive Definite](#positive-definite)
   - [Practice A](#linear-algebra-practice-a)
   - [Practice B](#linear-algebra-practice-b)
@@ -51,13 +59,6 @@
   - Parameter estimation and hypothesis tests.
   - Linear Regression Models (OLS).
 
-- [Optimization](#optimization)
-  - [Lagrange Multipliers](#lagrange-multipliers)
-  - [Practice A](#optimization-practice-a)
-  - [Practice B](#optimization-practice-b)
-  - [Practice C](#optimization-practice-c)
-  - [Practice D](#optimization-practice-d)
-
 - [Stochastic Calculus](#stochastic-calculus)
 
   - Expect to see questions that test your foundational understanding of Brownian motion or very basic concepts of stochastic processes, though it's typically not a deep theoretical dive. The questions related to stochastic calculus are generally not as difficult as the rigorous, measure-theoretic treatment of the subject.
@@ -81,8 +82,19 @@
   - Some questions may cover introductory econometrics concepts.
 
 ## Calculus
-### 1. Derivative
-Derivative of x^x
+
+### Basic Derivative Rules
+<img src="basic-derivative-rules.png">
+
+### Derivative Rules
+<img src="derivative-rules.png">
+
+### Taylor and MacLaurin Series
+<img src="taylor-maclaurin.png">
+<img src="maclaurin-expansion-table.png">
+
+### Derivative of x^x
+
 <img src="calculus_derivative_x_power_x.png">
 <img src="calculus_derivative_x_power_x_2.png">
 
@@ -108,27 +120,12 @@ Let f(x, y) = x^4 + y^4 − 2x^2y^2. Determine whether f is convex on R^2.
 <img src="hessian_and_convexity.png">
 <img src="hessian_and_convexity_2.png">
 
-### 3. Optimization
-Minimize f(x,y) = x² + y² subject to x + y = 1 using Lagrange multipliers. What is the minimum value?
-- A) 0.5
-- B) 1
-- C) 0
-- D) 2
-- E) 0.25
-
-<img src="calculus_optimization.png">
-
-0.5. Answer: A
-
 ### Optimization 2
 
 <img src="calculus_optimization_2.png">
 
 ### 4. Integration
 <img src="calculus_integration.png">
-
-### 5. Multivariable Optimization
-<img src="calculus_multivariable_optimization.png">
 
 ### Calculus Practice A
 <img src="calculus_set_a.png">
@@ -152,27 +149,84 @@ Minimize f(x,y) = x² + y² subject to x + y = 1 using Lagrange multipliers. Wha
 <img src="calculus_practice_d_answers_2.png">
 
 
+## Optimization
+You have 100 units of resource A and 50 of B. Product X needs 2A + 1B, Y needs 1A + 3B. Maximize X + Y.
+
+- A) 25
+- B) 33
+- C) 40
+- D) 50
+- E) 30
+
+Answer is D) 50. Resource A is 2 times of B. Maximize product X will the most efficiently utilize all resources. 
+
+### Lagrange multipliers
+<img src="lagrange_multiplier_concept.png">
+<img src="lagrange_multiplier_steps.png">
+<img src="lagrange_multiplier_example.png">
+<img src="optimization_lagrange_multipliers.png">
+<img src="optimization_lagrange_multipliers_2.png">
+
+### Optimization Practice A
+<img src="optimization_practice_a.png">
+<img src="optimization_practice_a_answers.png">
+
+### Optimization Practice B
+<img src="optimization_practice_b.png">
+<img src="optimization_practice_b_answers_1.png">
+<img src="optimization_practice_b_answers_2.png">
+
+### Optimization Practice C
+<img src="optimization_practice_c.png">
+<img src="optimization_practice_c_answers_1.png">
+<img src="optimization_practice_c_answers_2.png">
+
+### Optimization Practice D
+<img src="optimization_practice_d.png">
+<img src="optimization_practice_d_answers_1.png">
+<img src="optimization_practice_d_answers_2.png">
+
+
 ## Linear Algebra
 
-### Matrix Operations
-Given matrix A = \begin{pmatrix} 0 & 1 & 0 \ 0 & 0 & 1 \ 1 & 0 & 0 \end{pmatrix}, compute A³
+### Determinant of a Square Matrix
 
-<img src="matrix_operations.png">
+The determinant is a `scalar` value calculated from a square matrix that represents how a linear transformation changes `area` or `volume`.
 
-### Eigenvalues
+<img src="determinant_concept.png">
+<img src="determinant_calculation.png">
+
+### Eigenvalues and Eigenvectors
+
+<img src="eigenvalues_and_eigenvectors_concept.png">
+<img src="eigenvalues_and_eigenvectors_calculation.png">
+
 For A = \begin{pmatrix} 2 & 1 \ 0 & 2 \end{pmatrix}, find the eigenvalues.
 
 <img src="linear_algebra_eigenvalues.png">
 
-### Eigenvalues 2
 <img src="linear_algebra_eigenvalues_2.png">
+
+<img src="linear_algebra_eigenvectors_and_determinants.png">
+
+### Optimization of Quadratic forms
+<img src="quadratic_form_optimization_concept.png">
+<img src="quadratic_form_optimization_proof.png">
+<img src="quadratic_form_optimization_example.png">
+
+### Matrix Operations
+
+<img src="matrix_operations_add.png">
+<img src="matrix_operations_mul.png">
+<img src="matrix_operations_inversion.png">
+
+Given matrix A = \begin{pmatrix} 0 & 1 & 0 \ 0 & 0 & 1 \ 1 & 0 & 0 \end{pmatrix}, compute A³
+
+<img src="matrix_operations.png">
 
 ### Matrix Properties
 
 <img src="linear_algebra_matrix_properties.png">
-
-### Eigenvectors and Determinants
-<img src="linear_algebra_eigenvectors_and_determinants.png">
 
 ### Positive Definite
 For A = [[2, a], [a, 2]], find values of a for which A is positive definite.
@@ -283,40 +337,6 @@ For a standard normal Z, P(|Z| > 1.96) ≈ ? (Use 95% CI knowledge)
 <img src="probability_and_statistics_practice_d.png">
 <img src="probability_and_statistics_practice_d_answers_1.png">
 <img src="probability_and_statistics_practice_d_answers_2.png">
-
-## Optimization
-You have 100 units of resource A and 50 of B. Product X needs 2A + 1B, Y needs 1A + 3B. Maximize X + Y.
-
-- A) 25
-- B) 33
-- C) 40
-- D) 50
-- E) 30
-
-Answer is D) 50. Resource A is 2 times of B. Maximize product X will the most efficiently utilize all resources. 
-
-### Lagrange multipliers
-<img src="optimization_lagrange_multipliers.png">
-<img src="optimization_lagrange_multipliers_2.png">
-
-### Optimization Practice A
-<img src="optimization_practice_a.png">
-<img src="optimization_practice_a_answers.png">
-
-### Optimization Practice B
-<img src="optimization_practice_b.png">
-<img src="optimization_practice_b_answers_1.png">
-<img src="optimization_practice_b_answers_2.png">
-
-### Optimization Practice C
-<img src="optimization_practice_c.png">
-<img src="optimization_practice_c_answers_1.png">
-<img src="optimization_practice_c_answers_2.png">
-
-### Optimization Practice D
-<img src="optimization_practice_d.png">
-<img src="optimization_practice_d_answers_1.png">
-<img src="optimization_practice_d_answers_2.png">
 
 
 ## Stochastic Calculus
