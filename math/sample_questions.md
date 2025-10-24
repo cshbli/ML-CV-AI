@@ -60,13 +60,16 @@
   - [*Covariance and Correlation](#covariance-and-correlation)  
     - [Covariance](#covariance)
     - [Correlation](#correlation)
+  - [Law of Large Numbers](#law-of-large-numbers)
+  - [Central Limit Theorem](#central-limit-theorem)
+  - [Parameter Estimation](#parameter-estimation)
+  - [Hypothesis Testing](#hypothesis-testing)
+  - [Simple Linear Regression](#simple-linear-regression)
+  - [R-squared Score](#r-squared-score)
   - [Practice A](#probability-and-statistics-practice-a)
   - [Practice B](#probability-and-statistics-practice-b)
   - [Practice C](#probability-and-statistics-practice-c)
-  - [Practice D](#probability-and-statistics-practice-d)  
-  - Law of Large Numbers and Central Limit Theorem.
-  - Parameter estimation and hypothesis tests.
-  - Linear Regression Models (OLS).
+  - [Practice D](#probability-and-statistics-practice-d)
 
 - [Stochastic Calculus](#stochastic-calculus)
   - Expect to see questions that test your foundational understanding of Brownian motion or very basic concepts of stochastic processes, though it's typically not a deep theoretical dive. The questions related to stochastic calculus are generally not as difficult as the rigorous, measure-theoretic treatment of the subject.
@@ -378,6 +381,24 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 
 #### Correlation
 <img src="correlation.png">
+
+### Law of Large Numbers
+<img src="law_of_large_numbers.png">
+
+### Central Limit Theorem
+<img src="central_limit_theorem.png">
+
+### Parameter Estimation
+<img src="parameter_estimation.png">
+
+### Hypothesis Testing
+<img src="hypothesis_testing.png">
+
+### Simple Linear Regression
+<img src="simple_linear_regression.png">
+
+### R-squared Score
+<img src="R-squared_score.png">
 
 ### Probability and Statistics Practice A
 <img src="probability_and_statistics_practice_a.png">
