@@ -5,11 +5,11 @@
   - [*Derivative Rules](#derivative-rules)
   - [*Taylor and Maclaurin series](#taylor-and-maclaurin-series)
   - [Derivative of x^x](#derivative-of-xx)
-  - [Derivative 2](#derivative-2)
-  - [Multivariable](#2-multivariable)
-  - [Hessian and Convexity](#hessian-and-convexity)  
-  - [Optimization 2](#optimization-2)
-  - [Integration](#4-integration)
+  - [Derivative 2](#derivative-2)  
+  - [*Maximum and Minimum](#maximum-and-minimum)
+  - [*Multivariable](#2-multivariable)
+  - [*Hessian and Convexity](#hessian-and-convexity)
+  - [Integral](#4-integral)
   - [Practice A](#calculus-practice-a)
   - [Practice B](#calculus-practice-b)
   - [Practice C](#calculus-practice-c)
@@ -26,9 +26,9 @@
   - [*Determinant of a Square Matrix](#determinant-of-a-square-matrix)
   - [*Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
   - [*Optimization of Quadratic Forms](#optimization-of-quadratic-forms)
-  - [*Matrix operations](#matrix-operations)  
-  - [Matrix properties](#matrix-properties)
-  - [Positive Definite](#positive-definite)
+  - [*Matrix operations](#matrix-operations)
+  - [*Positive Definite and Negative Definite](#positive-definite-and-negative-definite)
+    - [*Correlation Matrix](#correlation-matrix)
   - [Practice A](#linear-algebra-practice-a)
   - [Practice B](#linear-algebra-practice-b)
   - [Practice C](#linear-algebra-practice-c)
@@ -98,11 +98,18 @@
 <img src="basic-derivative-rules.png">
 
 ### Derivative Rules
+- Only need remember basic rules: such as e^x, ln(x), sin(x) and cos(x). Others can be calculated with `basic derivative rules`. 
+
 <img src="derivative-rules.png">
+
+<img src="derivative_of_a_x.png">
 
 ### Taylor and MacLaurin Series
 <img src="taylor-maclaurin.png">
 <img src="maclaurin-expansion-table.png">
+
+<img src="maclaurin_example.png">
+<img src="maclaurin_series_example.png">
 
 ### Derivative of x^x
 
@@ -112,6 +119,16 @@
 ### Derivative 2
 
 <img src="calculus_derivative_2.png">
+
+(0,2). Answer: C
+
+### Maximum and Minimum
+
+<img src="maximum_and_minimum_steps.png">
+<img src="maximum_and_minimum_example_1.png">
+<img src="maximum_and_minimum_example_2.png">
+
+<img src="calculus_optimization_2.png">
 
 ### 2. Multivariable
 Compute the gradient ∇f at (1,0) for f(x,y) = x²y + e^{xy}.
@@ -123,19 +140,17 @@ Compute the gradient ∇f at (1,0) for f(x,y) = x²y + e^{xy}.
 
 <img src="calculus_multivariable.png">
 
-(0,2). Answer: C
-
 ### Hessian and Convexity
+<img src="hessian_and_convexity_concept.png">
+<img src="hessian_and_convexity_sample_1.png">
+<img src="hessian_and_convexity_sample_2.png">
+
 Let f(x, y) = x^4 + y^4 − 2x^2y^2. Determine whether f is convex on R^2.
 
 <img src="hessian_and_convexity.png">
 <img src="hessian_and_convexity_2.png">
 
-### Optimization 2
-
-<img src="calculus_optimization_2.png">
-
-### 4. Integration
+### 4. Integral
 <img src="calculus_integration.png">
 
 ### Calculus Practice A
@@ -235,14 +250,21 @@ Given matrix A = \begin{pmatrix} 0 & 1 & 0 \ 0 & 0 & 1 \ 1 & 0 & 0 \end{pmatrix}
 
 <img src="matrix_operations.png">
 
-### Matrix Properties
+
+### Positive Definite and Negative Definite
+
+<img src="positive_definite_concept_1.png">
+<img src="positive_definite_concept_2.png">
+
+For A = [[2, a], [a, 2]], find values of a for which A is positive definite.
+<img src="matrix_positive_definite.png">
+
+#### Correlation Matrix
+
+<img src="valid_correlation_matrix_concept.png">
+<img src="valid_correlation_matrix_sample.png">
 
 <img src="linear_algebra_matrix_properties.png">
-
-### Positive Definite
-For A = [[2, a], [a, 2]], find values of a for which A is positive definite.
-
-<img src="matrix_positive_definite.png">
 
 ### Linear Algebra Practice A
 <img src="linear_algebra_practice_a.png">
@@ -387,15 +409,20 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 
 ### Central Limit Theorem
 <img src="central_limit_theorem.png">
+<img src="CLT_sample_question_1.png">
+<img src="CLT_sample_question_2.png">
 
 ### Parameter Estimation
 <img src="parameter_estimation.png">
 
 ### Hypothesis Testing
 <img src="hypothesis_testing.png">
+<img src="hypothesis_test_sample_1.png">
+<img src="hypothesis_test_sample_2.png">
 
 ### Simple Linear Regression
 <img src="simple_linear_regression.png">
+<img src="linear_regression_sample_question.png">
 
 ### R-squared Score
 <img src="R-squared_score.png">
