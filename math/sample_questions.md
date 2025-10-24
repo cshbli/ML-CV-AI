@@ -1,7 +1,6 @@
 # Math Sample Questions
 
 - [Calculus](#calculus)
-
   - [*Basic Derivative Rules](#basic-derivative-rules)
   - [*Derivative Rules](#derivative-rules)
   - [*Taylor and Maclaurin series](#taylor-and-maclaurin-series)
@@ -24,7 +23,6 @@
   - [Practice D](#optimization-practice-d)
 
 - [Linear Algebra](#linear-algebra)
-
   - [*Determinant of a Square Matrix](#determinant-of-a-square-matrix)
   - [*Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
   - [*Optimization of Quadratic Forms](#optimization-of-quadratic-forms)
@@ -37,30 +35,40 @@
   - [Practice D](#linear-algebra-practice-d)
 
 - [Probability and Statistics](#probability-and-statistics)
-
-  - [Basic Selection](#basic-selection)
-  - [Bayes Theorem](#bayes-theorem)
-  - [Bayes Theorem 2](#bayes-theorem-2)
-  - [Bayes Theorem 3](#bayes-theorem-3)
-  - [Conditional Probability](#conditional-probability)
-  - [Conditional Probability 2](#conditional-probability-2)
-  - [Binomial Probability](#binomial-probability)
-  - [Binomial Probability 2](#binomial-probability-2)
-  - [Geometric Distribution](#geometric-distribution)
-  - [Standard Normal Distribution](#standard-normal-distribution)
+  - [*Conditional Probability](#conditional-probability)
+  - [*Bayes Theorem](#bayes-theorem)
+    - [Differences between Conditional Probability and Bayes Theorem](#differences-between-conditional-probability-and-bayes-theorem)    
+  - [*Probability Multiplication Rule](#probability-multiplication-rule)
+    - [Independant Events](#independent-events)
+    - [Dependant Events](#dependent-events)
+  - [*Permutations and Combinations](#permutations-and-combinations)
+    - [Permutations](#permutations)
+    - [Combinations](#combinations)
+  - [Continuous Probability Distribution](#continuous-probability-distribution)
+    - [*Normal Distribution](#normal-distribution)
+      - [Standard Normal Distribution](#standard-normal-distribution)
+      - [Z-Score](#z-score)
+  - [*Binomial Probability Distribution](#binomial-probability-distribution)
+  - [*Geometric Probability Distribution](#geometric-probability-distribution)
+  - [*Expected Value](#expected-value)
   - [Conditional Expectation](#conditional-expectation)
-  - [Statistics Mean](#statistics-mean)
+  - [*Mean, Median, Variance, and Coefficient of Variation](#mean-median-variance-and-coefficient-of-variation)
+    - [Mean](#mean)
+    - [Median](#median)
+    - [variance](#variance)
+    - [Coefficient Of Variation](#coefficient-of-variation)
+  - [*Covariance and Correlation](#covariance-and-correlation)  
+    - [Covariance](#covariance)
+    - [Correlation](#correlation)
   - [Practice A](#probability-and-statistics-practice-a)
   - [Practice B](#probability-and-statistics-practice-b)
   - [Practice C](#probability-and-statistics-practice-c)
-  - [Practice D](#probability-and-statistics-practice-d)
-  - Moments of distributions (mean, variance, covariance, correlation).
+  - [Practice D](#probability-and-statistics-practice-d)  
   - Law of Large Numbers and Central Limit Theorem.
   - Parameter estimation and hypothesis tests.
   - Linear Regression Models (OLS).
 
 - [Stochastic Calculus](#stochastic-calculus)
-
   - Expect to see questions that test your foundational understanding of Brownian motion or very basic concepts of stochastic processes, though it's typically not a deep theoretical dive. The questions related to stochastic calculus are generally not as difficult as the rigorous, measure-theoretic treatment of the subject.
   - [Standard Brownian Motion](#standard-brownian-motion)
   - [Standard Brownian Motion 2](#standard-brownian-motion-2)
@@ -257,19 +265,19 @@ For A = [[2, a], [a, 2]], find values of a for which A is positive definite.
 
 ## Probability and Statistics
 
-### Basic Selection
+### Conditional Probability
+<img src="conditional_probability_concept.png">
+<img src="conditional_probability_example_1.png">
+<img src="conditional_probability_example_2.png">
+<img src="probability_insurance_and_accidents.png">
+<img src="probability_two_draws_without_replacement.png">
 
+- <b>If change the question a little bit, without "given the first ball drawn was red". Instead asking "drawing both balls are red", then the probability will be different. </b>
 <img src="probability_basic_selection.png">
 
 ### Bayes Theorem
 
-<img src="probability_credit_risk_modelling.png">
-
-### Bayes Theorem 2
-
-<img src="probability_investment_strategy.png">
-
-### Bayes Theorem 3
+<img src="bayes_theorem_concept.png">
 
 Suppose a medical test for a disease has a 5% false-positive rate (it incorrectly reports a healthy person as sick) and a 1% false-negative rate (it incorrectly reports a sick person as healthy). The disease has a prevalence of 0.1% in the population (1 in 1000 people has it).
 
@@ -277,40 +285,75 @@ If a randomly selected person tests positive, what is the probability they actua
 
 <img src="bayes_theorem_3.png">
 
-### Expected Value
-A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the result is 4 or 5, you win $2. If the result is 6, you lose $4.What is the expected value of this game?Hint: The expected value $E(X)$ is the sum of all possible outcomes multiplied by their respective probabilities: $E(X) = \sum [x \cdot P(x)]$.
+<img src="probability_investment_strategy.png">
 
-<img src="probability_expected_value.png">
+#### Differences between Conditional Probability and Bayes Theorem
+<img src="conditional_probability_and_bayes_theorem.png">
 
-### Conditional Probability 
-<img src="probability_insurance_and_accidents.png">
+### Probability Multiplication Rule
+#### Independent Events
+<img src="multiplication_rule_independent_events.png">
 
-### Conditional Probability 2
-<img src="probability_two_draws_without_replacement.png">
+#### Dependent Events
+<img src="multiplication_rule_dependent_events.png">
 
-### Binomial Probability
+### Permutations and Combinations
+#### Permutations
+<img src="permutation_concept.png">
+<img src="permutation_formulas.png">
 
+#### Combinations
+<img src="combination_concept.png">
+<img src="combination_formulas.png">
+
+### Continuous Probability Distribution
+<img src="continuous_probability_distribution.png">
+
+#### Normal Distribution
+<img src="normal_distribution.png">
+<img src="normal_distribution_empirical_rule.png">
+
+##### Standard Normal Distribution
+For a standard normal Z, P(|Z| > 1.96) ≈ ? (Use 95% CI knowledge)
+
+<img src="statistics_standard_normal_distribution.png">
+
+##### Z-Score
+<img src="z-score.png">
+
+### Binomial Probability Distribution
+<img src="binomial_probability_distribution.png">
+<img src="binomial_probability_distribution_applications.png">
 <img src="probability_and_statistics.png">
-
-### Binomial Probability 2
-
 <img src="probability_binomial.png">
 
-### Geometric Distribution
+### Geometric Probability Distribution
+<img src="geometric_probability_distribution.png">
+<img src="geometric_probability_distribution_example.png">
+
 A fair coin is flipped until the first heads. Let X be the number of flips. P(X ≤ 2) = ?
 
 <img src="probability_geometric_distribution.png">
 
-### Standard Normal Distribution
-For a standard normal Z, P(|Z| > 1.96) ≈ ? (Use 95% CI knowledge)
+### Expected Value
 
-<img src="statistics_standard_normal_distribution.png">
+<img src="expected_value_concept.png">
+
+<img src="expected_value_applications.png">
+
+A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the result is 4 or 5, you win $2. If the result is 6, you lose $4.What is the expected value of this game?Hint: The expected value $E(X)$ is the sum of all possible outcomes multiplied by their respective probabilities: $E(X) = \sum [x \cdot P(x)]$.
+
+<img src="probability_expected_value.png">
+
 
 ### Conditional Expectation
 
 <img src="probability_and_statistics_conditional_expectation.png">
 
-### Statistics Mean
+### Mean, Median, Variance, and Coefficient of Variation
+
+#### Mean
+<img src="mean.png">
 
 - Question: The average (arithmetic mean) of five numbers is 20. If four of the numbers are 15, 18, 22, and 25, what is the fifth number?
 - Solution Approach:
@@ -319,6 +362,22 @@ For a standard normal Z, P(|Z| > 1.96) ≈ ? (Use 95% CI knowledge)
   3. The fifth number is the total sum minus the sum of the four known numbers: $100 - 80 = 20$.
   
 - Answer: $\mathbf{20}$
+
+#### Median
+<img src="median.png">
+
+#### Variance
+<img src="variance.png">
+
+#### Coefficient of Variation
+<img src="coefficient_of_variation.png">
+
+### Covariance and Correlation
+#### Covariance
+<img src="covariance.png">
+
+#### Correlation
+<img src="correlation.png">
 
 ### Probability and Statistics Practice A
 <img src="probability_and_statistics_practice_a.png">
