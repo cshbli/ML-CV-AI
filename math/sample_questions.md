@@ -9,7 +9,8 @@
   - [*Maximum and Minimum](#maximum-and-minimum)
   - [*Multivariable](#2-multivariable)
   - [*Hessian and Convexity](#hessian-and-convexity)
-  - [Integral](#4-integral)
+  - [*Integral Rules](#integral-rules)
+  - [*Integrainton by Parts](#integration-by-parts)
   - [Practice A](#calculus-practice-a)
   - [Practice B](#calculus-practice-b)
   - [Practice C](#calculus-practice-c)
@@ -25,8 +26,12 @@
 - [Linear Algebra](#linear-algebra)
   - [*Determinant of a Square Matrix](#determinant-of-a-square-matrix)
   - [*Eigenvalues and Eigenvectors](#eigenvalues-and-eigenvectors)
+    - [*Trace and Eigenvalues](#trace-and-eigenvalues)
+    - [*Determinant and Eigenvalues](#determinant-and-eigenvalues)
   - [*Optimization of Quadratic Forms](#optimization-of-quadratic-forms)
   - [*Matrix operations](#matrix-operations)
+    - [*Matrix Inverse](#matrix-inverse)
+      - [*Eigenvalues of Inverse Matrix](#egigen-values-of-inverse-matrix)
   - [*Positive Definite and Negative Definite](#positive-definite-and-negative-definite)
     - [*Correlation Matrix](#correlation-matrix)
   - [Practice A](#linear-algebra-practice-a)
@@ -50,12 +55,16 @@
       - [Z-Score](#z-score)
   - [*Binomial Probability Distribution](#binomial-probability-distribution)
   - [*Geometric Probability Distribution](#geometric-probability-distribution)
-  - [*Expected Value](#expected-value)
-  - [Conditional Expectation](#conditional-expectation)
+  - [*Poisson Distribution](#poisson-distribution)
+  - [*Exponential Distribution](#exponential-distribution)
+  - [*Expectation (Expected Value)](#expectation-expected-value)
+    - [Conditional Expectation](#conditional-expectation)
   - [*Mean, Median, Variance, and Coefficient of Variation](#mean-median-variance-and-coefficient-of-variation)
     - [Mean](#mean)
     - [Median](#median)
-    - [variance](#variance)
+    - [Variance](#variance)
+      - [Variance of Two Random Variable Sum](#variance-of-two-random-variable-sum)
+      - [Varinace of A Linear Combination](#varinace-of-a-linear-combination)
     - [Coefficient Of Variation](#coefficient-of-variation)
   - [*Covariance and Correlation](#covariance-and-correlation)  
     - [Covariance](#covariance)
@@ -150,8 +159,17 @@ Let f(x, y) = x^4 + y^4 − 2x^2y^2. Determine whether f is convex on R^2.
 <img src="hessian_and_convexity.png">
 <img src="hessian_and_convexity_2.png">
 
-### 4. Integral
+### Integral Rules
+<img src="integral-rules.png">
+
+### Integration by Parts
+<img src="integration_by_parts_concept.png">
+<img src="integration_by_parts_example.png">
+
 <img src="calculus_integration.png">
+
+<img src="integration_example_1.png">
+<img src="integration_example_2.png">
 
 ### Calculus Practice A
 <img src="calculus_set_a.png">
@@ -235,6 +253,13 @@ For A = \begin{pmatrix} 2 & 1 \ 0 & 2 \end{pmatrix}, find the eigenvalues.
 
 <img src="linear_algebra_eigenvectors_and_determinants.png">
 
+#### Trace and Eigenvalues
+<img src="trace_concept.png">
+<img src="trace_properties.png">
+
+#### Determinant and Eigenvalues
+<img src="determinant_and_eigenvalues.png">
+
 ### Optimization of Quadratic forms
 <img src="quadratic_form_optimization_concept.png">
 <img src="quadratic_form_optimization_proof.png">
@@ -250,6 +275,11 @@ Given matrix A = \begin{pmatrix} 0 & 1 & 0 \ 0 & 0 & 1 \ 1 & 0 & 0 \end{pmatrix}
 
 <img src="matrix_operations.png">
 
+#### Matrix Inverse
+<img src="matrix_inverse.png">
+
+##### Egigen Values of Inverse Matrix
+<img src="eigenvalues_of_inverse_matrix.png">
 
 ### Positive Definite and Negative Definite
 
@@ -360,7 +390,18 @@ A fair coin is flipped until the first heads. Let X be the number of flips. P(X 
 
 <img src="probability_geometric_distribution.png">
 
-### Expected Value
+### Poisson Distribution
+<img src="poisson_distribution.png">
+<img src="poisson_distribution_sample.png">
+
+### Exponential Distribution
+<img src="exponential_distribution_concept.png">
+<img src="exponential_distribution_sample.png"
+
+### Expectation (Expected Value)
+
+<img src="expectation_concept.png">
+<img src="expectation_properties.png">
 
 <img src="expected_value_concept.png">
 
@@ -371,7 +412,9 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 <img src="probability_expected_value.png">
 
 
-### Conditional Expectation
+#### Conditional Expectation
+
+<img src="conditional_expectation.png">
 
 <img src="probability_and_statistics_conditional_expectation.png">
 
@@ -393,6 +436,12 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 
 #### Variance
 <img src="variance.png">
+
+##### Variance of Two Random Variable Sum
+<img src="variance_of_two_random_variable_sum.png">
+
+##### Varinace of A Linear Combination
+<img src="variance_of_linear_combination.png">
 
 #### Coefficient of Variation
 <img src="coefficient_of_variation.png">
