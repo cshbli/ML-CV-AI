@@ -82,10 +82,9 @@
 
 - [Stochastic Calculus](#stochastic-calculus)
   - Expect to see questions that test your foundational understanding of Brownian motion or very basic concepts of stochastic processes, though it's typically not a deep theoretical dive. The questions related to stochastic calculus are generally not as difficult as the rigorous, measure-theoretic treatment of the subject.
-  - [Standard Brownian Motion](#standard-brownian-motion)
-  - [Standard Brownian Motion 2](#standard-brownian-motion-2)
-  - [Geometric Brownian Motion](#geometric-brownian-motion)
-  - [Ito Integral](#ito-integral)
+  - [*Standard Brownian Motion](#standard-brownian-motion)
+  - [*Itô's Lemma](#itôs-lemma)
+  - [*Geometric Brownian Motion](#geometric-brownian-motion)  
 
 - [Brain Teasers/Puzzles](#brain-teasers)
   - [Pair of Numbers](#pair-of-numbers)
@@ -497,20 +496,33 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 
 ## Stochastic Calculus
 ### Standard Brownian Motion
+<img src="standard_brownian_motion_concept.png">
+<img src="standard_brownian_motion_properties.png">
+<img src="standard_brownian_motion_sample_1.png">
+<img src="standard_brownian_motion_sample_2.png">
+
 For standard Brownian motion B(t), compute E[B(t)²].
 <img src="stochastics_standard_brownian_motion.png">
 
-### Standard Brownian Motion 2
+### Itô's Lemma
+<img src="Ito_lemma_concept.png">
+<img src="Ito_lemma_application.png">
+<img src="Ito_lemma_sample.png">
+
+Using Itô's lemma, if dX_t = μ dt + σ dB_t, what is d(X_t²)? (Ignore higher orders)
+
+<img src="stochastic_ito_integral.png">
 
 <img src="stochastic_calculus.png">
 
 ### Geometric Brownian Motion
+<img src="geometric_brownian_motion_concept.png">
+<img src="geometric_brownian_motion_properties.png">
+<img src="geometric_brownian_motion_sample.png">
+
+
 <img src="stochastic_calculus_geometric_bronian_motion.png">
 
-### Ito Integral
-Using Itô's lemma, if dX_t = μ dt + σ dB_t, what is d(X_t²)? (Ignore higher orders)
-
-<img src="stochastic_ito_integral.png">
 
 ## Brain Teasers
 ### Pair of Numbers
