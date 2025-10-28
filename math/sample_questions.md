@@ -65,7 +65,7 @@
     - [Variance and Standard Deviation](#variance-and-standard-deviation)
       - [Variance of Two Random Variable Sum](#variance-of-two-random-variable-sum)
       - [Varinace of A Linear Combination](#varinace-of-a-linear-combination)
-    - [Coefficient Of Variation](#coefficient-of-variation)
+    - [Coefficient Of Variation (CV)](#coefficient-of-variation-cv)
   - [*Covariance and Correlation](#covariance-and-correlation)  
     - [Covariance](#covariance)
     - [Correlation](#correlation)
@@ -442,7 +442,7 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 ##### Varinace of A Linear Combination
 <img src="variance_of_linear_combination.png">
 
-#### Coefficient of Variation
+#### Coefficient of Variation (CV)
 <img src="coefficient_of_variation.png">
 
 ### Covariance and Correlation
