@@ -62,7 +62,7 @@
   - [*Mean, Median, Variance, and Coefficient of Variation](#mean-median-variance-and-coefficient-of-variation)
     - [Mean](#mean)
     - [Median](#median)
-    - [Variance](#variance)
+    - [Variance and Standard Deviation](#variance-and-standard-deviation)
       - [Variance of Two Random Variable Sum](#variance-of-two-random-variable-sum)
       - [Varinace of A Linear Combination](#varinace-of-a-linear-combination)
     - [Coefficient Of Variation](#coefficient-of-variation)
@@ -433,7 +433,7 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 #### Median
 <img src="median.png">
 
-#### Variance
+#### Variance and Standard Deviation
 <img src="variance.png">
 
 ##### Variance of Two Random Variable Sum
