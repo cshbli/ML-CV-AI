@@ -63,12 +63,14 @@
     - [Mean](#mean)
     - [Median](#median)
     - [Variance and Standard Deviation](#variance-and-standard-deviation)
-      - [Variance of Two Random Variable Sum](#variance-of-two-random-variable-sum)
-      - [Varinace of A Linear Combination](#varinace-of-a-linear-combination)
+      - [*Relationship between Variance and Mean](#relationship-between-variance-and-mean)
+      - [*Variance of Two Random Variable Sum](#variance-of-two-random-variable-sum)
+      - [*Varinace of A Linear Combination](#varinace-of-a-linear-combination)
     - [Coefficient Of Variation (CV)](#coefficient-of-variation-cv)
   - [*Covariance and Correlation](#covariance-and-correlation)  
-    - [Covariance](#covariance)
-    - [Correlation](#correlation)
+    - [*Covariance](#covariance)
+      - [*Relationship between Covariance and Mean](#relationship-between-covariance-and-mean)
+    - [*Correlation](#correlation)
   - [Law of Large Numbers](#law-of-large-numbers)
   - [Central Limit Theorem](#central-limit-theorem)
   - [Parameter Estimation](#parameter-estimation)
@@ -83,6 +85,7 @@
 - [Stochastic Calculus](#stochastic-calculus)
   - Expect to see questions that test your foundational understanding of Brownian motion or very basic concepts of stochastic processes, though it's typically not a deep theoretical dive. The questions related to stochastic calculus are generally not as difficult as the rigorous, measure-theoretic treatment of the subject.
   - [*Standard Brownian Motion](#standard-brownian-motion)
+    - [Covariance of a Standard Brownian Motion at time s and t](#covariane-of-a-standard-brownian-motion-at-time-s-and-t)
   - [*Itô's Lemma](#itôs-lemma)
   - [*Geometric Brownian Motion](#geometric-brownian-motion)  
 
@@ -436,6 +439,9 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 #### Variance and Standard Deviation
 <img src="variance.png">
 
+##### Relationship between Variance and Mean
+<img src="variance_and_mean_formula.png">
+
 ##### Variance of Two Random Variable Sum
 <img src="variance_of_two_random_variable_sum.png">
 
@@ -448,6 +454,10 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 ### Covariance and Correlation
 #### Covariance
 <img src="covariance.png">
+
+#### Relationship between Covariance and Mean
+<img src="covariance_and_mean_1.png">
+<img src="covariance_and_mean_2.png">
 
 #### Correlation
 <img src="correlation.png">
@@ -498,6 +508,11 @@ A fair six-sided die is rolled. If the result is 1, 2, or 3, you win $1. If the 
 ### Standard Brownian Motion
 <img src="standard_brownian_motion_concept.png">
 <img src="standard_brownian_motion_properties.png">
+
+#### Covariane of A Standard Brownian Motion at time s and t
+<img src="Covariance_of_a_standard_brownian_motion_1.png">
+<img src="Covariance_of_a_standard_brownian_motion_2.png">
+
 <img src="standard_brownian_motion_sample_1.png">
 <img src="standard_brownian_motion_sample_2.png">
 
