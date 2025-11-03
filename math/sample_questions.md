@@ -87,6 +87,7 @@
   - [*Standard Brownian Motion](#standard-brownian-motion)
     - [Covariance of a Standard Brownian Motion at time s and t](#covariane-of-a-standard-brownian-motion-at-time-s-and-t)
   - [*Itô's Lemma](#itôs-lemma)
+    - [Square of Differential](#square-of-differential)
   - [*Geometric Brownian Motion](#geometric-brownian-motion)  
 
 - [Brain Teasers/Puzzles](#brain-teasers)
@@ -520,7 +521,12 @@ For standard Brownian motion B(t), compute E[B(t)²].
 <img src="stochastics_standard_brownian_motion.png">
 
 ### Itô's Lemma
+
 <img src="Ito_lemma_concept.png">
+
+#### Square of Differential
+<img src="square_of_differential.png">
+
 <img src="Ito_lemma_application.png">
 <img src="Ito_lemma_sample.png">
 
@@ -529,6 +535,7 @@ Using Itô's lemma, if dX_t = μ dt + σ dB_t, what is d(X_t²)? (Ignore higher 
 <img src="stochastic_ito_integral.png">
 
 <img src="stochastic_calculus.png">
+
 
 ### Geometric Brownian Motion
 <img src="geometric_brownian_motion_concept.png">
