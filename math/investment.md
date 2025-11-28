@@ -41,14 +41,14 @@
 ## Investment Strategy
 
 ### Category
-|Category|Percentage|
-|---|---|
-|Value|25%|
-|Fundation|35%|
-|Growth|35%|
-|Digital Asset|5%|
+|Category|Percentage|Investment Focus|
+|---|---|---|
+|Value|25%|well-established companies, defensive positions when market has a downturn.|
+|Fundation|35%|S&P 500, broad market|
+|Growth|35%|high growth, focusing on AI, information technology and semiconductor|
+|Digital Asset|5%|high volatile, cryptocurrency industry and digital payments processing|
 
-### Itemized
+### Itemized Allocation
 |Risk Level|Category|Ticker|Percentage|Note|
 |---|---|---|---|---|
 |1|Value|SCHD|10%|low tech exposure, dividend titlt|
