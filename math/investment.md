@@ -26,7 +26,6 @@
 |Large Value|SCHD|Schwab US Dividend Equity ETF|Dow Jones U.S. Dividend 100 Index, 103 stocks|US|0.06|17.51|0.70|-6.76|6.67|3.92|***|Divident titlt, CSCO,ABBV,AMGN,MRK,LMT
 |Gold|GLDM|SPDR Gold MiniShares Trust|Gold|-|0.10|-|-|45.60|34.69|-|-|
 |Ultrashort Bond|FLOT|iShares Floating Rate Bond ETF|477 bonds|World|0.16|-|4.11|5.22|6.14|4.63|****|
-|Ultrashort Bond|TFLO|iShares Treasury Floating Rate Bond ETF|10 bonds|US|0.15|-|3.52|4.43|4.91|3.94|**|state tax-exempt
 |Ultrashort Bond|SGOV|iShares 0-3 Month Treasury Bond ETF|24 bonds|US|0.09|-|3.58|4.39|4.89|3.96|***| state tax-exempt
 
 ## Comparison of Digital Asset ETFs
@@ -40,26 +39,28 @@
 
 ## Investment Strategy
 
-### Category
+### Portfolio Category
 |Category|Percentage|Investment Focus|
 |---|---|---|
-|Value|25%|well-established companies, defensive positions when market has a downturn.|
-|Fundation|35%|S&P 500, broad market|
+|Value|20%|well-established companies, defensive positions when market has a downturn.|
+|Fundation|40%|S&P 500, broad market|
 |Growth|35%|high growth, focusing on AI, information technology and semiconductor|
 |Digital Asset|5%|high volatile, cryptocurrency industry and digital payments processing|
 
-### Itemized Allocation
-|Risk Level|Category|Ticker|Percentage|Note|
-|---|---|---|---|---|
-|1|Value|SCHD|10%|low tech exposure, dividend titlt|
-|1|Value|VTV|10%|low tech exposure, broad, capital appreciation titlt|
-|1.5|Value|FDVV/VYM/DGRO|5%|Technology Overlapp|
-|2|Fundation|VOO/IVV/SPYM/FNILX/VTI/FZROX|35%|
-|3|Growth|SPMO|10%|
-|3|Growth|QQQM|10%|
-|3|Growth|VUG/SCHG|5%|
-|4|Technology|VGT/FTEC|5%|
-|4|Semiconductor|SMH/SOXQ|5%|
-|5|Digital Asset|STCE>IBLC>FDIG|3%|
-|6|Bitcoin|IBIT/FBTC|2%|
+### Portfolio
+|Risk Level|Category|Ticker|Percentage|Expense Ratio|PE Ratio|1Y|2Y|5Y|10Y|Note|
+|---|---|---|---|---|---|---|---|---|---|---|
+|1|Value|SCHD|10%|0.06|17.51|-6.57|15.23|27.10|109.97|low tech exposure, dividend titlt|
+|1|Value|VTV|5%|0.04|21.47|4.73|34.23|59.87|128.26|low tech exposure, broad, capital appreciation titlt|
+|1.5|Value|FDVV/VYM/DGRO|5%|0.16|20.88|8.32|41.39|78.78|128.09|Technology Overlapp, FDVV 5%|
+|2|Fundation|VOO/IVV/SPYM/FNILX/VTI/FZROX|25%|0.03|28.74|13.54|50.51|85.15|227.44|
+|2|Fundation|SPMO|15%|0.13|31.34|24.05|95.24|132.11|355.69|
+|3|Growth|QQQM|10%|0.15|34.64|21.48|58.86|102.69|437.82|
+|4|Technology|VGT/FTEC/XLK|15%|0.09/0.08|38.94|21.06|63.21|122.26|554.64|VGT 10%, FTEC 5%
+|4|Defense Tech|SHLD|2%|0.50|30.42|58.70|131.46|151.08|-
+|4|Semiconductor|SMH/SOXQ|3%|0.35/0.19|39.27|45.49|117.18|221.14|1140.42|SMH 2%, SOXQ 1%
+|4|Quantum|QTUM|3%|0.40|29.58|53.88|114.96|165.66|342.73|
+|4|International|IDMO/VXUS/SPDW/VEA|2%|0.25|16.81|28.48|53.72|69.91|123.07|IDMO 2.0%
+|5|Digital Asset|STCE>IBLC>FDIG|3%|0.30|17.84|42.02|212.36|196.71|-|STCE 3%
+|5|Bitcoin|IBIT/FBTC|2%|0.25|-|-6.63|93.58|106.45|-|IBIT 2%
 
