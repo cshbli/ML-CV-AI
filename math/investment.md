@@ -1,44 +1,83 @@
 
-## Comparison of ETFs/Mutual Funds
-|Category| Ticker|Name | Index & Holdings| Region| Expense Ratio|Yield|MorningStar|Note|
-|---|---|---|---|---|---|---|---|---|
-|Large Value|SCHD|Schwab US Dividend Equity ETF|Dow Jones U.S. Dividend 100 Index, 103|US|0.06|3.92|***|Divident titlt, CSCO,ABBV,AMGN,MRK,LMT
-|Large Value|VTV|Vanguard Value Index Fund ETF|317|US|0.04|2.04|****|Similar as SCHV, JPM,BRK/B,XOM,JNJ,WMT, ABBV,HD,PG,BAC,UNH
-|Health|XLV|Health Care Select Sector SPDR Fund|63|US|0.08|1.69|*****|LLY,JNJ,ABBV,UNH,ABT, MRK,TMO,ISRG,AMGN,BSX
-|Utilities|FUTY|Fidelity MSCI Utilities Index ETF|66|US|0.084|2.64|****|NEE,CEG,SO,DUK,AEP, VST,SRE,D,EXC,XEL
-|Large Value|FDVV|Fidelity High Dividend ETF|121|US|0.16|2.81|*****|NVDA,AAPL,MSFT,AVGO,JPM, ABN,V,XOM,BAC,KO
-|Large Value|FNDX|Schwab Fundamental US Large Company ETF|732|US|0.25|1.70|*****|AAPL,MSFT,GOOGL,XOM,GOOG
-|Large Value|VYM|Vanguard High Dividend Yield Index Fund ETF|569|US|0.06|2.45|*****|AVGO,JPM,XOM,JNJ,WMT, ABBV,HD,BAC,PG,UNH
-|Large Value|DGRO|iShares Core Dividend Growth ETF|406|US|0.08|2.20|*****|AAPL,JPM,JNJ,MSFT,XOM, ABBV,AVGO,PG,UNH,HD
-|Large Value|SCHV|Schwab US Large-Cap Value ETF|Dow Jones U.S. Large-Cap Value Total Stock Market Index, 563|US|0.04|2.04|****|BRK/B,JPM,XOM,JNJ,WMT
-|Large Blend|USMV|iShares MSCI USA Min Vol Factor ETF|176|US|0.15|1.44|**|IBM,MCK,COR,APH,XOM, CSCO,JNJ,NVDA,DUK,SO
-|Large Value|SPLV|Invesco S&P 500 Low Volatility ETF|102|US|0.25|2.24|**|ATO,EVRG,WEC,COR,KO, CMS,JNJ,TJX,PPL,CAH
-|S&P500|VOO|Vanguard 500 Index|507|US|0.03|1.09|*****|NVDA,AAPL,MSFT,AMZN,AVGO
-|S&P500|IVV|iShares Core S&P 500|509|US|0.03|1.04|*****|NVDA,AAPL,MSFT,AMZN,AVGO, GOOGL,META,GOOG,TSLA,BRK/B
-|S&P500|SPYM|State Street SPDR Portfolio S&P 500|507|US|0.02|1.10|*****|Similar to SPY, lower expense ratio
-|S&P500|FXAIX|Fidelity 500 Index|507|US|0.015|1.10|*****|Mutual Fund
-|S&P500|FNILX|FIDELITY ZERO LARGE CAP INDEX |511|US|0.0|1.10|****|Mutual Fund
-|Total Market|VTI|Vanguard Total Stock Market Index Fund |3533|US|0.03|1.12|***|
-|Total Market|FZROX|FIDELITY ZERO TOTAL MARKET INDEX |2528|US|0.0|1.10|***|Mutual Fund
-|S&P500 Momentum|SPMO|Invesco S&P 500 Momentum ETF|S&P500 Momentum, 101|US|0.13|0.91|*****| Tactical/Rotational Outperformance, AVGO,NVDA,META,JPM,PLTR
-|Large Growth|QQQM|Invesco Nasdaq 100 ETF|NASDAQ-100, 106|US|0.15|0.49|*****|Maximum tech exposure, excludes all financial stocks. Similar to QQQ, lower expense ratio,NVDA,AAPL,MSFT,AVGO,AMZN
-|Large Growth|FSPGX|Fidelity® Large Cap Growth Index Fund|395|US|0.035|-|*****|NVDA,AAPL,MSFT,AVGO,AMZN, TSLA,META,GOOGL,GOOG,LLY
-|Technology|VGT|Vanguard Information Technology Index |Information, 317|US| 0.09|0.36|*****|NVDA,AAPL,MSFT,AVGO,PLTR, without GOOG,META,AMZN
-|Technology|FTEC|Fidelity MSCI Information Technology Index |Information, 288|US| 0.08|0.41|****|Similar as VGT,NVDA,AAPL,MSFT,AVGO,PLTR
-|Large Growth|VUG|Vanguard Growth Index |large and growth, 163|US| 0.04|0.38|****|Broad, Low-Cost Growth, NVDA,AAPL,MSFT,AMZN,AVGO
-|Large Growth|SCHG|Schwab US Large-Cap Growth|large and growth, 197|US|0.04|0.33|*****|Similar as VUG, NVDA,AAPL,MSFT,AVGO,AMZN
-|Defense|SHLD|Global X Defense Tech ETF|45|World| 0.50|0.37|-|PLTR,RTX,LMT,RHM:DE,BA_:GB, GD,LDOS,NOC,LHX,LDO:IT
-|Defense|ITA|iShares US Aerospace & Defense ETF|44|US| 0.38|0.39|****|GE,RTX,BA,HWM,GD, LMT,LHX,TDG,NOC,LHX,AXON
-|Seimconductor|SMH|Vaneck Semiconductor|26|World| 0.35|0.28 |*****|NVDA,TSM,AVGO,AMD,MU
-|Seimconductor|SOXQ|Invesco PHLX Semicoductor|31|US| 0.19|0.43|*****|Similar to SOXX, lower expense ratio, NVDA,AMD,AVGO,MU,INTC
-|Seimconductor|FSELX|Fidelity® Select Semiconductors Portfolio|57|World| 0.62|-|*****|NVDA,AVGO,MRVL,MU,NXP, LRCX,MPWP,ON,TSM
-|Quantum|QTUM|Defiance Quantum ETF|81|US|0.40|0.79|*****|RGTI,QBTS,AMD,TER,Tower, INTC,MU,IONQ,LRCX,MDB
-|International|IDMO|Invesco S&P Intl Developed Momentum ETF|192|International|0.25|2.35|*****|RR:GB,HSBA:GB,SHOP:CA,SAN:ES,RHM:DE, Allianz:SE,CBA:AU,Simens,BATS:GB,UCG:IT
-|Digital Assets|STCE|Schwab Crypto Thematic ETF|43|World|0.30|0.0|***|CIFR,IREN,Bitfarms,HIVE:CA,BTDR, GLXY,HUT,CLSK,CAN,BTBT
-|Digital Assets|IBIT|iShares Bitcoin Trust ETF|1|Bitcoin|0.25|-|-|Bitcoin
-|Gold|GLDM|SPDR Gold MiniShares Trust|Gold|-|0.10|-|-|
-|Ultrashort Bond|FLOT|iShares Floating Rate Bond ETF|477 bonds|World|0.16|4.63|****|
-|Ultrashort Bond|SGOV|iShares 0-3 Month Treasury Bond ETF|24 bonds|US|0.09|3.96|***| state tax-exempt
+## Long Term Investment Strategy
+
+### Portfolio Category
+|Category|Percentage|Benchmark|Investment Focus|
+|---|---|---|---|
+|Cash/Bond|Certain Amount|SGOV|For short-term expenses, 1-3 years|
+|Value|20%|VTV|low volatile, well-established companies, defensive positions when market has a downturn.|
+|Foundation|40%|VOO|S&P 500, broad market|
+|Growth|35%|VGT|high growth, focusing on AI, information technology and semiconductor|
+|Digital Asset|5%|IBIT|high volatile, cryptocurrency industry and digital payments processing|
+
+## Fund Selections and Portfolio Picks
+
+### Value Funds and Low Information Technology Exposure
+
+| Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 0.5 | Ultrashort Bond | FLOT | iShares Floating Rate Bond ETF | World | - | 0.16 | 4.63 | - | **** | - | - | - | - | 477 holdings | - |
+| 0.5 | Ultrashort Bond | SGOV | iShares 0-3 Month Treasury Bond ETF | US | - | 0.09 | 3.96 | - | *** | - | - | - | - | 24 holdings | state tax-exempt |
+| 1 | Large Value | VTV | Vanguard Value Index Fund ETF | US | 10% | 0.04 | 2.04 | 21.47 | **** | 4.73 | 34.23 | 59.87 | 128.26 | 317 holdings: JPM, BRK/B, XOM, JNJ, WMT, ABBV, HD, PG, BAC, UNH | low tech exposure |
+| 1 | Large Value | SCHV | Schwab US Large-Cap Value ETF | US | - | 0.04 | 2.04 | - | **** | 5.19 | 33.50 | 49.27 | 104.64 | 563 holdings: BRK/B, JPM, XOM, JNJ, WMT | Similar to VTV |
+| 1 | Large Value | SCHD | Schwab US Dividend Equity ETF | US | 5% | 0.06 | 3.92 | 17.51 | *** | -6.57 | 15.23 | 27.10 | 109.97 | Dow Jones U.S. Dividend 100 Index, 103 holdings: CSCO, ABBV, AMGN, MRK, LMT | strong dividend history + stable, low tech exposure |
+| 1.5 | Large Value | FDVV | Fidelity High Dividend ETF | US | 2% | 0.16 | 2.81 | 20.88 | ***** | 8.32 | 41.39 | 78.78 | 128.09 | 121 holdings: NVDA, AAPL, MSFT, AVGO, JPM, ABN, V, XOM, BAC, KO | Info tech exposure |
+| 1.5 | Large Value | FNDX | Schwab Fundamental US Large Company ETF | US | - | 0.25 | 1.70 | - | ***** | - | - | - | - | 732 holdings: AAPL, MSFT, GOOGL, XOM, GOOG | Info tech exposure |
+| 1.5 | Large Value | VYM | Vanguard High Dividend Yield Index Fund ETF | US | - | 0.06 | 2.45 | - | ***** | - | - | - | - | 569 holdings: AVGO, JPM, XOM, JNJ, WMT, ABBV, HD, BAC, PG, UNH | Info tech exposure |
+| 1.5 | Large Value | VIG | Vanguard Dividend Appreciation Index Fund ETF | US | - | 0.06 | 1.84 | - | ***** | - | - | - | - | 290 holdings: MSFT, JNJ, PG, HD, UNH, AAPL, MCD, COST, JPM, BAC | Info tech exposure |
+| 1.5 | Large Value | DGRO | iShares Core Dividend Growth ETF | US | - | 0.08 | 2.20 | - | ***** | - | - | - | - | 406 holdings: AAPL, JPM, JNJ, MSFT, XOM, ABBV, AVGO, PG, UNH, HD | Info tech exposure |
+| 1 | Large Blend | USMV | iShares MSCI USA Min Vol Factor ETF | US | - | 0.15 | 1.44 | 24.72 | ** | 0.82 | 26.11 | 41.99 | 125.90 | IBM, MCK, COR, APH, XOM, CSCO, JNJ, NVDA, DUK, SO | low volatility |
+| 1 | Large Value | SPLV | Invesco S&P 500 Low Volatility ETF | US | - | 0.25 | 2.24 | 24.04 | ** | -2.24 | 20.54 | 31.86 | 88.15 | ATO, EVRG, WEC, COR, KO, CMS, JNJ, TJX, PPL, CAH | low volatility |
+| 1 | Small Value | AVUV | Avantis US Small Cap Value ETF | US | - | 0.25 | 1.57 | 13.26 | **** | -4.13 | 26.40 | 78.91 | 102.28 | 765 holdings: M, AL, FIVE, GATX, LEU | low tech exposure |
+| 1 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | - | 0.10 | 1.78 | - | **** | -3.47 | 24.09 | 40.30 | 99.57 | 600 holdings: M, AL, FIVE, GATX, LEU | low tech exposure |
+| 1 | Health | XLV | Health Care Select Sector SPDR Fund | US | - | 0.08 | 1.69 | 27.70 | ***** | 6.95 | 21.57 | 40.08 | 119.63 | LLY, JNJ, ABBV, UNH, ABT, MRK, TMO, ISRG, AMGN, BSX | VTV overlap |
+| 1 | Utilities | FUTY | Fidelity MSCI Utilities Index ETF | US | - | 0.084 | 2.64 | 22.95 | ***** | 9.69 | 46.37 | 45.03 | 115.10 | NEE, CEG, SO, DUK, AEP, VST, SRE, D, EXC, XEL | VTV overlap |
+| 3 | Infrastructure | GRID | First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund | World | 3% | 0.56 | 1.0 | 27.31 | ***** | 21.15 | 58.41 | 100.05 | 355.90 | 123 holdings: SU:FR, ABBN:CH, ETN, NG:GB, JCI, PWR, TSLA | - |
+
+### Foundational, S&P 500 and Total Market
+| Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 2 | S&P500 | VOO | Vanguard 500 Index | US | 25% | 0.03 | 1.09 | 28.74 | ***** | 13.54 | 50.51 | 85.15 | 227.44 | NVDA, AAPL, MSFT, AMZN, AVGO, GOOGL, META, GOOG, TSLA, BRK/B | Similar to SPY, lower expense ratio |
+| 2 | S&P500 | IVV | iShares Core S&P 500 | US | - | 0.03 | 1.04 | - | ***** | - | - | - | - | - | Similar to VOO |
+| 2 | S&P500 | SPYM | State Street SPDR Portfolio S&P 500 | US | - | 0.02 | 1.10 | - | ***** | - | - | - | - | - | Similar to SPY; lower expense ratio |
+| 2 | S&P500 | FXAIX | Fidelity 500 Index | US | - | 0.015 | 1.10 | - | ***** | - | - | - | - | - | Similar to VOO |
+| 2 | S&P500 | FNILX | FIDELITY ZERO LARGE CAP INDEX | US | - | 0.0 | 1.10 | - | **** | - | - | - | - | - | Similar to VOO |
+| 2 | Total Market | VTI | Vanguard Total Stock Market Index Fund | US | - | 0.03 | 1.12 | 27.91 | *** | 12.16 | 49.25 | 75.61 | 213.17 | 3533 holdings | - |
+| 2 | Total Market | FZROX | FIDELITY ZERO TOTAL MARKET INDEX | US | - | 0.0 | 1.10 | - | *** | 12.48 | 49.81 | 80.77 | - | 2528 holdings | Similar to VTI |
+| 2 | S&P500 Momentum | SPMO | Invesco S&P 500 Momentum ETF | US | 15% | 0.13 | - | 31.34 | ***** | 24.05 | 95.24 | 132.11 | 355.69 | 101 holdings: AVGO, NVDA, META, JPM, PLTR | Tactical/Rotational Outperformance |
+
+### Growth, Sectional and International
+| Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 3 | Large Growth | QQQM | Invesco Nasdaq 100 ETF | US | 10% | 0.15 | - | 34.64 | ***** | 21.48 | 58.86 | 102.69 | 437.82 | 101 holdings: NVDA, AAPL, MSFT, AVGO, AMZN | Maximum tech exposure; excludes all financial stocks; Similar to QQQ; lower expense ratio |
+| 3 | Large Growth | FSPGX | Fidelity Large Cap Growth Index Fund | US | - | 0.035 | - | 34.64 | ***** | 19.89 | 64.51 | 100.43 | 377.22 | 395 holdings: NVDA, AAPL, MSFT, AVGO, AMZN, TSLA, META, GOOGL, GOOG, LLY | Similar to QQQM |
+| 3 | Large Growth | VUG | Vanguard Growth Index | US | - | 0.04 | 0.38 | - | **** | - | - | - | - | 163 holdings; Low-Cost Growth; NVDA, AAPL, MSFT, AMZN, AVGO | - |
+| 3 | Large Growth | SCHG | Schwab US Large-Cap Growth | US | - | 0.04 | 0.33 | - | ***** | - | - | - | - | 197 holdings; Similar as VUG; NVDA, AAPL, MSFT, AVGO, AMZN | - |
+| 4 | Technology | VGT | Vanguard Information Technology Index | US | 10% | 0.09 | 0.36 | 39.22 | ***** | 20.88 | 62.76 | 120.13 | 565.55 | 317 holdings; NVDA, AAPL, MSFT, AVGO, PLTR; without GOOG, META, AMZN | - |
+| 4 | Technology | FTEC | Fidelity MSCI Information Technology Index | US | 5% | 0.08 | 0.41 | 39.23 | **** | 21.06 | 63.21 | 122.26 | 554.64 | 288 holdings: NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
+| 4 | Technology | XLK | Technology Select Sector SPDR Fund | US | - | 0.12 | 0.91 | - | **** | - | - | - | - | 141 holdings; NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
+| 4 | Technology | IETC | iShares US Tech Independence Focused ETF | US | - | 0.18 | 0.32 | 42.15 | **** | 23.88 | 72.46 | 120.87 | 322.31 | 103 holdings: AVGO, PLTR, NVDA, AMZN, MSFT, CRM, ORCL, AAPL, IBM, CSCO | - |
+| 4 | Technology | AIQ | Global X Artificial Intelligence & Technology ETF | World | - | 0.68 | 0.00 | 30.07 | **** | 29.16 | 68.82 | 88.21 | - | 92 holdings: AMD, Samsung, GOOGL, BABA, TSLA, AVGO, PLTR, AAPL, TSM, NVDA | - |
+| 4 | Technology | CHAT | Roundhill Generative Ai & Technology ETF | World |-| 0.75 | 0.00 | 29.64 | - | 51.14 | 102.83 | - | - | 47 holdings: NVDA, GOOGL, Hynix, AMD, ORCL, MSFT, Softbank, AVGO, ARM, META | - |
+| 4 | Aerospace & Defense | SHLD | Global X Defense Tech ETF | World | 2% | 0.50 | - | 30.42 | **** | 58.70 | 131.46 | 151.08 | - | PLTR, RTX, LMT, RHM:DE, BA_:GB, GD, LDOS, NOC, LHX, LDO:IT | World; PLTR Exposure |
+| 4 | Aerospace & Defense | ITA | iShares US Aerospace & Defense ETF | US | 1% | 0.38 | - | 36.30 | **** | 31.84 | 74.11 | 112.32 | 241.98 | GE, RTX, BA, HWM, GD, LMT, LHX, TDG, NOC, LHX, AXON | US; low tech exposure |
+| 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 3% | 0.35 | 0.28 | 39.27 | ***** | 45.49 | 117.18 | 221.14 | 1140.42 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | - |
+| 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | 2% | 0.19 | 0.43 | 40.22 | ***** | 42.59 | 86.73 | 134.63 | 850.89 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | Similar to SOXX, lower expense ratio |
+| 4 | Semiconductor | FSELX | Fidelity Select Semiconductors Portfolio | World | - | 0.62 | - | - | ***** | 30.01 | 87.63 | 166.31 | 465.66 | 57 holdings: NVDA, AVGO, MRVL, MU, NXP, LRCX, MPWP, ON, TSM | - |
+| 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | - |
+| 4 | International | IDMO | Invesco S&P Intl Developed Momentum ETF | International | - | 0.25 | 2.35 | 16.81 | ***** | 28.48 | 53.72 | 69.91 | 123.07 | 192 holdings: RR:GB, HSBA:GB, SHOP:CA, SAN:ES, RHM:DE, Allianz:SE, CBA:AU, Siemens, BATS:GB, UCG:IT | Better than US in the last year |
+
+### Digital Assets, Bitcoin and Gold
+
+| Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 5 | Digital Asset | STCE | Schwab Crypto Thematic ETF | World | 3% | 0.30 | 0.00 | 17.84 | *** | 42.02 | 212.36 | 196.71 | - | 43 holdings: CIFR, IREN, Bitfarms, HIVE:CA, BTDR, GLXY, HUT, CLSK, CAN, BTBT | - |
+| 5 | Digital Asset | IBLC | Amplify Transformational Data Sharing ETF | World | - | 0.60 | 0.00 | 19.12 | **** | 37.28 | 181.56 | 170.11 | - | 55 holdings: GBTC, BTBT, CIFR, HIVE:CA, RIOT, MARA, BTDR, CLSK, GLXY, HUT | - |
+| 5 | Digital Asset | FDIG | Fidelity Crypto Industry and Digital Payments ETF | World | - | 0.45 | 0.00 | 18.76 | **** | 36.45 | 170.22 | 158.34 | - | 48 holdings: GBTC, BTBT, CIFR, HIVE:CA, RIOT, MARA, BTDR, CLSK, GLXY, HUT | - |
+| 5 | Bitcoin | IBIT | iShares Bitcoin Trust ETF | Bitcoin | 2% | 0.25 | - | - | - | -6.63 | 93.58 | 106.45 | - | Bitcoin | Bitcoin exposure via trust structure |
+| 5 | Bitcoin | FBTC | Fidelity Bitcoin ETF | Bitcoin | - | 0.25 | - | - | - | -6.87 | 93.44 | 106.21 | - | Bitcoin | Fidelity |
+| 5 | Gold | GLDM | SPDR Gold MiniShares Trust | Gold | - | 0.10 | - | - | - | 58.73 | 105.77 | 128.16 | 233.17 | Gold | - |
+
 
 ## Comparison of Digital Asset ETFs
 |ETF (Ticker)|Issuer|Expense Ratio (ER)|Stocks|Primary Investment Focus|Key Takeaway for Investor|
@@ -48,32 +87,3 @@
 |IBLC (iShares/BlackRock)|BlackRock|0.47%|52: IREN, COIN, CRCL, BMNR, APLD|Companies involved in blockchain and crypto technologies (rules-based global index).|High exposure to Information Technology (e.g., AMD, NVIDIA) and crypto pure-plays (Coinbase).|
 |BKCH (Global X)|Global X|0.50%|28: |Companies globally that derive profit from blockchain technology.|Diversified across sectors like software, services, and financials; a broad, fundamental approach.|
 |DAPP (VanEck)|VanEck|0.51% (Highest)|25: |Companies undergoing a Digital Transformation via blockchain and distributed ledger technology.|Most aggressive/pure-play focus, with a high concentration in crypto miners and related infrastructure.|
-
-## Investment Strategy
-
-### Portfolio Category
-|Category|Percentage|Investment Focus|
-|---|---|---|
-|Value|20%|well-established companies, defensive positions when market has a downturn.|
-|Fundation|40%|S&P 500, broad market|
-|Growth|35%|high growth, focusing on AI, information technology and semiconductor|
-|Digital Asset|5%|high volatile, cryptocurrency industry and digital payments processing|
-
-### Portfolio
-|Risk Level|Category|Ticker|Percentage|Expense Ratio|PE Ratio|1Y|2Y|5Y|10Y|Note|
-|---|---|---|---|---|---|---|---|---|---|---|
-|1|Value|SCHD|10%|0.06|17.51|-6.57|15.23|27.10|109.97|low tech exposure, dividend titlt|
-|1|Value|VTV|5%|0.04|21.47|4.73|34.23|59.87|128.26|low tech exposure|
-|1.5|Value|FDVV/VYM/VIG/DGRO|5%|0.16|20.88|8.32|41.39|78.78|128.09|Technology Overlap, FDVV 5%|
-|2|Foundation|VOO/IVV/SPYM/FXAIX/FNILX/ VTI/FZROX|25%|0.03|28.74|13.54|50.51|85.15|227.44|
-|2|Foundation|SPMO|15%|0.13|31.34|24.05|95.24|132.11|355.69|
-|3|Growth|QQQM/FSPGX|10%|0.15|34.64|21.48|58.86|102.69|437.82|
-|4|Technology|VGT/FTEC/XLK|15%|0.09/0.08|38.94|21.06|63.21|122.26|554.64|VGT 10%, FTEC 5%
-|4|Aerospace & Defense|SHLD|2%|0.50|30.42|58.70|131.46|151.08|-|US+World, PLTR Exposure
-|4|Aerospace & Defense|ITA|2%|0.38|30.42|31.84|74.11|112.32|241.98|US, low tech exposure
-|4|Semiconductor|SMH/SOXQ/FSELX|2%|0.35/0.19|39.27|45.49|117.18|221.14|1140.42|SMH 1%, SOXQ 1%
-|4|Quantum|QTUM|2%|0.40|29.58|53.88|114.96|165.66|342.73|
-|4|International|IDMO/VXUS/SPDW/VEA|2%|0.25|16.81|28.48|53.72|69.91|123.07|IDMO 2.0%
-|5|Digital Asset|STCE>IBLC>FDIG|3%|0.30|17.84|42.02|212.36|196.71|-|STCE 3%
-|5|Bitcoin|IBIT/FBTC|2%|0.25|-|-6.63|93.58|106.45|-|IBIT 2%
-
