@@ -1,7 +1,7 @@
 
-## Long Term Investment Strategy
+# Long Term Investment Strategy
 
-### Portfolio Category
+## Portfolio Category
 |Category|Percentage|Benchmark|Investment Focus|
 |---|---|---|---|
 |Cash/Bond|Certain Amount|SGOV|For short-term expenses, 1-3 years|
@@ -10,9 +10,9 @@
 |Growth|35%|VGT|high growth, focusing on AI, information technology and semiconductor|
 |Digital Asset|5%|IBIT|high volatile, cryptocurrency industry and digital payments processing|
 
-## Fund Selections and Portfolio Picks
+# Fund Selections and Portfolio Picks
 
-### Value Funds and Low Information Technology Exposure
+## Value Funds and Low Information Technology Exposure
 
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -34,7 +34,7 @@
 | 1 | Utilities | FUTY | Fidelity MSCI Utilities Index ETF | US | - | 0.084 | 2.64 | 22.95 | ***** | 9.69 | 46.37 | 45.03 | 115.10 | NEE, CEG, SO, DUK, AEP, VST, SRE, D, EXC, XEL | VTV overlap |
 | 3 | Infrastructure | GRID | First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund | World | 3% | 0.56 | 1.0 | 27.31 | ***** | 21.15 | 58.41 | 100.05 | 355.90 | 123 holdings: SU:FR, ABBN:CH, ETN, NG:GB, JCI, PWR, TSLA | - |
 
-### Foundational, S&P 500 and Total Market
+## Foundational, S&P 500 and Total Market
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 2 | S&P500 | VOO | Vanguard 500 Index | US | 25% | 0.03 | 1.09 | 28.74 | ***** | 13.54 | 50.51 | 85.15 | 227.44 | NVDA, AAPL, MSFT, AMZN, AVGO, GOOGL, META, GOOG, TSLA, BRK/B | Similar to SPY, lower expense ratio NVDA 8.47 AAPL 6.88 MSFT 6.60 |
@@ -46,9 +46,9 @@
 | 2 | Total Market | FZROX | FIDELITY ZERO TOTAL MARKET INDEX | US | - | 0.0 | 1.10 | - | *** | 12.48 | 49.81 | 80.77 | - | 2528 holdings | Similar to VTI |
 | 2 | S&P500 Momentum | SPMO | Invesco S&P 500 Momentum ETF | US | 15% | 0.13 | - | 31.34 | ***** | 24.05 | 95.24 | 132.11 | 355.69 | 101 holdings: AVGO, NVDA, META, JPM, PLTR | Tactical/Rotational Outperformance AVGO 10.22 NVDA 9.95 META 7.51 JPM 5.22|
 
-### Growth, Sectional and International
+## Growth, Sectional and International
 
-- Tech giants such as GOOG, META, and AMZN are not classified in the information technology sector, so information technology sector funds VGT, IYW etc don't have them in the holdings.
+- <b>Tech giants such as GOOG, META, and AMZN are not classified in the information technology sector, so information technology sector funds VGT, IYW etc and Semiconductor funds don't have them in the holdings.</b>
 
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -72,7 +72,7 @@
 | 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
 | 4 | International | IDMO | Invesco S&P Intl Developed Momentum ETF | International | - | 0.25 | 2.35 | 16.81 | ***** | 28.48 | 53.72 | 69.91 | 123.07 | 192 holdings: RR:GB, HSBA:GB, SHOP:CA, SAN:ES, RHM:DE, Allianz:SE, CBA:AU, Siemens, BATS:GB, UCG:IT | Better than US in the last year |
 
-### Digital Assets, Bitcoin and Gold
+## Digital Assets, Bitcoin and Gold
 
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -84,7 +84,7 @@
 | 5 | Gold | GLDM | SPDR Gold MiniShares Trust | Gold | - | 0.10 | - | - | - | 58.73 | 105.77 | 128.16 | 233.17 | Gold | - |
 
 
-## Comparison of Digital Asset ETFs
+### Comparison of Digital Asset ETFs
 |ETF (Ticker)|Issuer|Expense Ratio (ER)|Stocks|Primary Investment Focus|Key Takeaway for Investor|
 |---|---|---|---|---|---|
 |STCE (Schwab)|Schwab|0.30% (Lowest)|43: CIFR, IREN, HIVE, BTDR, GLXY|Global companies benefiting from the development or use of cryptocurrencies and digital assets.|Best for cost-conscious investors seeking broad, thematic exposure.|
