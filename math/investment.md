@@ -32,7 +32,10 @@
 | 1 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | - | 0.10 | 1.78 | - | **** | -3.47 | 24.09 | 40.30 | 99.57 | 600 holdings: M, AL, FIVE, GATX, LEU | low tech exposure |
 | 1 | Health | XLV | Health Care Select Sector SPDR Fund | US | - | 0.08 | 1.69 | 27.70 | ***** | 6.95 | 21.57 | 40.08 | 119.63 | LLY, JNJ, ABBV, UNH, ABT, MRK, TMO, ISRG, AMGN, BSX | VTV overlap |
 | 1 | Utilities | FUTY | Fidelity MSCI Utilities Index ETF | US | - | 0.084 | 2.64 | 22.95 | ***** | 9.69 | 46.37 | 45.03 | 115.10 | NEE, CEG, SO, DUK, AEP, VST, SRE, D, EXC, XEL | VTV overlap |
-| 3 | Infrastructure | GRID | First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund | World | 3% | 0.56 | 1.0 | 27.31 | ***** | 21.15 | 58.41 | 100.05 | 355.90 | 123 holdings: SU:FR, ABBN:CH, ETN, NG:GB, JCI, PWR, TSLA | - |
+| 3 | Infrastructure | GRID | First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund | World | 1% | 0.56 | 1.0 | 27.31 | ***** | 21.15 | 58.41 | 100.05 | 355.90 | 123 holdings: SU:FR, ABBN:CH, ETN, NG:GB, JCI, PWR, TSLA | targeting the smart grid and electricity infrastructure |
+| 3 | Infrastructure | PAVE | Global X US Infrastructure Development ETF | World | 1% | 0.47 | 0.54 | 28.79 | ***** | 6.14 | 55.88 | 131.25 | - | 101 holdings: HWM, PWR, CRH, PH  | broad exposure, including construction and materials, a well-established and highly-rated option |
+| 3 | Natural Resources | NLR | Vaneck Uranium and Nuclear ETF | US | 1% | 0.56 | 0.82 | 25.37 | ***** | 34.61 | 57.38 | 81.39 | 83.95 | 28 holdings: CCO, CEG, OKLO, LEU, BWXT, DML  |  focused, higher-risk exposure to nuclear and uranium |
+
 
 ## Foundational, S&P 500 and Total Market
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
@@ -93,3 +96,6 @@
 |IBLC (iShares/BlackRock)|BlackRock|0.47%|52: IREN, COIN, CRCL, BMNR, APLD|Companies involved in blockchain and crypto technologies (rules-based global index).|High exposure to Information Technology (e.g., AMD, NVIDIA) and crypto pure-plays (Coinbase).|
 |BKCH (Global X)|Global X|0.50%|28: |Companies globally that derive profit from blockchain technology.|Diversified across sectors like software, services, and financials; a broad, fundamental approach.|
 |DAPP (VanEck)|VanEck|0.51% (Highest)|25: |Companies undergoing a Digital Transformation via blockchain and distributed ledger technology.|Most aggressive/pure-play focus, with a high concentration in crypto miners and related infrastructure.|
+
+## Miscellaneous 
+- Beta (β) is a measure of a stock's or ETF's price volatility in relation to the overall market, S&P 500.
