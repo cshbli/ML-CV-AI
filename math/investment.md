@@ -37,34 +37,39 @@
 ### Foundational, S&P 500 and Total Market
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2 | S&P500 | VOO | Vanguard 500 Index | US | 25% | 0.03 | 1.09 | 28.74 | ***** | 13.54 | 50.51 | 85.15 | 227.44 | NVDA, AAPL, MSFT, AMZN, AVGO, GOOGL, META, GOOG, TSLA, BRK/B | Similar to SPY, lower expense ratio |
+| 2 | S&P500 | VOO | Vanguard 500 Index | US | 25% | 0.03 | 1.09 | 28.74 | ***** | 13.54 | 50.51 | 85.15 | 227.44 | NVDA, AAPL, MSFT, AMZN, AVGO, GOOGL, META, GOOG, TSLA, BRK/B | Similar to SPY, lower expense ratio NVDA 8.47 AAPL 6.88 MSFT 6.60 |
 | 2 | S&P500 | IVV | iShares Core S&P 500 | US | - | 0.03 | 1.04 | - | ***** | - | - | - | - | - | Similar to VOO |
 | 2 | S&P500 | SPYM | State Street SPDR Portfolio S&P 500 | US | - | 0.02 | 1.10 | - | ***** | - | - | - | - | - | Similar to SPY; lower expense ratio |
 | 2 | S&P500 | FXAIX | Fidelity 500 Index | US | - | 0.015 | 1.10 | - | ***** | - | - | - | - | - | Similar to VOO |
 | 2 | S&P500 | FNILX | FIDELITY ZERO LARGE CAP INDEX | US | - | 0.0 | 1.10 | - | **** | - | - | - | - | - | Similar to VOO |
 | 2 | Total Market | VTI | Vanguard Total Stock Market Index Fund | US | - | 0.03 | 1.12 | 27.91 | *** | 12.16 | 49.25 | 75.61 | 213.17 | 3533 holdings | - |
 | 2 | Total Market | FZROX | FIDELITY ZERO TOTAL MARKET INDEX | US | - | 0.0 | 1.10 | - | *** | 12.48 | 49.81 | 80.77 | - | 2528 holdings | Similar to VTI |
-| 2 | S&P500 Momentum | SPMO | Invesco S&P 500 Momentum ETF | US | 15% | 0.13 | - | 31.34 | ***** | 24.05 | 95.24 | 132.11 | 355.69 | 101 holdings: AVGO, NVDA, META, JPM, PLTR | Tactical/Rotational Outperformance |
+| 2 | S&P500 Momentum | SPMO | Invesco S&P 500 Momentum ETF | US | 15% | 0.13 | - | 31.34 | ***** | 24.05 | 95.24 | 132.11 | 355.69 | 101 holdings: AVGO, NVDA, META, JPM, PLTR | Tactical/Rotational Outperformance AVGO 10.22 NVDA 9.95 META 7.51 JPM 5.22|
 
 ### Growth, Sectional and International
+
+- Tech giants such as GOOG, META, and AMZN are not classified in the information technology sector, so information technology sector funds VGT, IYW etc don't have them in the holdings.
+
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 3 | Large Growth | QQQM | Invesco Nasdaq 100 ETF | US | 10% | 0.15 | - | 34.64 | ***** | 21.48 | 58.86 | 102.69 | 437.82 | 101 holdings: NVDA, AAPL, MSFT, AVGO, AMZN | Maximum tech exposure; excludes all financial stocks; Similar to QQQ; lower expense ratio |
+| 3 | Large Growth | QQQM | Invesco Nasdaq 100 ETF | US | 10% | 0.15 | - | 34.64 | ***** | 21.48 | 58.86 | 102.69 | 437.82 | 101 holdings: NVDA, AAPL, MSFT, AVGO, AMZN | Maximum tech exposure; excludes all financial stocks; Similar to QQQ; lower expense ratio. NVDA 10.21, AAPL 8.33 MSFT 7.99 GOOG 6.57 |
 | 3 | Large Growth | FSPGX | Fidelity Large Cap Growth Index Fund | US | - | 0.035 | - | 34.64 | ***** | 19.89 | 64.51 | 100.43 | 377.22 | 395 holdings: NVDA, AAPL, MSFT, AVGO, AMZN, TSLA, META, GOOGL, GOOG, LLY | Similar to QQQM |
 | 3 | Large Growth | VUG | Vanguard Growth Index | US | - | 0.04 | 0.38 | - | **** | - | - | - | - | 163 holdings; Low-Cost Growth; NVDA, AAPL, MSFT, AMZN, AVGO | - |
 | 3 | Large Growth | SCHG | Schwab US Large-Cap Growth | US | - | 0.04 | 0.33 | - | ***** | - | - | - | - | 197 holdings; Similar as VUG; NVDA, AAPL, MSFT, AVGO, AMZN | - |
-| 4 | Technology | VGT | Vanguard Information Technology Index | US | 10% | 0.09 | 0.36 | 39.22 | ***** | 20.88 | 62.76 | 120.13 | 565.55 | 317 holdings; NVDA, AAPL, MSFT, AVGO, PLTR; without GOOG, META, AMZN | - |
+| 4 | Technology | VGT | Vanguard Information Technology Index | US | 10% | 0.09 | 0.36 | 39.22 | ***** | 20.88 | 62.76 | 120.13 | 565.55 | 317 holdings; NVDA, AAPL, MSFT, AVGO, PLTR; without GOOG, META, AMZN | NVDA 18.19, AAPL 14.29, MSFT 12.93 |
 | 4 | Technology | FTEC | Fidelity MSCI Information Technology Index | US | 5% | 0.08 | 0.41 | 39.23 | **** | 21.06 | 63.21 | 122.26 | 554.64 | 288 holdings: NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
-| 4 | Technology | XLK | Technology Select Sector SPDR Fund | US | - | 0.12 | 0.91 | - | **** | - | - | - | - | 141 holdings; NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
+| 4 | Technology | XLK | Technology Select Sector SPDR Fund | US | - | 0.12 | 0.91 | 40.06 | **** | 22.46 | 54.81 | 127.09 | 542.18 | 141 holdings; NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
 | 4 | Technology | IETC | iShares US Tech Independence Focused ETF | US | - | 0.18 | 0.32 | 42.15 | **** | 23.88 | 72.46 | 120.87 | 322.31 | 103 holdings: AVGO, PLTR, NVDA, AMZN, MSFT, CRM, ORCL, AAPL, IBM, CSCO | - |
+| 4 | Technology | IYW | iShares US Technology ETF | US | - | 0.38 | 0.09 | 38.84 | ***** | 24.70 | 69.13 | 139.61 | 610.98 | 146 holdings: NVDA, AAPL, MSFT, AVGO, META, PLTR, AMD, GOOGL, GOOG, ORCL | NVDA 17.10%, AAPL 14.32 MSFT 13.90 |
 | 4 | Technology | AIQ | Global X Artificial Intelligence & Technology ETF | World | - | 0.68 | 0.00 | 30.07 | **** | 29.16 | 68.82 | 88.21 | - | 92 holdings: AMD, Samsung, GOOGL, BABA, TSLA, AVGO, PLTR, AAPL, TSM, NVDA | - |
 | 4 | Technology | CHAT | Roundhill Generative Ai & Technology ETF | World |-| 0.75 | 0.00 | 29.64 | - | 51.14 | 102.83 | - | - | 47 holdings: NVDA, GOOGL, Hynix, AMD, ORCL, MSFT, Softbank, AVGO, ARM, META | - |
-| 4 | Aerospace & Defense | SHLD | Global X Defense Tech ETF | World | 2% | 0.50 | - | 30.42 | **** | 58.70 | 131.46 | 151.08 | - | PLTR, RTX, LMT, RHM:DE, BA_:GB, GD, LDOS, NOC, LHX, LDO:IT | World; PLTR Exposure |
-| 4 | Aerospace & Defense | ITA | iShares US Aerospace & Defense ETF | US | 1% | 0.38 | - | 36.30 | **** | 31.84 | 74.11 | 112.32 | 241.98 | GE, RTX, BA, HWM, GD, LMT, LHX, TDG, NOC, LHX, AXON | US; low tech exposure |
-| 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 3% | 0.35 | 0.28 | 39.27 | ***** | 45.49 | 117.18 | 221.14 | 1140.42 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | - |
-| 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | 2% | 0.19 | 0.43 | 40.22 | ***** | 42.59 | 86.73 | 134.63 | 850.89 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | Similar to SOXX, lower expense ratio |
-| 4 | Semiconductor | FSELX | Fidelity Select Semiconductors Portfolio | World | - | 0.62 | - | - | ***** | 30.01 | 87.63 | 166.31 | 465.66 | 57 holdings: NVDA, AVGO, MRVL, MU, NXP, LRCX, MPWP, ON, TSM | - |
-| 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | - |
+| 4 | Aerospace & Defense | SHLD | Global X Defense Tech ETF | World | 1% | 0.50 | - | 30.42 | **** | 58.70 | 131.46 | 151.08 | - | PLTR, RTX, LMT, RHM:DE, BA_:GB, GD, LDOS, NOC, LHX, LDO:IT | a modern, technologically-focused, and globally diversified defense sector |
+| 4 | Aerospace & Defense | ITA | iShares US Aerospace & Defense ETF | US | 1% | 0.38 | 0.39 | 36.30 | **** | 31.84 | 74.11 | 112.32 | 241.98 | 44 Holdings, GE, RTX, BA, HWM, GD, LMT, LHX, TDG, NOC, LHX, AXON | focus on industry-leading, large-cap companies |
+| 4 | Aerospace & Defense | XAR | State Street SPDR S&P Aerospace & Defense ETF | US | 1% | 0.35 | 0.19 | 36.29 | ***** | 30.46 | 83.26 | 101.21 | 321.31 | 42 holdings, AVAV, KTOS, RKLB, ACHR, ATI, BWXT, CRS, CW, HII, RTX | equal-weighted approach offers more balanced exposure to smaller companies |
+| 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 3% | 0.35 | 0.28 | 39.27 | ***** | 45.49 | 117.18 | 221.14 | 1140.42 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | NVDA 18.82%, TSM 9.58% AVGO 8.37% |
+| 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | 2% | 0.19 | 0.43 | 40.22 | ***** | 42.59 | 86.73 | 134.63 | 850.89 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | NVDA 10.84, AMD 9.79, AVGO 9.66 |
+| 4 | Semiconductor | FSELX | Fidelity Select Semiconductors Portfolio | World | - | 0.62 | - | - | ***** | 30.01 | 87.63 | 166.31 | 465.66 | 57 holdings: NVDA, AVGO, MRVL, MU, NXP, LRCX, MPWP, ON, TSM | NVDA 25.73%, AVGO 12.44%|
+| 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
 | 4 | International | IDMO | Invesco S&P Intl Developed Momentum ETF | International | - | 0.25 | 2.35 | 16.81 | ***** | 28.48 | 53.72 | 69.91 | 123.07 | 192 holdings: RR:GB, HSBA:GB, SHOP:CA, SAN:ES, RHM:DE, Allianz:SE, CBA:AU, Siemens, BATS:GB, UCG:IT | Better than US in the last year |
 
 ### Digital Assets, Bitcoin and Gold
