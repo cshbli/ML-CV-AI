@@ -30,8 +30,8 @@
 | 1.5 | Large Value | DGRO | iShares Core Dividend Growth ETF | US | - | 0.08 | 2.20 | - | ***** | - | - | - | - | 406 holdings: AAPL, JPM, JNJ, MSFT, XOM, ABBV, AVGO, PG, UNH, HD | Info tech exposure |
 | 1 | Large Blend | USMV | iShares MSCI USA Min Vol Factor ETF | US | - | 0.15 | 1.44 | 24.72 | ** | 0.82 | 26.11 | 41.99 | 125.90 | IBM, MCK, COR, APH, XOM, CSCO, JNJ, NVDA, DUK, SO | low volatility |
 | 1 | Large Value | SPLV | Invesco S&P 500 Low Volatility ETF | US | - | 0.25 | 2.24 | 24.04 | ** | -2.24 | 20.54 | 31.86 | 88.15 | ATO, EVRG, WEC, COR, KO, CMS, JNJ, TJX, PPL, CAH | low volatility |
-| 1 | Small Value | AVUV | Avantis US Small Cap Value ETF | US | 1% | 0.25 | 1.57 | 13.26 | **** | -4.13 | 26.40 | 78.91 | - | 765 holdings: M, AL, FIVE, GATX, LEU | Deep discount, interest rate sensitive  |
-| 1 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | 1% | 0.10 | 1.78 | 17.28 | **** | -3.47 | 24.09 | 40.30 | 99.57 | 459 holdings: SNDK, BWA, QRVO, LNC, JXN | a contrarian bet that the historic valuation gap between large and small companies will eventually close |
+| 1 | Small Value | AVUV | Avantis US Small Cap Value ETF | US | 1% | 0.25 | 1.57 | 13.26 | **** | -4.13 | 26.40 | 78.91 | - | 765 holdings: M, AL, FIVE, GATX, LEU | Deep discount, interest rate sensitive, active managed  |
+| 1 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | 1% | 0.10 | 1.78 | 17.28 | **** | -3.47 | 24.09 | 40.30 | 99.57 | 459 holdings: SNDK, BWA, QRVO, LNC, JXN | a contrarian bet that the historic valuation gap between large and small companies will eventually close, passive |
 | 1 | Health | XLV | Health Care Select Sector SPDR Fund | US | - | 0.08 | 1.69 | 27.70 | ***** | 6.95 | 21.57 | 40.08 | 119.63 | LLY, JNJ, ABBV, UNH, ABT, MRK, TMO, ISRG, AMGN, BSX | VTV overlap |
 | 1 | Utilities | FUTY | Fidelity MSCI Utilities Index ETF | US | - | 0.084 | 2.64 | 22.95 | ***** | 9.69 | 46.37 | 45.03 | 115.10 | NEE, CEG, SO, DUK, AEP, VST, SRE, D, EXC, XEL | VTV overlap |
 | 3 | Infrastructure | GRID | First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund | World | 1% | 0.56 | 1.0 | 27.31 | ***** | 21.15 | 58.41 | 100.05 | 355.90 | 123 holdings: SU:FR, ABBN:CH, ETN, NG:GB, JCI, PWR, TSLA | targeting the smart grid and electricity infrastructure |
@@ -52,6 +52,7 @@
 | 2 | S&P500 | FNILX | FIDELITY ZERO LARGE CAP INDEX | US | - | 0.0 | 1.10 | - | **** | - | - | - | - | - | Similar to VOO |
 | 2 | Total Market | VTI | Vanguard Total Stock Market Index Fund | US | - | 0.03 | 1.12 | 27.91 | *** | 12.16 | 49.25 | 75.61 | 213.17 | 3533 holdings | - |
 | 2 | Total Market | FZROX | FIDELITY ZERO TOTAL MARKET INDEX | US | - | 0.0 | 1.10 | - | *** | 12.48 | 49.81 | 80.77 | - | 2528 holdings | Similar to VTI |
+| 2 | S&P500 | SPXL | Direxion Daily S&P 500 Bull 3X Shares | US | - | 0.87 | - | 29.53 | - | 20.60 | 143.63 | 221.12 | 900.47 | - | active trading only, not suitable for long-term holding |
 | 2 | S&P500 Momentum | SPMO | Invesco S&P 500 Momentum ETF | US | 15% | 0.13 | - | 31.34 | ***** | 24.05 | 95.24 | 132.11 | 355.69 | 101 holdings: AVGO, NVDA, META, JPM, PLTR | Tactical/Rotational Outperformance AVGO 10.22 NVDA 9.95 META 7.51 JPM 5.22|
 
 ## Growth, Sectional and International
@@ -62,6 +63,8 @@
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 3 | Large Growth | QQQM | Invesco Nasdaq 100 ETF | US | 10% | 0.15 | - | 34.64 | ***** | 21.48 | 58.86 | 102.69 | 437.82 | 101 holdings: NVDA, AAPL, MSFT, AVGO, AMZN | Maximum tech exposure; excludes all financial stocks; Similar to QQQ; lower expense ratio. NVDA 10.21, AAPL 8.33 MSFT 7.99 GOOG 6.57 |
+| 3 | Large Growth | QLD | Proshares Ultra QQQ | US | - | 0.95 | - | 17.71 | - | 32.72 | 107.90 | 163.16 | 1287.79 | - | active trading only, not suitable for long-term holding |
+| 3 | Large Growth | TQQQ | Proshares Ultrapro QQQ | US | - | 0.82 | - | 17.86 | - | 36.54 | 146.56 | 160.35 | 2006.28 | - | active trading only, not suitable for long-term holding |
 | 3 | Large Growth | FSPGX | Fidelity Large Cap Growth Index Fund | US | - | 0.035 | - | 34.64 | ***** | 19.89 | 64.51 | 100.43 | 377.22 | 395 holdings: NVDA, AAPL, MSFT, AVGO, AMZN, TSLA, META, GOOGL, GOOG, LLY | Similar to QQQM |
 | 3 | Large Growth | VUG | Vanguard Growth Index | US | - | 0.04 | 0.38 | 39.47 | **** | 19.97 | 64.30 | 98.72 | 346.99 | 163 holdings; Low-Cost Growth; NVDA, AAPL, MSFT, AMZN, AVGO | - |
 | 3 | Large Growth | SCHG | Schwab US Large-Cap Growth | US | - | 0.04 | 0.33 | 37.93 | ***** | 18.03 | 64.78 | 110.26 | 381.21 | 197 holdings; Similar as VUG; NVDA, AAPL, MSFT, AVGO, AMZN | - |
@@ -78,6 +81,7 @@
 | 4 | Aerospace & Defense | XAR | State Street SPDR S&P Aerospace & Defense ETF | US | 1% | 0.35 | 0.19 | 36.29 | ***** | 30.46 | 83.26 | 101.21 | 321.31 | 42 holdings, AVAV, KTOS, RKLB, ACHR, ATI, BWXT, CRS, CW, HII, RTX | equal-weighted approach offers more balanced exposure to smaller companies |
 | 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 3% | 0.35 | 0.28 | 39.27 | ***** | 45.49 | 117.18 | 221.14 | 1140.42 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | NVDA 18.82%, TSM 9.58% AVGO 8.37% |
 | 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | 2% | 0.19 | 0.43 | 40.22 | ***** | 42.59 | 86.73 | 134.63 | 850.89 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | NVDA 10.84, AMD 9.79, AVGO 9.66 |
+| 4 | Semiconductor | SOXL | Direxion Daily Semiconductor Bull 3X Shares | US | - | 0.75 | - | 40.43 | - | 47.04 | 77.69 | 32.44 | 1929.81 | - | active trading only, not suitable for long-term holding |
 | 4 | Semiconductor | FSELX | Fidelity Select Semiconductors Portfolio | World | - | 0.62 | - | - | ***** | 30.01 | 87.63 | 166.31 | 465.66 | 57 holdings: NVDA, AVGO, MRVL, MU, NXP, LRCX, MPWP, ON, TSM | NVDA 25.73%, AVGO 12.44%|
 | 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
 | 4 | International | IDMO | Invesco S&P Intl Developed Momentum ETF | International | - | 0.25 | 2.35 | 16.81 | ***** | 28.48 | 53.72 | 69.91 | 123.07 | 192 holdings: RR:GB, HSBA:GB, SHOP:CA, SAN:ES, RHM:DE, Allianz:SE, CBA:AU, Siemens, BATS:GB, UCG:IT | Better than US in the last year |
@@ -91,8 +95,8 @@
 | 5 | Digital Asset | STCE | Schwab Crypto Thematic ETF | World | 2% | 0.30 | 0.00 | 17.84 | *** | 42.02 | 212.36 | 196.71 | - | 43 holdings: CIFR, IREN, Bitfarms, HIVE:CA, BTDR, GLXY, HUT, CLSK, CAN, BTBT | - |
 | 5 | Digital Asset | IBLC | Amplify Transformational Data Sharing ETF | World | - | 0.60 | 0.00 | 19.12 | **** | 37.28 | 181.56 | 170.11 | - | 55 holdings: GBTC, BTBT, CIFR, HIVE:CA, RIOT, MARA, BTDR, CLSK, GLXY, HUT | - |
 | 5 | Digital Asset | FDIG | Fidelity Crypto Industry and Digital Payments ETF | World | - | 0.45 | 0.00 | 18.76 | **** | 36.45 | 170.22 | 158.34 | - | 48 holdings: GBTC, BTBT, CIFR, HIVE:CA, RIOT, MARA, BTDR, CLSK, GLXY, HUT | - |
-| 5 | Bitcoin | IBIT | iShares Bitcoin Trust ETF | Bitcoin | 1% | 0.25 | - | - | - | -6.63 | 93.58 | 106.45 | - | Bitcoin | Bitcoin exposure via trust structure |
-| 5 | Bitcoin | FBTC | Fidelity Bitcoin ETF | Bitcoin | - | 0.25 | - | - | - | -6.87 | 93.44 | 106.21 | - | Bitcoin | Fidelity |
+| 5 | Bitcoin | IBIT | iShares Bitcoin Trust ETF | Bitcoin | 1% | 0.25 | - | - | - | -6.63 | 93.58 | - | - | Bitcoin | Custodian: coinbase |
+| 5 | Bitcoin | FBTC | Fidelity Bitcoin ETF | Bitcoin | - | 0.25 | - | - | - | -6.87 | 93.44 | - | - | Bitcoin | Custodian: Fidelity Digital Assets (in-house) |
 | 5 | Gold | GLDM | SPDR Gold MiniShares Trust | Gold | 1% | 0.10 | - | - | - | 58.73 | 105.77 | 128.16 | 233.17 | Gold | - |
 | 5 | Precious Metals | GDX | VanEck Gold Miners ETF | World | - | 0.51 | 0.37 | 25.85 | **** | 121.00 | 166.76 | 135.71 | 461.23 | 49 holdings, AEM, NEM, ABX, AU, GFI |The largest and most liquid gold miner ETF. It tracks the NYSE Arca Gold Miners Index |
 | 5 | Precious Metals | GDXJ | VanEck Junior Gold Miners ETF | World | - | 0.51 | 0.01 | 26.42 | ** | 129.19 | 185.70 | 111.70 | 442.33 | 96 holdings, PAAS, CDE, EQX, AGI, RGLD | If gold prices surge, GDXJ historically outperforms GDX due to the leverage inherent in smaller miners' profit margins |
