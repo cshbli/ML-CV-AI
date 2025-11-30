@@ -14,13 +14,15 @@
 
 ## Value Funds and Low Information Technology Exposure
 
+- <b>20% of the total portfolio</b>
+
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 0.5 | Ultrashort Bond | FLOT | iShares Floating Rate Bond ETF | World | - | 0.16 | 4.63 | - | **** | - | - | - | - | 477 holdings | - |
 | 0.5 | Ultrashort Bond | SGOV | iShares 0-3 Month Treasury Bond ETF | US | - | 0.09 | 3.96 | - | *** | - | - | - | - | 24 holdings | state tax-exempt |
-| 1 | Large Value | VTV | Vanguard Value Index Fund ETF | US | 10% | 0.04 | 2.04 | 21.47 | **** | 4.73 | 34.23 | 59.87 | 128.26 | 317 holdings: JPM, BRK/B, XOM, JNJ, WMT, ABBV, HD, PG, BAC, UNH | low tech exposure |
+| 1 | Large Value | VTV | Vanguard Value Index Fund ETF | US | 8% | 0.04 | 2.04 | 21.47 | **** | 4.73 | 34.23 | 59.87 | 128.26 | 317 holdings: JPM, BRK/B, XOM, JNJ, WMT, ABBV, HD, PG, BAC, UNH | low tech exposure |
 | 1 | Large Value | SCHV | Schwab US Large-Cap Value ETF | US | - | 0.04 | 2.04 | - | **** | 5.19 | 33.50 | 49.27 | 104.64 | 563 holdings: BRK/B, JPM, XOM, JNJ, WMT | Similar to VTV |
-| 1 | Large Value | SCHD | Schwab US Dividend Equity ETF | US | 5% | 0.06 | 3.92 | 17.51 | *** | -6.57 | 15.23 | 27.10 | 109.97 | Dow Jones U.S. Dividend 100 Index, 103 holdings: CSCO, ABBV, AMGN, MRK, LMT | strong dividend history + stable, low tech exposure |
+| 1 | Large Value | SCHD | Schwab US Dividend Equity ETF | US | 5% | 0.06 | 3.92 | 17.51 | *** | -6.57 | 15.23 | 27.10 | 109.97 | Dow Jones U.S. Dividend 100 Index, 103 holdings: CSCO, ABBV, AMGN, MRK, LMT | SCHD has tended to outperform in bear markets due to its defensive holdings and lower volatility |
 | 1.5 | Large Value | FDVV | Fidelity High Dividend ETF | US | 2% | 0.16 | 2.81 | 20.88 | ***** | 8.32 | 41.39 | 78.78 | 128.09 | 121 holdings: NVDA, AAPL, MSFT, AVGO, JPM, ABN, V, XOM, BAC, KO | Info tech exposure |
 | 1.5 | Large Value | FNDX | Schwab Fundamental US Large Company ETF | US | - | 0.25 | 1.70 | - | ***** | - | - | - | - | 732 holdings: AAPL, MSFT, GOOGL, XOM, GOOG | Info tech exposure |
 | 1.5 | Large Value | VYM | Vanguard High Dividend Yield Index Fund ETF | US | - | 0.06 | 2.45 | - | ***** | - | - | - | - | 569 holdings: AVGO, JPM, XOM, JNJ, WMT, ABBV, HD, BAC, PG, UNH | Info tech exposure |
@@ -28,8 +30,8 @@
 | 1.5 | Large Value | DGRO | iShares Core Dividend Growth ETF | US | - | 0.08 | 2.20 | - | ***** | - | - | - | - | 406 holdings: AAPL, JPM, JNJ, MSFT, XOM, ABBV, AVGO, PG, UNH, HD | Info tech exposure |
 | 1 | Large Blend | USMV | iShares MSCI USA Min Vol Factor ETF | US | - | 0.15 | 1.44 | 24.72 | ** | 0.82 | 26.11 | 41.99 | 125.90 | IBM, MCK, COR, APH, XOM, CSCO, JNJ, NVDA, DUK, SO | low volatility |
 | 1 | Large Value | SPLV | Invesco S&P 500 Low Volatility ETF | US | - | 0.25 | 2.24 | 24.04 | ** | -2.24 | 20.54 | 31.86 | 88.15 | ATO, EVRG, WEC, COR, KO, CMS, JNJ, TJX, PPL, CAH | low volatility |
-| 1 | Small Value | AVUV | Avantis US Small Cap Value ETF | US | - | 0.25 | 1.57 | 13.26 | **** | -4.13 | 26.40 | 78.91 | 102.28 | 765 holdings: M, AL, FIVE, GATX, LEU | low tech exposure |
-| 1 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | - | 0.10 | 1.78 | - | **** | -3.47 | 24.09 | 40.30 | 99.57 | 600 holdings: M, AL, FIVE, GATX, LEU | low tech exposure |
+| 1 | Small Value | AVUV | Avantis US Small Cap Value ETF | US | 1% | 0.25 | 1.57 | 13.26 | **** | -4.13 | 26.40 | 78.91 | - | 765 holdings: M, AL, FIVE, GATX, LEU | Deep discount, interest rate sensitive  |
+| 1 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | 1% | 0.10 | 1.78 | 17.28 | **** | -3.47 | 24.09 | 40.30 | 99.57 | 459 holdings: SNDK, BWA, QRVO, LNC, JXN | a contrarian bet that the historic valuation gap between large and small companies will eventually close |
 | 1 | Health | XLV | Health Care Select Sector SPDR Fund | US | - | 0.08 | 1.69 | 27.70 | ***** | 6.95 | 21.57 | 40.08 | 119.63 | LLY, JNJ, ABBV, UNH, ABT, MRK, TMO, ISRG, AMGN, BSX | VTV overlap |
 | 1 | Utilities | FUTY | Fidelity MSCI Utilities Index ETF | US | - | 0.084 | 2.64 | 22.95 | ***** | 9.69 | 46.37 | 45.03 | 115.10 | NEE, CEG, SO, DUK, AEP, VST, SRE, D, EXC, XEL | VTV overlap |
 | 3 | Infrastructure | GRID | First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund | World | 1% | 0.56 | 1.0 | 27.31 | ***** | 21.15 | 58.41 | 100.05 | 355.90 | 123 holdings: SU:FR, ABBN:CH, ETN, NG:GB, JCI, PWR, TSLA | targeting the smart grid and electricity infrastructure |
@@ -38,6 +40,9 @@
 
 
 ## Foundational, S&P 500 and Total Market
+
+- <b>40% of the total portfolio</b>
+
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 2 | S&P500 | VOO | Vanguard 500 Index | US | 25% | 0.03 | 1.09 | 28.74 | ***** | 13.54 | 50.51 | 85.15 | 227.44 | NVDA, AAPL, MSFT, AMZN, AVGO, GOOGL, META, GOOG, TSLA, BRK/B | Similar to SPY, lower expense ratio NVDA 8.47 AAPL 6.88 MSFT 6.60 |
@@ -51,6 +56,7 @@
 
 ## Growth, Sectional and International
 
+- <b>35% of the total portfolio</b>
 - <b>Tech giants such as GOOG, META, and AMZN are not classified in the information technology sector, so information technology sector funds VGT, IYW etc and Semiconductor funds don't have them in the holdings.</b>
 
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
@@ -78,14 +84,19 @@
 
 ## Digital Assets, Bitcoin and Gold
 
+- <b>5% of the total portfolio</b>
+
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 5 | Digital Asset | STCE | Schwab Crypto Thematic ETF | World | 3% | 0.30 | 0.00 | 17.84 | *** | 42.02 | 212.36 | 196.71 | - | 43 holdings: CIFR, IREN, Bitfarms, HIVE:CA, BTDR, GLXY, HUT, CLSK, CAN, BTBT | - |
+| 5 | Digital Asset | STCE | Schwab Crypto Thematic ETF | World | 2% | 0.30 | 0.00 | 17.84 | *** | 42.02 | 212.36 | 196.71 | - | 43 holdings: CIFR, IREN, Bitfarms, HIVE:CA, BTDR, GLXY, HUT, CLSK, CAN, BTBT | - |
 | 5 | Digital Asset | IBLC | Amplify Transformational Data Sharing ETF | World | - | 0.60 | 0.00 | 19.12 | **** | 37.28 | 181.56 | 170.11 | - | 55 holdings: GBTC, BTBT, CIFR, HIVE:CA, RIOT, MARA, BTDR, CLSK, GLXY, HUT | - |
 | 5 | Digital Asset | FDIG | Fidelity Crypto Industry and Digital Payments ETF | World | - | 0.45 | 0.00 | 18.76 | **** | 36.45 | 170.22 | 158.34 | - | 48 holdings: GBTC, BTBT, CIFR, HIVE:CA, RIOT, MARA, BTDR, CLSK, GLXY, HUT | - |
-| 5 | Bitcoin | IBIT | iShares Bitcoin Trust ETF | Bitcoin | 2% | 0.25 | - | - | - | -6.63 | 93.58 | 106.45 | - | Bitcoin | Bitcoin exposure via trust structure |
+| 5 | Bitcoin | IBIT | iShares Bitcoin Trust ETF | Bitcoin | 1% | 0.25 | - | - | - | -6.63 | 93.58 | 106.45 | - | Bitcoin | Bitcoin exposure via trust structure |
 | 5 | Bitcoin | FBTC | Fidelity Bitcoin ETF | Bitcoin | - | 0.25 | - | - | - | -6.87 | 93.44 | 106.21 | - | Bitcoin | Fidelity |
-| 5 | Gold | GLDM | SPDR Gold MiniShares Trust | Gold | - | 0.10 | - | - | - | 58.73 | 105.77 | 128.16 | 233.17 | Gold | - |
+| 5 | Gold | GLDM | SPDR Gold MiniShares Trust | Gold | 1% | 0.10 | - | - | - | 58.73 | 105.77 | 128.16 | 233.17 | Gold | - |
+| 5 | Precious Metals | GDX | VanEck Gold Miners ETF | World | - | 0.51 | 0.37 | 25.85 | **** | 121.00 | 166.76 | 135.71 | 461.23 | 49 holdings, AEM, NEM, ABX, AU, GFI |The largest and most liquid gold miner ETF. It tracks the NYSE Arca Gold Miners Index |
+| 5 | Precious Metals | GDXJ | VanEck Junior Gold Miners ETF | World | - | 0.51 | 0.01 | 26.42 | ** | 129.19 | 185.70 | 111.70 | 442.33 | 96 holdings, PAAS, CDE, EQX, AGI, RGLD | If gold prices surge, GDXJ historically outperforms GDX due to the leverage inherent in smaller miners' profit margins |
+| 5 | Precious Metals | RING | iShares MSCI Global Gold Miners ETF | World | 1% | 0.39 | 0.59 | 23.39 | **** | 129.75 | 188.15 | 142.26 | 510.88 | 86 holdings, NEM, AEM, ABX, WPM, GFI | It tracks the MSCI ACWI Select Gold Miners Investable Market Index. It is slightly more concentrated in the very top miners (like Newmont and Agnico Eagle) than GDX. |
 
 
 ### Comparison of Digital Asset ETFs
