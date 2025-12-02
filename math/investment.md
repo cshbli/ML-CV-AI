@@ -87,23 +87,44 @@
 | 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
 | 4 | International | IDMO | Invesco S&P Intl Developed Momentum ETF | International | - | 0.25 | 2.35 | 16.81 | ***** | 28.48 | 53.72 | 69.91 | 123.07 | 192 holdings: RR:GB, HSBA:GB, SHOP:CA, SAN:ES, RHM:DE, Allianz:SE, CBA:AU, Siemens, BATS:GB, UCG:IT | Better than US in the last year |
 
-## Digital Assets, Bitcoin and Gold
+## Digital Assets, Bitcoin, Gold and Silver
 
 - <b>5% of the total portfolio</b>
 
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 5 | Digital Asset | STCE | Schwab Crypto Thematic ETF | World | 1% | 0.30 | 0.00 | 17.84 | *** | 42.02 | 212.36 | 196.71 | - | 43 holdings: CIFR, IREN, Bitfarms, HIVE:CA, BTDR, GLXY, HUT, CLSK, CAN, BTBT | - |
+| 5 | Digital Asset | STCE | Schwab Crypto Thematic ETF | World | - | 0.30 | 0.00 | 17.84 | *** | 42.02 | 212.36 | 196.71 | - | 43 holdings: CIFR, IREN, Bitfarms, HIVE:CA, BTDR, GLXY, HUT, CLSK, CAN, BTBT | - |
 | 5 | Digital Asset | IBLC | Amplify Transformational Data Sharing ETF | World | - | 0.60 | 0.00 | 19.12 | **** | 37.28 | 181.56 | 170.11 | - | 55 holdings: GBTC, BTBT, CIFR, HIVE:CA, RIOT, MARA, BTDR, CLSK, GLXY, HUT | - |
 | 5 | Digital Asset | FDIG | Fidelity Crypto Industry and Digital Payments ETF | World | - | 0.45 | 0.00 | 18.76 | **** | 36.45 | 170.22 | 158.34 | - | 48 holdings: GBTC, BTBT, CIFR, HIVE:CA, RIOT, MARA, BTDR, CLSK, GLXY, HUT | - |
 | 5 | Bitcoin | IBIT | iShares Bitcoin Trust ETF | Bitcoin | - | 0.25 | - | - | - | -6.63 | 93.58 | - | - | Bitcoin | Custodian: coinbase |
-| 5 | Bitcoin | FBTC | Fidelity Bitcoin ETF | Bitcoin | 1% | 0.25 | - | - | - | -6.87 | 93.44 | - | - | Bitcoin | Custodian: Fidelity Digital Assets (in-house) |
+| 5 | Bitcoin | FBTC | Fidelity Bitcoin ETF | Bitcoin | 2% | 0.25 | - | - | - | -6.87 | 93.44 | - | - | Bitcoin | Custodian: Fidelity Digital Assets (in-house) |
 | 5 | Gold | GLDM | SPDR Gold MiniShares Trust | Gold | 1% | 0.10 | - | - | - | 58.73 | 105.77 | 128.16 | 233.17 | Gold | - |
 | 5 | Precious Metals | GDX | VanEck Gold Miners ETF | World | - | 0.51 | 0.37 | 25.85 | **** | 121.00 | 166.76 | 135.71 | 461.23 | 49 holdings, AEM, NEM, ABX, AU, GFI |The largest and most liquid gold miner ETF. It tracks the NYSE Arca Gold Miners Index |
 | 5 | Precious Metals | GDXJ | VanEck Junior Gold Miners ETF | World | - | 0.51 | 0.01 | 26.42 | ** | 129.19 | 185.70 | 111.70 | 442.33 | 96 holdings, PAAS, CDE, EQX, AGI, RGLD | If gold prices surge, GDXJ historically outperforms GDX due to the leverage inherent in smaller miners' profit margins |
-| 5 | Precious Metals | RING | iShares MSCI Global Gold Miners ETF | World | 1% | 0.39 | 0.59 | 23.39 | **** | 129.75 | 188.15 | 142.26 | 510.88 | 86 holdings, NEM, AEM, ABX, WPM, GFI | It tracks the MSCI ACWI Select Gold Miners Investable Market Index. It is slightly more concentrated in the very top miners (like Newmont and Agnico Eagle) than GDX. |
+| 5 | Precious Metals | RING | iShares MSCI Global Gold Miners ETF | World | - | 0.39 | 0.59 | 23.39 | **** | 129.75 | 188.15 | 142.26 | 510.88 | 86 holdings, NEM, AEM, ABX, WPM, GFI | It tracks the MSCI ACWI Select Gold Miners Investable Market Index. It is slightly more concentrated in the very top miners (like Newmont and Agnico Eagle) than GDX. |
 | 5 | Metals and Mining | XME | State Street SPDR S&P Metals & Mining ETF | US | 1% | 0.35 | 0.46 | 25.72 | ***** | 40.80 | 70.86 | 194.91 | 494.43 | 33 holdings, LEU, UEC, AA, STLD, HL | broader, diversified exposure to the entire US metals and mining sector, risk associated with a more cyclical industry. |
+| 5 | Silver | SIVR | Abrdn Physical Silver Shares ETF | Silver | 1% | 0.30 | - | - | - | 89.42 | 134.74 | 135.94 | 286.13 | Silver | - |
+| 5 | Precious Metals | SIL | Global X Silver Miners ETF | World | - | 0.65 | - | - | ** | 114.24 | 181.33 | 85.53 | 284.58 | 42 holdings | - |
 
+### Gold to Silver Ratio
+
+This ratio is used by precious metals investors as an indicator of the relative value of the two metals, helping to inform their trading strategies.
+
+- High ratio: A high ratio suggests that silver is undervalued relative to gold. For example, if the ratio is 80:1, meaning one ounce of gold costs 80 ounces of silver, it could be a sign that silver is "cheap" and presents a potential buying opportunity for investors who believe the ratio will revert to its historical average.
+- Low ratio: Conversely, a low ratio indicates that silver is expensive relative to gold. This might signal a buying opportunity for gold.
+- Safe-haven indicator: The ratio can also serve as a measure of market sentiment. During times of economic uncertainty, investors often flock to gold as a traditional safe-haven asset, causing its price to rise faster than silver's and widening the ratio. Silver's value is more tied to industrial demand, so during periods of economic stability, silver can outperform gold, narrowing the ratio.
+
+#### What's the neural range of gold to silver ratio?
+
+- Over the last several decades, a "normal" or "neutral" range for the gold to silver ratio has been considered to be roughly <b>50:1 to 80:1.</b> 
+- High ratio (above 80:1): Some investors may see this as a sign that silver is undervalued relative to gold and may consider buying silver or trading some gold for silver.
+- Low ratio (below 50:1): Conversely, a low ratio could indicate that gold is undervalued relative to silver, potentially signaling a buying opportunity for gold.
+
+#### Historical context
+
+- In the 20th century, the average ratio was about <b>47:1</b>.
+- Over the past 30 years, the average has been closer to <b>68:1</b>.
+- The ratio has reached extreme levels in recent history, such as peaking above <b>125:1</b> during the market turmoil of March 2020 at the beginning of the COVID-19 pandemic.
 
 ### Comparison of Digital Asset ETFs
 |ETF (Ticker)|Issuer|Expense Ratio (ER)|Stocks|Primary Investment Focus|Key Takeaway for Investor|
