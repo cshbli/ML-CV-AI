@@ -4,11 +4,11 @@
 ## Portfolio Category
 |Category|Percentage|Benchmark|Investment Focus|
 |---|---|---|---|
-|Cash/Bond|Certain Amount|SGOV|For short-term expenses, 1-3 years|
+|Cash/Bond|Certain Amount|SGOV|For short-term expenses, cash deposit|
 |Value|20%|VTV|low volatile, well-established companies, defensive positions when market has a downturn.|
-|Foundation|40%|VOO|S&P 500, broad market|
-|Growth|35%|VGT|high growth, focusing on AI, information technology and semiconductor|
-|Digital Asset|5%|IBIT|high volatile, cryptocurrency industry and digital payments processing|
+|Foundation|40%|SPMO/VOO|S&P 500, broad market|
+|Growth|35%|VGT/QQQM|high growth, focusing on AI, information technology and semiconductor|
+|Bitcoin, Gold and Silver|5%|FBTC|high volatile, cryptocurrency industry and digital payments processing|
 
 # Fund Selections and Portfolio Picks
 
