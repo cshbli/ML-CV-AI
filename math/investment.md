@@ -76,7 +76,7 @@
 | 4 | Technology | XLK | Technology Select Sector SPDR Fund | US | - | 0.12 | 0.91 | 40.06 | **** | 22.46 | 54.81 | 127.09 | 542.18 | 141 holdings; NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
 | 4 | Technology | IETC | iShares US Tech Independence Focused ETF | US | - | 0.18 | 0.32 | 42.15 | **** | 23.88 | 72.46 | 120.87 | - | 103 holdings: AVGO, PLTR, NVDA, AMZN, MSFT, CRM, ORCL, AAPL, IBM, CSCO | - |
 | 4 | Technology | IYW | iShares US Technology ETF | US | - | 0.38 | 0.09 | 38.84 | ***** | 24.70 | 69.13 | 139.61 | 610.98 | 146 holdings: NVDA, AAPL, MSFT, AVGO, META, PLTR, AMD, GOOGL, GOOG, ORCL | NVDA 17.10%, AAPL 14.32 MSFT 13.90 |
-| 4 | Technology | MAGS | Roundhill Magnificent Seven ETF | US | 5% | 0.29 | 1.94 | - | - | 29.00 | 104.10 | - | - | NVDA, GOOGL, AMZN, TSLA, AAPL, MSFT, META | - |
+| 4 | Technology | MAGS | Roundhill Magnificent Seven ETF | US | 3% | 0.29 | 1.94 | - | - | 29.00 | 104.10 | - | - | NVDA, GOOGL, AMZN, TSLA, AAPL, MSFT, META | - |
 | 4 | Technology | AIQ | Global X Artificial Intelligence & Technology ETF | World | - | 0.68 | 0.00 | 30.07 | **** | 29.16 | 68.82 | 88.21 | - | 92 holdings: AMD, Samsung, GOOGL, BABA, TSLA, AVGO, PLTR, AAPL, TSM, NVDA | - |
 | 4 | Technology | CHAT | Roundhill Generative Ai & Technology ETF | World |-| 0.75 | 0.00 | 29.64 | - | 51.14 | 102.83 | - | - | 47 holdings: NVDA, GOOGL, Hynix, AMD, ORCL, MSFT, Softbank, AVGO, ARM, META | - |
 | 4 | Aerospace & Defense | SHLD | Global X Defense Tech ETF | World | 3% | 0.50 | - | 30.42 | **** | 58.70 | 131.46 | 151.08 | - | PLTR, RTX, LMT, RHM:DE, BA_:GB, GD, LDOS, NOC, LHX, LDO:IT | a modern, technologically-focused, and globally diversified defense sector |
@@ -85,6 +85,7 @@
 | 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 3% | 0.35 | 0.28 | 39.27 | ***** | 45.49 | 117.18 | 221.14 | 1140.42 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | NVDA 18.82%, TSM 9.58% AVGO 8.37% |
 | 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | 2% | 0.19 | 0.43 | 40.22 | ***** | 42.59 | 86.73 | 134.63 | 850.89 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | NVDA 10.84, AMD 9.79, AVGO 9.66 |
 | 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
+| 4 | Robotics | FBOT | FIDELITY DISRUPTIVE AUTOMATION ETF | World | 2% | 0.50 | 0.45 | 31.35 | ** | 16.67 | 40.96 | - | - | 56 holdings: 2330:TW, TER, NVDA, DE, GOOG, PLTR, SIE:DE, AXON, 6383:JP, 300124:CN | - |
 | 4 | International | IDMO | Invesco S&P Intl Developed Momentum ETF | International | - | 0.25 | 2.35 | 16.81 | ***** | 28.48 | 53.72 | 69.91 | 123.07 | 192 holdings: RR:GB, HSBA:GB, SHOP:CA, SAN:ES, RHM:DE, Allianz:SE, CBA:AU, Siemens, BATS:GB, UCG:IT | Better than US in the last year |
 
 ## Digital Assets, Bitcoin, Gold and Silver
