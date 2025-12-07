@@ -67,7 +67,7 @@
 
 | Risk Level | Category | Ticker | Name | Region | Percentage | Expense Ratio | Yield | PE Ratio | Morningstar | 1Y | 2Y | 5Y | 10Y | Composition | Note |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 3 | Large Growth | QQQM | Invesco Nasdaq 100 ETF | US | 13% | 0.15 | - | 34.64 | ***** | 21.48 | 58.86 | 102.69 | 437.82 | 101 holdings: NVDA, AAPL, MSFT, AVGO, AMZN | Maximum tech exposure; excludes all financial stocks; Similar to QQQ; lower expense ratio. NVDA 10.21, AAPL 8.33 MSFT 7.99 GOOG 6.57 |
+| 3 | Large Growth | QQQM | Invesco Nasdaq 100 ETF | US | 10% | 0.15 | - | 34.64 | ***** | 21.48 | 58.86 | 102.69 | 437.82 | 101 holdings: NVDA, AAPL, MSFT, AVGO, AMZN | Maximum tech exposure; excludes all financial stocks; Similar to QQQ; lower expense ratio. NVDA 10.21, AAPL 8.33 MSFT 7.99 GOOG 6.57 |
 | 3 | Large Growth | FSPGX | Fidelity Large Cap Growth Index Fund | US | - | 0.035 | - | 34.64 | ***** | 19.89 | 64.51 | 100.43 | 377.22 | 395 holdings: NVDA, AAPL, MSFT, AVGO, AMZN, TSLA, META, GOOGL, GOOG, LLY | Similar to QQQM |
 | 3 | Large Growth | VUG | Vanguard Growth Index | US | - | 0.04 | 0.38 | 39.47 | **** | 19.97 | 64.30 | 98.72 | 346.99 | 163 holdings; Low-Cost Growth; NVDA, AAPL, MSFT, AMZN, AVGO, GOOG | - |
 | 3 | Large Growth | SCHG | Schwab US Large-Cap Growth | US | - | 0.04 | 0.33 | 37.93 | ***** | 18.03 | 64.78 | 110.26 | 381.21 | 197 holdings; Similar as VUG; NVDA, AAPL, MSFT, AVGO, AMZN | - |
@@ -85,7 +85,10 @@
 | 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 3% | 0.35 | 0.28 | 39.27 | ***** | 45.49 | 117.18 | 221.14 | 1140.42 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | NVDA 18.82%, TSM 9.58% AVGO 8.37% |
 | 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | 2% | 0.19 | 0.43 | 40.22 | ***** | 42.59 | 86.73 | 134.63 | 850.89 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | NVDA 10.84, AMD 9.79, AVGO 9.66 |
 | 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
-| 4 | Robotics | FBOT | FIDELITY DISRUPTIVE AUTOMATION ETF | World | 2% | 0.50 | 0.45 | 31.35 | ** | 16.67 | 40.96 | - | - | 56 holdings: 2330:TW, TER, NVDA, DE, GOOG, PLTR, SIE:DE, AXON, 6383:JP, 300124:CN | - |
+| 4 | Robotics | FBOT | FIDELITY DISRUPTIVE AUTOMATION ETF | World | 2% | 0.50 | 0.45 | 31.35 | ** | 16.67 | 40.96 | - | - | 56 holdings: 2330:TW, TER, NVDA, DE, GOOG, PLTR, SIE:DE, AXON, 6383:JP, 300124:CN | Broad, diversified focus on all disruptive automation (warehousing, manufacturing, robotics, AI). |
+| 4 | Humanoid Robotics | HUMN | Roundhill Humanoid Robotics ETF | World | 2% | 0.75 | - | 26.31 | - | 17.37 | - | - | - | 06/2025, 31.92M, 35 holdings: TSLA, Ubtech:HK, NVDA, Rainbow:KR, XPEV, Hundai:KR, Dobot:CN, Xiaomi:CN, Harmonic:JP, TER |Actively managed, highly concentrated on pure-play humanoid robot companies and their key suppliers. |
+| 4 | Humanoid Robotics | BOTT | Themes Humanoid Robotics ETF | World | - | 0.35 | - | 43.77 | - | 34.43 | 57.95 | - | - | 11.76M, 41 holdings: Hyulim:KR, Rainbow:KR, T-Robotics:KR, TER, Yujin:KR, Neuomeka:KR, TSLA, NVDA, Yijiahe, HIRATA:JP | Passive index fund, tracks the Solactive Global Humanoid Robotics Index. Broad coverage of companies involved in the theme. |
+| 4 | Humanoid Robotics | KOID | Kraneshares Global Humanoid and Embodied Intelligence Index ETF | World | - | 0.69 | - | 38.98 | - | 23.59 | - | - | - | 06/2025, 82.50M, 57 holdings: Rainbow:KR, APH, SHA0:DE, RBC, NOVT, MOG/A, Harmonic:JP, IFX:DE, ADI | Passive index fund, invests across the entire "embodied AI" value chain (AI, components, manufacturing) |
 | 4 | International | IDMO | Invesco S&P Intl Developed Momentum ETF | International | - | 0.25 | 2.35 | 16.81 | ***** | 28.48 | 53.72 | 69.91 | 123.07 | 192 holdings: RR:GB, HSBA:GB, SHOP:CA, SAN:ES, RHM:DE, Allianz:SE, CBA:AU, Siemens, BATS:GB, UCG:IT | Better than US in the last year |
 
 ## Digital Assets, Bitcoin, Gold and Silver
