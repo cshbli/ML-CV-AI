@@ -41,7 +41,6 @@
 | 1 | Utilities | FUTY | Fidelity MSCI Utilities Index ETF | US | - | 0.084 | 2.64 | 22.95 | ***** | 9.69 | 46.37 | 45.03 | 115.10 | NEE, CEG, SO, DUK, AEP, VST, SRE, D, EXC, XEL | VTV overlap |
 | 3 | Infrastructure | GRID | First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund | World | - | 0.56 | 1.0 | 27.31 | ***** | 21.15 | 58.41 | 100.05 | 355.90 | 123 holdings: SU:FR, ABBN:CH, ETN, NG:GB, JCI, PWR, TSLA | targeting the smart grid and electricity infrastructure |
 | 3 | Infrastructure | PAVE | Global X US Infrastructure Development ETF | World | - | 0.47 | 0.54 | 28.79 | ***** | 6.14 | 55.88 | 131.25 | - | 101 holdings: HWM, PWR, CRH, PH  | broad exposure, including construction and materials, a well-established and highly-rated option |
-| 3 | Natural Resources | NLR | Vaneck Uranium and Nuclear ETF | US | - | 0.56 | 0.82 | 25.37 | ***** | 34.61 | 57.38 | 81.39 | 83.95 | 28 holdings: CCO, CEG, OKLO, LEU, BWXT, DML  |  focused, higher-risk exposure to nuclear and uranium |
 
 
 ## Foundational, S&P 500 and Total Market
@@ -109,6 +108,7 @@
 | 5 | Silver | SIVR | Abrdn Physical Silver Shares ETF | Silver | 1% | 0.30 | - | - | - | 89.42 | 134.74 | 135.94 | 286.13 | Silver | - |
 | 5 | Silver Mining | SIL | Global X Silver Miners ETF | World | - | 0.65 | - | - | ** | 114.24 | 181.33 | 85.53 | 284.58 | 42 holdings | - |
 | 5 | Metals and Mining | XME | State Street SPDR S&P Metals & Mining ETF | US | 1% | 0.35 | 0.46 | 25.72 | ***** | 40.80 | 70.86 | 194.91 | 494.43 | 33 holdings, LEU, UEC, AA, STLD, HL | broader, diversified exposure to the entire US metals and mining sector, risk associated with a more cyclical industry. |
+| 5 | Natural Resources | NLR | Vaneck Uranium and Nuclear ETF | US | 1% | 0.56 | 0.82 | 25.37 | ***** | 34.61 | 57.38 | 81.39 | 83.95 | 28 holdings: CCO, CEG, OKLO, LEU, BWXT, DML  |  focused, higher-risk exposure to nuclear and uranium |
 
 ### Gold to Silver Ratio
 
