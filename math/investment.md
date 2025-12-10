@@ -25,7 +25,7 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 0.5 | Ultrashort Bond | FLOT | iShares Floating Rate Bond ETF | World | - | 0.16 | 4.63 | - | **** | - | - | - | - | 477 holdings | - |
 | 0.5 | Ultrashort Bond | SGOV | iShares 0-3 Month Treasury Bond ETF | US | - | 0.09 | 3.96 | - | *** | - | - | - | - | 24 holdings | state tax-exempt |
-| 1 | Large Value | VTV | Vanguard Value Index Fund ETF | US | 10% | 0.04 | 2.04 | 21.47 | **** | 4.73 | 34.23 | 59.87 | 128.26 | 317 holdings: JPM, BRK/B, XOM, JNJ, WMT, ABBV, HD, PG, BAC, UNH | low tech exposure |
+| 1 | Large Value | VTV | Vanguard Value Index Fund ETF | US | 5% | 0.04 | 2.04 | 21.47 | **** | 8.10 | 30.78 | 60.92 | 136.70 | 317 holdings: JPM, BRK/B, XOM, JNJ, WMT, ABBV, HD, PG, BAC, UNH | low tech exposure |
 | 1 | Large Value | SCHV | Schwab US Large-Cap Value ETF | US | - | 0.04 | 2.04 | - | **** | 5.19 | 33.50 | 49.27 | 104.64 | 563 holdings: BRK/B, JPM, XOM, JNJ, WMT | Similar to VTV |
 | 1 | Large Value | SCHD | Schwab US Dividend Equity ETF | US | 5% | 0.06 | 3.92 | 17.51 | *** | -6.57 | 15.23 | 27.10 | 109.97 | Dow Jones U.S. Dividend 100 Index, 103 holdings: CSCO, ABBV, AMGN, MRK, LMT | SCHD has tended to outperform in bear markets due to its defensive holdings and lower volatility |
 | 1.5 | Large Value | FDVV | Fidelity High Dividend ETF | US | 5% | 0.16 | 2.81 | 20.88 | ***** | 8.32 | 41.39 | 78.78 | 128.09 | 121 holdings: NVDA, AAPL, MSFT, AVGO, JPM, ABN, V, XOM, BAC, KO | Info tech exposure |
@@ -35,8 +35,9 @@
 | 1.5 | Large Value | DGRO | iShares Core Dividend Growth ETF | US | - | 0.08 | 2.20 | - | ***** | - | - | - | - | 406 holdings: AAPL, JPM, JNJ, MSFT, XOM, ABBV, AVGO, PG, UNH, HD | Info tech exposure |
 | 1 | Large Blend | USMV | iShares MSCI USA Min Vol Factor ETF | US | - | 0.15 | 1.44 | 24.72 | ** | 0.82 | 26.11 | 41.99 | 125.90 | IBM, MCK, COR, APH, XOM, CSCO, JNJ, NVDA, DUK, SO | low volatility |
 | 1 | Large Value | SPLV | Invesco S&P 500 Low Volatility ETF | US | - | 0.25 | 2.24 | 24.04 | ** | -2.24 | 20.54 | 31.86 | 88.15 | ATO, EVRG, WEC, COR, KO, CMS, JNJ, TJX, PPL, CAH | low volatility |
+| 3 | Small blend | VTWO | Vanguard Russell 2000 Index Fund ETF | US | 5% | 0.07 | 1.16 | 19.15 | *** | 6.48 | 34.80 | 32.76 | 127.30 | 1996 holdings |
 | 3 | Small Value | AVUV | Avantis US Small Cap Value ETF | US | - | 0.25 | 1.57 | 13.26 | **** | -4.13 | 26.40 | 78.91 | - | 765 holdings: M, AL, FIVE, GATX, LEU | Deep discount, interest rate sensitive, active managed  |
-| 3 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | - | 0.10 | 1.78 | 17.28 | **** | -3.47 | 24.09 | 40.30 | 99.57 | 459 holdings: SNDK, BWA, QRVO, LNC, JXN | a contrarian bet that the historic valuation gap between large and small companies will eventually close, passive |
+| 3 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | - | 0.10 | 1.78 | 17.28 | **** | 0.06 | 19.83 | 43.95 | 115.15 | 459 holdings: SNDK, BWA, QRVO, LNC, JXN | a contrarian bet that the historic valuation gap between large and small companies will eventually close, passive |
 | 1 | Health | XLV | Health Care Select Sector SPDR Fund | US | - | 0.08 | 1.69 | 27.70 | ***** | 6.95 | 21.57 | 40.08 | 119.63 | LLY, JNJ, ABBV, UNH, ABT, MRK, TMO, ISRG, AMGN, BSX | VTV overlap |
 | 1 | Utilities | FUTY | Fidelity MSCI Utilities Index ETF | US | - | 0.084 | 2.64 | 22.95 | ***** | 9.69 | 46.37 | 45.03 | 115.10 | NEE, CEG, SO, DUK, AEP, VST, SRE, D, EXC, XEL | VTV overlap |
 | 3 | Infrastructure | GRID | First Trust NASDAQ Clean Edge Smart Grid Infrastructure Index Fund | World | - | 0.56 | 1.0 | 27.31 | ***** | 21.15 | 58.41 | 100.05 | 355.90 | 123 holdings: SU:FR, ABBN:CH, ETN, NG:GB, JCI, PWR, TSLA | targeting the smart grid and electricity infrastructure |
