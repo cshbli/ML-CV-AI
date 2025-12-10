@@ -10,6 +10,50 @@
 |Growth|35%|VGT/QQQM|high growth, focusing on AI, information technology and semiconductor|
 |Bitcoin, Gold and Silver|5%|FBTC|high volatile, cryptocurrency industry and digital payments processing|
 
+## Roth IRA and HSA
+| Fund | Percentage|
+| --- | --- |
+| FDVV | 20% |
+| VOO | 20% |
+| SPMO | 20% |
+| QQQM | 20% |
+| FTEC | 20% |
+
+## Rollover IRA
+
+| Fund | Percentage|
+| --- | --- |
+| FDVV | 5% |
+| SCHD | 5% |
+| VTV | 5% |
+| VTWO | 5% |
+
+| Fund | Percentage|
+| --- | --- |
+| VOO | 20% |
+| SPMO | 15% |
+
+| Fund | Percentage|
+| --- | --- |
+| QQQM | 10% |
+| FTEC | 10% |
+| SHLD | 3% |
+| SMH | 3% |
+| SOQX | 2% |
+| QTUM | 2% |
+| FBOT | 2% |
+| HUMN | 2% |
+
+| Fund | Percentage|
+| --- | --- |
+| FBTC | 1% |
+| FDIG | 1% |
+| GLDM | 1% |
+| SIVR | 1% |
+| XME | 1% |
+| NLR | 1% |
+| FLOT | 3% |
+
 # Fund Selections and Portfolio Picks
 
 * [Value](#value-funds-and-low-information-technology-exposure)
@@ -84,7 +128,7 @@
 | 4 | Aerospace & Defense | XAR | State Street SPDR S&P Aerospace & Defense ETF | US | - | 0.35 | 0.19 | 36.29 | ***** | 30.46 | 83.26 | 101.21 | 321.31 | 42 holdings, AVAV, KTOS, RKLB, ACHR, ATI, BWXT, CRS, CW, HII, RTX | equal-weighted approach offers more balanced exposure to smaller companies |
 | 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 3% | 0.35 | 0.28 | 39.27 | ***** | 45.49 | 117.18 | 221.14 | 1140.42 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | NVDA 18.82%, TSM 9.58% AVGO 8.37% |
 | 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | 2% | 0.19 | 0.43 | 40.22 | ***** | 42.59 | 86.73 | 134.63 | 850.89 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | NVDA 10.84, AMD 9.79, AVGO 9.66 |
-| 4 | Quantum | QTUM | Defiance Quantum ETF | US | 1% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
+| 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
 | 4 | Robotics | FBOT | FIDELITY DISRUPTIVE AUTOMATION ETF | World | 2% | 0.50 | 0.45 | 31.35 | ** | 16.67 | 40.96 | - | - | 56 holdings: 2330:TW, TER, NVDA, DE, GOOG, PLTR, SIE:DE, AXON, 6383:JP, 300124:CN | Broad, diversified focus on all disruptive automation (warehousing, manufacturing, robotics, AI). |
 | 4 | Humanoid Robotics | HUMN | Roundhill Humanoid Robotics ETF | World | 2% | 0.75 | - | 26.31 | - | 17.37 | - | - | - | 06/2025, 31.92M, 35 holdings: TSLA, Ubtech:HK, NVDA, Rainbow:KR, XPEV, Hundai:KR, Dobot:CN, Xiaomi:CN, Harmonic:JP, TER |Actively managed, highly concentrated on pure-play humanoid robot companies and their key suppliers. |
 | 4 | Humanoid Robotics | BOTT | Themes Humanoid Robotics ETF | World | - | 0.35 | - | 43.77 | - | 34.43 | 57.95 | - | - | 11.76M, 41 holdings: Hyulim:KR, Rainbow:KR, T-Robotics:KR, TER, Yujin:KR, Neuomeka:KR, TSLA, NVDA, Yijiahe, HIRATA:JP | Passive index fund, tracks the Solactive Global Humanoid Robotics Index. Broad coverage of companies involved in the theme. |
