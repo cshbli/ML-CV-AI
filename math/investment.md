@@ -23,10 +23,9 @@
 
 | Fund | Percentage|
 | --- | --- |
+| VTV | 10% |
 | FDVV | 5% |
 | SCHD | 5% |
-| VTV | 5% |
-| VTWO | 5% |
 
 | Fund | Percentage|
 | --- | --- |
@@ -37,9 +36,8 @@
 | --- | --- |
 | QQQM | 10% |
 | FTEC | 10% |
-| SHLD | 3% |
-| SMH | 3% |
-| SOQX | 2% |
+| SHLD | 5% |
+| SMH | 5% |
 | QTUM | 2% |
 | FBOT | 2% |
 | HUMN | 2% |
@@ -69,17 +67,18 @@
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 0.5 | Ultrashort Bond | FLOT | iShares Floating Rate Bond ETF | World | - | 0.16 | 4.63 | - | **** | - | - | - | - | 477 holdings | - |
 | 0.5 | Ultrashort Bond | SGOV | iShares 0-3 Month Treasury Bond ETF | US | - | 0.09 | 3.96 | - | *** | - | - | - | - | 24 holdings | state tax-exempt |
-| 1 | Large Value | VTV | Vanguard Value Index Fund ETF | US | 5% | 0.04 | 2.04 | 21.47 | **** | 8.10 | 30.78 | 60.92 | 136.70 | 317 holdings: JPM, BRK/B, XOM, JNJ, WMT, ABBV, HD, PG, BAC, UNH | low tech exposure |
+| 1 | Large Value | VTV | Vanguard Value Index Fund ETF | US | 10% | 0.04 | 2.04 | 21.47 | **** | 13.06 | 28.22 | 61.43 | 137.32 | 317 holdings: JPM, BRK/B, XOM, JNJ, WMT, ABBV, HD, PG, BAC, UNH | low tech exposure |
 | 1 | Large Value | SCHV | Schwab US Large-Cap Value ETF | US | - | 0.04 | 2.04 | - | **** | 5.19 | 33.50 | 49.27 | 104.64 | 563 holdings: BRK/B, JPM, XOM, JNJ, WMT | Similar to VTV |
 | 1 | Large Value | SCHD | Schwab US Dividend Equity ETF | US | 5% | 0.06 | 3.92 | 17.51 | *** | -6.57 | 15.23 | 27.10 | 109.97 | Dow Jones U.S. Dividend 100 Index, 103 holdings: CSCO, ABBV, AMGN, MRK, LMT | SCHD has tended to outperform in bear markets due to its defensive holdings and lower volatility |
 | 1.5 | Large Value | FDVV | Fidelity High Dividend ETF | US | 5% | 0.16 | 2.81 | 20.88 | ***** | 8.32 | 41.39 | 78.78 | 128.09 | 121 holdings: NVDA, AAPL, MSFT, AVGO, JPM, ABN, V, XOM, BAC, KO | Info tech exposure |
+| 1.5 | Large Value | FDRR | Fidelity High Dividend ETF | US | - | 0.15 | 2.07 | 22.72 | **** | 16.61 | 44.92 | 70.90 | 145.63 | 130 holdings: NVDA, AAPL, MSFT, GOOGL, AVGO, META, JPM, LLY, JNJ | Info tech exposure |
 | 1.5 | Large Value | FNDX | Schwab Fundamental US Large Company ETF | US | - | 0.25 | 1.70 | - | ***** | - | - | - | - | 732 holdings: AAPL, MSFT, GOOGL, XOM, GOOG | Info tech exposure |
 | 1.5 | Large Value | VYM | Vanguard High Dividend Yield Index Fund ETF | US | - | 0.06 | 2.45 | - | ***** | - | - | - | - | 569 holdings: AVGO, JPM, XOM, JNJ, WMT, ABBV, HD, BAC, PG, UNH | Info tech exposure |
 | 1.5 | Large Value | VIG | Vanguard Dividend Appreciation Index Fund ETF | US | - | 0.06 | 1.84 | - | ***** | - | - | - | - | 290 holdings: MSFT, JNJ, PG, HD, UNH, AAPL, MCD, COST, JPM, BAC | Info tech exposure |
 | 1.5 | Large Value | DGRO | iShares Core Dividend Growth ETF | US | - | 0.08 | 2.20 | - | ***** | - | - | - | - | 406 holdings: AAPL, JPM, JNJ, MSFT, XOM, ABBV, AVGO, PG, UNH, HD | Info tech exposure |
 | 1 | Large Blend | USMV | iShares MSCI USA Min Vol Factor ETF | US | - | 0.15 | 1.44 | 24.72 | ** | 0.82 | 26.11 | 41.99 | 125.90 | IBM, MCK, COR, APH, XOM, CSCO, JNJ, NVDA, DUK, SO | low volatility |
 | 1 | Large Value | SPLV | Invesco S&P 500 Low Volatility ETF | US | - | 0.25 | 2.24 | 24.04 | ** | -2.24 | 20.54 | 31.86 | 88.15 | ATO, EVRG, WEC, COR, KO, CMS, JNJ, TJX, PPL, CAH | low volatility |
-| 3 | Small blend | VTWO | Vanguard Russell 2000 Index Fund ETF | US | 5% | 0.07 | 1.16 | 19.15 | *** | 6.48 | 34.80 | 32.76 | 127.30 | 1996 holdings |
+| 3 | Small blend | VTWO | Vanguard Russell 2000 Index Fund ETF | US | - | 0.07 | 1.16 | 19.15 | *** | 6.48 | 34.80 | 32.76 | 127.30 | 1996 holdings |
 | 3 | Small Value | AVUV | Avantis US Small Cap Value ETF | US | - | 0.25 | 1.57 | 13.26 | **** | -4.13 | 26.40 | 78.91 | - | 765 holdings: M, AL, FIVE, GATX, LEU | Deep discount, interest rate sensitive, active managed  |
 | 3 | Small Value | VIOV | Vanguard S&P Small-Cap 600 Value ETF | US | - | 0.10 | 1.78 | 17.28 | **** | 0.06 | 19.83 | 43.95 | 115.15 | 459 holdings: SNDK, BWA, QRVO, LNC, JXN | a contrarian bet that the historic valuation gap between large and small companies will eventually close, passive |
 | 1 | Health | XLV | Health Care Select Sector SPDR Fund | US | - | 0.08 | 1.69 | 27.70 | ***** | 6.95 | 21.57 | 40.08 | 119.63 | LLY, JNJ, ABBV, UNH, ABT, MRK, TMO, ISRG, AMGN, BSX | VTV overlap |
@@ -101,7 +100,8 @@
 | 2 | S&P500 | FNILX | FIDELITY ZERO LARGE CAP INDEX | US | - | 0.0 | 1.10 | - | **** | - | - | - | - | - | Similar to VOO |
 | 2 | Total Market | VTI | Vanguard Total Stock Market Index Fund | US | - | 0.03 | 1.12 | 27.91 | *** | 12.16 | 49.25 | 75.61 | 213.17 | 3533 holdings | - |
 | 2 | Total Market | FZROX | FIDELITY ZERO TOTAL MARKET INDEX | US | - | 0.0 | 1.10 | - | *** | 12.48 | 49.81 | 80.77 | - | 2528 holdings | Similar to VTI |
-| 2 | S&P500 Momentum | SPMO | Invesco S&P 500 Momentum ETF | US | 20% | 0.13 | - | 31.34 | ***** | 24.05 | 95.24 | 132.11 | 355.69 | 101 holdings: AVGO, NVDA, META, JPM, PLTR | Tactical/Rotational Outperformance, rebalancing in March and September. AVGO 10.22 NVDA 9.95 META 7.51 JPM 5.22|
+| 2 | S&P500 Momentum | SPMO | Invesco S&P 500 Momentum ETF | US | 15% | 0.13 | - | 31.34 | ***** | 24.05 | 95.24 | 132.11 | 355.69 | 101 holdings: AVGO, NVDA, META, JPM, PLTR | Tactical/Rotational Outperformance, rebalancing in March and September. AVGO 10.22 NVDA 9.95 META 7.51 JPM 5.22|
+| 1.5 | Large Blend | SPHQ | Invesco S&P 500 Quality ETF | US | - | 0.15 | 1.18 | 26.61 | **** | 9.12 | 42.97 | 83.45 | 227.54 | 100 holdings: AAPL, MA, GE, COST, PG, V, KO, CAT, MRK, LRCX | limited info tech exposure |
 
 ## Growth, Sectional and International
 
@@ -126,8 +126,8 @@
 | 4 | Aerospace & Defense | SHLD | Global X Defense Tech ETF | World | 3% | 0.50 | - | 30.42 | **** | 58.70 | 131.46 | 151.08 | - | PLTR, RTX, LMT, RHM:DE, BA_:GB, GD, LDOS, NOC, LHX, LDO:IT | a modern, technologically-focused, and globally diversified defense sector |
 | 4 | Aerospace & Defense | ITA | iShares US Aerospace & Defense ETF | US | - | 0.38 | 0.39 | 36.30 | **** | 31.84 | 74.11 | 112.32 | 241.98 | 44 Holdings, GE, RTX, BA, HWM, GD, LMT, LHX, TDG, NOC, LHX, AXON | focus on industry-leading, large-cap companies |
 | 4 | Aerospace & Defense | XAR | State Street SPDR S&P Aerospace & Defense ETF | US | - | 0.35 | 0.19 | 36.29 | ***** | 30.46 | 83.26 | 101.21 | 321.31 | 42 holdings, AVAV, KTOS, RKLB, ACHR, ATI, BWXT, CRS, CW, HII, RTX | equal-weighted approach offers more balanced exposure to smaller companies |
-| 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 3% | 0.35 | 0.28 | 39.27 | ***** | 45.49 | 117.18 | 221.14 | 1140.42 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | NVDA 18.82%, TSM 9.58% AVGO 8.37% |
-| 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | 2% | 0.19 | 0.43 | 40.22 | ***** | 42.59 | 86.73 | 134.63 | 850.89 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | NVDA 10.84, AMD 9.79, AVGO 9.66 |
+| 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 5% | 0.35 | 0.28 | 39.27 | ***** | 41.94| 108.16 | 226.14 | 1217.90 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | 356B, NVDA 18.82%, TSM 9.58% AVGO 8.37% |
+| 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | - | 0.19 | 0.43 | 40.22 | **** | 36.52 | 76.28 | 119.36 | 912.33 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | 744M, NVDA 10.84, AMD 9.79, AVGO 9.66 |
 | 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
 | 4 | Robotics | FBOT | FIDELITY DISRUPTIVE AUTOMATION ETF | World | 2% | 0.50 | 0.45 | 31.35 | ** | 16.67 | 40.96 | - | - | 56 holdings: 2330:TW, TER, NVDA, DE, GOOG, PLTR, SIE:DE, AXON, 6383:JP, 300124:CN | Broad, diversified focus on all disruptive automation (warehousing, manufacturing, robotics, AI). |
 | 4 | Humanoid Robotics | HUMN | Roundhill Humanoid Robotics ETF | World | 2% | 0.75 | - | 26.31 | - | 17.37 | - | - | - | 06/2025, 31.92M, 35 holdings: TSLA, Ubtech:HK, NVDA, Rainbow:KR, XPEV, Hundai:KR, Dobot:CN, Xiaomi:CN, Harmonic:JP, TER |Actively managed, highly concentrated on pure-play humanoid robot companies and their key suppliers. |
