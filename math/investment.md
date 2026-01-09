@@ -10,47 +10,46 @@
 |Growth|35%|VGT/QQQM|high growth, focusing on AI, information technology and semiconductor|
 |Bitcoin, Gold and Silver|5%|FBTC|high volatile, cryptocurrency industry and digital payments processing|
 
+## Roth IRA 
+| Fund | Percentage|
+| --- | --- |
+| VOO | 30% |
+| SPMO | 20% |
+| FTEC | 20% |
+| SMH | 10% |
+| SHLD | 10% |
+
 ## Roth IRA and HSA
 | Fund | Percentage|
 | --- | --- |
-| FDVV | 20% |
-| VOO | 20% |
-| SPMO | 20% |
-| QQQM | 20% |
-| FTEC | 20% |
+| VOO | 30% |
+| SPMO | 30% |
+| FTEC | 30% |
 
 ## Rollover IRA
 
 | Fund | Percentage|
 | --- | --- |
-| VTV | 10% |
-| FDVV | 5% |
-| SCHD | 5% |
-
-| Fund | Percentage|
-| --- | --- |
 | VOO | 20% |
-| SPMO | 15% |
-
-| Fund | Percentage|
-| --- | --- |
-| QQQM | 10% |
-| FTEC | 10% |
-| SHLD | 5% |
-| SMH | 5% |
+| SPMO | 20% |
+| FTEC | 15% |
+| SMH | 10% |
+| SHLD | 10% |
 | QTUM | 2% |
-| FBOT | 2% |
 | HUMN | 2% |
+| UFO | 2% |
 
 | Fund | Percentage|
 | --- | --- |
+| GLDM | 5% |
 | FBTC | 1% |
 | FDIG | 1% |
-| GLDM | 1% |
 | SIVR | 1% |
-| XME | 1% |
 | NLR | 1% |
-| FLOT | 3% |
+| XME | 1% |
+| COPX | 1% |
+| REMX | 1% |
+| FLOT | 7% |
 
 # Fund Selections and Portfolio Picks
 
@@ -116,23 +115,24 @@
 | 3 | Large Growth | VUG | Vanguard Growth Index | US | - | 0.04 | 0.38 | 39.47 | **** | 19.97 | 64.30 | 98.72 | 346.99 | 163 holdings; Low-Cost Growth; NVDA, AAPL, MSFT, AMZN, AVGO, GOOG | - |
 | 3 | Large Growth | SCHG | Schwab US Large-Cap Growth | US | - | 0.04 | 0.33 | 37.93 | ***** | 18.03 | 64.78 | 110.26 | 381.21 | 197 holdings; Similar as VUG; NVDA, AAPL, MSFT, AVGO, AMZN | - |
 | 4 | Technology | VGT | Vanguard Information Technology Index | US | - | 0.09 | 0.36 | 39.22 | ***** | 20.88 | 62.76 | 120.13 | 565.55 | 317 holdings; NVDA, AAPL, MSFT, AVGO, PLTR; without GOOG, META, AMZN | NVDA 18.19, AAPL 14.29, MSFT 12.93 |
-| 4 | Technology | FTEC | Fidelity MSCI Information Technology Index | US | 10% | 0.08 | 0.41 | 39.23 | **** | 21.06 | 63.21 | 122.26 | 554.64 | 288 holdings: NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
+| 4 | Technology | FTEC | Fidelity MSCI Information Technology Index | US | 15% | 0.08 | 0.41 | 39.23 | **** | 21.06 | 63.21 | 122.26 | 554.64 | 288 holdings: NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
 | 4 | Technology | XLK | Technology Select Sector SPDR Fund | US | - | 0.12 | 0.91 | 40.06 | **** | 22.46 | 54.81 | 127.09 | 542.18 | 141 holdings; NVDA, AAPL, MSFT, AVGO, PLTR | Similar to VGT |
 | 4 | Technology | IETC | iShares US Tech Independence Focused ETF | US | - | 0.18 | 0.32 | 42.15 | **** | 23.88 | 72.46 | 120.87 | - | 103 holdings: AVGO, PLTR, NVDA, AMZN, MSFT, CRM, ORCL, AAPL, IBM, CSCO | - |
 | 4 | Technology | IYW | iShares US Technology ETF | US | - | 0.38 | 0.09 | 38.84 | ***** | 24.70 | 69.13 | 139.61 | 610.98 | 146 holdings: NVDA, AAPL, MSFT, AVGO, META, PLTR, AMD, GOOGL, GOOG, ORCL | NVDA 17.10%, AAPL 14.32 MSFT 13.90 |
 | 4 | Technology | MAGS | Roundhill Magnificent Seven ETF | US | - | 0.29 | 1.94 | - | - | 29.00 | 104.10 | - | - | NVDA, GOOGL, AMZN, TSLA, AAPL, MSFT, META | - |
 | 4 | Technology | AIQ | Global X Artificial Intelligence & Technology ETF | World | - | 0.68 | 0.00 | 30.07 | **** | 29.16 | 68.82 | 88.21 | - | 92 holdings: AMD, Samsung, GOOGL, BABA, TSLA, AVGO, PLTR, AAPL, TSM, NVDA | - |
 | 4 | Technology | CHAT | Roundhill Generative Ai & Technology ETF | World |-| 0.75 | 0.00 | 29.64 | - | 51.14 | 102.83 | - | - | 47 holdings: NVDA, GOOGL, Hynix, AMD, ORCL, MSFT, Softbank, AVGO, ARM, META | - |
-| 4 | Aerospace & Defense | SHLD | Global X Defense Tech ETF | World | 3% | 0.50 | - | 30.42 | **** | 58.70 | 131.46 | 151.08 | - | PLTR, RTX, LMT, RHM:DE, BA_:GB, GD, LDOS, NOC, LHX, LDO:IT | a modern, technologically-focused, and globally diversified defense sector |
+| 4 | Aerospace & Defense | SHLD | Global X Defense Tech ETF | World | 5% | 0.50 | - | 30.42 | **** | 58.70 | 131.46 | 151.08 | - | PLTR, RTX, LMT, RHM:DE, BA_:GB, GD, LDOS, NOC, LHX, LDO:IT | a modern, technologically-focused, and globally diversified defense sector |
 | 4 | Aerospace & Defense | ITA | iShares US Aerospace & Defense ETF | US | - | 0.38 | 0.39 | 36.30 | **** | 31.84 | 74.11 | 112.32 | 241.98 | 44 Holdings, GE, RTX, BA, HWM, GD, LMT, LHX, TDG, NOC, LHX, AXON | focus on industry-leading, large-cap companies |
 | 4 | Aerospace & Defense | XAR | State Street SPDR S&P Aerospace & Defense ETF | US | - | 0.35 | 0.19 | 36.29 | ***** | 30.46 | 83.26 | 101.21 | 321.31 | 42 holdings, AVAV, KTOS, RKLB, ACHR, ATI, BWXT, CRS, CW, HII, RTX | equal-weighted approach offers more balanced exposure to smaller companies |
 | 4 | Semiconductor | SMH | Vaneck Semiconductor | World | 5% | 0.35 | 0.28 | 39.27 | ***** | 41.94| 108.16 | 226.14 | 1217.90 | 26 holdings: NVDA, TSM, AVGO, AMD, MU | 356B, NVDA 18.82%, TSM 9.58% AVGO 8.37% |
 | 4 | Semiconductor | SOXQ | Invesco PHLX Semiconductor | US | - | 0.19 | 0.43 | 40.22 | **** | 36.52 | 76.28 | 119.36 | 912.33 | 31 holdings: NVDA, AMD, AVGO, MU, INTC | 744M, NVDA 10.84, AMD 9.79, AVGO 9.66 |
 | 4 | Quantum | QTUM | Defiance Quantum ETF | US | 2% | 0.40 | 0.79 | 29.58 | ***** | 53.88 | 114.96 | 165.66 | - | 81 holdings: RGTI, QBTS, AMD, TER, Tower, INTC, MU, IONQ, LRCX, MDB | a high-risk, high-reward investment due to its focus on an emerging, volatile sector. |
-| 4 | Robotics | FBOT | FIDELITY DISRUPTIVE AUTOMATION ETF | World | 2% | 0.50 | 0.45 | 31.35 | ** | 16.67 | 40.96 | - | - | 56 holdings: 2330:TW, TER, NVDA, DE, GOOG, PLTR, SIE:DE, AXON, 6383:JP, 300124:CN | Broad, diversified focus on all disruptive automation (warehousing, manufacturing, robotics, AI). |
+| 4 | Robotics | FBOT | FIDELITY DISRUPTIVE AUTOMATION ETF | World | - | 0.50 | 0.45 | 31.35 | ** | 16.67 | 40.96 | - | - | 56 holdings: 2330:TW, TER, NVDA, DE, GOOG, PLTR, SIE:DE, AXON, 6383:JP, 300124:CN | Broad, diversified focus on all disruptive automation (warehousing, manufacturing, robotics, AI). |
 | 4 | Humanoid Robotics | HUMN | Roundhill Humanoid Robotics ETF | World | 2% | 0.75 | - | 26.31 | - | 17.37 | - | - | - | 06/2025, 31.92M, 35 holdings: TSLA, Ubtech:HK, NVDA, Rainbow:KR, XPEV, Hundai:KR, Dobot:CN, Xiaomi:CN, Harmonic:JP, TER |Actively managed, highly concentrated on pure-play humanoid robot companies and their key suppliers. |
-| 4 | Humanoid Robotics | BOTT | Themes Humanoid Robotics ETF | World | - | 0.35 | - | 43.77 | - | 34.43 | 57.95 | - | - | 11.76M, 41 holdings: Hyulim:KR, Rainbow:KR, T-Robotics:KR, TER, Yujin:KR, Neuomeka:KR, TSLA, NVDA, Yijiahe, HIRATA:JP | Passive index fund, tracks the Solactive Global Humanoid Robotics Index. Broad coverage of companies involved in the theme. |
+| 4 | Humanoid Robotics | BOTT | Themes Humanoid Robotics ETF | World | - | 0.35 | - | 45.49 | - | 44.64 | 62.10 | - | - | 11.76M, 41 holdings: Hyulim:KR, Rainbow:KR, T-Robotics:KR, TER, Yujin:KR, Neuomeka:KR, TSLA, NVDA, Yijiahe, HIRATA:JP | Passive index fund, tracks the Solactive Global Humanoid Robotics Index. Broad coverage of companies involved in the theme. |
 | 4 | Humanoid Robotics | KOID | Kraneshares Global Humanoid and Embodied Intelligence Index ETF | World | - | 0.69 | - | 38.98 | - | 23.59 | - | - | - | 06/2025, 82.50M, 57 holdings: Rainbow:KR, APH, SHA0:DE, RBC, NOVT, MOG/A, Harmonic:JP, IFX:DE, ADI | Passive index fund, invests across the entire "embodied AI" value chain (AI, components, manufacturing) |
+| 4 | Humanoid Robotics | ARKQ | Ark Autonomous Technology & Robotics ETF | US | - | 0.75 | - | 42.68 | **** | 51.78 | 103.47 | 56.12 | 509.80 | 1.56B, 37 holdings: TSLA, TER, KTOS, PLTR, AMD, AVAV, ACHR, RKLB, DE, TRMB | Tesla-Heavy |
 | 4 | International | IDMO | Invesco S&P Intl Developed Momentum ETF | International | - | 0.25 | 2.35 | 16.81 | ***** | 28.48 | 53.72 | 69.91 | 123.07 | 192 holdings: RR:GB, HSBA:GB, SHOP:CA, SAN:ES, RHM:DE, Allianz:SE, CBA:AU, Siemens, BATS:GB, UCG:IT | Better than US in the last year |
 
 ## Digital Assets, Bitcoin, Gold and Silver
