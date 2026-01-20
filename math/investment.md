@@ -10,13 +10,21 @@
 |Growth|35%|VGT/QQQM|high growth, focusing on AI, information technology and semiconductor|
 |Bitcoin, Gold and Silver|5%|FBTC|high volatile, cryptocurrency industry and digital payments processing|
 
-## Roth IRA and HSA
+## Roth IRA 
 | Fund | Percentage|
 | --- | --- |
 | VOO | 30% |
-| FTEC | 20% |
+| FTEC | 10% |
 | SMH | 20% |
 | SHLD | 20% |
+| GLDM | 10% |
+
+## HSA
+| Fund | Percentage|
+| --- | --- |
+| VOO | 30% |
+| SMH | 30% |
+| SHLD | 30% |
 
 ## Rollover IRA
 
