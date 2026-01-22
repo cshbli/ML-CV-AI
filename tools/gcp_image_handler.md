@@ -33,7 +33,7 @@ done
 
 - Run this command from the directory where the .tar files are located:
 ```bash
-for file in batch_2*.tar; do
+for file in batch_*.tar; do
     echo "Extracting $file..."
     tar --warning=no-unknown-keyword -xf "$file"
     echo "Done with $file"

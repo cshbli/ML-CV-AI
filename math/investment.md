@@ -14,10 +14,9 @@
 | Fund | Percentage|
 | --- | --- |
 | VOO | 30% |
-| FTEC | 10% |
+| FTEC | 20% |
 | SMH | 20% |
 | SHLD | 20% |
-| GLDM | 10% |
 
 ## HSA
 | Fund | Percentage|
@@ -31,21 +30,21 @@
 | Fund | Percentage|
 | --- | --- |
 | VOO | 25% |
-| FTEC | 15% |
+| FTEC | 20% |
 | SMH | 15% |
-| SHLD | 15% |
+| SHLD | 10% |
 | QTUM | 2% |
 | HUMN | 2% |
 | UFO | 2% |
 
 | Fund | Percentage|
 | --- | --- |
-| GLDM | 10% |
+| GLDM | 8% |
 | FBTC | 1% |
 | FDIG | 1% |
 | SIVR | 1% |
-| NLR | 1% |
-| XME | 1% |
+| NLR | 2% |
+| XME | 2% |
 | COPX | 1% |
 | REMX | 1% |
 | FLOT | 7% |
