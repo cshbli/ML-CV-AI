@@ -21,8 +21,8 @@
 
 ## Rollover IRA
 
-| Fund | Percentage|
-| --- | --- |
+| Fund | Percentage| Expense Ratio | AUM| |
+| --- | --- | --- | --- | --- | 
 | VOO | 25% |
 | FTEC | 15% |
 | SMH | 15% |
@@ -30,17 +30,25 @@
 | QTUM | 2% |
 | HUMN | 2% |
 | UFO | 2% |
+| NLR | 2% | 0.56 | 3.7B | AI Power play, Uranium miners + Nuclear utilities | 
 
-| Fund | Percentage|
-| --- | --- |
-| GLDM | 10% |
+| Fund | Percentage | Expense Ratio | AUM | |
+| --- | --- | ---| --- | --- |
+| GLDM | 8% |
+| SIVR | 2% |
 | FBTC | 1% |
 | FDIG | 1% |
-| SIVR | 2% |
-| NLR | 2% |
-| XME | 2% |
-| COPX | 2% |
-| REMX | 2% |
+
+### Materials 
+- totoal 6% 
+
+| Fund | Percentage | Expense Ratio | AUM | Notes |
+| --- | --- | ---| --- | --- |
+| COPX | 1% | 0.65 | 6.1B | Pure Copper, China exposure (~9%) |
+| ICOP | 1% | 0.47 | 320M | Copper + Multi, friend-shoring, lower China exposure |  
+| REMX | 1% | 0.58 | 2.7B | Rare Earths and Refining, <b>large China exposure</b> | 
+| SETM | 1% | 0.65 | 470M | Broad Critical Materials, one-stop-shop, Copper + Lithium + Uranium, avoids China, friend-shoring. |
+| XME | 2% | 0.35 | 5.1B | US Metals/Mining, US Infrastructure and Re-shoring, <b>Equal-Weight</b>, Steel, Aluminum, Coal and Domestic Mining 
 
 # Fund Selections and Portfolio Picks
 
