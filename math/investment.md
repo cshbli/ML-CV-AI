@@ -23,32 +23,35 @@
 
 | Fund | Percentage| Expense Ratio | AUM| |
 | --- | --- | --- | --- | --- | 
-| VOO | 25% |
-| FTEC | 15% |
-| SMH | 15% |
-| SHLD | 15% |
-| QTUM | 2% |
-| HUMN | 2% |
-| UFO | 2% |
-| NLR | 2% | 0.56 | 3.7B | AI Power play, Uranium miners + Nuclear utilities | 
+| VOO | 25% | 0.03 | 833B | S&P 500 |
+| FTEC | 15% | 0.084 | 16.67B | Information Technology |
+| SMH | 15% | 0.35 | 37.27B | Semiconductor |  
+| SHLD | 15% | 0.50 | 5.13B | Defense Technology |
+| QTUM | 2% | 0.40 | 3.18B | Quantum Computing |
+| HUMN | 2% | 0.75 | 33.65M | Humanoid Robotics | 
+| UFO | 2% | 0.94 | 171M | Aerospace |
 
-| Fund | Percentage | Expense Ratio | AUM | |
-| --- | --- | ---| --- | --- |
-| GLDM | 8% |
-| SIVR | 2% |
-| FBTC | 1% |
-| FDIG | 1% |
-
-### Materials 
-- totoal 6% 
+### Precious Metals, Rare Eearths, Uranium and Mining
+- Totoal 18% 
 
 | Fund | Percentage | Expense Ratio | AUM | Notes |
 | --- | --- | ---| --- | --- |
+| GLDM | 8% | 0.10 | 25.29B | Gold |
+| SIVR | 2% | 0.30 | 5.43B | Silver |
 | COPX | 1% | 0.65 | 6.1B | Pure Copper, China exposure (~9%) |
 | ICOP | 1% | 0.47 | 320M | Copper + Multi, friend-shoring, lower China exposure |  
+| NLR | 2% | 0.56 | 3.7B | AI Power play, Uranium miners + Nuclear utilities | 
 | REMX | 1% | 0.58 | 2.7B | Rare Earths and Refining, <b>large China exposure</b> | 
 | SETM | 1% | 0.65 | 470M | Broad Critical Materials, one-stop-shop, Copper + Lithium + Uranium, avoids China, friend-shoring. |
 | XME | 2% | 0.35 | 5.1B | US Metals/Mining, US Infrastructure and Re-shoring, <b>Equal-Weight</b>, Steel, Aluminum, Coal and Domestic Mining 
+
+### Cryptos
+- Total 2%
+
+| Fund | Percentage | Expense Ratio | AUM | |
+| --- | --- | ---| --- | --- |
+| FBTC | 1% | 0.25 | 17.68B | Bitcoin | 
+| FDIG | 1% | 0.39 | 257M | Crypto Industry and Digital Payments |
 
 # Fund Selections and Portfolio Picks
 
