@@ -30,6 +30,7 @@
 | QTUM | 2% | 0.40 | 3.18B | Quantum Computing |
 | HUMN | 2% | 0.75 | 33.65M | Humanoid Robotics | 
 | UFO | 2% | 0.94 | 171M | Aerospace |
+| AIPO | 1% | 0.69 | 115M | AI and Power Infrastructure |
 
 ### Precious Metals, Rare Eearths, Uranium and Mining
 - Totoal 18% 
