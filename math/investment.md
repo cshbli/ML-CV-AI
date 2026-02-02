@@ -13,31 +13,33 @@
 ## Roth IRA and HSA
 | Fund | Percentage|
 | --- | --- |
-| VOO | 30% |
+| VOO | 40% |
 | FTEC | 20% |
 | SMH | 20% |
-| SHLD | 20% |
+| SHLD | 10% |
 | GLDM | 5% |
 
 ## Rollover IRA
+### Equities
+ - Total 72%
 
 | Fund | Percentage| Expense Ratio | AUM| |
 | --- | --- | --- | --- | --- | 
 | VOO | 25% | 0.03 | 833B | S&P 500 |
 | FTEC | 15% | 0.084 | 16.67B | Information Technology |
 | SMH | 15% | 0.35 | 37.27B | Semiconductor |  
-| SHLD | 15% | 0.50 | 5.13B | Defense Technology |
+| SHLD | 10% | 0.50 | 5.13B | Defense Technology |
 | QTUM | 2% | 0.40 | 3.18B | Quantum Computing |
 | HUMN | 2% | 0.75 | 33.65M | Humanoid Robotics | 
 | UFO | 2% | 0.94 | 171M | Aerospace |
 | AIPO | 1% | 0.69 | 115M | AI and Power Infrastructure |
 
 ### Precious Metals, Rare Eearths, Uranium and Mining
-- Totoal 18% 
+- Totoal 16% 
 
 | Fund | Percentage | Expense Ratio | AUM | Notes |
 | --- | --- | ---| --- | --- |
-| GLDM | 8% | 0.10 | 25.29B | Gold |
+| GLDM | 6% | 0.10 | 25.29B | Gold |
 | SIVR | 2% | 0.30 | 5.43B | Silver |
 | COPX | 1% | 0.65 | 6.1B | Pure Copper, China exposure (~9%) |
 | ICOP | 1% | 0.47 | 320M | Copper + Multi, friend-shoring, lower China exposure |  
