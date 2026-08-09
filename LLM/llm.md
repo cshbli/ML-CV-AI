@@ -8,9 +8,9 @@ This note uses diagrams and tables to explain core LLM ideas: **tokens**, **cont
 
 ```mermaid
 flowchart TB
-    Chat["⑦a Chat apps<br/>ChatGPT · Claude · Gemini · Grok"]
-    Code["⑦b Coding agents<br/>Cursor · Claude Code · Codex"]
-    FW["⑥ Framework libs<br/>LangGraph · Agents SDK · …"]
+    Chat["⑦a Chat apps\nChatGPT · Claude · Gemini · Grok"]
+    Code["⑦b Coding agents\nCursor · Claude Code · Codex"]
+    FW["⑥ Framework libs\nLangGraph · Agents SDK · …"]
     AG["④ Agent / tool loop"]
     Tools["Tools / browse / code / APIs"]
     Wiki["⑤ Memory · files · help docs"]
@@ -62,8 +62,8 @@ At its core, an LLM is an **autoregressive next-token predictor**. It does not w
 
 ```mermaid
 flowchart TD
-    Context["Input Text / Combined Context"] --> Tokenizer["1. Tokenizer<br/>text → Token IDs"]
-    Tokenizer --> Transformer["2. Transformer<br/>self-attention over context"]
+    Context["Input Text / Combined Context"] --> Tokenizer["1. Tokenizer\ntext → Token IDs"]
+    Tokenizer --> Transformer["2. Transformer\nself-attention over context"]
     Transformer --> Probs["3. Softmax over vocabulary"]
     Probs --> Select["4. Sample / pick next token"]
     Select --> Decision{"STOP / EOS?"}
@@ -168,10 +168,10 @@ flowchart TB
 flowchart TD
     Start["Need external / private / changing knowledge?"]
     Start -->|No| Params["Rely on model weights + short prompt"]
-    Start -->|Yes| Size{"Fits comfortably in window<br/>with margin for answer?"}
-    Size -->|Yes, stable, one-shot| Stuff["Long-context / paste docs<br/>(RAG optional)"]
-    Size -->|No, or multi-tenant / frequently updated| UseRAG["Use RAG<br/>(or RAG + long context)"]
-    UseRAG --> Hybrid["Common pattern:<br/>retrieve top-k → put into a large window"]
+    Start -->|Yes| Size{"Fits comfortably in window\nwith margin for answer?"}
+    Size -->|Yes, stable, one-shot| Stuff["Long-context / paste docs\n(RAG optional)"]
+    Size -->|No, or multi-tenant / frequently updated| UseRAG["Use RAG\n(or RAG + long context)"]
+    UseRAG --> Hybrid["Common pattern:\nretrieve top-k → put into a large window"]
 ```
 
 ### Practical rule of thumb
@@ -247,9 +247,9 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    Q["Goal"] --> P["Planner LLM<br/>ordered steps"]
+    Q["Goal"] --> P["Planner LLM\nordered steps"]
     P --> E1["Step 1 tool"] --> E2["Step 2 tool"] --> E3["Step 3"]
-    E3 --> S["Synthesizer LLM<br/>final answer"]
+    E3 --> S["Synthesizer LLM\nfinal answer"]
 ```
 
 **Multi-agent** — specialized roles + handoffs (researcher / coder / reviewer):
@@ -311,11 +311,11 @@ An **LLM wiki** (sometimes “AI knowledge base” / “second brain”) is a **
 
 ```mermaid
 flowchart LR
-    Auth["Authors / CMS<br/>Confluence · Notion · Git md"] --> Norm["Normalize<br/>clean HTML/MD"]
+    Auth["Authors / CMS\nConfluence · Notion · Git md"] --> Norm["Normalize\nclean HTML/MD"]
     Norm --> Chunk["Chunk by heading / size"]
-    Chunk --> Meta["Attach metadata<br/>space, product, ACL, date"]
+    Chunk --> Meta["Attach metadata\nspace, product, ACL, date"]
     Meta --> Index["Embed + keyword index"]
-    Index --> Retr["Retriever<br/>hybrid search + rerank"]
+    Index --> Retr["Retriever\nhybrid search + rerank"]
     Retr --> Prompt["Top-k → LLM / agent"]
     Prompt --> Cite["Answer + citations"]
 ```
@@ -407,15 +407,15 @@ flowchart TB
 ```mermaid
 flowchart TD
     Start["Building an agent system?"]
-    Start --> Q1{"Need durable state,<br/>resume, strict audit?"}
+    Start --> Q1{"Need durable state,\nresume, strict audit?"}
     Q1 -->|Yes| LG["LangGraph"]
     Q1 -->|No| Q2{"Doc/RAG-heavy product?"}
-    Q2 -->|Yes| LI["LlamaIndex Workflows<br/>(or LangGraph + your RAG)"]
+    Q2 -->|Yes| LI["LlamaIndex Workflows\n(or LangGraph + your RAG)"]
     Q2 -->|No| Q3{"Want roles in 20 lines?"}
-    Q3 -->|Yes| Crew["CrewAI prototype<br/>→ harden later"]
+    Q3 -->|Yes| Crew["CrewAI prototype\n→ harden later"]
     Q3 -->|No| Q4{"Standardizing on OpenAI stack?"}
     Q4 -->|Yes| OAI["OpenAI Agents SDK"]
-    Q4 -->|No| Custom["Thin custom loop<br/>or LangGraph"]
+    Q4 -->|No| Custom["Thin custom loop\nor LangGraph"]
 ```
 
 ### What frameworks do *not* replace
@@ -548,9 +548,9 @@ flowchart LR
     subgraph Product["⑦ Coding-agent product"]
         UX["Chat / Composer / CLI"]
         Loop["Agent loop"]
-        Ret["Repo retrieve<br/>@codebase · grep · index"]
-        Tol["Tools<br/>edit · terminal · browser · MCP"]
-        Rules["Rules / AGENTS.md / skills<br/>(repo wiki)"]
+        Ret["Repo retrieve\n@codebase · grep · index"]
+        Tol["Tools\nedit · terminal · browser · MCP"]
+        Rules["Rules / AGENTS.md / skills\n(repo wiki)"]
     end
     UX --> Loop
     Loop --> Ret
@@ -596,9 +596,9 @@ Exact names/features change quickly; the **layer mapping** stays stable.
 ```mermaid
 flowchart TD
     Need{"Need AI that writes/runs code?"}
-    Need -->|For developers on a repo| P["Use §8 product<br/>Cursor / Claude Code / Codex"]
-    Need -->|Inside my SaaS for customers| F["Build with §6 framework<br/>+ my tools + my RAG"]
-    P --> Both["Both still rest on<br/>① LLM · ② context · ③ retrieve · ④ loop"]
+    Need -->|For developers on a repo| P["Use §8 product\nCursor / Claude Code / Codex"]
+    Need -->|Inside my SaaS for customers| F["Build with §6 framework\n+ my tools + my RAG"]
+    P --> Both["Both still rest on\n① LLM · ② context · ③ retrieve · ④ loop"]
     F --> Both
 ```
 
