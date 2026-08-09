@@ -1,6 +1,6 @@
 # LLM Concepts (Charts & Tables)
 
-This note uses diagrams and tables to explain core LLM ideas: **tokens**, **context windows**, **RAG**, **agents**, **LLM wikis**, **agent frameworks**, and **coding-agent products** (Cursor, Claude Code, Codex, …).
+This note uses diagrams and tables to explain core LLM ideas: **tokens**, **context windows**, **RAG**, **agents**, **LLM wikis**, **agent frameworks**, **consumer chat apps** (ChatGPT, Claude, Gemini, Grok), and **coding-agent products** (Cursor, Claude Code, Codex, …).
 
 ---
 
@@ -8,21 +8,25 @@ This note uses diagrams and tables to explain core LLM ideas: **tokens**, **cont
 
 ```mermaid
 flowchart TB
-    Prod["⑦ Coding-agent products<br/>Cursor · Claude Code · Codex · …"]
+    Chat["⑦a Chat apps<br/>ChatGPT · Claude · Gemini · Grok"]
+    Code["⑦b Coding agents<br/>Cursor · Claude Code · Codex"]
     FW["⑥ Framework libs<br/>LangGraph · Agents SDK · …"]
-    AG["④ Agent loop<br/>reason → act → observe"]
-    Tools["Tools: shell · editor · MCP · git"]
-    Wiki["⑤ Project rules / docs<br/>(repo as LLM wiki)"]
-    RAG["③ Codebase retrieve<br/>grep · index · @files"]
-    Ctx["② Context window"]
-    LLM["① LLM"]
+    AG["④ Agent / tool loop"]
+    Tools["Tools / browse / code / APIs"]
+    Wiki["⑤ Memory · files · help docs"]
+    RAG["③ Search / retrieve"]
+    Ctx["② Context assembly"]
+    LLM["① Foundation model"]
 
-    Prod --> AG
+    Chat --> AG
+    Code --> AG
     FW -.->|"you build with"| AG
-    Prod -.->|"often hide"| FW
+    Chat -.->|"hides"| FW
+    Code -.->|"hides"| FW
     AG --> Tools
     AG --> RAG
     Wiki --> RAG
+    Wiki --> Ctx
     RAG --> Ctx
     Tools --> Ctx
     AG --> Ctx
@@ -31,23 +35,24 @@ flowchart TB
 
 | Layer | One-liner | Jump |
 |---|---|---|
-| **① LLM** | Autoregressive next-token predictor | [§1](#1-what-an-llm-does-next-token-loop) |
+| **① LLM** | Autoregressive next-token predictor (the *model*) | [§1](#1-what-an-llm-does-next-token-loop) |
 | **② Tokens / context** | Everything must fit (and be paid for) in the window | [§2](#2-tokens--context-window-why-size-matters) |
 | **③ RAG** | Fetch *relevant* chunks; large windows don’t replace indexes | [§3](#3-rag-vs-large-context--is-rag-still-necessary) |
 | **④ Agent** | Loop that chooses tools/RAG until the goal is done | [§4](#4-agents--from-one-shot-to-a-control-loop) |
 | **⑤ LLM wiki** | Curated, citable knowledge the retriever/agent reads | [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) |
 | **⑥ Framework** | Libraries *you* embed to wire the loop | [§6](#6-agent-frameworks--who-orchestrates-the-loop) |
-| **⑦ Coding agents** | Packaged products that *are* coding agents (IDE/CLI) | [§7](#7-coding-agent-products--cursor-claude-code-codex-) |
+| **⑦a Chat apps** | ChatGPT / Claude.ai / Gemini / Grok — *products*, not bare LLMs | [§7](#7-consumer-chat-apps--chatgpt-claude-gemini-grok) |
+| **⑦b Coding agents** | Cursor / Claude Code / Codex — coding-agent products | [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
 
 | Don’t confuse… | With… |
 |---|---|
+| **ChatGPT / Claude.ai / Gemini / Grok** | The raw **LLM API** / model weights alone |
 | **Bigger context** | A full company corpus (still need **RAG** / wiki) |
 | **RAG** | An **agent** (RAG answers; agents also *do*) |
 | **Wiki dump** | An **LLM wiki** (structure, metadata, ACLs, review) |
-| **Framework (§6)** | **Coding-agent product (§7)** — libs you build with vs apps you use |
-| **Chat in the sidebar** | An **agent** with tools (read/edit/run/test) |
+| **Framework (§6)** | **Product (§7/§8)** — libs you build with vs apps you use |
 
-**Rules of thumb:** weights = what it *learned* · context = what it *sees now* · RAG/wiki = what it can *look up* · tools = what it can *do* · framework = *how* you code the loop · **product** = a ready-made agent UX · evals = whether it *works*.
+**Rules of thumb:** **model** = next-token engine · **chat app** = model + context manager + tools + UI · weights = what it *learned* · context = what it *sees now* · RAG/wiki = what it can *look up* · tools = what it can *do* · framework = *how* you code the loop · evals = whether it *works*.
 
 ---
 
@@ -445,9 +450,96 @@ flowchart TB
 
 ---
 
-## 7. Coding-Agent Products — Cursor, Claude Code, Codex, …
+## 7. Consumer Chat Apps — ChatGPT, Claude, Gemini, Grok
 
-**Where they fit:** [§6](#6-agent-frameworks--who-orchestrates-the-loop) frameworks are **libraries** you embed in *your* app. **Cursor**, **Claude Code**, **OpenAI Codex** (CLI/IDE agents), Copilot Chat/agent modes, Windsurf, etc. are **vertical products**: shipping coding agents with UX, tools, and retrieval over *your repo* already wired.
+**Correct: they are not “just LLMs.”**  
+The **LLM** is the foundation model (①). **ChatGPT**, **Claude.ai**, **Google Gemini** (app), and **xAI Grok** are **consumer products** that wrap a model with context management, tools, safety, memory, and a UI—the same stack as [§4](#4-agents--from-one-shot-to-a-control-loop)–[§6](#6-agent-frameworks--who-orchestrates-the-loop), mostly invisible to you.
+
+| Name people say | Usually means | Bare model / API side |
+|---|---|---|
+| **ChatGPT** | OpenAI chat product | `gpt-*` via OpenAI API |
+| **Claude** | Claude.ai product | Anthropic API (`claude-*`) |
+| **Gemini** | Gemini app / Google AI | Gemini API / Vertex |
+| **Grok** | xAI chat (e.g. on X) | xAI API |
+
+### What happens on one user message
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as You
+    participant S as Chat product backend
+    participant M as Memory / files / RAG
+    participant T as Tools
+    participant L as LLM
+
+    U->>S: New message
+    S->>S: Load thread history
+    Note over S: trim or summarize if long
+    S->>M: Optional memory, uploads, help index
+    M-->>S: Extra snippets
+    S->>S: Build prompt from system, history, extras, user
+    S->>L: Inference request
+    L-->>S: Text and/or tool_call
+    alt Model requested a tool
+        S->>T: Execute tool
+        T-->>S: Observation
+        S->>L: Append observation and continue
+        L-->>S: Final answer or another tool_call
+    end
+    S->>S: Safety, formatting, citations UI
+    S-->>U: Assistant reply
+```
+
+### How they manage **context**
+
+| Mechanism | What it does |
+|---|---|
+| **Thread history** | Prior turns are re-sent (or summarized) each request—stateless LLM + stateful app |
+| **Window limit** | Oldest turns **dropped** or **compressed** when near the max |
+| **System / developer prompts** | Hidden instructions (tone, safety, tool schemas)—not shown as chat bubbles |
+| **Uploads / “projects”** | Files chunked and retrieved (RAG) or partially stuffed into context |
+| **Memory** (when enabled) | Long-term notes about you, injected selectively—not the whole chat forever |
+| **Summarization** | Long threads → rolling summary + recent raw turns |
+
+The model does **not** magically remember yesterday. The **product** re-feeds whatever it still keeps in the assembled context.
+
+### How they **call tools / APIs**
+
+| Step | Who |
+|---|---|
+| 1. Model emits a structured **tool call** (name + args) | LLM |
+| 2. **Product backend** runs the tool (web search, code sandbox, image gen, connectors…) | Not the GPU weights |
+| 3. Tool result is appended to the context | Product |
+| 4. Model is called **again** to use that result | LLM |
+
+So “Claude searched the web” ≈ **agent loop** (④): model proposes → product executes → model reads observation. Same pattern as [§4](#4-agents--from-one-shot-to-a-control-loop); the chat UI just hides the loop.
+
+### Chat app vs raw LLM API
+
+| | ChatGPT / Claude.ai / Gemini app / Grok | Raw LLM API |
+|---|---|---|
+| **You talk to** | Full product | One model endpoint |
+| **History** | Managed for you | You send `messages[]` every time |
+| **Tools** | Built-in (browse, code, …) | You define & execute tools |
+| **Memory / files** | Product features | You build RAG/memory |
+| **Safety / routing** | Often multi-model + filters | Your responsibility |
+| **Best mental model** | Agent-ish assistant product | Primitive: next-token (+ optional tool JSON) |
+
+### Same family as coding agents
+
+| Product class | Examples | Default “corpus” |
+|---|---|---|
+| **⑦a General chat** | ChatGPT, Claude.ai, Gemini, Grok | Web (via tools), your uploads, chat memory |
+| **⑦b Coding agents** | Cursor, Claude Code, Codex | **Your repository** + rules |
+
+Both are **products on top of LLMs**, not alternate spellings of “the model.”
+
+---
+
+## 8. Coding-Agent Products — Cursor, Claude Code, Codex, …
+
+**Where they fit:** [§6](#6-agent-frameworks--who-orchestrates-the-loop) frameworks are **libraries** you embed in *your* app. **Cursor**, **Claude Code**, **OpenAI Codex** (CLI/IDE agents), Copilot Chat/agent modes, Windsurf, etc. are **vertical products**: shipping coding agents with UX, tools, and retrieval over *your repo* already wired. Same idea as [§7](#7-consumer-chat-apps--chatgpt-claude-gemini-grok), specialized for software engineering.
 
 They are not a new layer under the LLM — they are a **packaged stack** of layers ①–⑤ (and an internal ⑥ you don’t always see).
 
@@ -491,9 +583,9 @@ flowchart LR
 
 Exact names/features change quickly; the **layer mapping** stays stable.
 
-### Framework (§6) vs product (§7)
+### Framework (§6) vs product (§8)
 
-| | **Agent frameworks** (§6) | **Coding-agent products** (§7) |
+| | **Agent frameworks** (§6) | **Coding-agent products** (§8) |
 |---|---|---|
 | **You are…** | Building a product/backend | Using a coding assistant |
 | **Orchestration** | You choose LangGraph / SDK / … | Vendor’s loop (opaque) |
@@ -504,7 +596,7 @@ Exact names/features change quickly; the **layer mapping** stays stable.
 ```mermaid
 flowchart TD
     Need{"Need AI that writes/runs code?"}
-    Need -->|For developers on a repo| P["Use §7 product<br/>Cursor / Claude Code / Codex"]
+    Need -->|For developers on a repo| P["Use §8 product<br/>Cursor / Claude Code / Codex"]
     Need -->|Inside my SaaS for customers| F["Build with §6 framework<br/>+ my tools + my RAG"]
     P --> Both["Both still rest on<br/>① LLM · ② context · ③ retrieve · ④ loop"]
     F --> Both
@@ -521,7 +613,7 @@ flowchart TD
 
 ---
 
-## 8. Doc Map
+## 9. Doc Map
 
 | Section | Status | Focus |
 |---|---|---|
@@ -532,7 +624,8 @@ flowchart TD
 | 4. Agents | Done | ReAct, plan-execute, multi-agent, memory |
 | 5. LLM wiki | Done | Curated knowledge layer for RAG/agents |
 | 6. Agent frameworks | Done | LangGraph, OpenAI SDK, CrewAI, LlamaIndex, … |
-| 7. Coding-agent products | Done | Cursor, Claude Code, Codex, Copilot, … |
+| 7. Consumer chat apps | Done | ChatGPT, Claude.ai, Gemini, Grok |
+| 8. Coding-agent products | Done | Cursor, Claude Code, Codex, Copilot, … |
 
 ---
 
