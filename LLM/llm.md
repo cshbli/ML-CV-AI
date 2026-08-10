@@ -1,6 +1,6 @@
 # LLM Concepts (Charts & Tables)
 
-This note uses diagrams and tables to explain core LLM ideas: **tokens**, **context windows**, **RAG**, **agents**, **LLM wikis**, **agent frameworks**, **consumer chat apps** (ChatGPT, Claude, Gemini, Grok), and **coding-agent products** (Cursor, Claude Code, Codex, …).
+This note uses diagrams and tables to explain core LLM ideas: **tokens**, **context windows**, **RAG**, **agents**, **LLM wikis**, **agent frameworks**, **consumer chat apps** (ChatGPT, Claude, Gemini, Grok), **coding-agent products** (Cursor, Claude Code, Codex, …), and the **Prompt→Graph** evolution of AI coding.
 
 ---
 
@@ -36,13 +36,14 @@ flowchart TB
 | Layer | One-liner | Jump |
 |---|---|---|
 | **① LLM** | Autoregressive next-token predictor (the *model*) | [§1](#1-what-an-llm-does-next-token-loop) |
-| **② Tokens / context** | Everything must fit (and be paid for) in the window | [§2](#2-tokens--context-window-why-size-matters) |
+| **② Tokens / tokenizer** | Text → subword tokens → IDs; window and cost are counted in tokens | [§2](#2-tokens-tokenizer--context-window) |
 | **③ RAG** | Fetch *relevant* chunks; large windows don’t replace indexes | [§3](#3-rag-vs-large-context--is-rag-still-necessary) |
 | **④ Agent** | Loop that chooses tools/RAG until the goal is done | [§4](#4-agents--from-one-shot-to-a-control-loop) |
 | **⑤ LLM wiki** | Curated, citable knowledge the retriever/agent reads | [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) |
 | **⑥ Framework** | Libraries *you* embed to wire the loop | [§6](#6-agent-frameworks--who-orchestrates-the-loop) |
 | **⑦a Chat apps** | ChatGPT / Claude.ai / Gemini / Grok — *products*, not bare LLMs | [§7](#7-consumer-chat-apps--chatgpt-claude-gemini-grok) |
 | **⑦b Coding agents** | Cursor / Claude Code / Codex — coding-agent products | [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
+| **Prompt→Graph** | How AI coding grows: prompt → context → harness → loop → graph | [§9](#9-ai-coding-evolution--from-prompt-to-graph) |
 
 | Don’t confuse… | With… |
 |---|---|
@@ -105,7 +106,222 @@ sequenceDiagram
 
 ---
 
-## 2. Tokens & Context Window (Why Size Matters)
+## 2. Tokens, Tokenizer & Context Window
+
+The model never sees raw text. A **tokenizer** splits text into **tokens**, maps each token to an integer **token ID**, and the transformer reads those IDs (via embeddings). Everything you pay for and everything that must fit in the window is counted in **tokens**, not characters or words.
+
+### What is a token?
+
+| Level | Unit | Example for `"playing"` | Used by modern LLMs? |
+|---|---|---|---|
+| **Character** | Single letter | `p`, `l`, `a`, `y`, … | Rarely (too long) |
+| **Word** | Whole word | `playing` | Older NLP; OOV problems |
+| **Subword / token** | Word piece (BPE, SentencePiece) | `play` + `ing` | **Yes — default for GPT, Claude, Llama, …** |
+
+A **token** is the smallest unit the model reads and writes. It is often a common word, a prefix/suffix piece, punctuation, or whitespace chunk — not always a full English word.
+
+```mermaid
+flowchart LR
+    Text["Human text\nThe cat sat on the mat."] --> Tok["Tokenizer\nsplit + map to IDs"]
+    Tok --> IDs["Token ID sequence\n[464, 3797, 3332, 319, 262, 6165, 13]"]
+    IDs --> Emb["Embedding layer\nID to vector"]
+    Emb --> TR["Transformer\nattention over vectors"]
+    TR --> Logits["Scores over full vocabulary"]
+    Logits --> Next["Pick next token ID"]
+    Next --> Detok["Detokenizer\ndecode IDs to text"]
+    Detok --> Out["Output text\n... on the mat."]
+```
+
+### Tokenizer pipeline (encode)
+
+```mermaid
+flowchart TD
+    Raw["Raw string from user or tool"] --> Norm["Normalize\nUnicode, whitespace, casing rules"]
+    Norm --> Split["Subword split\nBPE or SentencePiece"]
+    Split --> Map["Lookup in vocabulary\nabout 32k to 256k entries"]
+    Map --> IDs["List of token IDs"]
+    Map --> Spec["Special tokens inserted\nBOS, EOS, role markers"]
+    IDs --> Ctx["Context window\nall IDs must fit here"]
+    Spec --> Ctx
+
+    subgraph Vocab["Vocabulary (fixed at train time)"]
+        V1["play -> 1234"]
+        V2["ing -> 567"]
+        V3["The -> 464"]
+        V4["<|endoftext|> -> 50256"]
+    end
+    Map -.-> Vocab
+```
+
+| Step | Input | Output |
+|---|---|---|
+| **Normalize** | `"  Hello\nworld  "` | Cleaned string |
+| **Split (BPE / SentencePiece)** | `"playing"` | `["play", "ing"]` or `["play", "ing"]` pieces |
+| **Map to ID** | `"play"` | integer e.g. `1234` |
+| **Decode (detokenize)** | `[1234, 567]` | `"playing"` (approximate round-trip) |
+
+### Example: same sentence, different splits
+
+```mermaid
+flowchart TB
+    subgraph Ex1["Common words = 1 token each"]
+        T1["The cat sat"]
+        T1 --> R1["The | cat | sat"]
+    end
+    subgraph Ex2["Rare / long words = many tokens"]
+        T2["tokenization"]
+        T2 --> R2["token | ization\nor token | iz | ation"]
+    end
+    subgraph Ex3["Code and symbols"]
+        T3["def foo(x):"]
+        T3 --> R3["def | foo | ( | x | ) | :"]
+    end
+```
+
+Concrete illustration (IDs are **model-specific** — numbers below are illustrative):
+
+| Text fragment | Tokens (pieces) | Notes |
+|---|---|---|
+| `"The cat sat on the mat."` | `The` · ` cat` · ` sat` · ` on` · ` the` · ` mat` · `.` | ~7 tokens |
+| `"ChatGPT"` | `Chat` · `GPT` or `ChatGPT` | Depends on vocab |
+| `"🙂"` | Often **1–3 tokens** | Emoji can be expensive |
+| `"import torch"` | `import` · ` torch` | Code tokenization differs by model |
+| `"supercalifragilistic"` | Many subword pieces | Long rare strings cost more |
+
+```mermaid
+sequenceDiagram
+    participant U as User text
+    participant Enc as Tokenizer encode
+    participant M as Model
+    participant Dec as Tokenizer decode
+
+    U->>Enc: "The cat sat"
+    Enc->>M: token IDs [464, 3797, 3332]
+    Note over M: Model predicts next ID 319
+    M->>Dec: append 319
+    Dec->>U: decoded text adds " on"
+```
+
+### Special tokens
+
+Tokenizers reserve IDs for control symbols — not normal words:
+
+| Token (examples) | Role |
+|---|---|
+| `<\|begin_of_text\|>` / BOS | Start of sequence |
+| `<\|end_of_text\|>` / EOS | Stop generation |
+| `<\|im_start\|>` / role markers | Chat format (system / user / assistant) |
+| `<\|pad\|>` | Batch padding (training) |
+| Tool / image placeholders | Multimodal or agent APIs |
+
+```mermaid
+flowchart LR
+    subgraph Prompt["Assembled prompt (all are tokens)"]
+        S["System message tokens"]
+        U["User message tokens"]
+        D["Retrieved doc tokens"]
+        T["Tool-result tokens"]
+    end
+    S --> Win["Context window budget"]
+    U --> Win
+    D --> Win
+    T --> Win
+    Win --> Model["LLM sees one flat ID sequence"]
+```
+
+### Token vs word — why it matters
+
+```mermaid
+flowchart TD
+    Q["Why not just count words?"]
+    Q --> A1["Billing and limits use tokens\n(API price per 1M tokens)"]
+    Q --> A2["Context window is in tokens\nnot characters or words"]
+    Q --> A3["Subwords handle rare words\nwithout infinite vocabulary"]
+    Q --> A4["Same English sentence\ncan differ across models"]
+```
+
+| Question | Answer |
+|---|---|
+| **How many tokens is my prompt?** | Use the model’s tokenizer (`tiktoken`, `transformers`) — do not guess from word count |
+| **1 token ≈ how many characters?** | Rough rule for English: **~4 chars** or **~0.75 words** — varies a lot |
+| **Why is my code expensive?** | Symbols, indentation, and long identifiers often split into many tokens |
+| **Can I reverse token IDs to text?** | Yes — `decode(token_ids)` (lossy for whitespace in some tokenizers) |
+
+See also: [token_embedding.md](./token_embedding.md) for how token IDs become vectors inside the transformer.
+
+### Prompt vs context — model view vs app view
+
+**Short answer:** A fundamental LLM does **not** have separate “prompt” and “context” inputs. The app assembles system rules, history, retrieved docs, and the user question into **one token sequence**; the model runs on that flat stream.
+
+#### App view (what humans label)
+
+```mermaid
+flowchart LR
+    subgraph App["App or API assembles"]
+        Sys["System instructions"]
+        Hist["Chat history"]
+        Docs["Retrieved docs or files"]
+        User["User question"]
+    end
+    App --> Template["Chat template or formatting"]
+    Template --> One["Single token ID sequence"]
+    One --> LLM["LLM: one forward pass"]
+```
+
+| Piece | People often call it | Native type inside the model? |
+|---|---|---|
+| System rules | “System prompt” | No — just tokens |
+| Prior turns | “Context / history” | No — just tokens |
+| Retrieved wiki chunks | “Context / RAG” | No — just tokens |
+| Latest user message | “Prompt / query” | No — just tokens |
+| Model output so far | “Completion” | No — just tokens |
+
+#### Model view (what the transformer sees)
+
+```mermaid
+flowchart TD
+    IDs["Token IDs: t1, t2, t3, ... tN"]
+    IDs --> Emb["Same embedding table for every token"]
+    Emb --> Attn["Causal self-attention\neach token attends to all prior tokens"]
+    Attn --> Head["Next-token prediction"]
+
+    Note1["No separate prompt port or context port"]
+    Note1 -.-> IDs
+```
+
+- **One sequence in**, next token out — no architectural split between “prompt” and “context”.
+- **Same** embeddings, attention, and output head for every position.
+- **Attention does not** treat “prompt tokens” differently from “context tokens”; order and content matter, not a type flag.
+
+#### How the model *behaves* as if they differ
+
+Differentiation is **conventional** (formatting + training), not built into the weight matrix:
+
+| Mechanism | What it does |
+|---|---|
+| **Special / role tokens** | e.g. `<\|system\|>`, `<\|user\|>`, `<\|assistant\|>` mark regions in the stream |
+| **Chat template** | API joins `messages[]` into one string with fixed delimiters |
+| **Instruction tuning** | Model learned patterns like “text after User: is the question” |
+| **Ordering** | Put rules first, question last — later tokens attend to earlier ones |
+| **Truncation policy** | App drops old history or docs first when near the window limit |
+
+Two sequences that look different to humans but tokenize identically are **identical** to the model.
+
+#### Raw API vs chat API
+
+| | **Raw completion API** | **Chat API (`messages[]`)** |
+|---|---|---|
+| You send | One string or token list | Roles: system / user / assistant |
+| Model receives | Flat tokens | Still flat tokens after the template |
+| “Prompt vs context” | Your assembly problem | Template encodes roles into the stream |
+
+#### Practical takeaway
+
+- **Fundamental LLM:** one assembled sequence — **no** native prompt/context channels.
+- **Engineering layer:** you **label, order, and trim** pieces so behavior matches intent.
+- **Context window:** counts **all** of them together — system + history + docs + question + generated answer ([below](#context-window-why-size-matters)).
+
+### Context window (why size matters)
 
 ```mermaid
 flowchart LR
@@ -613,19 +829,159 @@ flowchart TD
 
 ---
 
-## 9. Doc Map
+## 9. AI Coding Evolution — From Prompt to Graph
+
+How AI coding capability grows layer by layer: from a single prompt to **context**, **harness** (tools), **loops**, and finally **graphs** of collaborating nodes. Light-blue boxes = **new capability** at that layer.
+
+Maps onto this note:
+
+| Evolution layer | Adds… | See also |
+|---|---|---|
+| 1. Prompt engineering | One-shot generate | [§1](#1-what-an-llm-does-next-token-loop) LLM |
+| 2. Context engineering | Relevant materials in the window | [§2](#2-tokens-tokenizer--context-window)–[§3](#3-rag-vs-large-context--is-rag-still-necessary), [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) |
+| 3. Harness engineering | Tools, env, sandbox (agent can *act*) | [§4](#4-agents--from-one-shot-to-a-control-loop), [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
+| 4. Loop engineering | Inspect → revise until stop | [§4](#4-agents--from-one-shot-to-a-control-loop) ReAct / budgets |
+| 5. Graph engineering | Multi-node orchestration + shared state | [§6](#6-agent-frameworks--who-orchestrates-the-loop) (e.g. LangGraph) |
+
+```mermaid
+graph TD
+  classDef stdNode fill:#e0e0e0,stroke:#333,stroke-width:1px,color:#000,text-align:left,font-size:13px
+  classDef newCapNode fill:#a9d1f7,stroke:#333,stroke-width:1px,color:#000,font-weight:bold,text-align:left,font-size:13px
+  classDef headerNode fill:#244c79,stroke:#333,stroke-width:1px,color:#fff,font-weight:bold,text-align:center,font-size:14px
+  classDef subGraphStyle stroke-width:0px,color:transparent
+  classDef textNode fill:none,stroke:none,color:#000,font-size:14px
+  classDef invisible fill:transparent,stroke:none,color:transparent
+
+  MainTitle["AI Coding: Step-by-Step Evolution from Prompt to Graph\nFrom Single Generation to Systematic Orchestration\nGradually Expanding Task Complexity, Autonomy, and Collaboration\n\nNote: Light blue boxes = new capabilities at this layer."]:::textNode
+  TitleSpacer[" "]:::invisible
+  MainTitle --- TitleSpacer
+
+  subgraph Layer1[" "]
+    direction LR
+    L1Label["Layer 1: Prompt Engineering"]:::headerNode
+    L1Input["Input:\nHelp me generate a webpage"]:::stdNode
+    L1LLM["LLM:\nUnderstand and Generate"]:::stdNode
+    L1Output["Output:\nA snippet of code"]:::stdNode
+    L1Label --> L1Input --> L1LLM --> L1Output
+  end
+  S1[" "]:::invisible
+  Layer1 --- S1
+
+  subgraph Layer2[" "]
+    direction LR
+    L2Label["Layer 2: Context Engineering"]:::headerNode
+    L2Input["Input:\nGenerate webpage"]:::stdNode
+    L2Context["Relevant Context:\nRef Implementation | Tech Stack | Coding Standards | Design Specs | Req and API Docs"]:::newCapNode
+    L2LLM["LLM:\nGenerate based on materials"]:::stdNode
+    L2Output["Output:\nCode that better fits the project"]:::stdNode
+    L2Label --> L2Input --> L2Context --> L2LLM --> L2Output
+  end
+  S2[" "]:::invisible
+  S1 --- Layer2
+  Layer2 --- S2
+
+  subgraph Layer3[" "]
+    direction LR
+    L3Label["Layer 3: Harness Engineering"]:::headerNode
+    L3Input["Input:\nGenerate webpage"]:::stdNode
+    L3Context["Context:\nCode | Standards | Design Specs | Docs and API Docs"]:::stdNode
+    L3CodingAgent["Coding Agent:\nDecide and Act"]:::stdNode
+    L3Harness["Harness: Tools and Execution:\nEnv / Deps | Files | Terminal | Git | Browser | Testing | APIs/MCP | Permissions and Sandbox"]:::newCapNode
+    L3Output["Output:\nRunnable webpage"]:::stdNode
+    L3Label --> L3Input --> L3Context --> L3CodingAgent --> L3Harness --> L3Output
+  end
+  S3[" "]:::invisible
+  S2 --- Layer3
+  Layer3 --- S3
+
+  subgraph Layer4[" "]
+    direction LR
+    L4Label["Layer 4: Loop Engineering"]:::headerNode
+    L4Input["Input:\nGenerate webpage"]:::stdNode
+    L4LoopController["Loop Controller:\nInspect Methods | Stop Conditions | Review Thresholds | Turn Budget"]:::newCapNode
+    L4Context["Context:\nReassemble based on latest state"]:::stdNode
+    L4Agent["Agent:\nJudge and Act"]:::stdNode
+    L4Harness["Harness:\nExecute and Observe"]:::stdNode
+    L4Version["Current Version:\nPending Inspection"]:::stdNode
+    L4Label --> L4Input --> L4LoopController
+    L4LoopController --> L4Context --> L4Agent --> L4Harness --> L4Version
+    L4Version -->|"Loop Feedback: Auto Inspection then Feedback then Revision then Re-inspection"| L4LoopController
+  end
+  S4[" "]:::invisible
+  S3 --- Layer4
+  Layer4 --- S4
+
+  subgraph Layer5[" "]
+    direction LR
+    L5Label["Layer 5: Graph Engineering"]:::headerNode
+    L5Input["Input"]:::stdNode
+    L5GraphOrchestrator["Graph Orchestrator:\nTask Decomp | Node Selection | Connections and Routing\nNodes have internal loops"]:::newCapNode
+    L5Label --> L5Input --> L5GraphOrchestrator
+  end
+  S4 --- Layer5
+
+  Layer1 ==> Layer2 ==> Layer3 ==> Layer4 ==> Layer5
+
+  L5GraphOrchestrator ==> DetailedViewSpacer[" "]:::invisible
+  DetailedViewSpacer ==> DetailedGraphView
+
+  subgraph DetailedGraphView["Detailed Graph Engineering View"]
+    direction TB
+
+    subgraph ResearchNode["Research Node Loop"]
+      direction LR
+      RNodeInput["Reqs + Code Context\nReassembled based on latest state"]:::stdNode
+      RNodeAgent["Research Agent:\nJudge and Act"]:::stdNode
+      RNodeTools["Search / Read Tools"]:::stdNode
+      RNodeNotes["Current Research Notes:\nCheck if sufficient"]:::stdNode
+      RNodeInput --> RNodeAgent --> RNodeTools --> RNodeNotes
+      RNodeNotes -->|"Node Internal Loop: Observe then Feedback then Supplementary Research"| RNodeAgent
+    end
+
+    ResearchNode -->|"Graph Routing: Research Notes written to shared state, handed to Implementation Node"| ImplementationNode
+
+    subgraph ImplementationNode["Implementation Node Loop"]
+      direction LR
+      INodeInput["Goals + Research Notes + Code Context"]:::stdNode
+      INodeAgent["Coding Agent:\nJudge and Act"]:::stdNode
+      INodeHarness["Harness:\nModify + Test"]:::stdNode
+      INodeResults["Current Webpage + Test Results:\nCheck if passed"]:::stdNode
+      INodeInput --> INodeAgent --> INodeHarness --> INodeResults
+      INodeResults -->|"Node Internal Loop: Test then Feedback then Modify then Re-test"| INodeAgent
+    end
+  end
+
+  FooterSpacer[" "]:::invisible
+  MetadataNode["Relationship: Loop manages internal repeated execution.\nGraph manages inter-node connections, shared state, and routing.\n\nData Source: Akshay Pachaar demo and public materials, compiled by Zhishi ThinkTank.\nChart Created By: Zhishi ThinkTank."]:::textNode
+  DetailedGraphView --- FooterSpacer --- MetadataNode
+
+  class Layer1,Layer2,Layer3,Layer4,Layer5,DetailedGraphView,ResearchNode,ImplementationNode subGraphStyle
+```
+
+| Idea | Meaning |
+|---|---|
+| **Prompt** | One generation, no project materials |
+| **Context** | Stuff / retrieve the right materials ([§3](#3-rag-vs-large-context--is-rag-still-necessary) RAG, [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) wiki) |
+| **Harness** | Tools + sandbox so the agent can change the world ([§8](#8-coding-agent-products--cursor-claude-code-codex-)) |
+| **Loop** | Keep acting until tests / review pass (budgets, stop rules) |
+| **Graph** | Multiple specialized nodes + routing + shared state ([§6](#6-agent-frameworks--who-orchestrates-the-loop)) |
+
+---
+
+## 10. Doc Map
 
 | Section | Status | Focus |
 |---|---|---|
 | Cheat sheet | Done | One-page layer map |
 | 1. LLM next-token loop | Done | Autoregressive generation |
-| 2. Tokens & context window | Done | Budget, cost |
+| 2. Tokens & tokenizer | Done | BPE, encode/decode, special tokens, context budget |
 | 3. RAG vs long context | Done | When RAG is still required |
 | 4. Agents | Done | ReAct, plan-execute, multi-agent, memory |
 | 5. LLM wiki | Done | Curated knowledge layer for RAG/agents |
 | 6. Agent frameworks | Done | LangGraph, OpenAI SDK, CrewAI, LlamaIndex, … |
 | 7. Consumer chat apps | Done | ChatGPT, Claude.ai, Gemini, Grok |
 | 8. Coding-agent products | Done | Cursor, Claude Code, Codex, Copilot, … |
+| 9. AI coding: Prompt→Graph | Done | Evolution layers + detailed graph view |
 
 ---
 
@@ -637,3 +993,4 @@ flowchart TD
 - Vendor context limits (e.g. 128k–1M) vs enterprise corpus sizes (GB–TB)
 - Framework docs: [LangGraph](https://langchain-ai.github.io/langgraph/), [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/), [CrewAI](https://docs.crewai.com/), [LlamaIndex Workflows](https://docs.llamaindex.ai/), [AG2](https://docs.ag2.ai/) / Microsoft Agent Framework
 - Coding agents: [Cursor](https://cursor.com/), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex](https://openai.com/codex/), [GitHub Copilot](https://github.com/features/copilot)
+- AI coding evolution chart: Akshay Pachaar demo / public materials, compiled by Zhishi ThinkTank (see [§9](#9-ai-coding-evolution--from-prompt-to-graph))
