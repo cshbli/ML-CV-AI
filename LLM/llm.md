@@ -1,6 +1,6 @@
 # LLM Concepts (Charts & Tables)
 
-This note uses diagrams and tables to explain core LLM ideas: **tokens**, **context windows**, **RAG**, **agents**, **LLM wikis**, **agent frameworks**, **consumer chat apps** (ChatGPT, Claude, Gemini, Grok), **coding-agent products** (Cursor, Claude Code, Codex, …), and the **Prompt→Graph** evolution of AI coding.
+This note uses diagrams and tables to explain core LLM ideas: **LLM**, **token**, **Context**, **context window**, **Prompt**, **User Prompt**, **System Prompt**, **Tool**, **MCP**, **Agent**, **Agent Skills**, **RAG**, **LLM wikis**, **agent frameworks**, **consumer chat apps** (ChatGPT, Claude, Gemini, Grok), **coding-agent products** (Cursor, Claude Code, Codex, …), and the **Prompt→Graph** evolution of AI coding.
 
 ---
 
@@ -13,7 +13,7 @@ flowchart TB
     FW["⑥ Framework libs\nLangGraph · Agents SDK · …"]
     AG["④ Agent / tool loop"]
     Tools["Tools / browse / code / APIs / MCP"]
-    Wiki["⑤ Memory · files · help docs"]
+    Wiki["⑤ Memory · files · skills · rules"]
     RAG["③ Search / retrieve"]
     Ctx["② Context assembly"]
     LLM["① Foundation model"]
@@ -38,7 +38,7 @@ flowchart TB
 | **① LLM** | Autoregressive next-token predictor (the *model*) | [§1](#1-what-an-llm-does-next-token-loop) |
 | **② Tokens / tokenizer** | Text → subword tokens → IDs; window and cost are counted in tokens | [§2](#2-tokens-tokenizer--context-window) |
 | **③ RAG** | Fetch *relevant* chunks; large windows don’t replace indexes | [§3](#3-rag-vs-large-context--is-rag-still-necessary) |
-| **④ Agent** | Loop that chooses tools/RAG until the goal is done | [§4](#4-agents--from-one-shot-to-a-control-loop) |
+| **④ Agent** | Loop that chooses tools/RAG/skills until the goal is done | [§4](#4-agents--from-one-shot-to-a-control-loop) |
 | **⑤ LLM wiki** | Curated, citable knowledge the retriever/agent reads | [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) |
 | **⑥ Framework** | Libraries *you* embed to wire the loop | [§6](#6-agent-frameworks--who-orchestrates-the-loop) |
 | **⑦a Chat apps** | ChatGPT / Claude.ai / Gemini / Grok — *products*, not bare LLMs | [§7](#7-consumer-chat-apps--chatgpt-claude-gemini-grok) |
@@ -822,6 +822,139 @@ Same pattern as [inline tools](#tools--what-they-are-and-how-they-work-with-the-
 
 **Bottom line:** MCP is **host-to-server wiring** for tools and context. The LLM still learns what is available only from the **tool list the host puts in the prompt** each turn — MCP standardizes where that list comes from and who runs the handler.
 
+### Agent Skills — reusable playbooks
+
+An **Agent Skill** is a **packaged workflow**: markdown instructions (and optional scripts) that teach the agent **how** to perform a specific task when the **host** decides the skill applies. Skills are **procedures and domain know-how**, not executable tools themselves.
+
+Common in **Cursor** (`SKILL.md` in skill folders); the same idea appears elsewhere as “playbooks,” “agent recipes,” or framework-specific plugins.
+
+```mermaid
+flowchart TB
+    User["User request"] --> Host["Agent host\nCursor · custom agent"]
+    Host --> Match["Match skill by name or description"]
+    Match --> Load["Load SKILL.md into context"]
+    Load --> LLM["LLM follows playbook"]
+    LLM --> Tools["May call tools / MCP / scripts"]
+    Tools --> LLM
+    LLM --> Out["Structured output"]
+```
+
+#### Skill vs tool vs MCP vs rules
+
+| | **Agent Skill** | **Tool** | **MCP** | **Rules / AGENTS.md** |
+|---|---|---|---|---|
+| **What it is** | How-to playbook for one workflow | Callable function with schema | Protocol for external servers | Standing policies for the repo |
+| **Runs code?** | Optional scripts you invoke | Host/server executes handler | MCP server executes | No |
+| **In LLM context as** | Extra instructions (tokens) | Tool list + tool results | Tool list via server | Always-on or file-scoped rules |
+| **Typical scope** | One task (PR review, commit format) | One action (`search`, `run_sql`) | One domain (git, DB) | Whole project behavior |
+| **Reuse** | Share skill folder across projects | Per-app registration | Plug-in server | Commit `.cursor/rules` |
+
+**Skills tell the agent what to do; tools/MCP let it do it.**
+
+#### Cursor skill layout (example)
+
+```text
+my-skill/
+├── SKILL.md          # Required — frontmatter + instructions
+├── reference.md      # Optional — deep docs
+├── examples.md       # Optional — samples
+└── scripts/          # Optional — helper commands
+    └── validate.py
+```
+
+| Location | Path | Scope |
+|---|---|---|
+| **Personal** | `~/.cursor/skills/skill-name/` | All your projects |
+| **Project** | `.cursor/skills/skill-name/` | Anyone using the repo |
+
+`SKILL.md` frontmatter (illustrative):
+
+```yaml
+---
+name: commit-helper
+description: >-
+  Draft git commit messages from diffs using team format.
+  Use when the user asks to commit or write a commit message.
+---
+```
+
+The **description** is how the host/agent decides **when** to load the skill (pattern match on user intent — still conditioning on text tokens, like [tool choice](#how-tool-choice-is-still-next-token-prediction)).
+
+#### Sequence: skill + LLM + tools
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant H as Agent host
+    participant SK as Skill SKILL.md
+    participant L as LLM
+    participant T as Tools or MCP
+
+    Note over H: Index skills by name + description
+    U->>H: Review this PR against our standards
+    H->>H: Match skill review-pr
+    H->>SK: Read SKILL.md
+    SK-->>H: Playbook steps and checklist
+    H->>L: system + rules + skill body + user context
+
+    L-->>H: tool_call fetch_diff or read_file
+    H->>T: execute
+    T-->>H: diff content
+    H->>L: append tool_result + continue skill steps
+
+    L-->>H: Review comment in required format
+    H-->>U: Final review
+```
+
+#### Skills in the layer stack
+
+```mermaid
+flowchart LR
+    subgraph Knowledge["What to know"]
+        Wiki["LLM wiki / RAG"]
+        Skill["Agent Skills"]
+        Rules["Rules / AGENTS.md"]
+    end
+    subgraph Action["What to do"]
+        Tools["Tools"]
+        MCP["MCP servers"]
+    end
+    LLM["LLM loop"] --> Knowledge
+    LLM --> Action
+    Skill -.->|"procedure"| LLM
+    Wiki -.->|"facts"| LLM
+    Tools -.->|"execute"| LLM
+```
+
+| Layer | Question it answers |
+|---|---|
+| **RAG / wiki** | What are the facts? |
+| **Skill** | What steps should I follow for *this* job? |
+| **Rules** | What must I always obey in this repo? |
+| **Tools / MCP** | What can I invoke to fetch or change things? |
+
+#### When to use a skill
+
+| Use a skill when… | Use a tool when… |
+|---|---|
+| Multi-step workflow with team-specific format | Single atomic action with clear API |
+| Same procedure reused across chats | Side effect or live data fetch |
+| You want versioned docs in git (`.cursor/skills/`) | You need runtime execution |
+| Instructions are long but **only sometimes** needed | Action must be machine-runnable |
+
+#### Design notes
+
+| Practice | Why |
+|---|---|
+| **One skill = one job** | Easier to trigger and maintain |
+| **Strong description (WHAT + WHEN)** | Host picks the right playbook |
+| **Keep SKILL.md focused** | Large skills burn context — link `reference.md` for depth |
+| **Optional scripts** | Repeatable validation without re-explaining in prose |
+| **Do not confuse with MCP** | MCP = live capabilities; skill = how to use them well |
+
+**Bottom line:** A skill is **curated procedure text** the host injects when relevant. The LLM still runs as a next-token predictor — the skill becomes **part of the context** it conditions on, like a temporary specialist appendix ([§5 LLM wiki](#5-llm-wiki--grounded-knowledge-for-orgs--agents) for facts, skill for *steps*).
+
 ### Chatbot vs RAG vs Agent
 
 | | Chatbot (no tools) | RAG app | Agent |
@@ -1367,7 +1500,7 @@ graph TD
 | 1. LLM next-token loop | Done | Autoregressive generation |
 | 2. Tokens & tokenizer | Done | BPE, encode/decode, special tokens, context budget |
 | 3. RAG vs long context | Done | When RAG is still required |
-| 4. Agents | Done | Tools, MCP, ReAct, plan-execute, multi-agent, memory |
+| 4. Agents | Done | Tools, MCP, Skills, ReAct, plan-execute, multi-agent |
 | 5. LLM wiki | Done | Curated knowledge layer for RAG/agents |
 | 6. Agent frameworks | Done | LangGraph, OpenAI SDK, CrewAI, LlamaIndex, … |
 | 7. Consumer chat apps | Done | ChatGPT, Claude.ai, Gemini, Grok |
@@ -1384,5 +1517,6 @@ graph TD
 - Vendor context limits (e.g. 128k–1M) vs enterprise corpus sizes (GB–TB)
 - Framework docs: [LangGraph](https://langchain-ai.github.io/langgraph/), [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/), [CrewAI](https://docs.crewai.com/), [LlamaIndex Workflows](https://docs.llamaindex.ai/), [AG2](https://docs.ag2.ai/) / Microsoft Agent Framework
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — standard host/server plug-in for tools and resources ([§4 MCP](#mcp-model-context-protocol))
+- Cursor Agent Skills — `SKILL.md` playbooks in `~/.cursor/skills/` or `.cursor/skills/` ([§4 Agent Skills](#agent-skills--reusable-playbooks))
 - Coding agents: [Cursor](https://cursor.com/), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex](https://openai.com/codex/), [GitHub Copilot](https://github.com/features/copilot)
 - AI coding evolution chart: Akshay Pachaar demo / public materials, compiled by Zhishi ThinkTank (see [§9](#9-ai-coding-evolution--from-prompt-to-graph))
