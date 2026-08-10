@@ -37,7 +37,7 @@ flowchart TB
 |---|---|---|
 | **① LLM** | Autoregressive next-token predictor (the *model*) | [§1](#1-what-an-llm-does-next-token-loop) |
 | **② Tokens / tokenizer** | Text → subword tokens → IDs; window and cost are counted in tokens | [§2](#2-tokens-tokenizer--context-window) |
-| **③ RAG** | Fetch *relevant* chunks; large windows don’t replace indexes | [§3](#3-rag-vs-large-context--is-rag-still-necessary) |
+| **③ RAG** | Fetch *relevant* chunks; large windows don’t replace indexes | [RAG.md](./RAG.md) |
 | **④ Agent** | Loop that chooses tools/RAG/skills until the goal is done | [§4](#4-agents--from-one-shot-to-a-control-loop) |
 | **⑤ LLM wiki** | Curated, citable knowledge the retriever/agent reads | [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) |
 | **⑥ Framework** | Libraries *you* embed to wire the loop | [§6](#6-agent-frameworks--who-orchestrates-the-loop) |
@@ -423,62 +423,27 @@ flowchart LR
 
 ---
 
-## 3. RAG vs Large Context — Is RAG Still Necessary?
+## 3. RAG (Retrieval-Augmented Generation)
 
-### Short answer
+**RAG** = **R**etrieve relevant passages from an index → **A**ugment the LLM prompt with those chunks → **G**enerate an answer grounded in that evidence.
 
-**Yes, RAG is still necessary for most production systems.**  
-A large context window **reduces** how often you need retrieval for *medium* corpora, but it does **not** replace RAG when knowledge is large, changing, private, or must be cited selectively.
-
-### Two ways to give the model external knowledge
+The model weights do not change at query time; you change **which tokens are in the context** for this request.
 
 ```mermaid
-flowchart TB
-    subgraph LongCtx["Long-context approach"]
-        L1["Stuff many docs into the prompt"] --> L2["LLM answers from that blob"]
-    end
-    subgraph RAG["RAG approach"]
-        R1["Query → retrieve top-k chunks"] --> R2["Stuff only those chunks"] --> R3["LLM answers from focused evidence"]
-    end
-    User["User question"] --> LongCtx
-    User --> RAG
+flowchart LR
+    Q["User question"] --> R["Retrieve top-k chunks"]
+    R --> A["Augment prompt"]
+    A --> G["LLM generate"]
+    G --> Ans["Answer + citations"]
 ```
 
-### Comparison table
-
-| Dimension | Large context only (“stuff everything”) | RAG (retrieve, then generate) |
-|---|---|---|
-| **Corpus size** | Breaks when data ≫ window (or becomes huge prompts) | Scales to millions of chunks via an index |
-| **Freshness** | Must re-paste / re-upload when docs change | Re-index or update vectors; prompt stays small |
-| **Cost / latency** | Pay for *all* tokens every request | Pay for query + top-k chunks (+ embedding search) |
-| **Signal quality** | “Lost in the middle”: important facts get diluted in long prompts | Top-k focuses attention on relevant passages |
-| **Privacy / tenancy** | Entire corpus may enter the prompt vendor’s context | Can retrieve only per-user / per-tenant slices |
-| **Citations** | Harder to know *which* page mattered | Natural: return retrieved chunk IDs / URLs |
-| **When it wins** | Single book, one large PDF, short-lived session memory | Enterprise wiki, codebases, tickets, policies, product catalogs |
-
-### Decision guide
-
-```mermaid
-flowchart TD
-    Start["Need external / private / changing knowledge?"]
-    Start -->|No| Params["Rely on model weights + short prompt"]
-    Start -->|Yes| Size{"Fits comfortably in window\nwith margin for answer?"}
-    Size -->|Yes, stable, one-shot| Stuff["Long-context / paste docs\n(RAG optional)"]
-    Size -->|No, or multi-tenant / frequently updated| UseRAG["Use RAG\n(or RAG + long context)"]
-    UseRAG --> Hybrid["Common pattern:\nretrieve top-k → put into a large window"]
-```
-
-### Practical rule of thumb
-
-| Situation | Prefer |
+| In one line | |
 |---|---|
-| One PDF / meeting transcript / ticket thread | Long context (maybe no RAG) |
-| Company wiki, Confluence, Notion, drive with 10k+ pages | **RAG** |
-| Codebase Q&A across many repos | **RAG** (+ optional repo map) |
-| News / inventory / prices that change daily | **RAG** (or tools/APIs) |
-| Agent with tools that *fetch* facts | Tools ≈ live RAG; still not “all in weights” |
+| **Problem** | Weights are stale; stuffing an entire corpus exceeds the context window |
+| **Idea** | Search first, paste only what matters, then ask the LLM |
+| **Still needed with big windows?** | Yes for large, private, changing, or citable corpora |
 
-**Bottom line:** Large windows make RAG **smarter and simpler** (retrieve fewer, larger chunks; keep more history), but they do **not** make “put the whole internet / whole company drive in the prompt” viable. RAG remains the default for **scalable, updatable, attributable** knowledge.
+**Full treatment:** [RAG.md](./RAG.md) — indexing pipeline, hybrid search, chunking, prompt assembly, RAG vs long context, vs tools/agents, failure modes, and evaluation.
 
 ---
 
@@ -1362,7 +1327,7 @@ Maps onto this note:
 | Evolution layer | Adds… | See also |
 |---|---|---|
 | 1. Prompt engineering | One-shot generate | [§1](#1-what-an-llm-does-next-token-loop) LLM |
-| 2. Context engineering | Relevant materials in the window | [§2](#2-tokens-tokenizer--context-window)–[§3](#3-rag-vs-large-context--is-rag-still-necessary), [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) |
+| 2. Context engineering | Relevant materials in the window | [§2](#2-tokens-tokenizer--context-window), [RAG.md](./RAG.md), [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) |
 | 3. Harness engineering | Tools, env, sandbox (agent can *act*) | [§4](#4-agents--from-one-shot-to-a-control-loop), [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
 | 4. Loop engineering | Inspect → revise until stop | [§4](#4-agents--from-one-shot-to-a-control-loop) ReAct / budgets |
 | 5. Graph engineering | Multi-node orchestration + shared state | [§6](#6-agent-frameworks--who-orchestrates-the-loop) (e.g. LangGraph) |
@@ -1485,7 +1450,7 @@ graph TD
 | Idea | Meaning |
 |---|---|
 | **Prompt** | One generation, no project materials |
-| **Context** | Stuff / retrieve the right materials ([§3](#3-rag-vs-large-context--is-rag-still-necessary) RAG, [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) wiki) |
+| **Context** | Stuff / retrieve the right materials ([RAG.md](./RAG.md), [§5](#5-llm-wiki--grounded-knowledge-for-orgs--agents) wiki) |
 | **Harness** | Tools + sandbox so the agent can change the world ([§8](#8-coding-agent-products--cursor-claude-code-codex-)) |
 | **Loop** | Keep acting until tests / review pass (budgets, stop rules) |
 | **Graph** | Multiple specialized nodes + routing + shared state ([§6](#6-agent-frameworks--who-orchestrates-the-loop)) |
@@ -1499,7 +1464,7 @@ graph TD
 | Cheat sheet | Done | One-page layer map |
 | 1. LLM next-token loop | Done | Autoregressive generation |
 | 2. Tokens & tokenizer | Done | BPE, encode/decode, special tokens, context budget |
-| 3. RAG vs long context | Done | When RAG is still required |
+| 3. RAG | Brief | [RAG.md](./RAG.md) — full pipeline |
 | 4. Agents | Done | Tools, MCP, Skills, ReAct, plan-execute, multi-agent |
 | 5. LLM wiki | Done | Curated knowledge layer for RAG/agents |
 | 6. Agent frameworks | Done | LangGraph, OpenAI SDK, CrewAI, LlamaIndex, … |
@@ -1511,6 +1476,7 @@ graph TD
 
 ## References (optional reading)
 
+- [RAG.md](./RAG.md) — full RAG pipeline (index, retrieve, augment, generate)
 - Lost-in-the-middle / long-context distraction (why stuffing ≠ understanding)
 - RAG surveys: retrieve → augment prompt → generate
 - ReAct (Yao et al.): reason + act interleaved tool use
