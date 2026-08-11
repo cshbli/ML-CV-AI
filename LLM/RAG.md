@@ -32,6 +32,7 @@ Parent overview: [llm.md §3 RAG (brief)](./llm.md#3-rag-retrieval-augmented-gen
     * [Hybrid (common in production)](#hybrid-common-in-production)
   * [8. PageIndex vs traditional vector RAG](#8-pageindex-vs-traditional-vector-rag)
     * [What is PageIndex?](#what-is-pageindex)
+    * [Query-time flow (LLM tree navigation)](#query-time-flow-llm-tree-navigation)
     * [Side-by-side comparison](#side-by-side-comparison)
     * [When to prefer which](#when-to-prefer-which)
     * [Can they be combined?](#can-they-be-combined)
@@ -528,9 +529,58 @@ flowchart TB
 2. **TOC without page numbers** → match section titles to pages  
 3. **No TOC** → infer hierarchy from headings and layout  
 
-**Query time:** the LLM reads node titles/summaries (not full document text), **reasons** which branches to open, returns **node IDs**, then the app pulls text from those nodes into the generator prompt. Retrieval is **traceable** — every hit maps to an explicit section and page range.
+**Query time:** the LLM reads node titles/summaries (not full document text), **reasons** which branches to open, returns **node IDs**, then the app pulls text from those nodes into the generator prompt. Retrieval is **traceable** — every hit maps to an explicit section and page range. See [query-time flow](#query-time-flow-llm-tree-navigation) below.
 
 PageIndex is **not** “no retrieval” — it replaces **similarity search** with **structure + LLM navigation** (closer to [agentic RAG](#10-rag-vs-tools-vs-agents) than to a pure vector pipeline).
+
+---
+
+### Query-time flow (LLM tree navigation)
+
+**Yes — PageIndex depends on an LLM for retrieval at query time.** Tree building is mostly parsing; **navigation** is LLM-driven reasoning over the index (titles, summaries, hierarchy), not embedding nearest-neighbor search.
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant App as App / PageIndex
+    participant Tree as Tree index
+    participant Nav as LLM navigator
+    participant Gen as LLM generator
+
+    U->>App: Question
+    App->>Tree: Load tree metadata\n(titles, summaries, node_ids)
+    App->>Nav: Query + tree skeleton\n(not full document text)
+    Nav->>Nav: Reason which branches matter
+    Nav-->>App: Selected node_id(s) + rationale
+    App->>Tree: Fetch text for those pages/sections
+    opt Need more context
+        App->>Nav: Expand or refine search
+        Nav-->>App: Additional node_ids
+    end
+    App->>Gen: Question + extracted section text
+    Gen-->>App: Answer + section/page citations
+    App-->>U: Response
+```
+
+| Step | Who | What |
+|---|---|---|
+| **1** | Parser (offline) | Build tree from TOC / headings / pages |
+| **2** | Optional LLM (offline) | Write short **summaries** per node to aid navigation |
+| **3** | User | Asks a question |
+| **4** | **Navigator LLM** | Reads query + tree metadata; selects relevant **node_id(s)** |
+| **5** | App | Extracts full text from selected nodes’ page ranges |
+| **6** | Optional **Navigator LLM** | Drills into child nodes or opens sibling sections |
+| **7** | **Generator LLM** | Answers using extracted sections; cites pages / sections |
+
+**Typical LLM calls per query:** at least **two** — one to **navigate** the tree (retrieval), one to **generate** the answer. Agentic setups may issue **multiple navigator calls** when the model expands branches iteratively.
+
+| Role | Input | Output |
+|---|---|---|
+| **Navigator LLM** | User query + tree skeleton (titles, summaries, IDs) | `node_id(s)` + optional reasoning trace |
+| **Generator LLM** | User query + text from selected nodes | Final answer + citations |
+
+**vs vector RAG:** traditional retrieval is **embed query → ANN search** with **no LLM** in the retrieve step (optional reranker afterward). PageIndex makes **LLM navigation the retrieve step**.
 
 ---
 
