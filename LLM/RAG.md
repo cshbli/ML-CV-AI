@@ -2,7 +2,7 @@
 
 **RAG** connects an LLM to **external knowledge** by **retrieving** relevant text at query time, **augmenting** the prompt with those passages, then **generating** an answer grounded in that evidence.
 
-Parent overview: [llm.md §3 RAG (brief)](./llm.md#3-rag-retrieval-augmented-generation) · [LLM wiki / curated corpus](./llm.md#5-llm-wiki--grounded-knowledge-for-orgs--agents)
+Parent overview: [llm.md §3 RAG (brief)](./llm.md#3-rag-retrieval-augmented-generation) · [LLM wiki (brief)](./llm.md#5-llm-wiki--compounding-knowledge-karpathy-pattern) · **[LLM_Wiki.md](./LLM_Wiki.md)** (full wiki guide)
 
 ---
 
@@ -451,7 +451,7 @@ flowchart TD
 
 **Metadata to keep:** `source_url`, `title`, `section`, `updated_at`, `tenant_id`, `acl`.
 
-Good chunking aligns with [LLM wiki](./llm.md#5-llm-wiki--grounded-knowledge-for-orgs--agents) practices (one topic per page, clear headings).
+Good chunking aligns with [LLM wiki](./LLM_Wiki.md#8-what-good-wiki-pages-look-like) page structure (one topic per page, clear headings).
 
 ---
 
@@ -1028,7 +1028,8 @@ flowchart TB
 |---|---|
 | [llm.md](./llm.md) | Tokens, context window, agents, MCP, skills |
 | [llm.md §3](./llm.md#3-rag-retrieval-augmented-generation) | Brief RAG placement in the LLM stack |
-| [llm.md §5](./llm.md#5-llm-wiki--grounded-knowledge-for-orgs--agents) | Curating corpora for retrieval |
+| [llm.md §5](./llm.md#5-llm-wiki--compounding-knowledge-karpathy-pattern) | Brief LLM wiki placement in the stack |
+| [LLM_Wiki.md](./LLM_Wiki.md) | Karpathy LLM wiki pattern — compounding wiki vs RAG; optional search at scale |
 | [llm.md §7–§8](./llm.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) | Consumer chat vs coding-agent products (local vs cloud index) |
 | [§5 Embeddings in RAG](./RAG.md#5-embeddings-in-rag) | Vector dims, query vs chunk, ChatGPT vs Cursor |
 | [§8 PageIndex vs vector RAG](./RAG.md#8-pageindex-vs-traditional-vector-rag) | Vectorless, tree-based reasoning retrieval |
