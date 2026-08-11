@@ -30,13 +30,18 @@ Parent overview: [llm.md §3 RAG (brief)](./llm.md#3-rag-retrieval-augmented-gen
     * [Dense (vector) search](#dense-vector-search)
     * [Keyword (sparse) search](#keyword-sparse-search)
     * [Hybrid (common in production)](#hybrid-common-in-production)
-  * [8. Prompt assembly (augment)](#8-prompt-assembly-augment)
-  * [9. RAG vs tools vs agents](#9-rag-vs-tools-vs-agents)
-  * [10. Failure modes and mitigations](#10-failure-modes-and-mitigations)
-  * [11. Evaluation (what to measure)](#11-evaluation-what-to-measure)
-  * [12. Minimal architecture map](#12-minimal-architecture-map)
-  * [13. When to use RAG](#13-when-to-use-rag)
-  * [14. Related docs](#14-related-docs)
+  * [8. PageIndex vs traditional vector RAG](#8-pageindex-vs-traditional-vector-rag)
+    * [What is PageIndex?](#what-is-pageindex)
+    * [Side-by-side comparison](#side-by-side-comparison)
+    * [When to prefer which](#when-to-prefer-which)
+    * [Can they be combined?](#can-they-be-combined)
+  * [9. Prompt assembly (augment)](#9-prompt-assembly-augment)
+  * [10. RAG vs tools vs agents](#10-rag-vs-tools-vs-agents)
+  * [11. Failure modes and mitigations](#11-failure-modes-and-mitigations)
+  * [12. Evaluation (what to measure)](#12-evaluation-what-to-measure)
+  * [13. Minimal architecture map](#13-minimal-architecture-map)
+  * [14. When to use RAG](#14-when-to-use-rag)
+  * [15. Related docs](#15-related-docs)
   * [References](#references)
 
 ---
@@ -480,9 +485,153 @@ flowchart TD
 | Hybrid | General enterprise search |
 | + Reranker | High stakes, small k, budget for latency |
 
+See also: [§8 PageIndex](#8-pageindex-vs-traditional-vector-rag) — a **vectorless**, structure-first alternative to embedding + vector DB retrieval.
+
 ---
 
-## 8. Prompt assembly (augment)
+## 8. PageIndex vs traditional vector RAG
+
+**[PageIndex](https://pageindex.ai/)** (open source: [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex)) is a **reasoning-based, vectorless** retrieval approach. Instead of chunking documents, embedding passages, and searching a vector DB by similarity, it builds a **hierarchical tree index** (like an intelligent table of contents) and lets an **LLM navigate that tree** to find the right sections.
+
+Traditional RAG and PageIndex both answer “what text should go in the prompt?” — they differ in **how** relevance is decided.
+
+---
+
+### What is PageIndex?
+
+```mermaid
+flowchart TB
+    subgraph Offline["Index time"]
+        Doc["PDF / Markdown"] --> Parse["Parse structure\nheadings, pages, TOC"]
+        Parse --> Tree["Tree index\nnodes with title, page range, summary"]
+    end
+    subgraph Online["Query time"]
+        Q["User question"] --> Nav["LLM tree search\nreason over titles / summaries"]
+        Tree --> Nav
+        Nav --> Nodes["Selected node IDs\n+ page/section refs"]
+        Nodes --> Extract["Extract node text"]
+        Extract --> Gen["LLM generate answer"]
+    end
+```
+
+| Tree node field | Role |
+|---|---|
+| **`title`** | Section heading from the document |
+| **`node_id`** | Stable ID for citation and traceability |
+| **`start_index` / `end_index`** | Page range in the source PDF |
+| **`nodes`** | Child sections (nested hierarchy) |
+| **`summary`** (optional) | AI-generated section summary to guide tree search |
+
+**Index construction** (from [PageIndex docs](https://docs.pageindex.ai/)):
+
+1. **Document has a TOC** → extract and validate against page content  
+2. **TOC without page numbers** → match section titles to pages  
+3. **No TOC** → infer hierarchy from headings and layout  
+
+**Query time:** the LLM reads node titles/summaries (not full document text), **reasons** which branches to open, returns **node IDs**, then the app pulls text from those nodes into the generator prompt. Retrieval is **traceable** — every hit maps to an explicit section and page range.
+
+PageIndex is **not** “no retrieval” — it replaces **similarity search** with **structure + LLM navigation** (closer to [agentic RAG](#10-rag-vs-tools-vs-agents) than to a pure vector pipeline).
+
+---
+
+### Side-by-side comparison
+
+```mermaid
+flowchart LR
+    subgraph Traditional["Traditional vector RAG"]
+        D1["Documents"] --> Ch["Fixed-size chunking"]
+        Ch --> Emb["Embed chunks"]
+        Emb --> VDB["Vector DB + optional BM25"]
+        Q1["Query"] --> EmbQ["Embed query"]
+        EmbQ --> VDB
+        VDB --> TopK["Top-k by similarity"]
+    end
+    subgraph PageIdx["PageIndex (vectorless)"]
+        D2["Documents"] --> Tree["Hierarchical tree index"]
+        Q2["Query"] --> LLMnav["LLM tree navigation"]
+        Tree --> LLMnav
+        LLMnav --> Nodes["Reasoned node selection"]
+    end
+```
+
+| Dimension | **Traditional vector RAG** | **PageIndex** |
+|---|---|---|
+| **Core signal** | **Embedding similarity** (cosine / dot product) | **LLM reasoning** over document **structure** |
+| **Index artifact** | Chunk vectors in **vector DB** (+ optional keyword index) | **Tree** of sections/pages (JSON-like hierarchy) |
+| **Chunking** | Required (~256–1024 token windows, overlap) | **Avoids artificial chunks** — sections follow natural headings |
+| **Retrieval unit** | Arbitrary text chunk | **Section / subsection / page range** |
+| **Scoring** | Fixed **top-k** nearest neighbors | Dynamic node selection (no single k hyperparameter) |
+| **Infrastructure** | Embedding API, vector store, re-index on model change | Tree builder + LLM calls for navigation; **no vector DB** |
+| **Citations** | Chunk ID / metadata (quality depends on chunk boundaries) | **Explicit page + section** references by design |
+| **Explainability** | “Similarity score 0.82” (opaque) | **Reasoning trace** — which nodes were chosen and why |
+| **Strengths** | Scales to **millions** of chunks; fast ANN; works on unstructured text | Strong on **long, structured** docs (manuals, filings, contracts) |
+| **Weaknesses** | Chunk boundaries, similarity ≠ relevance, “lost in the middle” | Extra **LLM latency/cost** per query; tree quality depends on layout/TOC |
+| **Multi-doc corpus** | Mature pattern (one big index + metadata filters) | Evolving — e.g. [PageIndex File System](https://pageindex.ai/blog/pageindex-filesystem) for file-level trees at scale |
+
+**Conceptual difference:**
+
+| | Traditional RAG | PageIndex |
+|---|---|---|
+| **Analogy** | “Find paragraphs that *look like* the question” | “Skim the table of contents like a human, then open the right chapter” |
+| **Relevance** | **Similarity** in embedding space | **Reasoning** over titles, summaries, and hierarchy |
+| **Failure mode** | Right fact in wrong chunk; near-duplicate noise | Wrong branch in tree; weak TOC on messy PDFs |
+
+---
+
+### When to prefer which
+
+```mermaid
+flowchart TD
+    Start["Choose retrieval approach"]
+    Start --> Struct{"Document has clear\nstructure / long form?"}
+    Struct -->|Yes: PDF reports, policies, manuals| PI["Consider PageIndex\nor structure-aware RAG"]
+    Struct -->|No: chat logs, tickets, code snippets| Vec["Traditional vector RAG\n+ hybrid / rerank"]
+    Start --> Scale{"Corpus size?"}
+    Scale -->|Millions of small items| Vec
+    Scale -->|Few long documents| PI
+    PI --> Both["Hybrid: vector recall\n+ tree refine"]
+    Vec --> Both
+```
+
+| Prefer **traditional vector RAG** when… | Prefer **PageIndex** when… |
+|---|---|
+| Corpus is **large and heterogeneous** (wiki, tickets, Slack, code) | Documents are **long and structured** (10-K, contract, regulatory PDF) |
+| You need **sub-second** retrieval at huge scale | **Traceable** section/page citations matter (audit, finance, legal) |
+| Text has **weak or no headings** | **Chunking artifacts** hurt (tables split across chunks, cross-section answers) |
+| Team already runs **vector DB + embeddings** | You want to **skip** embedding pipeline and vector infra |
+| Paraphrased / fuzzy conceptual search is enough | **Similarity ≠ relevance** — need reasoning over “which section applies” |
+
+**PageIndex sweet spot:** domain Q&A over **few complex documents** where structure carries meaning (policies with numbered sections, financial reports, technical manuals).
+
+**Vector RAG sweet spot:** **broad enterprise search** over many short pages, messy text, and constantly growing corpora.
+
+---
+
+### Can they be combined?
+
+Yes — they solve different layers of the problem:
+
+| Hybrid pattern | Flow |
+|---|---|
+| **Vector recall → tree refine** | Vector search finds candidate **documents**; PageIndex navigates **inside** each long PDF |
+| **Tree + keyword** | Tree for section selection; BM25 for exact codes/SKUs inside a section |
+| **PageIndex + reranker** | Tree picks sections; cross-encoder re-scores section text vs query (uncommon but valid) |
+
+```mermaid
+flowchart LR
+    Q["Query"] --> V["Vector search\nwhich docs?"]
+    V --> Docs["Top documents"]
+    Docs --> T["PageIndex tree search\nwhich sections?"]
+    T --> Ctx["Section text → LLM"]
+```
+
+**Bottom line:** PageIndex is an alternative **retrieval layer**, not a replacement for the whole RAG stack. You still **augment** the prompt and **generate** with an LLM. Many production systems stay on **vector + hybrid + rerank**; PageIndex fits when **document structure** is the main retrieval signal and **explainable section-level citations** matter.
+
+**External links:** [PageIndex docs](https://docs.pageindex.ai/) · [GitHub](https://github.com/VectifyAI/PageIndex) · [Developer / MCP / API](https://pageindex.ai/developer)
+
+---
+
+## 9. Prompt assembly (augment)
 
 The retriever output becomes **tokens in the context window** — same rules as [prompt vs context in llm.md](./llm.md#prompt-vs-context--model-view-vs-app-view).
 
@@ -518,7 +667,7 @@ flowchart LR
 
 ---
 
-## 9. RAG vs tools vs agents
+## 10. RAG vs tools vs agents
 
 | | **RAG** | **Tool (e.g. search API)** | **Agent + RAG** |
 |---|---|---|---|
@@ -543,7 +692,7 @@ Live web search in ChatGPT is closer to **tool + retrieve** than classic batch-i
 
 ---
 
-## 10. Failure modes and mitigations
+## 11. Failure modes and mitigations
 
 | Failure | Symptom | Mitigations |
 |---|---|---|
@@ -564,7 +713,7 @@ flowchart TD
 
 ---
 
-## 11. Evaluation (what to measure)
+## 12. Evaluation (what to measure)
 
 | Metric | Measures |
 |---|---|
@@ -578,7 +727,7 @@ Improve retrieval first when answers are wrong but the corpus contains the truth
 
 ---
 
-## 12. Minimal architecture map
+## 13. Minimal architecture map
 
 ```mermaid
 flowchart TB
@@ -604,20 +753,21 @@ flowchart TB
 
 ---
 
-## 13. When to use RAG
+## 14. When to use RAG
 
 | Situation | Use RAG? |
 |---|---|
 | Company wiki, policies, manuals (large, changing) | **Yes** |
 | Private data not in model weights | **Yes** |
 | Need citations / audit trail | **Yes** |
+| Long **structured** PDFs (filings, contracts) where chunking hurts | **Yes** — consider [PageIndex §8](#8-pageindex-vs-traditional-vector-rag) or vector RAG |
 | Single short PDF, one-shot | Optional (long context may suffice) |
 | Real-time stock price | **Tool/API**, not static RAG index |
 | Multi-tenant SaaS | **Yes** + strict metadata filters |
 
 ---
 
-## 14. Related docs
+## 15. Related docs
 
 | Doc | Topic |
 |---|---|
@@ -626,6 +776,8 @@ flowchart TB
 | [llm.md §5](./llm.md#5-llm-wiki--grounded-knowledge-for-orgs--agents) | Curating corpora for retrieval |
 | [llm.md §7–§8](./llm.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) | Consumer chat vs coding-agent products (local vs cloud index) |
 | [§5 Embeddings in RAG](./RAG.md#5-embeddings-in-rag) | Vector dims, query vs chunk, ChatGPT vs Cursor |
+| [§8 PageIndex vs vector RAG](./RAG.md#8-pageindex-vs-traditional-vector-rag) | Vectorless, tree-based reasoning retrieval |
+| [PageIndex (external)](https://docs.pageindex.ai/) | Official docs, MCP/API, open-source tree index |
 | [token_embedding.md](./token_embedding.md) | Token embeddings inside the transformer (not RAG bi-encoder) |
 
 ---
@@ -635,3 +787,4 @@ flowchart TB
 - Lewis et al., *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* (foundational RAG paper)
 - Lost-in-the-middle literature (long prompts dilute signal)
 - Hybrid search: dense + sparse retrieval in production IR systems
+- [PageIndex](https://pageindex.ai/) / [VectifyAI/PageIndex](https://github.com/VectifyAI/PageIndex) — vectorless, reasoning-based tree retrieval

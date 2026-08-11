@@ -443,7 +443,7 @@ flowchart LR
 | **Idea** | Search first, paste only what matters, then ask the LLM |
 | **Still needed with big windows?** | Yes for large, private, changing, or citable corpora |
 
-**Full treatment:** [RAG.md](./RAG.md) — indexing pipeline, hybrid search, chunking, **[embeddings (§5)](./RAG.md#5-embeddings-in-rag)**, prompt assembly, RAG vs long context, vs tools/agents, failure modes, and evaluation.
+**Full treatment:** [RAG.md](./RAG.md) — indexing pipeline, hybrid search, chunking, **[embeddings (§5)](./RAG.md#5-embeddings-in-rag)**, **[PageIndex vs vector RAG (§8)](./RAG.md#8-pageindex-vs-traditional-vector-rag)**, prompt assembly, RAG vs long context, vs tools/agents, failure modes, and evaluation.
 
 ---
 
