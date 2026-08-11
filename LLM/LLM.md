@@ -39,7 +39,7 @@ flowchart TB
 | **② Tokens / tokenizer** | Text → subword tokens → IDs; window and cost are counted in tokens | [§2](#2-tokens-tokenizer--context-window) |
 | **③ RAG** | Fetch *relevant* chunks; large windows don’t replace indexes | [RAG.md](./RAG.md) |
 | **④ Agent** | Loop that chooses tools/RAG/skills until the goal is done | [§4](#4-agents--from-one-shot-to-a-control-loop) |
-| **⑤ LLM wiki** | LLM-maintained, compounding markdown wiki (Karpathy pattern) | [§5](#5-llm-wiki--compounding-knowledge-karpathy-pattern) · [LLM_Wiki.md](./LLM_Wiki.md) |
+| **⑤ LLM wiki** | AI knowledge management architecture — LLM-maintained compounding wiki (Karpathy) | [§5](#5-llm-wiki--compounding-knowledge-karpathy-architecture) · [LLM_Wiki.md](./LLM_Wiki.md) |
 | **⑥ Framework** | Libraries *you* embed to wire the loop | [§6](#6-agent-frameworks--who-orchestrates-the-loop) |
 | **⑦a Chat apps** | ChatGPT / Claude.ai / Gemini / Grok — *products*, not bare LLMs | [§7](#7-consumer-chat-apps--chatgpt-claude-gemini-grok) |
 | **⑦b Coding agents** | Cursor / Claude Code / Codex — coding-agent products | [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
@@ -50,7 +50,7 @@ flowchart TB
 | **ChatGPT / Claude.ai / Gemini / Grok** | The raw **LLM API** / model weights alone |
 | **Bigger context** | A full company corpus (still need **RAG** / wiki) |
 | **RAG** | An **agent** (RAG answers; agents also *do*) |
-| **Wiki dump** | An **LLM wiki** (LLM-maintained pages + schema — see Karpathy pattern) |
+| **Wiki dump** | An **LLM wiki** (architecture: LLM-maintained pages + schema — Karpathy) |
 | **Framework (§6)** | **Product (§7/§8)** — libs you build with vs apps you use |
 
 **Rules of thumb:** **model** = next-token engine · **chat app** = model + context manager + tools + UI · weights = what it *learned* · context = what it *sees now* · RAG/wiki = what it can *look up* · tools = what it can *do* · framework = *how* you code the loop · evals = whether it *works*.
@@ -918,7 +918,7 @@ flowchart LR
 | **Optional scripts** | Repeatable validation without re-explaining in prose |
 | **Do not confuse with MCP** | MCP = live capabilities; skill = how to use them well |
 
-**Bottom line:** A skill is **curated procedure text** the host injects when relevant. The LLM still runs as a next-token predictor — the skill becomes **part of the context** it conditions on, like a temporary specialist appendix ([§5 LLM wiki](#5-llm-wiki--compounding-knowledge-karpathy-pattern) for facts, skill for *steps*).
+**Bottom line:** A skill is **curated procedure text** the host injects when relevant. The LLM still runs as a next-token predictor — the skill becomes **part of the context** it conditions on, like a temporary specialist appendix ([§5 LLM wiki](#5-llm-wiki--compounding-knowledge-karpathy-architecture) for facts, skill for *steps*).
 
 ### Chatbot vs RAG vs Agent
 
@@ -998,9 +998,9 @@ flowchart TB
 
 ---
 
-## 5. LLM Wiki — Compounding Knowledge (Karpathy Pattern)
+## 5. LLM Wiki — Compounding Knowledge (Karpathy Architecture)
 
-An **LLM wiki** ([Karpathy, 2026](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)) is a **persistent wiki the LLM agent builds and maintains** — interlinked markdown between you and raw sources. On **ingest**, the agent integrates new material into entity/concept pages (not just indexing). On **query**, it reads the wiki and can **file good answers back**. It is **not** the same as **RAG**: RAG re-finds fragments each question; the LLM wiki **compiles knowledge once and keeps it current**.
+An **LLM wiki** ([Karpathy, 2026](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)) is an **AI knowledge management architecture**: a persistent wiki the **LLM agent** builds and maintains — interlinked markdown between you and raw sources. On **ingest**, the agent integrates new material into entity/concept pages (not just indexing). On **query**, it reads the wiki and can **file good answers back**. Same **goal** as RAG (grounded answers on your data), different **mechanism**: compile-first vs retrieve-first.
 
 ```mermaid
 flowchart LR
@@ -1014,7 +1014,7 @@ flowchart LR
 |---|---|
 | **Problem** | RAG rediscovers from raw docs every time — no accumulation |
 | **Idea** | LLM **maintains** a compounding wiki; you curate sources & ask questions |
-| **vs RAG?** | **Different goal** — compile & maintain vs retrieve-at-query; add RAG search at scale if needed |
+| **vs RAG?** | **Same goal**, different mechanism — compile & maintain vs retrieve-at-query; hybrid at scale |
 
 **Full treatment:** [LLM_Wiki.md](./LLM_Wiki.md) — three layers, ingest/query/lint, `index.md`/`log.md`, Obsidian as IDE, how to build, optional search at scale.
 
@@ -1426,7 +1426,7 @@ graph TD
 | 2. Tokens & tokenizer | Done | BPE, encode/decode, special tokens, context budget |
 | 3. RAG | Brief | [RAG.md](./RAG.md) — full pipeline |
 | 4. Agents | Done | Tools, MCP, Skills, ReAct, plan-execute, multi-agent |
-| 5. LLM wiki | Done | [LLM_Wiki.md](./LLM_Wiki.md) — Karpathy pattern: LLM-maintained compounding wiki |
+| 5. LLM wiki | Done | [LLM_Wiki.md](./LLM_Wiki.md) — Karpathy architecture: LLM-maintained compounding wiki |
 | 6. Agent frameworks | Done | LangGraph, OpenAI SDK, CrewAI, LlamaIndex, … |
 | 7. Consumer chat apps | Done | ChatGPT, Claude.ai, Gemini, Grok |
 | 8. Coding-agent products | Done | Cursor, Claude Code, Codex, Copilot, … |

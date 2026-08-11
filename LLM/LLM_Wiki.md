@@ -1,10 +1,10 @@
 # LLM Wiki — LLM-Maintained, Compounding Knowledge
 
-An **LLM wiki** is a **pattern for personal (or team) knowledge bases** where an **LLM agent incrementally builds and maintains** a persistent wiki — interlinked markdown files that sit between you and your raw sources. Knowledge is **compiled once and kept current**, not re-derived from scratch on every question.
+An **LLM wiki** is an **AI knowledge management architecture** — popularized by [Andrej Karpathy](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) — where an **LLM agent** continuously compiles, synthesizes, and maintains a **persistent, interlinked markdown wiki** from your raw sources. Knowledge is **compiled once and kept current**, not re-derived from scratch on every question.
 
-**Origin:** [Karpathy's LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) (April 2026) — an idea file meant to be copy-pasted into your agent (Cursor, Claude Code, Codex, OpenCode, etc.) and instantiated together.
+Karpathy describes it as a portable **pattern** (an idea file you copy into your agent); **architecture** names the **system**: three layers (`raw/` · `wiki/` · schema), three operations (ingest · query · lint), and compounding synthesis over time. It applies to **personal PKM, research, and team knowledge** — not one audience only.
 
-Parent overview: [llm.md §5 LLM wiki (brief)](./llm.md#5-llm-wiki--compounding-knowledge-karpathy-pattern) · [RAG.md](./RAG.md) (retrieval technique — related but different goal)
+Parent overview: [LLM.md §5 LLM wiki (brief)](./LLM.md#5-llm-wiki--compounding-knowledge-karpathy-architecture) · [RAG.md](./RAG.md) (retrieval technique — related but different goal)
 
 ---
 
@@ -13,6 +13,7 @@ Parent overview: [llm.md §5 LLM wiki (brief)](./llm.md#5-llm-wiki--compounding-
 * LLM Wiki
   * [Cheat sheet](#cheat-sheet)
   * [1. What is an LLM wiki?](#1-what-is-an-llm-wiki)
+    * [What's actually new?](#whats-actually-new)
   * [2. LLM wiki vs RAG](#2-llm-wiki-vs-rag)
     * [Similar goal, different mechanism](#similar-goal-different-mechanism)
     * [Comparison table](#comparison-table)
@@ -37,14 +38,14 @@ Parent overview: [llm.md §5 LLM wiki (brief)](./llm.md#5-llm-wiki--compounding-
 
 | Question | Short answer |
 |---|---|
-| **What is an LLM wiki?** | A **persistent, compounding wiki** the **LLM writes and maintains** — not a folder you hand-author for RAG. |
+| **What is an LLM wiki?** | An **AI knowledge management architecture** — LLM-maintained, compounding markdown wiki between you and raw sources. |
 | **Who writes the pages?** | **The LLM** (you curate sources, ask questions, steer). You rarely write wiki pages yourself. |
 | **LLM wiki vs RAG?** | **Same goal** (your data → grounded answers), **different mechanism** (compile-first vs retrieve-first). Often **hybrid**. |
 | **Three layers?** | **`raw/`** (immutable sources) · **`wiki/`** (LLM-generated pages) · **schema** (`AGENTS.md` / `CLAUDE.md`). |
 | **Three operations?** | **Ingest** (source → wiki updates) · **Query** (read wiki → answer → file back) · **Lint** (health-check). |
 | **Obsidian's role?** | **IDE for browsing** the wiki — graph view, links. **LLM is the programmer; wiki is the codebase.** |
 | **Similar to RAG?** | Same as above — not a replacement; complementary at scale. |
-| **Need embeddings?** | **Not at first.** `index.md` + agent file reads work to ~100s of pages. Add search (qmd, MCP) as it grows. |
+| **Anything really new?** | **No new ML technique** — see [§1 What's actually new?](#whats-actually-new). New packaging + feasibility with agents. |
 
 ```mermaid
 flowchart LR
@@ -77,7 +78,7 @@ flowchart LR
 
 Most people's experience with documents and LLMs looks like **RAG**: upload files, retrieve chunks at query time, generate an answer. The LLM **rediscovers** knowledge from scratch on every question. There is **no accumulation** — ask something that requires synthesizing five documents, and the model must find and piece together fragments **every time**.
 
-Karpathy's **LLM wiki** pattern is different:
+Karpathy's **LLM wiki** architecture is different from classic RAG:
 
 > Instead of just retrieving from raw documents at query time, the LLM **incrementally builds and maintains a persistent wiki** — a structured, interlinked collection of markdown files that sits **between you and the raw sources**.
 
@@ -112,6 +113,38 @@ You browse results in Obsidian (links, graph view); the agent makes edits based 
 | **Learning** | Course notes, hobby deep-dives, trip planning, due diligence |
 
 **Historical note:** Related in spirit to Vannevar Bush's **Memex** (1945) — private, curated knowledge with associative trails. Bush couldn't solve **who maintains the links**. The LLM handles that.
+
+### What's actually new?
+
+At the highest level, an LLM wiki **is** what it sounds like: **immutable sources + an LLM that keeps a linked markdown wiki current.** Wikis, PKM, summarization, and RAG all existed before. Don't oversell it.
+
+| Not new | Already familiar |
+|---|---|
+| Wiki as knowledge store | Wikipedia, Confluence, Obsidian |
+| Linked notes | Memex, Roam, `[[wikilinks]]` |
+| "Summarize my docs with AI" | ChatGPT uploads, NotebookLM |
+| Wiki rot from maintenance burden | Why most team wikis die |
+| Search raw text at question time | RAG |
+
+**What is new — or newly practical:**
+
+| Idea | Why it matters |
+|---|---|
+| **Compile-first vs retrieve-first** | Explicit tradeoff: pay LLM cost on **ingest**, read **pre-synthesized** wiki at query time — not the default RAG mental model |
+| **Persistent maintainer, not one-shot summarizer** | Each source updates **many pages**; good queries **file back**; knowledge **compounds across sessions** |
+| **Agents can afford the bookkeeping** | Multi-file cross-link updates in one pass — impractical for most humans, feasible with Cursor / Claude Code now |
+| **Packaged operations** | Ingest · query · lint + schema + `raw/`/`wiki/` split — reproducible workflow, not ad-hoc chat |
+| **Contradictions & lint** | Flag tension and stale claims instead of silently merging or overwriting |
+
+**Honest summary:**
+
+| Question | Answer |
+|---|---|
+| New ML technique? | **No.** |
+| Just "LLM maintains a wiki"? | **Mostly yes.** |
+| Still worth it? | **Yes**, if you want **compounding synthesis** over months — and accept that errors can compound too without review |
+
+**When to skip it:** small static corpus (RAG or search is enough); you need verbatim raw quotes (use hybrid); you won't review agent-written pages.
 
 ---
 
@@ -215,7 +248,7 @@ flowchart TB
 
 Karpathy's gist keeps **`raw/` immutable** — the wiki never replaces sources. A side RAG index over `raw/` complements the wiki; it does not negate the compile-first pattern.
 
-**Relation to [llm.md](./llm.md) layer ⑤:** In this repo, "LLM wiki" means **Karpathy's compounding pattern**. [RAG.md](./RAG.md) covers the **retrieval technique** — complementary, often hybrid.
+**Relation to [LLM.md](./LLM.md) layer ⑤:** In this repo, "LLM wiki" means **Karpathy's compounding pattern**. [RAG.md](./RAG.md) covers the **retrieval technique** — complementary, often hybrid.
 
 ---
 
@@ -549,8 +582,8 @@ These are **add-ons** to the core three-layer pattern — not replacements.
 
 | Doc | Topic |
 |---|---|
-| [llm.md §5](./llm.md#5-llm-wiki--compounding-knowledge-karpathy-pattern) | Brief placement in the LLM stack |
-| [llm.md §4 Agents](./llm.md#4-agents--from-one-shot-to-a-control-loop) | Agent loop — ingest/query/lint are agent workflows |
+| [LLM.md §5](./LLM.md#5-llm-wiki--compounding-knowledge-karpathy-architecture) | Brief placement in the LLM stack |
+| [LLM.md §4 Agents](./LLM.md#4-agents--from-one-shot-to-a-control-loop) | Agent loop — ingest/query/lint are agent workflows |
 | [RAG.md](./RAG.md) | Retrieval technique — optional at scale, different from core LLM wiki pattern |
 | [RAG.md §6 Chunking](./RAG.md#6-chunking-make-or-break) | Relevant if you add vector search over wiki pages |
 

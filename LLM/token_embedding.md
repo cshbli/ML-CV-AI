@@ -2,7 +2,7 @@
 
 How text becomes numbers inside an LLM — and how that differs from **word embeddings** (Word2Vec/GloVe) and from **RAG retrieval embeddings**.
 
-Parent overview: [llm.md §2 Tokens & tokenizer](./llm.md#2-tokens-tokenizer--context-window) · [RAG.md §5 Embeddings in RAG](./RAG.md#5-embeddings-in-rag) (different subsystem)
+Parent overview: [LLM.md §2 Tokens & tokenizer](./LLM.md#2-tokens-tokenizer--context-window) · [RAG.md §5 Embeddings in RAG](./RAG.md#5-embeddings-in-rag) (different subsystem)
 
 ---
 
@@ -80,7 +80,7 @@ flowchart TB
 "ChatGPT"  →  tiktoken.encode(text)  →  [33706,  …]  →  GPU matmuls start here
 ```
 
-See [llm.md §2](./llm.md#2-tokens-tokenizer--context-window) for token counting, special tokens, and decode.
+See [LLM.md §2](./LLM.md#2-tokens-tokenizer--context-window) for token counting, special tokens, and decode.
 
 ---
 
@@ -170,7 +170,7 @@ Tokenizers differ in **how** text is split; most modern LLMs use **subword** met
 | **Gemma, Mistral, Qwen** | SentencePiece / similar | ~128k–256k |
 | **Claude** | Proprietary (public details limited) | — |
 
-Vocab sizes **64k–256k** are common for recent LLMs ([llm.md §2](./llm.md#2-tokens-tokenizer--context-window)).
+Vocab sizes **64k–256k** are common for recent LLMs ([LLM.md §2](./LLM.md#2-tokens-tokenizer--context-window)).
 
 ---
 
@@ -304,7 +304,7 @@ After token IDs are known, the **input embedding layer** looks up one vector per
 
 | Doc | Topic |
 |---|---|
-| [llm.md §2](./llm.md#2-tokens-tokenizer--context-window) | Tokens, counting, context window |
+| [LLM.md §2](./LLM.md#2-tokens-tokenizer--context-window) | Tokens, counting, context window |
 | [RAG.md §5](./RAG.md#5-embeddings-in-rag) | RAG chunk/query vectors (**not** LLM input embeddings) |
 | [transformer.md](./transformer.md) | Full transformer stack |
 | [RoPE.md](./RoPE.md) | Rotary position encoding |

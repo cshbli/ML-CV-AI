@@ -2,7 +2,7 @@
 
 **RAG** connects an LLM to **external knowledge** by **retrieving** relevant text at query time, **augmenting** the prompt with those passages, then **generating** an answer grounded in that evidence.
 
-Parent overview: [llm.md §3 RAG (brief)](./llm.md#3-rag-retrieval-augmented-generation) · [LLM wiki (brief)](./llm.md#5-llm-wiki--compounding-knowledge-karpathy-pattern) · **[LLM_Wiki.md](./LLM_Wiki.md)** (full wiki guide)
+Parent overview: [LLM.md §3 RAG (brief)](./LLM.md#3-rag-retrieval-augmented-generation) · [LLM wiki (brief)](./LLM.md#5-llm-wiki--compounding-knowledge-karpathy-architecture) · **[LLM_Wiki.md](./LLM_Wiki.md)** (full wiki guide)
 
 ---
 
@@ -100,7 +100,7 @@ flowchart TB
     R --> OK["Grounded, citable,\nscalable corpus"]
 ```
 
-See [§2 below](#2-rag-vs-large-context-window) and [llm.md](./llm.md) for how **large context + RAG** combine (retrieve top-k, then reason in a big window).
+See [§2 below](#2-rag-vs-large-context-window) and [LLM.md](./LLM.md) for how **large context + RAG** combine (retrieve top-k, then reason in a big window).
 
 ---
 
@@ -427,7 +427,7 @@ flowchart TB
 | **2** | ChatGPT / Gemini — local vector DB? | **No** — consumer apps index and retrieve in the **cloud**. |
 | **3** | Cursor / Codex — local vector DB? | **Cursor: local codebase index (typical). Codex: cloud/sandbox (typical).** Others mix tool search + optional indexes. |
 
-See also: [llm.md §7 Consumer chat apps](./llm.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) · [llm.md §8 Coding-agent products](./llm.md#8-coding-agent-products--cursor-claude-code-codex-)
+See also: [LLM.md §7 Consumer chat apps](./LLM.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) · [LLM.md §8 Coding-agent products](./LLM.md#8-coding-agent-products--cursor-claude-code-codex-)
 
 ---
 
@@ -688,7 +688,7 @@ flowchart LR
 
 ## 9. Prompt assembly (augment)
 
-The retriever output becomes **tokens in the context window** — same rules as [prompt vs context in llm.md](./llm.md#prompt-vs-context--model-view-vs-app-view).
+The retriever output becomes **tokens in the context window** — same rules as [prompt vs context in LLM.md](./LLM.md#prompt-vs-context--model-view-vs-app-view).
 
 Typical template (conceptual):
 
@@ -804,7 +804,7 @@ Common variants (names vary by vendor):
 | **ReAct-style** | Alternate **Reason** (thought) and **Act** (retrieve tool) until done |
 | **Query decomposition** | Break “compare A and B policies” into two retrieve calls |
 
-See also: [llm.md §4 Agents](./llm.md#4-agents--from-one-shot-to-a-control-loop) for the general agent control loop.
+See also: [LLM.md §4 Agents](./LLM.md#4-agents--from-one-shot-to-a-control-loop) for the general agent control loop.
 
 ---
 
@@ -1026,11 +1026,11 @@ flowchart TB
 
 | Doc | Topic |
 |---|---|
-| [llm.md](./llm.md) | Tokens, context window, agents, MCP, skills |
-| [llm.md §3](./llm.md#3-rag-retrieval-augmented-generation) | Brief RAG placement in the LLM stack |
-| [llm.md §5](./llm.md#5-llm-wiki--compounding-knowledge-karpathy-pattern) | Brief LLM wiki placement in the stack |
+| [LLM.md](./LLM.md) | Tokens, context window, agents, MCP, skills |
+| [LLM.md §3](./LLM.md#3-rag-retrieval-augmented-generation) | Brief RAG placement in the LLM stack |
+| [LLM.md §5](./LLM.md#5-llm-wiki--compounding-knowledge-karpathy-architecture) | Brief LLM wiki placement in the stack |
 | [LLM_Wiki.md](./LLM_Wiki.md) | Karpathy LLM wiki pattern — compounding wiki vs RAG; optional search at scale |
-| [llm.md §7–§8](./llm.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) | Consumer chat vs coding-agent products (local vs cloud index) |
+| [LLM.md §7–§8](./LLM.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) | Consumer chat vs coding-agent products (local vs cloud index) |
 | [§5 Embeddings in RAG](./RAG.md#5-embeddings-in-rag) | Vector dims, query vs chunk, ChatGPT vs Cursor |
 | [§8 PageIndex vs vector RAG](./RAG.md#8-pageindex-vs-traditional-vector-rag) | Vectorless, tree-based reasoning retrieval |
 | [§10 Agentic RAG](./RAG.md#what-is-agentic-rag) | LLM loop + retrieve tools; vs traditional RAG & PageIndex |
