@@ -247,7 +247,7 @@ flowchart TD
 | **Why is my code expensive?** | Symbols, indentation, and long identifiers often split into many tokens |
 | **Can I reverse token IDs to text?** | Yes — `decode(token_ids)` (lossy for whitespace in some tokenizers) |
 
-See also: [token_embedding.md](./token_embedding.md) for how token IDs become vectors inside the transformer.
+See also: [token_embedding.md](./token_embedding.md) — tokenizer vs input embedding, popular tokenizers, learned embeddings, and [RAG vs LLM vectors](./RAG.md#5-embeddings-in-rag).
 
 ### Prompt vs context — model view vs app view
 
@@ -443,7 +443,7 @@ flowchart LR
 | **Idea** | Search first, paste only what matters, then ask the LLM |
 | **Still needed with big windows?** | Yes for large, private, changing, or citable corpora |
 
-**Full treatment:** [RAG.md](./RAG.md) — indexing pipeline, hybrid search, chunking, prompt assembly, RAG vs long context, vs tools/agents, failure modes, and evaluation.
+**Full treatment:** [RAG.md](./RAG.md) — indexing pipeline, hybrid search, chunking, **[embeddings (§5)](./RAG.md#5-embeddings-in-rag)**, prompt assembly, RAG vs long context, vs tools/agents, failure modes, and evaluation.
 
 ---
 

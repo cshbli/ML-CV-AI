@@ -6,6 +6,41 @@ Parent overview: [llm.md §3 RAG (brief)](./llm.md#3-rag-retrieval-augmented-gen
 
 ---
 
+## Contents
+
+* RAG
+  * [Cheat sheet](#cheat-sheet)
+  * [1. Why RAG exists](#1-why-rag-exists)
+  * [2. RAG vs large context window](#2-rag-vs-large-context-window)
+    * [Two ways to give the model external knowledge](#two-ways-to-give-the-model-external-knowledge)
+    * [Comparison](#comparison)
+    * [Decision guide](#decision-guide)
+    * [Practical rule of thumb](#practical-rule-of-thumb)
+  * [3. End-to-end flow](#3-end-to-end-flow)
+    * [Offline: build the index](#offline-build-the-index)
+    * [Online: answer one question](#online-answer-one-question)
+  * [4. Core components](#4-core-components)
+  * [5. Embeddings in RAG](#5-embeddings-in-rag)
+    * [5.1 Same-dimensional vectors for query and chunks?](#51-do-the-user-prompt-and-chunks-always-embed-to-the-same-dimensional-vectors)
+    * [5.2 Consumer chatbots — local vector DB?](#52-consumer-chatbots-chatgpt-gemini--local-rag-and-local-vector-db)
+    * [5.3 Coding tools — local vector DB?](#53-coding-tools-cursor-codex--local-rag-and-local-vector-db)
+    * [5.4 Embedding FAQ (quick answers)](#54-embedding-faq-quick-answers)
+  * [6. Chunking (make or break)](#6-chunking-make-or-break)
+  * [7. Retrieval strategies](#7-retrieval-strategies)
+    * [Dense (vector) search](#dense-vector-search)
+    * [Keyword (sparse) search](#keyword-sparse-search)
+    * [Hybrid (common in production)](#hybrid-common-in-production)
+  * [8. Prompt assembly (augment)](#8-prompt-assembly-augment)
+  * [9. RAG vs tools vs agents](#9-rag-vs-tools-vs-agents)
+  * [10. Failure modes and mitigations](#10-failure-modes-and-mitigations)
+  * [11. Evaluation (what to measure)](#11-evaluation-what-to-measure)
+  * [12. Minimal architecture map](#12-minimal-architecture-map)
+  * [13. When to use RAG](#13-when-to-use-rag)
+  * [14. Related docs](#14-related-docs)
+  * [References](#references)
+
+---
+
 ## Cheat sheet
 
 ```mermaid
@@ -29,8 +64,11 @@ flowchart LR
 | **Retrieve** | Find the few chunks most relevant to the question |
 | **Augment** | Paste those chunks into the LLM prompt (with instructions) |
 | **Generate** | LLM writes the answer using provided evidence |
+| **Embed** | Query + chunks → **same-dim** vectors (same model) for similarity search |
 
 **RAG ≠ training.** You do not retrain the model weights; you change **what tokens are in the context** for this request.
+
+**Embeddings FAQ:** [§5](./RAG.md#5-embeddings-in-rag) — same vector dims?, chat apps vs coding tools, local vs cloud index.
 
 ---
 
@@ -184,7 +222,205 @@ flowchart LR
 
 ---
 
-## 5. Chunking (make or break)
+## 5. Embeddings in RAG
+
+RAG retrieval depends on a **separate embedding model** (or embedding API) that maps whole passages of text to **dense vectors**. That is **not** the same thing as the **token embedding table inside the LLM** that turns token IDs into vectors for attention — see [token_embedding.md](./token_embedding.md).
+
+```mermaid
+flowchart TB
+    subgraph RAGembed["RAG embedding model (bi-encoder)"]
+        C["Document chunk\n~500 tokens"] --> CV["One vector per chunk\ne.g. 1536 dims"]
+        Q["User question"] --> QV["One vector per query\ne.g. 1536 dims"]
+        CV --> Sim["Cosine similarity / dot product"]
+        QV --> Sim
+        Sim --> TopK["Top-k chunk IDs"]
+    end
+    subgraph LLMinner["Inside the generator LLM (different layer)"]
+        T["Each token in prompt"] --> TV["Token vectors\none per token position"]
+        TV --> Attn["Self-attention\nfull context mixing"]
+    end
+    TopK --> Prompt["Retrieved chunks go into prompt"]
+    Prompt --> T
+```
+
+| Layer | Input | Output | Used for |
+|---|---|---|---|
+| **RAG embedding model** | Whole chunk or whole query string | **One** fixed-size vector per string | Similarity search in the index |
+| **LLM token embeddings** | Each token ID in the context window | One vector **per token** | Next-token prediction inside the transformer |
+
+---
+
+### 5.1 Do the user prompt and chunks always embed to the same-dimensional vectors?
+
+**For a working RAG index: yes — at retrieve time, the query vector and every stored chunk vector must have the same dimensionality and come from the same embedding model family.**
+
+| Rule | Why |
+|---|---|
+| **Same embedding model** at index time and query time | Vectors live in one shared semantic space; mixing models breaks similarity |
+| **Same output dimension** | Vector DB distance math requires equal-length vectors |
+| **Same preprocessing** | Same prefixes (`query:` / `passage:`), truncation, normalization |
+| **Re-embed on model change** | New model → new dims and/or new space → rebuild the index |
+
+```mermaid
+flowchart LR
+    subgraph IndexTime["Index time"]
+        D1["Chunk A"] --> M["Embedding model M"]
+        D2["Chunk B"] --> M
+        M --> V1["vec dim = d"]
+        M --> V2["vec dim = d"]
+        V1 --> Store["Vector store"]
+        V2 --> Store
+    end
+    subgraph QueryTime["Query time"]
+        Q["User question"] --> M2["Same model M"]
+        M2 --> VQ["vec dim = d"]
+        VQ --> Search["ANN search vs store"]
+        Store --> Search
+    end
+```
+
+**Typical dimensions (examples, not fixed forever):**
+
+| Model / API (examples) | Common dims | Notes |
+|---|---|---|
+| OpenAI `text-embedding-3-small` | 1536 (default), optional shorter | Matryoshka-style shorter dims only if **both** sides use the same size |
+| OpenAI `text-embedding-3-large` | 3072 (default), optional shorter | Same rule |
+| Cohere `embed-v3` | 1024 | Separate `search_query` vs `search_document` input types, same output dim |
+| open-source (e.g. BGE, E5) | 384 / 768 / 1024 | Often `query:` / `passage:` prefixes baked into the model |
+
+**What is *not* required to match:**
+
+| | Must match chunk vectors? |
+|---|---|
+| **User question** (query embedding) | **Yes** — same model, same `d` |
+| **System prompt text** | **No** — usually not embedded for retrieval at all; it is pasted into the LLM context as plain tokens |
+| **Chat history** | **No** for classic RAG — only the **retrieval query** (often the latest user turn, sometimes rewritten) is embedded |
+| **LLM token embeddings** | **No** — different subsystem; dimensions follow the **generator** model (e.g. 4096-d hidden states), not the RAG index |
+
+**Nuances:**
+
+- **One vector per chunk, one vector per query** is the default (bi-encoder RAG). The full user message and each chunk are separate strings → separate vectors → compared in the index.
+- **Multi-vector retrieval** (e.g. ColBERT): each token gets its own vector, but query tokens and document tokens still use the **same encoder and same per-token dimension**; scoring is more complex than a single cosine.
+- **Rerankers** (cross-encoders): may use a different model entirely; they re-score text pairs and do **not** have to share the bi-encoder’s vector dimension because they are not stored in the vector DB.
+
+**Bottom line:** Similarity search needs **query vec ∈ ℝᵈ** and **chunk vec ∈ ℝᵈ** from the **same** embedding model. The LLM prompt (system + history + user) is a separate pipeline: those strings become **tokens**, not necessarily RAG query vectors.
+
+---
+
+### 5.2 Consumer chatbots (ChatGPT, Gemini, …) — local RAG and local vector DB?
+
+**Usually no.** The chat **product** runs retrieval and indexing on **vendor cloud infrastructure**, not by building a vector database on your laptop.
+
+```mermaid
+flowchart TB
+    subgraph YourDevice["Your device"]
+        Browser["Browser / app"]
+    end
+    subgraph VendorCloud["Vendor cloud"]
+        Upload["File / memory ingest"]
+        Chunk["Chunk + embed"]
+        VDB["Vector + metadata index"]
+        RAG["Retrieve for this thread"]
+        LLM["Hosted LLM"]
+    end
+    Browser -->|"message + optional uploads"| VendorCloud
+    Upload --> Chunk --> VDB
+    Browser --> RAG
+    VDB --> RAG
+    RAG --> LLM
+    LLM --> Browser
+```
+
+| Product | Where RAG-like retrieval runs | What feels “local” to you |
+|---|---|---|
+| **ChatGPT** | OpenAI cloud (file uploads, Custom GPT knowledge, memory features) | Files you pick in the UI; nothing you manage as a local vector DB |
+| **Claude.ai** | Anthropic cloud (Projects, uploads) | Same — attachments live in the product backend |
+| **Google Gemini** | Google cloud (Drive/Gmail/Workspace connectors, Gems) | Google-side indexes over connected accounts |
+| **Grok / others** | Provider cloud | Same pattern |
+
+| Question | Typical answer for consumer chat apps |
+|---|---|
+| Does **my PC** build and store the vector index? | **No** |
+| Is there **a** vector DB involved? | **Often yes**, but on the **provider’s** side |
+| Does my raw upload stay only on my machine? | **No** — content is sent to the service to index and retrieve (see each vendor’s privacy/data policy) |
+| Can I point ChatGPT at **my** local `pgvector`? | **Not** as the native app — you would build **your own** RAG app using their **API** and host the index wherever you choose |
+
+**Enterprise / team tiers** may add VPC isolation, zero-retention options, or customer-managed keys — still **cloud-side** indexing in almost all cases, not “SQLite on your MacBook.”
+
+**Contrast — when *you* build the chatbot:**
+
+```mermaid
+flowchart LR
+    subgraph YouBuild["Your RAG app (LangChain, custom API, …)"]
+        Local["Local pgvector / Chroma"] 
+        Cloud["Pinecone / Weaviate cloud"]
+        API["OpenAI / Gemini API for chat only"]
+    end
+    Local --> API
+    Cloud --> API
+```
+
+You choose index location; the **consumer ChatGPT/Gemini app** is not that architecture.
+
+---
+
+### 5.3 Coding tools (Cursor, Codex, …) — local RAG and local vector DB?
+
+**Mixed — coding agents often index *your repo*, and many keep a *local* codebase index on your machine; cloud agents may keep indexes in the vendor sandbox instead.**
+
+```mermaid
+flowchart TB
+    subgraph LocalIDE["Local-first (e.g. Cursor-style)"]
+        Repo["Your git repo on disk"]
+        IdxLocal["Local index files\n(embeddings cache / vector index)"]
+        IDE["IDE agent"]
+        Repo --> IdxLocal
+        IdxLocal --> IDE
+        IDE -->|"LLM inference often cloud"| API["Model API"]
+    end
+    subgraph CloudAgent["Cloud-first (e.g. cloud Codex run)"]
+        Repo2["Repo clone in sandbox"]
+        IdxCloud["Index in vendor environment"]
+        Agent["Remote agent loop"]
+        Repo2 --> IdxCloud --> Agent
+    end
+```
+
+| Product | Index / RAG over codebase | Vector store location (typical) | Embedding compute (typical) |
+|---|---|---|---|
+| **Cursor** | **Yes** — semantic codebase index, `@codebase`, grep, file search | **Local** on your machine (index/cache under editor data dirs); repo stays on disk | Embeddings often via **remote embedding API**, vectors **stored locally** |
+| **OpenAI Codex** (cloud/CLI agent) | **Yes** — repo context for tasks | **Vendor sandbox / cloud** for the run — not a durable local vector DB you manage | Cloud-side orchestration |
+| **Claude Code** | **Yes** — reads/search repo via tools | **Mostly tool-based** (read, grep, glob) + context assembly; **not** always a persistent local vector DB like Cursor’s codebase index | Model on Anthropic cloud |
+| **GitHub Copilot** | **Partial** — open files + workspace context; enterprise may add broader index | IDE + **GitHub/Microsoft** services depending on mode | Cloud model; indexing details vary by plan |
+
+**Practical distinctions:**
+
+| | Consumer chat (§5.2) | Coding agent (§5.3) |
+|---|---|---|
+| **Corpus** | Your uploads, memory, connectors | **Your repository**, rules, docs |
+| **Who owns the index** | Almost always the **vendor** | Often **local-first** (Cursor) or **sandbox** (cloud Codex) |
+| **You see “vector DB”** | No — opaque product feature | Sometimes — local cache files, but rarely a DB you query directly |
+| **Hybrid retrieval** | Common (vector + keyword + tools) | Very common — **grep** + semantic + open tabs + `@file` |
+
+**Cursor-specific mental model:** RAG happens **before** the LLM call: the product retrieves relevant files/chunks from a **local codebase index**, then stuffs them into the **context window**. The **LLM** still runs on hosted GPUs; only the **index** is local-first.
+
+**Codex-specific mental model:** The agent runs in an **environment that already has your repo**; retrieval/indexing serves that remote loop — you do not typically get a persistent local vector DB on your laptop for every Codex session.
+
+---
+
+### 5.4 Embedding FAQ (quick answers)
+
+| # | Question | Short answer |
+|---|---|---|
+| **1** | User prompt and chunks — same vector dimension? | **Yes**, for the **same RAG embedding model** at index and query time. System/history are not chunk vectors. |
+| **2** | ChatGPT / Gemini — local vector DB? | **No** — consumer apps index and retrieve in the **cloud**. |
+| **3** | Cursor / Codex — local vector DB? | **Cursor: local codebase index (typical). Codex: cloud/sandbox (typical).** Others mix tool search + optional indexes. |
+
+See also: [llm.md §7 Consumer chat apps](./llm.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) · [llm.md §8 Coding-agent products](./llm.md#8-coding-agent-products--cursor-claude-code-codex-)
+
+---
+
+## 6. Chunking (make or break)
 
 ```mermaid
 flowchart TD
@@ -208,7 +444,7 @@ Good chunking aligns with [LLM wiki](./llm.md#5-llm-wiki--grounded-knowledge-for
 
 ---
 
-## 6. Retrieval strategies
+## 7. Retrieval strategies
 
 ### Dense (vector) search
 
@@ -246,7 +482,7 @@ flowchart TD
 
 ---
 
-## 7. Prompt assembly (augment)
+## 8. Prompt assembly (augment)
 
 The retriever output becomes **tokens in the context window** — same rules as [prompt vs context in llm.md](./llm.md#prompt-vs-context--model-view-vs-app-view).
 
@@ -282,7 +518,7 @@ flowchart LR
 
 ---
 
-## 8. RAG vs tools vs agents
+## 9. RAG vs tools vs agents
 
 | | **RAG** | **Tool (e.g. search API)** | **Agent + RAG** |
 |---|---|---|---|
@@ -307,7 +543,7 @@ Live web search in ChatGPT is closer to **tool + retrieve** than classic batch-i
 
 ---
 
-## 9. Failure modes and mitigations
+## 10. Failure modes and mitigations
 
 | Failure | Symptom | Mitigations |
 |---|---|---|
@@ -328,7 +564,7 @@ flowchart TD
 
 ---
 
-## 10. Evaluation (what to measure)
+## 11. Evaluation (what to measure)
 
 | Metric | Measures |
 |---|---|
@@ -342,7 +578,7 @@ Improve retrieval first when answers are wrong but the corpus contains the truth
 
 ---
 
-## 11. Minimal architecture map
+## 12. Minimal architecture map
 
 ```mermaid
 flowchart TB
@@ -368,7 +604,7 @@ flowchart TB
 
 ---
 
-## 12. When to use RAG
+## 13. When to use RAG
 
 | Situation | Use RAG? |
 |---|---|
@@ -381,14 +617,16 @@ flowchart TB
 
 ---
 
-## 13. Related docs
+## 14. Related docs
 
 | Doc | Topic |
 |---|---|
 | [llm.md](./llm.md) | Tokens, context window, agents, MCP, skills |
 | [llm.md §3](./llm.md#3-rag-retrieval-augmented-generation) | Brief RAG placement in the LLM stack |
 | [llm.md §5](./llm.md#5-llm-wiki--grounded-knowledge-for-orgs--agents) | Curating corpora for retrieval |
-| [token_embedding.md](./token_embedding.md) | Embeddings (related to chunk vectors) |
+| [llm.md §7–§8](./llm.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) | Consumer chat vs coding-agent products (local vs cloud index) |
+| [§5 Embeddings in RAG](./RAG.md#5-embeddings-in-rag) | Vector dims, query vs chunk, ChatGPT vs Cursor |
+| [token_embedding.md](./token_embedding.md) | Token embeddings inside the transformer (not RAG bi-encoder) |
 
 ---
 
