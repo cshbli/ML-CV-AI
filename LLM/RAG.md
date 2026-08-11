@@ -38,6 +38,11 @@ Parent overview: [llm.md §3 RAG (brief)](./llm.md#3-rag-retrieval-augmented-gen
     * [Can they be combined?](#can-they-be-combined)
   * [9. Prompt assembly (augment)](#9-prompt-assembly-augment)
   * [10. RAG vs tools vs agents](#10-rag-vs-tools-vs-agents)
+    * [Simple RAG vs tools vs agents (overview)](#simple-rag-vs-tools-vs-agents-overview)
+    * [What is Agentic RAG?](#what-is-agentic-rag)
+    * [Traditional RAG vs PageIndex vs Agentic RAG](#traditional-rag-vs-pageindex-vs-agentic-rag)
+    * [Agentic RAG query flow](#agentic-rag-query-flow)
+    * [When to use which pattern](#when-to-use-which-pattern)
   * [11. Failure modes and mitigations](#11-failure-modes-and-mitigations)
   * [12. Evaluation (what to measure)](#12-evaluation-what-to-measure)
   * [13. Minimal architecture map](#13-minimal-architecture-map)
@@ -719,26 +724,226 @@ flowchart LR
 
 ## 10. RAG vs tools vs agents
 
-| | **RAG** | **Tool (e.g. search API)** | **Agent + RAG** |
+This section covers **orchestration**: who decides *when* and *how* to fetch knowledge. [§8 PageIndex](#8-pageindex-vs-traditional-vector-rag) is one **retrieval mechanism**; **Agentic RAG** is one **control pattern** that can sit on top of vector search, PageIndex, or both.
+
+---
+
+### Simple RAG vs tools vs agents (overview)
+
+| | **Simple (traditional) RAG** | **Tool** (e.g. search API) | **Agentic RAG** |
 |---|---|---|---|
-| **When data is fetched** | Before generation (usually once) | When model asks | Model may retrieve multiple times |
-| **Who triggers retrieve** | App always | LLM via tool_call | LLM in a loop |
-| **Best for** | Doc Q&A over static index | Live APIs, side effects | Complex multi-hop research |
+| **When data is fetched** | Before generation (**once**, fixed pipeline) | When the model emits a **tool_call** | Model in a **loop** — zero or many retrieves |
+| **Who triggers retrieve** | **Application** (always) | **LLM** (via tool schema) | **LLM** (plan → retrieve → reflect → maybe retrieve again) |
+| **Retrieve query** | Usually the raw user question | Args the model chooses | Model may **rewrite**, decompose, or specialize queries |
+| **Best for** | Straightforward doc Q&A | Live APIs, side effects, web | Multi-hop, ambiguous, or evolving research tasks |
+| **Latency** | Predictable (1× retrieve + 1× generate) | Variable | Often **highest** (multiple LLM + retrieve steps) |
 
 ```mermaid
 flowchart TB
     subgraph SimpleRAG["Simple RAG"]
-        Q1["Question"] --> R1["Retrieve"] --> G1["Generate"]
+        Q1["Question"] --> R1["Retrieve once"] --> G1["Generate once"]
+    end
+    subgraph Tool["Tool use"]
+        Q2["Question"] --> L2["LLM"]
+        L2 --> T2["tool_call"]
+        T2 --> O2["Observation"]
+        O2 --> L2
     end
     subgraph AgentRAG["Agentic RAG"]
-        Q2["Goal"] --> A["Agent LLM"]
-        A --> R2["Retrieve tool"]
-        R2 --> A
-        A --> G2["Generate when ready"]
+        Q3["Goal"] --> A["Agent LLM"]
+        A --> R3["Retrieve tool\nvector / PageIndex / SQL"]
+        R3 --> A
+        A --> Check{"Enough\nevidence?"}
+        Check -->|No| A
+        Check -->|Yes| G3["Final answer"]
     end
 ```
 
-Live web search in ChatGPT is closer to **tool + retrieve** than classic batch-index RAG.
+Live web search in ChatGPT is closer to **tool + agent loop** than to classic one-shot batch-index RAG.
+
+---
+
+### What is Agentic RAG?
+
+**Agentic RAG** puts an **LLM in control of retrieval** instead of a fixed `retrieve(query) → top-k → generate` pipeline. The model can:
+
+- **Decide whether** to retrieve at all  
+- **Rewrite or split** the question into sub-queries  
+- **Call retrieve tools multiple times** (multi-hop)  
+- **Choose backends** — vector DB, keyword search, PageIndex tree nav, SQL, web  
+- **Reflect** — “I still need the 2023 policy, not 2022” → retrieve again  
+- **Generate** only when it judges context sufficient  
+
+```mermaid
+flowchart LR
+    subgraph Agentic["Agentic RAG = agent loop + RAG tools"]
+        LLM["Agent LLM"]
+        LLM --> RT["retrieve_knowledge\n(vector / hybrid)"]
+        LLM --> PI["navigate_document_tree\n(PageIndex)"]
+        LLM --> Other["grep / SQL / web / …"]
+        RT --> LLM
+        PI --> LLM
+        Other --> LLM
+    end
+```
+
+**Agentic RAG is not a fourth index type.** It is an **orchestration pattern**. The actual retrieval can still be:
+
+| Backend inside the loop | Same as |
+|---|---|
+| Vector + BM25 hybrid | [Traditional RAG §7](#7-retrieval-strategies) |
+| LLM tree navigation | [PageIndex §8](#8-pageindex-vs-traditional-vector-rag) |
+| Live web / APIs | Tools, not static index |
+
+Common variants (names vary by vendor):
+
+| Pattern | Behavior |
+|---|---|
+| **Corrective RAG (CRAG)** | Retrieve → grade relevance → re-query or fall back to web if poor |
+| **Self-RAG** | Model emits retrieve / relevance / support tokens as part of generation |
+| **ReAct-style** | Alternate **Reason** (thought) and **Act** (retrieve tool) until done |
+| **Query decomposition** | Break “compare A and B policies” into two retrieve calls |
+
+See also: [llm.md §4 Agents](./llm.md#4-agents--from-one-shot-to-a-control-loop) for the general agent control loop.
+
+---
+
+### Traditional RAG vs PageIndex vs Agentic RAG
+
+These three are often confused because all three “use retrieval.” They differ on **who retrieves** and **how relevance is scored**.
+
+```mermaid
+flowchart TB
+    subgraph Trad["Traditional RAG"]
+        direction LR
+        TQ["Query"] --> TE["Embed"]
+        TE --> ANN["Vector DB top-k"]
+        ANN --> TG["LLM generate"]
+    end
+    subgraph PI["PageIndex"]
+        direction LR
+        PQ["Query"] --> PN["LLM navigates tree"]
+        PN --> PT["Extract sections"]
+        PT --> PG["LLM generate"]
+    end
+    subgraph AR["Agentic RAG"]
+        direction LR
+        AQ["Goal"] --> AL["Agent LLM loop"]
+        AL --> ARet["Retrieve tool\n(any backend)"]
+        ARet --> AL
+        AL --> AG["Final generate"]
+    end
+```
+
+| Dimension | **Traditional RAG** | **PageIndex** | **Agentic RAG** |
+|---|---|---|---|
+| **Primary axis** | **Retrieval mechanism** (similarity) | **Retrieval mechanism** (structure + LLM nav) | **Control flow** (LLM-driven loop) |
+| **Who plans retrieval?** | **App** (fixed pipeline) | **App** invokes navigator LLM with fixed tree-search step | **Agent LLM** (dynamic plan) |
+| **# of retrieve steps** | Usually **1** | Usually **1** nav pass (+ optional drill-down) | **0 to many** |
+| **Relevance signal** | Embedding similarity (+ optional rerank) | Reasoning over TOC / sections | Model decides *when* and *what* to fetch; backend can be vector **or** tree |
+| **Query handling** | Raw or lightly rewritten user query | User query → tree search prompt | Sub-queries, decomposition, follow-ups |
+| **Vector DB required?** | **Yes** (typical) | **No** | **Optional** (only if vector tool is used) |
+| **LLM calls (typical)** | **1** (generate only); +0 rerank | **2+** (navigate + generate) | **3+** (plan/retrieve/reflect/generate × n) |
+| **Multi-hop questions** | Weak unless you add agent loop | Moderate (tree drill-down) | **Strong** (designed for this) |
+| **Explainability** | Chunk IDs, similarity scores | Section / page node trace | Thought + tool log + citations |
+| **Cost / latency** | **Lowest** | **Medium** | **Highest** |
+| **Failure mode** | Wrong chunk in top-k | Wrong tree branch | Runaway loop, over-retrieval, tool misuse |
+
+**Relationships (not mutually exclusive):**
+
+| Statement | True? |
+|---|---|
+| PageIndex **is** agentic at the **navigation** step | **Yes** — an LLM reasons over the tree ([§8 flow](#query-time-flow-llm-tree-navigation)) |
+| PageIndex **is** full Agentic RAG | **Not necessarily** — classic PageIndex is still a **fixed** nav-then-generate pipeline unless wrapped in a broader agent loop |
+| Agentic RAG **replaces** vector RAG | **No** — it often **calls** vector search as a **tool** inside the loop |
+| Traditional RAG **cannot** multi-hop | **Not alone** — add an agent loop → becomes Agentic RAG |
+
+**One-line analogies:**
+
+| Pattern | Analogy |
+|---|---|
+| **Traditional RAG** | Librarian hands you **one stack of index cards** before you read. |
+| **PageIndex** | You **skim the table of contents** with a guide, open specific chapters. |
+| **Agentic RAG** | Research assistant who **keeps going back to the shelves** until the question is answered. |
+
+---
+
+### Agentic RAG query flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    participant U as User
+    participant App as Agent host
+    participant A as Agent LLM
+    participant R as Retrieve tools
+    participant Idx as Index\n(vector / tree / SQL)
+
+    U->>App: Complex question
+    App->>A: Goal + tool schemas + history
+
+    loop Until done or max steps
+        A->>A: Reason / plan next step
+        alt Needs more knowledge
+            A->>App: tool_call retrieve\n(query, filters, backend)
+            App->>R: Execute tool
+            R->>Idx: Search or tree nav
+            Idx-->>R: Passages or node text
+            R-->>App: Observation
+            App->>A: Tool result
+        else Ready to answer
+            A-->>App: Final response + citations
+        end
+    end
+
+    App-->>U: Answer
+```
+
+**Example — multi-hop with traditional vector backend:**
+
+1. User: “Did our 2024 EU refund policy change from 2023, and what does finance require for approval?”  
+2. Agent: `retrieve("EU refund policy 2023")` → chunks from wiki  
+3. Agent: `retrieve("EU refund policy 2024")` → updated chunks  
+4. Agent: `retrieve("finance approval workflow refunds")` → process doc  
+5. Agent: synthesize answer with citations from all three result sets  
+
+**Example — Agentic RAG using PageIndex as a tool:**
+
+1. Agent: `list_documents()` → finds `annual-report-2024.pdf`  
+2. Agent: `pageindex_navigate(doc_id, "revenue recognition note 2")` → node IDs + section text  
+3. Agent: insufficient detail → `pageindex_navigate(doc_id, "segment reporting footnote")`  
+4. Agent: final answer with page references  
+
+Same **agent loop**; different **retrieve tools** inside it.
+
+---
+
+### When to use which pattern
+
+```mermaid
+flowchart TD
+    Start["Pick a RAG pattern"]
+    Start --> Hops{"Multi-hop or\nfollow-up retrieves?"}
+    Hops -->|No, single lookup| Mechanism{"Corpus shape?"}
+    Hops -->|Yes| Agentic["Agentic RAG\n(loop + retrieve tools)"]
+    Mechanism -->|Large messy corpus| Trad["Traditional vector RAG\n+ hybrid / rerank"]
+    Mechanism -->|Few long structured PDFs| PI["PageIndex\nor vector → tree hybrid"]
+    Agentic --> Backend{"Which retrieve tool?"}
+    Backend --> Vec["Vector / hybrid tool"]
+    Backend --> Tree["PageIndex tree tool"]
+    Backend --> Mix["Both + web / SQL"]
+```
+
+| Situation | Start here |
+|---|---|
+| FAQ over a stable wiki, one-shot answers | **Traditional RAG** |
+| 100-page PDF with clear sections, audit citations | **PageIndex** (or hybrid) |
+| “Compare X across three years and cross-check policy” | **Agentic RAG** |
+| Chat product with browse + files + memory | **Agentic RAG** (often hidden in the product) |
+| Strict latency SLA, predictable cost | **Traditional RAG** — avoid agent loop unless necessary |
+| Already built vector index; need multi-hop | **Agentic RAG** wrapping existing retriever as a **tool** |
+
+**Practical progression:** **Traditional RAG** → add rerank/hybrid if recall hurts → add **PageIndex** for long structured docs → wrap in **Agentic RAG** when single-shot retrieval is not enough.
 
 ---
 
@@ -827,6 +1032,7 @@ flowchart TB
 | [llm.md §7–§8](./llm.md#7-consumer-chat-apps--chatgpt-claude-gemini-grok) | Consumer chat vs coding-agent products (local vs cloud index) |
 | [§5 Embeddings in RAG](./RAG.md#5-embeddings-in-rag) | Vector dims, query vs chunk, ChatGPT vs Cursor |
 | [§8 PageIndex vs vector RAG](./RAG.md#8-pageindex-vs-traditional-vector-rag) | Vectorless, tree-based reasoning retrieval |
+| [§10 Agentic RAG](./RAG.md#what-is-agentic-rag) | LLM loop + retrieve tools; vs traditional RAG & PageIndex |
 | [PageIndex (external)](https://docs.pageindex.ai/) | Official docs, MCP/API, open-source tree index |
 | [token_embedding.md](./token_embedding.md) | Token embeddings inside the transformer (not RAG bi-encoder) |
 
