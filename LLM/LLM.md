@@ -1113,6 +1113,30 @@ flowchart TB
 | Framework | “How do steps, state, and agents connect?” |
 | Evals | “Did the system actually get better?” |
 
+### Agent frameworks vs Kubernetes vs Flyte
+
+Agent frameworks (§6) orchestrate **AI control loops** — not cluster scheduling or batch ML pipelines. For production stacks they usually sit **above** infra and workflow layers:
+
+```mermaid
+flowchart TB
+    AF["⑥ Agent framework\nLangGraph · Agents SDK · …"]
+    F["Flyte\nfixed DAG · lineage · cache"]
+    K["Kubernetes\npods · GPU · network"]
+    AF -->|"tool: run workflow"| F
+    AF -->|"Deployment"| K
+    F -->|"task pods"| K
+```
+
+| Layer | Question | Typical owner |
+|---|---|---|
+| **Kubernetes** | *Where* do containers run? | Platform / DevOps |
+| **Flyte** | *In what order* do batch/ML steps run? | ML / data engineering |
+| **Agent framework** | *What should the AI do next?* | App / AI engineering |
+
+**Together:** user → **agent** (reason) → **Flyte** (train / ETL / batch infer on K8s) → results back to agent → user. Don’t implement long fixed DAGs inside agent loops; expose Flyte as a **tool**.
+
+**Full treatment:** [flyte_k8s_ops.md](./flyte_k8s_ops.md) — layer stack, comparison table, integration patterns, anti-patterns.
+
 ---
 
 ## 7. Consumer Chat Apps — ChatGPT, Claude, Gemini, Grok
@@ -1427,7 +1451,7 @@ graph TD
 | 3. RAG | Brief | [RAG.md](./RAG.md) — full pipeline |
 | 4. Agents | Done | Tools, MCP, Skills, ReAct, plan-execute, multi-agent |
 | 5. LLM wiki | Done | [LLM_Wiki.md](./LLM_Wiki.md) — Karpathy architecture: LLM-maintained compounding wiki |
-| 6. Agent frameworks | Done | LangGraph, OpenAI SDK, CrewAI, LlamaIndex, … |
+| 6. Agent frameworks | Done | LangGraph, OpenAI SDK, CrewAI, … · [Flyte/K8s ops](./flyte_k8s_ops.md) |
 | 7. Consumer chat apps | Done | ChatGPT, Claude.ai, Gemini, Grok |
 | 8. Coding-agent products | Done | Cursor, Claude Code, Codex, Copilot, … |
 | 9. AI coding: Prompt→Graph | Done | Evolution layers + detailed graph view |
@@ -1441,7 +1465,9 @@ graph TD
 - RAG surveys: retrieve → augment prompt → generate
 - ReAct (Yao et al.): reason + act interleaved tool use
 - Vendor context limits (e.g. 128k–1M) vs enterprise corpus sizes (GB–TB)
+- [flyte_k8s_ops.md](./flyte_k8s_ops.md) — Kubernetes vs Flyte vs agent frameworks ([§6](#agent-frameworks-vs-kubernetes-vs-flyte))
 - Framework docs: [LangGraph](https://langchain-ai.github.io/langgraph/), [OpenAI Agents SDK](https://openai.github.io/openai-agents-python/), [CrewAI](https://docs.crewai.com/), [LlamaIndex Workflows](https://docs.llamaindex.ai/), [AG2](https://docs.ag2.ai/) / Microsoft Agent Framework
+- [Flyte](https://docs.flyte.org/) · [Kubernetes](https://kubernetes.io/docs/home/)
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) — standard host/server plug-in for tools and resources ([§4 MCP](#mcp-model-context-protocol))
 - Cursor Agent Skills — `SKILL.md` playbooks in `~/.cursor/skills/` or `.cursor/skills/` ([§4 Agent Skills](#agent-skills--reusable-playbooks))
 - Coding agents: [Cursor](https://cursor.com/), [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex](https://openai.com/codex/), [GitHub Copilot](https://github.com/features/copilot)
