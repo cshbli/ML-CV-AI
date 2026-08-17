@@ -43,6 +43,8 @@
 
 * LLM
   * Introductions and Tutorials
+    * [LLM overview](./LLM/LLM.md)
+    * [Harness engineering](./LLM/harness_engineering.md)
     * [Attention](./LLM/attention.md)
       * [FlashAttention](./LLM/flash_attention.md)
       * [PagedAttention](./LLM/paged_attention.md)

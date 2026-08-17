@@ -1,6 +1,6 @@
 # LLM Concepts (Charts & Tables)
 
-This note uses diagrams and tables to explain core LLM ideas: **LLM**, **token**, **Context**, **context window**, **Prompt**, **User Prompt**, **System Prompt**, **Tool**, **MCP**, **Agent**, **Agent Skills**, **RAG**, **LLM wikis**, **agent frameworks**, **consumer chat apps** (ChatGPT, Claude, Gemini, Grok), **coding-agent products** (Cursor, Claude Code, Codex, …), and the **Prompt→Graph** evolution of AI coding.
+This note uses diagrams and tables to explain core LLM ideas: **LLM**, **token**, **Context**, **context window**, **Prompt**, **User Prompt**, **System Prompt**, **Tool**, **MCP**, **Agent**, **Agent Skills**, **RAG**, **LLM wikis**, **agent frameworks**, **consumer chat apps** (ChatGPT, Claude, Gemini, Grok), **coding-agent products** (Cursor, Claude Code, Codex, …), the **Prompt→Graph** evolution of AI coding, and **[harness engineering](./harness_engineering.md)** (equipping agents to act reliably).
 
 ---
 
@@ -43,7 +43,7 @@ flowchart TB
 | **⑥ Framework** | Libraries *you* embed to wire the loop | [§6](#6-agent-frameworks--who-orchestrates-the-loop) |
 | **⑦a Chat apps** | ChatGPT / Claude.ai / Gemini / Grok — *products*, not bare LLMs | [§7](#7-consumer-chat-apps--chatgpt-claude-gemini-grok) |
 | **⑦b Coding agents** | Cursor / Claude Code / Codex — coding-agent products | [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
-| **Prompt→Graph** | How AI coding grows: prompt → context → harness → loop → graph | [§9](#9-ai-coding-evolution--from-prompt-to-graph) |
+| **Prompt→Graph** | How AI coding grows: prompt → context → harness → loop → graph | [§9](#9-ai-coding-evolution--from-prompt-to-graph) · **[Harness engineering](./harness_engineering.md)** |
 
 | Don’t confuse… | With… |
 |---|---|
@@ -449,7 +449,7 @@ flowchart LR
 
 ## 4. Agents — From One Shot to a Control Loop
 
-A **chat completion** is one forward pass (plus token loop). An **agent** wraps the LLM in a **control loop** that can call **tools**, read **observations**, and decide whether to act again or stop.
+A **chat completion** is one forward pass (plus token loop). An **agent** wraps the LLM in a **control loop** that can call **tools**, read **observations**, and decide whether to act again or stop. The **harness** is everything around the model that makes that loop possible — see **[Harness engineering](./harness_engineering.md)**.
 
 ```mermaid
 flowchart TD
@@ -1312,130 +1312,159 @@ Maps onto this note:
 |---|---|---|
 | 1. Prompt engineering | One-shot generate | [§1](#1-what-an-llm-does-next-token-loop) LLM |
 | 2. Context engineering | Relevant materials in the window | [§2](#2-tokens-tokenizer--context-window), [RAG.md](./RAG.md), [LLM_Wiki.md](./LLM_Wiki.md) |
-| 3. Harness engineering | Tools, env, sandbox (agent can *act*) | [§4](#4-agents--from-one-shot-to-a-control-loop), [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
+| 3. Harness engineering | Tools, env, sandbox (agent can *act*) | **[harness_engineering.md](./harness_engineering.md)** · [§4](#4-agents--from-one-shot-to-a-control-loop) · [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
 | 4. Loop engineering | Inspect → revise until stop | [§4](#4-agents--from-one-shot-to-a-control-loop) ReAct / budgets |
 | 5. Graph engineering | Multi-node orchestration + shared state | [§6](#6-agent-frameworks--who-orchestrates-the-loop) (e.g. LangGraph) |
 
+### What prompt, context, and harness mean
+
+A useful shorthand (layers **stack** — they do not replace each other):
+
+| Layer | Plain phrase | What it really means |
+|---|---|---|
+| **Prompt engineering** | Ask well | **How to instruct the model** — task, format, constraints, examples, role. Not only “questions”; it is the whole prompt design for one-shot generation. |
+| **Context engineering** | Inform well | **What to put in the window, and how to choose it** — refs, specs, code, rules, RAG results. Goal: *relevant* materials, not “dump the whole repo.” |
+| **Harness engineering** | Equip well | **How to give the agent a runtime** — tools, sandbox, guides, sensors, permissions so it can *act*, not just talk. Full guide: **[harness_engineering.md](./harness_engineering.md)** |
+
+Stacked view:
+
+```
+Prompt   → what you ask
+Context  → what the model sees
+Harness  → what the agent can do in the world
+Loop     → how it keeps trying until done
+Graph    → how multiple agents / nodes coordinate
+```
+
+So: **prompt** = ask well, **context** = inform well, **harness** = equip well (tools + environment). See **[Harness engineering](./harness_engineering.md)** for guides, sensors, and vendor playbooks. Loop and graph add *when to stop* and *who does what* on top of all three.
+
+### 9.1 Prompt engineering
+
+**Ask well:** craft the instruction (task, format, constraints). One-shot generation: user prompt → LLM → code snippet. No project materials yet.
+
 ```mermaid
-graph TD
+graph LR
+  classDef stdNode fill:#e0e0e0,stroke:#333,stroke-width:1px,color:#000,text-align:left,font-size:13px
+  classDef headerNode fill:#244c79,stroke:#333,stroke-width:1px,color:#fff,font-weight:bold,text-align:center,font-size:14px
+
+  L1Label["Layer 1: Prompt Engineering"]:::headerNode
+  L1Input["Input:\nHelp me generate a webpage"]:::stdNode
+  L1LLM["LLM:\nUnderstand and Generate"]:::stdNode
+  L1Output["Output:\nA snippet of code"]:::stdNode
+  L1Label --> L1Input --> L1LLM --> L1Output
+```
+
+### 9.2 Context engineering
+
+**Inform well:** select and assemble the right materials for the window. **New:** relevant project context (refs, stack, standards, specs, docs).
+
+```mermaid
+graph LR
+  classDef stdNode fill:#e0e0e0,stroke:#333,stroke-width:1px,color:#000,text-align:left,font-size:13px
+  classDef newCapNode fill:#a9d1f7,stroke:#333,stroke-width:1px,color:#000,font-weight:bold,text-align:left,font-size:13px
+  classDef headerNode fill:#244c79,stroke:#333,stroke-width:1px,color:#fff,font-weight:bold,text-align:center,font-size:14px
+
+  L2Label["Layer 2: Context Engineering"]:::headerNode
+  L2Input["Input:\nGenerate webpage"]:::stdNode
+  L2Context["Relevant Context:\nRef Implementation | Tech Stack | Coding Standards | Design Specs | Req and API Docs"]:::newCapNode
+  L2LLM["LLM:\nGenerate based on materials"]:::stdNode
+  L2Output["Output:\nCode that better fits the project"]:::stdNode
+  L2Label --> L2Input --> L2Context --> L2LLM --> L2Output
+```
+
+### 9.3 Harness engineering
+
+**Equip well:** build the agent’s runtime so it can act in the real world. **New:** tools and execution environment — files, terminal, tests, MCP, sandbox.
+
+```mermaid
+graph LR
+  classDef stdNode fill:#e0e0e0,stroke:#333,stroke-width:1px,color:#000,text-align:left,font-size:13px
+  classDef newCapNode fill:#a9d1f7,stroke:#333,stroke-width:1px,color:#000,font-weight:bold,text-align:left,font-size:13px
+  classDef headerNode fill:#244c79,stroke:#333,stroke-width:1px,color:#fff,font-weight:bold,text-align:center,font-size:14px
+
+  L3Label["Layer 3: Harness Engineering"]:::headerNode
+  L3Input["Input:\nGenerate webpage"]:::stdNode
+  L3Context["Context:\nCode | Standards | Design Specs | Docs and API Docs"]:::stdNode
+  L3CodingAgent["Coding Agent:\nDecide and Act"]:::stdNode
+  L3Harness["Harness: Tools and Execution:\nEnv / Deps | Files | Terminal | Git | Browser | Testing | APIs/MCP | Permissions and Sandbox"]:::newCapNode
+  L3Output["Output:\nRunnable webpage"]:::stdNode
+  L3Label --> L3Input --> L3Context --> L3CodingAgent --> L3Harness --> L3Output
+```
+
+### 9.4 Loop engineering
+
+**New:** loop controller — inspect, feedback, revise, re-inspect until stop conditions or budget.
+
+```mermaid
+graph LR
+  classDef stdNode fill:#e0e0e0,stroke:#333,stroke-width:1px,color:#000,text-align:left,font-size:13px
+  classDef newCapNode fill:#a9d1f7,stroke:#333,stroke-width:1px,color:#000,font-weight:bold,text-align:left,font-size:13px
+  classDef headerNode fill:#244c79,stroke:#333,stroke-width:1px,color:#fff,font-weight:bold,text-align:center,font-size:14px
+
+  L4Label["Layer 4: Loop Engineering"]:::headerNode
+  L4Input["Input:\nGenerate webpage"]:::stdNode
+  L4LoopController["Loop Controller:\nInspect Methods | Stop Conditions | Review Thresholds | Turn Budget"]:::newCapNode
+  L4Context["Context:\nReassemble based on latest state"]:::stdNode
+  L4Agent["Agent:\nJudge and Act"]:::stdNode
+  L4Harness["Harness:\nExecute and Observe"]:::stdNode
+  L4Version["Current Version:\nPending Inspection"]:::stdNode
+  L4Label --> L4Input --> L4LoopController
+  L4LoopController --> L4Context --> L4Agent --> L4Harness --> L4Version
+  L4Version -->|"Auto inspect → feedback → revise → re-inspect"| L4LoopController
+```
+
+### 9.5 Graph engineering
+
+**New:** graph orchestrator — task decomposition, node routing, shared state; each node can run its own internal loop.
+
+```mermaid
+graph TB
   classDef stdNode fill:#e0e0e0,stroke:#333,stroke-width:1px,color:#000,text-align:left,font-size:13px
   classDef newCapNode fill:#a9d1f7,stroke:#333,stroke-width:1px,color:#000,font-weight:bold,text-align:left,font-size:13px
   classDef headerNode fill:#244c79,stroke:#333,stroke-width:1px,color:#fff,font-weight:bold,text-align:center,font-size:14px
   classDef subGraphStyle stroke-width:0px,color:transparent
-  classDef textNode fill:none,stroke:none,color:#000,font-size:14px
-  classDef invisible fill:transparent,stroke:none,color:transparent
 
-  MainTitle["AI Coding: Step-by-Step Evolution from Prompt to Graph\nFrom Single Generation to Systematic Orchestration\nGradually Expanding Task Complexity, Autonomy, and Collaboration\n\nNote: Light blue boxes = new capabilities at this layer."]:::textNode
-  TitleSpacer[" "]:::invisible
-  MainTitle --- TitleSpacer
+  L5Label["Layer 5: Graph Engineering"]:::headerNode
+  L5Input["Input"]:::stdNode
+  L5GraphOrchestrator["Graph Orchestrator:\nTask Decomp | Node Selection | Connections and Routing\n(nodes have internal loops)"]:::newCapNode
+  L5Label --> L5Input --> L5GraphOrchestrator
 
-  subgraph Layer1[" "]
+  L5GraphOrchestrator --> ResearchNode
+
+  subgraph ResearchNode["Research Node Loop"]
     direction LR
-    L1Label["Layer 1: Prompt Engineering"]:::headerNode
-    L1Input["Input:\nHelp me generate a webpage"]:::stdNode
-    L1LLM["LLM:\nUnderstand and Generate"]:::stdNode
-    L1Output["Output:\nA snippet of code"]:::stdNode
-    L1Label --> L1Input --> L1LLM --> L1Output
+    RNodeInput["Reqs + Code Context\n(reassembled)"]:::stdNode
+    RNodeAgent["Research Agent:\nJudge and Act"]:::stdNode
+    RNodeTools["Search / Read Tools"]:::stdNode
+    RNodeNotes["Research Notes:\nCheck if sufficient"]:::stdNode
+    RNodeInput --> RNodeAgent --> RNodeTools --> RNodeNotes
+    RNodeNotes -->|"Observe → feedback → supplementary research"| RNodeAgent
   end
-  S1[" "]:::invisible
-  Layer1 --- S1
 
-  subgraph Layer2[" "]
+  ResearchNode -->|"Notes → shared state → Implementation Node"| ImplementationNode
+
+  subgraph ImplementationNode["Implementation Node Loop"]
     direction LR
-    L2Label["Layer 2: Context Engineering"]:::headerNode
-    L2Input["Input:\nGenerate webpage"]:::stdNode
-    L2Context["Relevant Context:\nRef Implementation | Tech Stack | Coding Standards | Design Specs | Req and API Docs"]:::newCapNode
-    L2LLM["LLM:\nGenerate based on materials"]:::stdNode
-    L2Output["Output:\nCode that better fits the project"]:::stdNode
-    L2Label --> L2Input --> L2Context --> L2LLM --> L2Output
-  end
-  S2[" "]:::invisible
-  S1 --- Layer2
-  Layer2 --- S2
-
-  subgraph Layer3[" "]
-    direction LR
-    L3Label["Layer 3: Harness Engineering"]:::headerNode
-    L3Input["Input:\nGenerate webpage"]:::stdNode
-    L3Context["Context:\nCode | Standards | Design Specs | Docs and API Docs"]:::stdNode
-    L3CodingAgent["Coding Agent:\nDecide and Act"]:::stdNode
-    L3Harness["Harness: Tools and Execution:\nEnv / Deps | Files | Terminal | Git | Browser | Testing | APIs/MCP | Permissions and Sandbox"]:::newCapNode
-    L3Output["Output:\nRunnable webpage"]:::stdNode
-    L3Label --> L3Input --> L3Context --> L3CodingAgent --> L3Harness --> L3Output
-  end
-  S3[" "]:::invisible
-  S2 --- Layer3
-  Layer3 --- S3
-
-  subgraph Layer4[" "]
-    direction LR
-    L4Label["Layer 4: Loop Engineering"]:::headerNode
-    L4Input["Input:\nGenerate webpage"]:::stdNode
-    L4LoopController["Loop Controller:\nInspect Methods | Stop Conditions | Review Thresholds | Turn Budget"]:::newCapNode
-    L4Context["Context:\nReassemble based on latest state"]:::stdNode
-    L4Agent["Agent:\nJudge and Act"]:::stdNode
-    L4Harness["Harness:\nExecute and Observe"]:::stdNode
-    L4Version["Current Version:\nPending Inspection"]:::stdNode
-    L4Label --> L4Input --> L4LoopController
-    L4LoopController --> L4Context --> L4Agent --> L4Harness --> L4Version
-    L4Version -->|"Loop Feedback: Auto Inspection then Feedback then Revision then Re-inspection"| L4LoopController
-  end
-  S4[" "]:::invisible
-  S3 --- Layer4
-  Layer4 --- S4
-
-  subgraph Layer5[" "]
-    direction LR
-    L5Label["Layer 5: Graph Engineering"]:::headerNode
-    L5Input["Input"]:::stdNode
-    L5GraphOrchestrator["Graph Orchestrator:\nTask Decomp | Node Selection | Connections and Routing\nNodes have internal loops"]:::newCapNode
-    L5Label --> L5Input --> L5GraphOrchestrator
-  end
-  S4 --- Layer5
-
-  Layer1 ==> Layer2 ==> Layer3 ==> Layer4 ==> Layer5
-
-  L5GraphOrchestrator ==> DetailedViewSpacer[" "]:::invisible
-  DetailedViewSpacer ==> DetailedGraphView
-
-  subgraph DetailedGraphView["Detailed Graph Engineering View"]
-    direction TB
-
-    subgraph ResearchNode["Research Node Loop"]
-      direction LR
-      RNodeInput["Reqs + Code Context\nReassembled based on latest state"]:::stdNode
-      RNodeAgent["Research Agent:\nJudge and Act"]:::stdNode
-      RNodeTools["Search / Read Tools"]:::stdNode
-      RNodeNotes["Current Research Notes:\nCheck if sufficient"]:::stdNode
-      RNodeInput --> RNodeAgent --> RNodeTools --> RNodeNotes
-      RNodeNotes -->|"Node Internal Loop: Observe then Feedback then Supplementary Research"| RNodeAgent
-    end
-
-    ResearchNode -->|"Graph Routing: Research Notes written to shared state, handed to Implementation Node"| ImplementationNode
-
-    subgraph ImplementationNode["Implementation Node Loop"]
-      direction LR
-      INodeInput["Goals + Research Notes + Code Context"]:::stdNode
-      INodeAgent["Coding Agent:\nJudge and Act"]:::stdNode
-      INodeHarness["Harness:\nModify + Test"]:::stdNode
-      INodeResults["Current Webpage + Test Results:\nCheck if passed"]:::stdNode
-      INodeInput --> INodeAgent --> INodeHarness --> INodeResults
-      INodeResults -->|"Node Internal Loop: Test then Feedback then Modify then Re-test"| INodeAgent
-    end
+    INodeInput["Goals + Research Notes + Code Context"]:::stdNode
+    INodeAgent["Coding Agent:\nJudge and Act"]:::stdNode
+    INodeHarness["Harness:\nModify + Test"]:::stdNode
+    INodeResults["Webpage + Test Results:\nCheck if passed"]:::stdNode
+    INodeInput --> INodeAgent --> INodeHarness --> INodeResults
+    INodeResults -->|"Test → feedback → modify → re-test"| INodeAgent
   end
 
-  FooterSpacer[" "]:::invisible
-  MetadataNode["Relationship: Loop manages internal repeated execution.\nGraph manages inter-node connections, shared state, and routing.\n\nData Source: Akshay Pachaar demo and public materials, compiled by Zhishi ThinkTank.\nChart Created By: Zhishi ThinkTank."]:::textNode
-  DetailedGraphView --- FooterSpacer --- MetadataNode
-
-  class Layer1,Layer2,Layer3,Layer4,Layer5,DetailedGraphView,ResearchNode,ImplementationNode subGraphStyle
+  class ResearchNode,ImplementationNode subGraphStyle
 ```
+
+> **Loop vs graph:** a *loop* manages repeated execution inside one agent; a *graph* manages inter-node connections, shared state, and routing.
+>
+> Data source: Akshay Pachaar demo and public materials, compiled by Zhishi ThinkTank. Chart created by Zhishi ThinkTank.
 
 | Idea | Meaning |
 |---|---|
-| **Prompt** | One generation, no project materials |
-| **Context** | Stuff / retrieve the right materials ([RAG.md](./RAG.md), [LLM_Wiki.md](./LLM_Wiki.md)) |
-| **Harness** | Tools + sandbox so the agent can change the world ([§8](#8-coding-agent-products--cursor-claude-code-codex-)) |
+| **Prompt** | Ask well — instruct the model; one generation, no project materials yet |
+| **Context** | Inform well — retrieve / curate the right materials ([RAG.md](./RAG.md), [LLM_Wiki.md](./LLM_Wiki.md)) |
+| **Harness** | Equip well — tools, guides, sensors ([harness_engineering.md](./harness_engineering.md)) · [§8](#8-coding-agent-products--cursor-claude-code-codex-) |
 | **Loop** | Keep acting until tests / review pass (budgets, stop rules) |
 | **Graph** | Multiple specialized nodes + routing + shared state ([§6](#6-agent-frameworks--who-orchestrates-the-loop)) |
 
@@ -1454,12 +1483,14 @@ graph TD
 | 6. Agent frameworks | Done | LangGraph, OpenAI SDK, CrewAI, … · [Flyte/K8s ops](./flyte_k8s_ops.md) |
 | 7. Consumer chat apps | Done | ChatGPT, Claude.ai, Gemini, Grok |
 | 8. Coding-agent products | Done | Cursor, Claude Code, Codex, Copilot, … |
-| 9. AI coding: Prompt→Graph | Done | Evolution layers + detailed graph view |
+| 9. AI coding: Prompt→Graph | Done | Five layer diagrams · **[Harness engineering](./harness_engineering.md)** |
+| 10. Harness engineering | Done | [harness_engineering.md](./harness_engineering.md) — guides, sensors, OpenAI/Anthropic/Fowler |
 
 ---
 
 ## References (optional reading)
 
+- [harness_engineering.md](./harness_engineering.md) — guides, sensors, long-running agents, vendor playbooks ([§9](#9-ai-coding-evolution--from-prompt-to-graph))
 - [RAG.md](./RAG.md) — full RAG pipeline (index, retrieve, augment, generate)
 - Lost-in-the-middle / long-context distraction (why stuffing ≠ understanding)
 - RAG surveys: retrieve → augment prompt → generate
