@@ -18,7 +18,7 @@ Computer vision involves some fundamental visual perception tasks:
 
 - __Image classification__: Assign one (or more) labels to an entire image. Classical backbones are CNNs such as ResNet; Vision Transformers (ViT) are a strong alternative when pretrained at scale. See [CNN vs ViT for image classification](../classification/cnn_vs_vit.md) and [Vision Transformer](../deep_learning/transformer/vision_transformer.md).
 
-- __Object detection__: Determine whether image data contains one or multiple specified or learned objects or object classes. YOLO is the usual real-time SOTA; peak COCO AP often goes to heavier models — see [YOLO — is it SOTA?](object_detection/yolo_is_sota.md).
+- __Object detection__: Determine whether image data contains one or multiple specified or learned objects or object classes. YOLO is the usual real-time SOTA; peak COCO AP often goes to heavier models — see [YOLO — is it SOTA?](object_detection/yolo_is_sota.md). For text-prompted / zero-shot boxes, see [open-vocabulary detection](object_detection/open_vocabulary_detection.md).
 
   Object detection or recognition models take `image classification` one step further to find the presence, location, and the number of objects in an image.
 

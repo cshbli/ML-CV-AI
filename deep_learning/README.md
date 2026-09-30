@@ -38,6 +38,7 @@
   * Transformer
     * [Vision Transformer](./transformer/vision_transformer.md)
       * [CNN vs ViT for image classification](../classification/cnn_vs_vit.md)
+    * [DINO, DINOv2, and DINOv3](./transformer/dino.md)
     * [Attention from scratch](./transformer/attention.ipynb)
     * [Official ViT repo](https://github.com/google-research/vision_transformer)
   * [Compiler](./compiler/README.md)

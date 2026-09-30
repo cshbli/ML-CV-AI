@@ -8,6 +8,8 @@ Object Detection is a basic Computer Vision task to detect and localize objects 
 
 Is YOLO the current SOTA? See [YOLO — is it SOTA?](../computer_vision/object_detection/yolo_is_sota.md).
 
+Zero-shot / text-prompted detection (“detect anything”)? See [open-vocabulary detection](../computer_vision/object_detection/open_vocabulary_detection.md).
+
 <p align="center">
 <img src="pic/scene-object-detection-yolo-v7-1060x708.png">
 </p>

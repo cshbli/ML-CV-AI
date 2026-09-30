@@ -12,7 +12,7 @@ See also: [Object detection overview](../../object_detection/README.md) · [mAP]
 |------|---------------------|--------------------|
 | **Speed + accuracy tradeoff** (edge, video, products) | **Yes — YOLO family** is the default | Ultralytics YOLO (v8/v11…), YOLOv9/v10, YOLO-World (open-vocab) |
 | **Highest COCO box AP** (offline, big models) | **Often no** | Heavy Transformer / hybrid detectors (e.g. Co-DETR-class, large DINO/DETA-style, big backbones) |
-| **Open-vocabulary** (“detect an arbitrary phrase”) | YOLO-World / similar help; not classic YOLO alone | Grounding DINO, OWL-ViT, GLIP, YOLO-World |
+| **Open-vocabulary** (“detect an arbitrary phrase”) | YOLO-World / similar help; not classic YOLO alone | Grounding DINO, OWL-ViT, GLIP, YOLO-World — see [open-vocabulary detection](open_vocabulary_detection.md) |
 | **Easy train on custom data** | **Yes — YOLO** | Same ecosystem (Ultralytics, etc.) |
 
 Classic YOLO-style models are **one-stage, real-time** detectors. They win on latency and engineering. Pure accuracy races often go to slower, heavier models you would not ship on a phone or at 30–60 FPS. Version numbers (v3→v11) are **not** one continuous product — see [below](#yolov5-v7-v8--v11--what-differs-what-is-outdated).
@@ -21,7 +21,7 @@ Classic YOLO-style models are **one-stage, real-time** detectors. They win on la
 
 * Building a detector for a **custom dataset** and care about FPS → start with **current Ultralytics YOLO** (or YOLOv9/v10/v11 variants).
 * Chasing **max AP on a benchmark** with no speed limit → look beyond YOLO at large DETR-style / hybrid SOTA papers.
-* Need **text-driven** detection → open-vocab models (Grounding DINO, YOLO-World), not vanilla closed-set YOLO alone.
+* Need **text-driven** detection → open-vocab models (Grounding DINO, YOLO-World), not vanilla closed-set YOLO alone. Details: [open-vocabulary / zero-shot detection](open_vocabulary_detection.md).
 
 So: YOLO is the current **go-to SOTA for real-time detection**; it is not uniquely “the” SOTA for every detection leaderboard.
 
