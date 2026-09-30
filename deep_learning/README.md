@@ -36,6 +36,9 @@
       * [ONNX Runtime Qunatization Example MobilenetV2 with QDQ Debugging](./quantization/ONNX/quantization_example.md)
       * [Mobilenet v2 Quantization with ONNX Runtime on CPU](./quantization/ONNX/mobilenet.ipynb)
   * Transformer
-    * [Vision Transformer](https://github.com/google-research/vision_transformer)
+    * [Vision Transformer](./transformer/vision_transformer.md)
+      * [CNN vs ViT for image classification](../classification/cnn_vs_vit.md)
+    * [Attention from scratch](./transformer/attention.ipynb)
+    * [Official ViT repo](https://github.com/google-research/vision_transformer)
   * [Compiler](./compiler/README.md)
      * [GLOW](https://github.com/pytorch/glow)

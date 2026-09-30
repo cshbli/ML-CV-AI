@@ -61,7 +61,8 @@
         * [What Are Word Embeddings for Text?](https://machinelearningmastery.com/what-are-word-embeddings/)
         * [The Illustrated Word2vec](https://jalammar.github.io/illustrated-word2vec/)    
     * [Transformer](./LLM/transformer.md)
-      * [Vision Transformer](https://github.com/google-research/vision_transformer)
+      * [Vision Transformer](./deep_learning/transformer/vision_transformer.md)
+        * [CNN vs ViT for image classification](./classification/cnn_vs_vit.md)
     * [Knowledge Distillation](./LLM/knowledge_distillation.md)
   * [HuggingFace](./LLM/HuggingFace.md)
   * [DeepSeek](./LLM/DeepSeek.md)
@@ -250,6 +251,7 @@
       * [Face mask detection with RetinaNet example](./object_detection/RetinaNet/face_mask_detector/FaceMaskDetector.ipynb)
      
   * Classification  
+    * [CNN (ResNet50) vs Vision Transformer for image classification](./classification/cnn_vs_vit.md)
     * [Transfer Learning with PyTorch tutorial](./classification/transfer_learning_tutorial.ipynb) 
   * Segmentation
     * Color Segmentation

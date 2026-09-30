@@ -16,7 +16,8 @@ Computer vision involves some fundamental visual perception tasks:
 
 <img src="pic/1_pWoHu_uUDebBSSNmyMydLQ.png">
 
-- __Image classification__: 
+- __Image classification__: Assign one (or more) labels to an entire image. Classical backbones are CNNs such as ResNet; Vision Transformers (ViT) are a strong alternative when pretrained at scale. See [CNN vs ViT for image classification](../classification/cnn_vs_vit.md) and [Vision Transformer](../deep_learning/transformer/vision_transformer.md).
+
 - __Object detection__: Determine whether image data contains one or multiple specified or learned objects or object classes. 
 
   Object detection or recognition models take `image classification` one step further to find the presence, location, and the number of objects in an image.
