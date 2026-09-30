@@ -28,6 +28,39 @@ There is no single “Detect Anything” identical to SAM, but **Grounding DINO,
 | **Detic** | CLIP classifiers / large vocab | Many classes without classic box labels per class |
 | **Florence-2, other VLMs** | Text / instructions | Broader vision-language; can do grounding/detection-style tasks |
 
+## Grounding DINO
+
+**Grounding DINO** is an **open-vocabulary object detector**: you give an image plus **text** (category names or phrases), and it returns **bounding boxes** for things that match that text — including classes it was not trained on as a fixed closed list.
+
+It combines:
+
+* **DINO**-style detection Transformers (DETR-like set prediction) — the “DINO” here is the **detector** training line, **not** Meta’s SSL [DINO / DINOv2 / DINOv3](../../deep_learning/transformer/dino.md) backbone
+* **Grounding / language–vision** alignment (in the spirit of GLIP): text and image features interact so phrases can “ground” to image regions
+
+So: **text → boxes**. That is why it is the usual partner for SAM in “detect anything + segment anything” stacks.
+
+### What it can do
+
+* Zero-shot / open-vocab detection (“find *scalpel*, *red cone*, *person with a hat*”)
+* Phrase grounding (locate a described region)
+* Feed boxes into **[SAM / SAM 2](../Segmentation/segment_anything.md)** for masks (**Grounded-SAM**)
+
+### What it is not
+
+| | **Grounding DINO** | **[DINO / DINOv2 / DINOv3](../../deep_learning/transformer/dino.md)** | **[SAM](../Segmentation/segment_anything.md)** |
+|--|--------------------|---------------------------------------------------------------------|------|
+| Job | Detect objects from **text** | SSL **feature backbone** | Promptable **masks** |
+| Output | Boxes (+ scores) | Embeddings | Masks |
+| Prompt | Language | None (encode image) | Points / boxes / masks |
+
+### Practical takeaway
+
+* Need **language-driven boxes** → **Grounding DINO** (quality) or **YOLO-World** (speed).
+* Need a **visual encoder** for your own heads → DINOv2/v3.
+* Need **masks** → SAM, often *after* Grounding DINO proposes boxes.
+
+Repo: [IDEA-Research/GroundingDINO](https://github.com/IDEA-Research/GroundingDINO)
+
 ## Practical stack (very common)
 
 1. **Grounding DINO** or **YOLO-World** → boxes from text  
@@ -44,7 +77,8 @@ That is the usual “detect anything + segment anything” pipeline (e.g. Ground
 
 ## References
 
-* [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO)
+* [Grounding DINO](https://github.com/IDEA-Research/GroundingDINO) · paper: [arXiv:2303.05499](https://arxiv.org/abs/2303.05499)
 * [YOLO-World](https://github.com/AILab-CVC/YOLO-World)
 * [OWL-ViT](https://huggingface.co/docs/transformers/model_doc/owlvit) · [OWLv2](https://huggingface.co/docs/transformers/model_doc/owlv2)
 * [Segment Anything](../Segmentation/segment_anything.md)
+* SSL DINO family (unrelated name): [dino.md](../../deep_learning/transformer/dino.md)
