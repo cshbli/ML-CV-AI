@@ -174,6 +174,11 @@
   * [Pooling](./deep_learning/pooling.md)
   * [Normalization](./deep_learning/normalization/README.md)
   * [Residual Block and Inverted Residual Block](./deep_learning/residual_block/README.md)
+  * Transformer
+    * [Vision Transformer](./deep_learning/transformer/vision_transformer.md)
+      * [Fine-tuning ViT on custom data](./deep_learning/transformer/vision_transformer.md#fine-tuning-vit-on-custom-data)
+      * [CNN vs ViT for image classification](./classification/cnn_vs_vit.md)
+    * [Attention from scratch](./deep_learning/transformer/attention.ipynb)
   * Deep Learning Framework
     * [PyTorch vs Tensorflow](./deep_learning/framework/tensorflow_vs_pytorch.md)
     * PyTorch
@@ -230,6 +235,7 @@
 * Computer Vision  
   * [Overview](./computer_vision/README.md)
   * [Object Detection](./object_detection/README.md)
+    * [YOLO — is it SOTA?](./computer_vision/object_detection/yolo_is_sota.md)
     * Concepts
       * [Anchor Boxes](./object_detection/concepts/README.md#anchor-boxes)
       * [Feature Pyramid Network (FPN)](./object_detection/concepts/README.md#feature-pyramid-network-fpn)   
@@ -254,6 +260,7 @@
     * [CNN (ResNet50) vs Vision Transformer for image classification](./classification/cnn_vs_vit.md)
     * [Transfer Learning with PyTorch tutorial](./classification/transfer_learning_tutorial.ipynb) 
   * Segmentation
+    * [Segment Anything (SAM) — is it SOTA?](./computer_vision/Segmentation/segment_anything.md)
     * Color Segmentation
       * [Color Image Segmentation in HSV Color Space](./object_segmentation/color/hsv_color_segmentation.ipynb)
     * [Deep Adversarial Training for Multi-Organ Nuclei Segmentation in Histopathology Images](./object_segmentation/nuclei_segmentation.md)

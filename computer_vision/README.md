@@ -18,7 +18,7 @@ Computer vision involves some fundamental visual perception tasks:
 
 - __Image classification__: Assign one (or more) labels to an entire image. Classical backbones are CNNs such as ResNet; Vision Transformers (ViT) are a strong alternative when pretrained at scale. See [CNN vs ViT for image classification](../classification/cnn_vs_vit.md) and [Vision Transformer](../deep_learning/transformer/vision_transformer.md).
 
-- __Object detection__: Determine whether image data contains one or multiple specified or learned objects or object classes. 
+- __Object detection__: Determine whether image data contains one or multiple specified or learned objects or object classes. YOLO is the usual real-time SOTA; peak COCO AP often goes to heavier models — see [YOLO — is it SOTA?](object_detection/yolo_is_sota.md).
 
   Object detection or recognition models take `image classification` one step further to find the presence, location, and the number of objects in an image.
 
@@ -30,9 +30,9 @@ Computer vision involves some fundamental visual perception tasks:
 <img src="pic/deep-convolutional-network-for-face-detection.webp">
 </p>
 
-- __Object segmentation__: Object segmentation tries to find the exact boundary of the objects in the image.
+- __Object segmentation__: Object segmentation tries to find the exact boundary of the objects in the image. For promptable / foundation-model segmentation, see [Segment Anything (SAM)](Segmentation/segment_anything.md).
 
-  - __Semantic segmentation__: 
+  - __Semantic segmentation__: Assign a class label to every pixel (closed set). Specialized models (Mask2Former, SegFormer, U-Net, …) are often preferred over raw SAM when you need fixed labels.
   - __Instance segmentation__: It returns a unique label to every instance of a particular object in the image.
 
 <p align="center">

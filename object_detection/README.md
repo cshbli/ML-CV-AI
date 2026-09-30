@@ -6,6 +6,8 @@ Object detection is an important computer vision task used to detect instances o
 
 Object Detection is a basic Computer Vision task to detect and localize objects in images and video.
 
+Is YOLO the current SOTA? See [YOLO — is it SOTA?](../computer_vision/object_detection/yolo_is_sota.md).
+
 <p align="center">
 <img src="pic/scene-object-detection-yolo-v7-1060x708.png">
 </p>
