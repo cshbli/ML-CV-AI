@@ -138,6 +138,56 @@ That usually beats “fine-tune all of ResNet50” when labels are few, because 
 
 **Bottom line:** For a small custom classifier, prefer **DINO as a frozen feature extractor + linear head** first; use fine-tuned ResNet as a baseline comparison, not the only plan. See also [CNN vs ViT](../../classification/cnn_vs_vit.md) and [Fine-tuning ViT](vision_transformer.md#fine-tuning-vit-on-custom-data).
 
+### Frozen DINOv3 + linear / MLP head — preprocessing and pipeline
+
+Preprocessing is mostly **match the DINOv3 checkpoint**; the backbone stays frozen and labels never update DINO weights.
+
+**Required (web / LVD weights)** — official-style transform from [dinov3](https://github.com/facebookresearch/dinov3):
+
+1. **RGB** image  
+2. **Resize** to the size the checkpoint expects (commonly **256×256**; Hugging Face processors often default to **224** — follow that checkpoint)  
+3. Convert to **float in [0, 1]**  
+4. **Normalize** with ImageNet stats: mean `(0.485, 0.456, 0.406)`, std `(0.229, 0.224, 0.225)`  
+5. Batch as `N×3×H×W`
+
+Satellite (**SAT**) weights use **different** mean/std — do not mix them with web weights.
+
+**Train aug (optional, helpful on small data):** light RandomResizedCrop / flip / color jitter *before* normalize. Keep **val/test deterministic** (fixed resize + normalize only).
+
+**Not required** for a frozen CLS probe: ImageNet labels, boxes, masks, or unfreezing DINO.
+
+After preprocess:
+
+```text
+image → transform → frozen DINOv3 → CLS vector → Linear / tiny MLP → class logits
+```
+
+Only the Linear/MLP is trained (e.g. cross-entropy). Same resize + mean/std at train and inference; you can cache CLS features once for faster head sweeps.
+
+```mermaid
+flowchart TD
+  A[Raw customer images + labels] --> B[Train / val / test split]
+  B --> C{Split}
+
+  C -->|train| D[Augment: flip / crop / color jitter optional]
+  C -->|val/test| E[No random aug]
+
+  D --> F[Resize to HxW e.g. 256]
+  E --> F
+
+  F --> G[To float 0-1]
+  G --> H["Normalize ImageNet mean/std"]
+  H --> I[Batch N×3×H×W]
+
+  I --> J[Frozen DINOv3 backbone]
+  J --> K[Extract CLS embedding]
+  K --> L[Linear classifier or tiny MLP]
+  L --> M[Logits / predicted class]
+
+  N[Only train head: CE loss + AdamW] -.-> L
+  O[Backbone requires_grad = False] -.-> J
+```
+
 ## Practical takeaway
 
 * Need a **pretrained visual encoder** for your dataset (classify, retrieve, feed a det/seg/depth head) → **DINOv2 or DINOv3** (often frozen + linear head on small data).
