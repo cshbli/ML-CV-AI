@@ -104,9 +104,44 @@ Repo / paper: [facebookresearch/dinov3](https://github.com/facebookresearch/dino
 | What you use today | Historical / research baseline | Still excellent default SSL backbone | Latest / strongest dense features |
 | vs YOLO / SAM | Feature encoder only | Same | Same |
 
+## DINO vs ResNet as a feature extractor
+
+**Yes — DINOv2 / DINOv3 are excellent for image feature extraction.** On a **small custom dataset**, a frozen DINO backbone is often a **better starting point than fine-tuning ResNet**.
+
+| | **DINOv2 / v3** | **ResNet50 (fine-tune)** |
+|--|-----------------|--------------------------|
+| Pretraining | Self-supervised, strong general features | Supervised ImageNet |
+| Small data | Often wins with **frozen + linear head** | Works, but easier to overfit if you unfreeze a lot |
+| Feature quality | Strong global + dense semantics | Strong, more “ImageNet-shaped” |
+| Training cost | Cheap if frozen | Medium |
+| When ResNet wins | — | Domain very close to ImageNet and you tune carefully |
+
+### Small custom dataset → one classifier
+
+**Recommended default**
+
+1. **DINOv2 or DINOv3 backbone, frozen**
+2. Train only a **linear classifier** (or a tiny MLP) on CLS features
+3. Strong but simple augmentation; careful train/val split
+
+That usually beats “fine-tune all of ResNet50” when labels are few, because you keep a strong representation instead of overfitting the backbone.
+
+**Strong alternative:** fine-tune **ResNet50** with a small LR on the backbone and a larger LR on the head (optionally freeze early epochs). Still a solid workflow; a **clean frozen DINO linear probe** is often stronger on small data.
+
+**If you have a bit more data**, try both and pick by validation:
+
+1. Frozen DINO + linear head  
+2. Light DINO fine-tune (unfreeze last blocks, tiny LR)  
+3. Fine-tune ResNet50  
+
+**Practical tip:** start with **DINOv2-B** or a distilled **DINOv3** small/base if VRAM matters; keep preprocessing consistent with the checkpoint. For fine-grained or domain-shifted images (industrial, medical, products), DINO’s SSL features often transfer better than ImageNet-supervised ResNet.
+
+**Bottom line:** For a small custom classifier, prefer **DINO as a frozen feature extractor + linear head** first; use fine-tuned ResNet as a baseline comparison, not the only plan. See also [CNN vs ViT](../../classification/cnn_vs_vit.md) and [Fine-tuning ViT](vision_transformer.md#fine-tuning-vit-on-custom-data).
+
 ## Practical takeaway
 
-* Need a **pretrained visual encoder** for your dataset (classify, retrieve, feed a det/seg/depth head) → **DINOv2 or DINOv3**.
+* Need a **pretrained visual encoder** for your dataset (classify, retrieve, feed a det/seg/depth head) → **DINOv2 or DINOv3** (often frozen + linear head on small data).
+* Small custom classifier: prefer **frozen DINO + linear** over jumping straight to full ResNet fine-tune — see [above](#dino-vs-resnet-as-a-feature-extractor).
 * Need **boxes or masks as the product** → [YOLO](../../computer_vision/object_detection/yolo_is_sota.md) / [open-vocab detection](../../computer_vision/object_detection/open_vocabulary_detection.md) / [SAM](../../computer_vision/Segmentation/segment_anything.md); DINO can still be the backbone behind a head.
 * Fine-tuning tips for ViT-style models: [Fine-tuning ViT on custom data](vision_transformer.md#fine-tuning-vit-on-custom-data).
 
